@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+<h1>ggg</h1>
 <c:redirect url="main" />
 
 </body>
