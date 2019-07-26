@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+jkhjk
 <c:redirect url="main" />
 
 </body>
