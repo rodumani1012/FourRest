@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>FOREST-LOGIN</title>
 <!--Google Font link-->
+<link rel="shortcut icon" href="">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700"
@@ -125,17 +128,21 @@
 			<h1>[ THE FOREST ]</h1>
 			<br>
 			<h3>LOGIN</h3>
-			<form action="/login">
+			<c:url value="/login" var="loginUrl" />
+			<form:form name="f" action="${loginUrl}" method="POST">
+				<c:if test="${param.error != null}">
+					<p>아이디와 비밀번호가 잘못되었습니다.</p>
+				</c:if>
 				<div class="form-group">
-					<label for="email">ID : </label>
+					<label for="username">ID : </label>
 					<div class="row justify-content-center">
-						<input type="text" class="form-control col-sm-3" id="email">
+						<input type="text" class="form-control col-sm-3" id="id" name="id">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="pwd">Password : </label>
+					<label for="password">Password : </label>
 					<div class="row justify-content-center">
-						<input type="password" class="form-control col-sm-3" id="pwd">
+						<input type="password" class="form-control col-sm-3" id="password"name="password">
 					</div>
 				</div>
 				<div class="form-group form-check">
@@ -144,7 +151,7 @@
 					</label>
 				</div>
 				<button type="submit" class="btn btn-success">Sponsor</button>
-			</form>
+			</form:form>
 		</div>
 	</div>
 </body>

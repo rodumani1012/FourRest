@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -105,8 +109,19 @@
 				<!-- Start Atribute Navigation -->
 				<div class="attr-nav">
 					<ul>
-						<li><a href="loginform">LOGIN</a></li>
-						<li><a href="joinform">JOIN</a></li>
+						<li>
+						<sec:authorize access="isAnonymous()">
+						<a href="<c:url value="loginform.do" />">LOGIN</a>
+						</sec:authorize>	
+						</li>
+						<li>
+						<sec:authorize access="isAuthenticated()">
+								<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+								<input type="submit" value="LOGOUT" />
+							</form:form>
+						</sec:authorize>
+						</li>
+						<li><a href="joinform.do">JOIN</a></li>
 						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
 						<li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
 					</ul>
@@ -223,41 +238,46 @@
 		<div class="container text-center">
 			<img src="resources/assets/images/ss.png" alt="후원금 사용내역">
 		</div>
-			<div class="container text-center">
-				<img src="resources/assets/images/fprojects/board.png" alt="게시판">
-			</div>
+		<div class="container text-center">
+			<img src="resources/assets/images/fprojects/board.png" alt="게시판">
+		</div>
 
 		<!-- 후원 및 봉사 사진 넣는 부분 -->
 		<div class="featured_slider">
-			
+
 			<div>
 				<div class="featured_img">
 					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor1.jpeg" class="popup-img"></a>
+						href="resources/assets/images/fprojects/wor1.jpeg"
+						class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
 					<img src="resources/assets/images/fprojects/wor2.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor2.jpeg" class="popup-img"></a>
+						href="resources/assets/images/fprojects/wor2.jpeg"
+						class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
 					<img src="resources/assets/images/fprojects/wor3.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor3.jpeg" class="popup-img"></a>
+						href="resources/assets/images/fprojects/wor3.jpeg"
+						class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
 					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor1.jpeg" class="popup-img"></a>
+						href="resources/assets/images/fprojects/wor1.jpeg"
+						class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
 					<img src="resources/assets/images/fprojects/wor2.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor2.jpeg" class="popup-img"></a>
+						href="resources/assets/images/fprojects/wor2.jpeg"
+						class="popup-img"></a>
 				</div>
 			</div>
 		</div>
@@ -332,19 +352,18 @@
 	<script src="resources/assets/js/main.js"></script>
 
 	<script type="text/javascript">
-	
-	function showmap() {
-		var mapOptions = {
-			zoom: 8,
-			scrollwheel: false,
-			center: new google.maps.LatLng(-34.397, 150.644),
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		};
-		var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-		$('.mapheight').css('height', '350');
-		$('.maps_text h3').hide();
-	}
-	
+		function showmap() {
+			var mapOptions = {
+				zoom : 8,
+				scrollwheel : false,
+				center : new google.maps.LatLng(-34.397, 150.644),
+				mapTypeId : google.maps.MapTypeId.ROADMAP
+			};
+			var map = new google.maps.Map(
+					document.getElementById('map_canvas'), mapOptions);
+			$('.mapheight').css('height', '350');
+			$('.maps_text h3').hide();
+		}
 	</script>
 
 </body>
