@@ -103,7 +103,7 @@
 							class="fa fa-times"></i></span>
 					</div>
 				</div>
-			</div>
+			</div>k
 			<!-- End Top Search -->
 			<div class="container">
 				<!-- Start Atribute Navigation -->
@@ -138,9 +138,7 @@
 					<a class="navbar-brand" href="#brand"> <img
 						src="resources/assets/images/logo.png"
 						class="logo logo-display m-top-10" alt=""> <img
-						src="resources/assets/images/logo.jpg" class="logo logo-scrolled"
-						alt="">
-
+						src="resources/assets/images/logo.jpg" class="logo logo-scrolled" alt="">
 					</a>
 				</div>
 				<!-- End Header Navigation -->
