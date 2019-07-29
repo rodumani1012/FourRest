@@ -105,8 +105,8 @@
 				<!-- Start Atribute Navigation -->
 				<div class="attr-nav">
 					<ul>
-						<li><a href="loginform">LOGIN</a></li>
-						<li><a href="joinform">JOIN</a></li>
+						<li><a href="loginform.do">LOGIN</a></li>
+						<li><a href="joinform.do">JOIN</a></li>
 						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
 						<li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
 					</ul>
@@ -135,11 +135,12 @@
 						data-out="fadeOutUp">
 						<li><a href="#hello">About us</a></li>
 						<li><a href="#about">Map</a></li>
-						<li><a href="sponsor">Sponsor</a></li>
+						<li><a href="sponsor.do">Sponsor</a></li>
 						<li><a href="#portfolio">review</a></li>
 						<li><a href="#pricing">Pricing</a></li>
 						<li><a href="#blog">Blog</a></li>
 						<li><a href="#contact">Contact</a></li>
+						<li><a href="ani_shelterlist.do">보호소</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -152,7 +153,7 @@
 					<ul class="link">
 						<li><a href="#hello">About us</a></li>
 						<li><a href="#about">Map</a></li>
-						<li><a href="sponsor">Sponsor</a></li>
+						<li><a href="sponsor.do">Sponsor</a></li>
 						<li><a href="#portfolio">review</a></li>
 						<li><a href="#">Portfolio</a></li>
 						<li><a href="#">Contact</a></li>

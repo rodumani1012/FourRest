@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<c:redirect url="main" />
+<c:redirect url="main.do" />
 
 </body>
 </html>
