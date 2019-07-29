@@ -9,7 +9,6 @@
 </head>
 <body>
 
-hhh
 <c:redirect url="main" />
 
 </body>
