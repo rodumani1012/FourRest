@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.my.four.crawling.AnimalShelterList;
+import com.my.four.animal.AnimalShelterList;
 
 @Controller
 public class HomeController {
@@ -56,7 +56,7 @@ public class HomeController {
 		
 		AnimalShelterList list = new AnimalShelterList();
 
-		model.addAttribute("list", list);
+		model.addAttribute("list", list.returnObj());
 		return "shelterList/animalshelterlist";
 	}
 }
