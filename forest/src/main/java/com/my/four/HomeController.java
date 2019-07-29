@@ -15,6 +15,7 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	
 	@RequestMapping(value="/main")
 	public String main() {
 	
@@ -31,14 +32,14 @@ public class HomeController {
 		return "sponsor";
 	}
 	
-	@RequestMapping(value="/loginform")
+	@RequestMapping(value="/loginform.do")
 	public String loginform() {
 		logger.info("로그인");
 		
 		return "login";
 	}
 	
-	@RequestMapping(value="/joinform")
+	@RequestMapping(value="/joinform.do")
 	
 	public String joinform(){
 		logger.info("회원가입");
