@@ -150,11 +150,12 @@
 						data-out="fadeOutUp">
 						<li><a href="#hello">About us</a></li>
 						<li><a href="#about">Map</a></li>
-						<li><a href="sponsor">Sponsor</a></li>
+						<li><a href="sponsor.do">Sponsor</a></li>
 						<li><a href="#portfolio">review</a></li>
 						<li><a href="#pricing">Pricing</a></li>
 						<li><a href="#blog">Blog</a></li>
 						<li><a href="#contact">Contact</a></li>
+						<li><a href="ani_shelterlist.do">보호소</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -167,7 +168,7 @@
 					<ul class="link">
 						<li><a href="#hello">About us</a></li>
 						<li><a href="#about">Map</a></li>
-						<li><a href="sponsor">Sponsor</a></li>
+						<li><a href="sponsor.do">Sponsor</a></li>
 						<li><a href="#portfolio">review</a></li>
 						<li><a href="#">Portfolio</a></li>
 						<li><a href="#">Contact</a></li>
