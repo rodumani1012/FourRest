@@ -51,12 +51,4 @@ public class HomeController {
 		return "map";
 	}
 	
-	@RequestMapping(value = "ani_shelterlist.do")
-	public String ani_shelterlist(Model model) {
-		
-		AnimalShelterList list = new AnimalShelterList();
-
-		model.addAttribute("list", list.returnObj());
-		return "shelterList/animalshelterlist";
-	}
 }

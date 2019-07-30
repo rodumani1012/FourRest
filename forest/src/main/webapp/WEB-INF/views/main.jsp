@@ -155,7 +155,7 @@
 						<li><a href="#pricing">Pricing</a></li>
 						<li><a href="#blog">Blog</a></li>
 						<li><a href="#contact">Contact</a></li>
-						<li><a href="ani_shelterlist.do">보호소</a></li>
+						<li><a href="ani_shelterList.do">보호소</a></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
