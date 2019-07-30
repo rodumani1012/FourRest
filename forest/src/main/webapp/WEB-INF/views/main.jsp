@@ -19,7 +19,6 @@
 <title>THE FOREST</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="favicon.ico">
 
 <!--Google Font link-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
@@ -46,10 +45,7 @@
 <link rel="stylesheet" href="resources/assets/css/bootstrap.css">
 <link rel="stylesheet" href="resources/assets/css/magnific-popup.css">
 <link rel="stylesheet" href="resources/assets/css/bootsnav.css">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous">
+
 
 <!--For Plugins external css-->
 <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
