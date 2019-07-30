@@ -6,6 +6,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.my.four.model.dto.LoginDto" alias="loginDto"/>
+		<typeAlias type="com.my.four.model.dto.AnimalShelterListDto" alias="animalDto"/>
 	</typeAliases>
 	<!-- resource : java Resources -->
 	<!-- resource : src/main/resources -->
