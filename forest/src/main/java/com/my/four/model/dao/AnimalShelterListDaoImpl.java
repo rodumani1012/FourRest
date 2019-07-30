@@ -2,8 +2,11 @@ package com.my.four.model.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.my.four.model.dto.AnimalShelterListDto;
 
+@Repository
 public class AnimalShelterListDaoImpl implements AnimalShelterListDao {
 
 	@Override
