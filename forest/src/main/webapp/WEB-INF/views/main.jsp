@@ -92,7 +92,7 @@
 		<!--Home page style-->
 		<!--Home page style-->
 		<nav
-			class="navbar navbar-light navbar-expand-lg  navbar-fixed white no-background bootsnav">
+			class="navbar navbar-light navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
 			<!-- Start Top Search -->
 			<div class="top-search">
 				<div class="container">
@@ -103,25 +103,12 @@
 							class="fa fa-times"></i></span>
 					</div>
 				</div>
-			</div>k
+			</div>
 			<!-- End Top Search -->
 			<div class="container">
 				<!-- Start Atribute Navigation -->
 				<div class="attr-nav">
 					<ul>
-						<li>
-						<sec:authorize access="isAnonymous()">
-						<a href="<c:url value="loginform.do" />">LOGIN</a>
-						</sec:authorize>	
-						</li>
-						<li>
-						<sec:authorize access="isAuthenticated()">
-								<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-								<input type="submit" value="LOGOUT" />
-							</form:form>
-						</sec:authorize>
-						</li>
-						<li><a href="joinform.do">JOIN</a></li>
 						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
 						<li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
 					</ul>
@@ -135,10 +122,8 @@
 						<span></span> <span></span> <span></span>
 					</button>
 
-					<a class="navbar-brand" href="#brand"> <img
-						src="resources/assets/images/logo.png"
-						class="logo logo-display m-top-10" alt=""> <img
-						src="resources/assets/images/logo.jpg" class="logo logo-scrolled" alt="">
+					<a class="navbar-brand" href="main"><img
+						src="resources/assets/images/logo2.jpg" class="logo logo-scrolled" alt="logo">
 					</a>
 				</div>
 				<!-- End Header Navigation -->
@@ -146,14 +131,31 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li><a href="#hello">About us</a></li>
-						<li><a href="#about">Map</a></li>
-						<li><a href="sponsor.do">Sponsor</a></li>
-						<li><a href="#portfolio">review</a></li>
-						<li><a href="#pricing">Pricing</a></li>
-						<li><a href="#blog">Blog</a></li>
-						<li><a href="#contact">Contact</a></li>
-						<li><a href="ani_shelterlist.do">보호소</a></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#hello'">About us</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#about">Map</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='sponsor.do'">Sponsor</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#pricing'">Pricing</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#blog'">Blog</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#contact'">Contact</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterlist.do'">보호소</button></li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li>
+						<sec:authorize access="isAnonymous()">
+						<button type="button" class="btn btn-link text-dark"onclick="location.href='<c:url value='loginform.do'/>'">LOGIN</button>
+						</sec:authorize>	
+						</li>
+						<li>
+						<sec:authorize access="isAuthenticated()">
+								<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+								<input type="submit" class="btn btn-link" value="LOGOUT" />
+							</form:form>
+						</sec:authorize>
+						</li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='joinform.do'">JOIN</button></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
