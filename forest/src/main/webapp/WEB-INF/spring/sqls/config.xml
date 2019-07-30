@@ -4,7 +4,9 @@
 	
 	<!-- type이 너무길어서 별칭을 준다. -->
 	
-	
+	<typeAliases>
+		<typeAlias type="com.my.four.model.dto.LoginDto" alias="loginDto"/>
+	</typeAliases>
 	<!-- resource : java Resources -->
 	<!-- resource : src/main/resources -->
 	<mappers>

@@ -2,11 +2,23 @@ package com.my.four;
 
 
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.my.four.model.biz.LoginBiz;
+import com.my.four.model.biz.MailService;
 
 
 
@@ -14,7 +26,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	private MailService mailSerivce;
 	
+	@Autowired
+	private LoginBiz biz;
 	
 	@RequestMapping(value="/main")
 	public String main() {
@@ -52,7 +68,31 @@ public class HomeController {
 		logger.info("지도나와아");
 		
 		return "map";
+	}
+	@RequestMapping(value="idChk.do")
+	public String idChk(String id,Model model) {
+		logger.info("id=="+id);
+		model.addAttribute("idchk",biz.idChk(id));
+		return "idchk";
+	}
+	@RequestMapping(value="addpop.do")
+	public String addPop() {
+		return "addpop";
+	}
+	@RequestMapping(value="mailSend.do", produces = "application/json")
+	@ResponseBody
+	public Map<String, Object> sendMail(HttpSession session, String emailName,String emailForm) {
+		int ran = new Random().nextInt(100000)+10000;//10000~99999 
+		String email = emailName +"@"+emailForm;
+		String joinCode = String.valueOf(ran);
+		session.setAttribute("joinCode", joinCode);
 		
+		String subject ="회원 가입 인증 코드 입니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("귀하의 인증코드는"+joinCode+"입니다.");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("email", mailSerivce.send(subject,sb.toString(),"wjy1408@gmail.com",email,null));
+		return map;
 	}
 	
 }
