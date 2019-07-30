@@ -14,7 +14,6 @@
         <intercept-url pattern="/**" access="permitAll" />
         
         <csrf disabled="true"/>
-
         <form-login login-page="/loginform.do"
         
                     default-target-url="/main.do"
@@ -24,7 +23,7 @@
         <logout logout-url="/logout"
                 logout-success-url="/main.do" />
                 
-        <access-denied-handler error-page="/main.do" />
+<!--         <access-denied-handler error-page="/login/accessDenied.do" /> -->
     </http>
     
     <beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">

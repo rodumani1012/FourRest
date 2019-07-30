@@ -1,6 +1,7 @@
 package com.my.four.animal;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import com.my.four.model.dto.AnimalShelterListDto;
 
 public class AnimalShelterList {
 	
-	public JSONObject returnObj() {
+	public void returnJsonFile() {
 		/*
 		  Document : 연결해서 가져온 HTML 전체 문서
 		  Element : Document의 HTML 요소
@@ -67,6 +68,7 @@ public class AnimalShelterList {
 			if(i%4 == 3) {
 				dto.setCenterAddr(centerList[i]);
 				list.add(dto);
+				dto = new AnimalShelterListDto();
 			}
 		}
 		
@@ -85,7 +87,22 @@ public class AnimalShelterList {
 		// json배열을 jsonObject에 넣기
 		JSONObject obj = new JSONObject();
 		obj.put("list", jsonArray);
-		
-		return obj;
+
+		/*
+		try {
+			File dir = new File("C:\\forest");
+			if(dir.mkdir()) {
+				System.out.println("디렉토리 생성 완료");
+			} else {
+				System.out.println("디렉토리 생성 실패");
+			}
+			FileWriter file = new FileWriter("C:\\forest\\animalshelterlist.json");
+			file.write(obj.toJSONString());
+			file.flush();
+			file.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		*/
 	}
 }

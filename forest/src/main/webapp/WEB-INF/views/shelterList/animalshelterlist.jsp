@@ -11,5 +11,19 @@
 <script type="text/javascript" src="resources/assets/js/crawling/animalshelterlist.js"></script>
 <body>
 	
+	<form action="ani_saveDb.do" method="post">
+	<input type="submit" value="db저장하기">
+		<table>
+			<thead>
+				<tr>
+					<th>관할구역</th>
+					<th>보호센터명</th>
+					<th>전화번호</th>
+					<th>보호센터</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</form>
 </body>
 </html>
