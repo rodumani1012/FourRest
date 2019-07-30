@@ -11,7 +11,7 @@
         <intercept-url pattern="/loginform.do" access="permitAll" />
         <intercept-url pattern="/joinform.do" access="permitAll" />
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
-        <intercept-url pattern="/**" access="hasAnyRole('USER, ADMIN')" />
+        <intercept-url pattern="/**" access="permitAll" />
         
         <form-login login-page="/loginform.do"
                     default-target-url="/main.do"

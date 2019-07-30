@@ -59,4 +59,21 @@ public class HomeController {
 		model.addAttribute("list", list);
 		return "shelterList/animalshelterlist";
 	}
+	
+	@RequestMapping(value="admin.do")
+	public String adminboard(){	
+	logger.info("관리자페이지로");
+	
+	return "adminpanel";
+	}
+	@RequestMapping(value="admincal.do")
+	public String admincal(){
+	logger.info("관리자일정");
+	
+	return "admincalboard";
+	}
+
+	
+
 }
+
