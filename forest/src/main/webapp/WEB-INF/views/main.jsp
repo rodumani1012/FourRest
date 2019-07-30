@@ -149,7 +149,7 @@
 						<li>
 						<sec:authorize access="isAuthenticated()">
 								<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-								<input type="submit" class="btn btn-link" value="LOGOUT" />
+								<input type="submit" class="btn btn-link text-dark" value="LOGOUT" />
 							</form:form>
 						</sec:authorize>
 						</li>
