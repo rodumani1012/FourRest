@@ -39,6 +39,68 @@
 
 <!--Theme Responsive css-->
 <link rel="stylesheet" href="resources/assets/css/responsive.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript">
+	
+	function idChk() {
+		var idchk = document.getElementsByName("id")[0];
+		if(idchk.value.trim()=="" || idchk.value==null){
+			alert("아이디를 입력해주세요");
+		}else{
+			open("idChk.do?id="+idchk.value,"","width=200,height=200");
+		}
+	}
+	
+	function chkpw(){
+		var pw = $("#pw").val();
+		var pwchk = $("#pwchk").val();		
+		if(pw!=pwchk){
+			document.getElementById("pwval").innerHTML='동일한 암호를 입력하세요.'
+		}else{
+			document.getElementById("pwval").innerHTML='동일한 암호 입니다.'
+		}
+	}
+	function addpop(){
+    new daum.Postcode({
+        oncomplete: function(data) {
+        	document.getElementById("addrWoo").value=data.postcode;
+        	document.getElementById("addr").value=data.address;
+        	
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+        }
+    }).open();
+    }
+	
+	function email(){
+		var emailName = $("#emailName").val();
+		var emailForm = $("#emailForm").val();
+		return 'emailName='+emailName+'&emailForm='+emailForm
+	}
+	
+	
+	$(function(){
+		
+		$("#emailAuth").click(function(){
+			if(emailName!=null){
+				$.ajax({
+					url:"mailSend.do?"+email(),
+					method:'post',
+					datatype:'text',
+					success:function(msg){
+						alert(msg.email);
+						
+					},error:function(){
+						alert('통신실패')
+					}
+				})
+			}
+		})
+	})
+
+	
+</script>
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse">
 	<div class="culmn">
@@ -60,8 +122,8 @@
 				<!-- Start Atribute Navigation -->
 				<div class="attr-nav">
 					<ul>
-						<li><a href="loginform">LOGIN</a></li>
-						<li><a href="joinform">JOIN</a></li>
+						<li><a href="loginform.do">LOGIN</a></li>
+						<li><a href="joinform.do">JOIN</a></li>
 					</ul>
 				</div>
 				<!-- End Atribute Navigation -->
@@ -127,19 +189,26 @@
 				<div class="form-group">
 					<label for="text">ID : </label>
 					<div class="row justify-content-center">
-						<input type="email" class="form-control col-sm-3" id="email">
+						<input type="email" class="form-control col-sm-3" id="id" title="n" name="id">
+						<input type="button" value="중복확인" id="idchk" onclick="idChk()">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="pwd">Password : </label>
 					<div class="row justify-content-center">
-						<input type="password" class="form-control col-sm-3" id="pwd">
+						<input type="password" class="form-control col-sm-3" id="pw" name="pw">
 					</div>
+					<div class="row justify-content-center">
+						<input type="password" class="form-control col-sm-3" id="pwchk" name="pwchk" onkeyup="chkpw()">
+					</div>
+					<div id ="pwval">암호를 입력하세요</div>
 				</div>
 				<div class="form-group">
 					<label for="addr">Address : </label>
 					<div class="row justify-content-center">
-						<input type="text" class="form-control col-sm-3" id="addr">
+						<input type="text" class="form-control col-sm-3" id="addr" onclick="javascript:addpop()">
+						<input type="text" class="form-control col-sm-3" id="addrWoo" readonly="readonly">
+						<input type="text" class="form-control col-sm-3" id="addrDetail" placeholder="상세주소를 입력해주세요">
 					</div>
 				</div>
 				<div class="form-group">
@@ -157,12 +226,14 @@
 				<div class="form-group">
 					<label for="phone">Email : </label>
 					<div class="row justify-content-center">
-						<input type="text" class="form-control col-2" id="phone-mid">&nbsp;@
-						<select class="form-control col-2">
+						<input type="text" class="form-control col-2" id="emailName">&nbsp;@
+						<select class="form-control col-2" id="emailForm">
 							<option>daum.net</option>
 							<option>naver.com</option>
 							<option>gmail.com</option>
 						</select>
+						<input type="button" value="메일전송" id="emailAuth"><br>
+						<input type="text" placeholder="인증번호" id="emailNum">
 					</div>
 				</div>
 				<div class="form-group form-check">
