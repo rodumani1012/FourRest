@@ -59,6 +59,7 @@
 			document.getElementById("pwval").innerHTML='동일한 암호를 입력하세요.'
 		}else{
 			document.getElementById("pwval").innerHTML='동일한 암호 입니다.'
+			document.getElementsByName("pwchk")[0].title="y";
 		}
 	}
 	function addpop(){
@@ -66,7 +67,7 @@
         oncomplete: function(data) {
         	document.getElementById("addrWoo").value=data.postcode;
         	document.getElementById("addr").value=data.address;
-        	
+        	document.getElementsByName("addrWoo")[0].title="y";
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
             // 예제를 참고하여 다양한 활용법을 확인해 보세요.
         }
@@ -89,7 +90,10 @@
 					method:'post',
 					datatype:'text',
 					success:function(msg){
-						alert(msg.email);
+						var email = msg.email
+						if(email==true){
+							alert("메일 전송 완료 했습니다.")
+						}
 						
 					},error:function(){
 						alert('통신실패')
@@ -98,6 +102,7 @@
 			}
 		})
 	})
+	
 
 	
 </script>
@@ -185,18 +190,18 @@
 			<h1>[ THE FOREST ]</h1>
 			<br>
 			<h3>JOIN</h3>
-			<form action="join">
+			<form action="memberInsert.do">
 				<div class="form-group">
 					<label for="text">ID : </label>
 					<div class="row justify-content-center">
-						<input type="email" class="form-control col-sm-3" id="id" title="n" name="id">
+						<input type="text" class="form-control col-sm-3" id="id" title="n" name="id">
 						<input type="button" value="중복확인" id="idchk" onclick="idChk()">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="pwd">Password : </label>
 					<div class="row justify-content-center">
-						<input type="password" class="form-control col-sm-3" id="pw" name="pw">
+						<input type="password" class="form-control col-sm-3" id="pw" name="pw" title="n">
 					</div>
 					<div class="row justify-content-center">
 						<input type="password" class="form-control col-sm-3" id="pwchk" name="pwchk" onkeyup="chkpw()">
@@ -207,7 +212,7 @@
 					<label for="addr">Address : </label>
 					<div class="row justify-content-center">
 						<input type="text" class="form-control col-sm-3" id="addr" onclick="javascript:addpop()">
-						<input type="text" class="form-control col-sm-3" id="addrWoo" readonly="readonly">
+						<input type="text" class="form-control col-sm-3" name="addrWoo" id="addrWoo" readonly="readonly" title="n">
 						<input type="text" class="form-control col-sm-3" id="addrDetail" placeholder="상세주소를 입력해주세요">
 					</div>
 				</div>
@@ -220,7 +225,7 @@
 							<option>017</option>
 						</select>&nbsp;_&nbsp;<input type="text" class="form-control col-1"
 							id="phone-mid">&nbsp;_&nbsp; <input type="text"
-							class="form-control col-1" id="phone-back">
+							class="form-control col-1" id="phone-back" name="phone">
 					</div>
 				</div>
 				<div class="form-group">
@@ -233,17 +238,59 @@
 							<option>gmail.com</option>
 						</select>
 						<input type="button" value="메일전송" id="emailAuth"><br>
-						<input type="text" placeholder="인증번호" id="emailNum">
+						<input type="text" placeholder="인증번호" id="emailNum" name="emailNum" title="n">
 					</div>
-				</div>
-				<div class="form-group form-check">
-					<label class="form-check-label"> <input
-						class="form-check-input" type="checkbox"> Remember me
-					</label>
 				</div>
 				<button type="submit" class="btn btn-success">Submit</button>
 			</form>
 		</div>
 	</div>
+	<script type="text/javascript">
+	function emailNum(){
+		var emailNum = documnet.getElementsByName('emailNum')[0].value; 
+		return 'email='+emailNum
+	}
+	$(function(){
+		$("form").on("submit",function(){
+			var id = document.getElementsByName("id")[0].title;
+			var pwchk = document.getElementsByName("pwchk")[0].title;
+			var addr = document.getElementsByName("addrWoo")[0].title;
+			var phone = document.getElementsByName("phone")[0].value;
+			var email = document.getElementsByName("emailNum")[0].value;
+			
+			if(id == "n"){
+				alert("아이디 중복 체크 해주세요")
+				document.getElementsByName("id")[0].focus();
+				return false;
+			}else if (pwchk =="n"){
+				alert("비밀번호 확인해주세요")
+				document.getElementsByName("pw")[0].focus();
+				return false;
+			}else if (addr =="n"){
+				alert("주소를 입력해주세요.")
+				document.getElementsByName("addr")[0].focus();
+			}else if (phone== null || phone ==""){
+				alert("핸드폰 번호를 입력 하세요.")
+				document.getElementsByName("phone")[0].focus();
+			}else if(email==null||email==""){
+				alert("인증번호를 입력하세요.")
+				document.getElementsByName("emailNum")[0].focus();
+			}else{
+				$.ajax({
+					url:'emailConfirm.do?'+emailNum(),
+					method:'post',
+					datatype:'text',
+					success:function(msg){
+						alert(msg.data)
+					},error:function(){
+						alert("통신실패")
+					}
+				})
+			}
+			
+		})
+	})
+	
+	</script>
 </body>
 </html>

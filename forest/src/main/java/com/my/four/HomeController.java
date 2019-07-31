@@ -81,7 +81,7 @@ public class HomeController {
 	}
 	@RequestMapping(value="mailSend.do", produces = "application/json")
 	@ResponseBody
-	public Map<String, Object> sendMail(HttpSession session, String emailName,String emailForm) {
+	public Map<String, Boolean> sendMail(HttpSession session, String emailName,String emailForm) {
 		int ran = new Random().nextInt(100000)+10000;//10000~99999 
 		String email = emailName +"@"+emailForm;
 		String joinCode = String.valueOf(ran);
@@ -90,8 +90,22 @@ public class HomeController {
 		String subject ="회원 가입 인증 코드 입니다.";
 		StringBuilder sb = new StringBuilder();
 		sb.append("귀하의 인증코드는"+joinCode+"입니다.");
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		map.put("email", mailSerivce.send(subject,sb.toString(),"wjy1408@gmail.com",email,null));
+		return map;
+	}
+	@RequestMapping(value="mailNum.do")
+	public Map<String, Object> sendNum(HttpSession session,String emailName){
+		String emailNum = (String) session.getAttribute("joinCode");
+		boolean email = false;
+		if(emailNum.equals(emailName)) {
+			email=true;
+		}else {
+			email=false;
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("confirm", email);
+		
 		return map;
 	}
 	

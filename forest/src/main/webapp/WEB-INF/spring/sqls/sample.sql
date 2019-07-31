@@ -22,6 +22,9 @@ INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'관리자','admin','admin123','010-77
 'brooke1994@naver.com','서초구 역삼동','120-10',1,'ADMIN');
 INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user1','user1','user123','010-7777-7077',
 'alice1994@naver.com','강남구 개포동','25-18',1,'USER');
+INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user2','user2','user123','010-7777-7077',
+'alice1994@naver.com','강남구 개포동','25-18',0,'USER');
+
 
 SELECT * FROM MEMBER;
 COMMENT ON TABLE MEMBER is '회원';

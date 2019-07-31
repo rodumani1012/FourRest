@@ -35,6 +35,13 @@ public class LoginDaoImpl implements LoginDao{
 		}
 		return idchk;
 	}
+
+	@Override
+	public int memberInsert(LoginDto dto) {
+		int res =sqlSesssion.insert(namespace+"memberinsert",dto);
+		return res;
+	}
+	
 	
 	
 	
