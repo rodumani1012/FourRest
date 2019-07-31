@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,9 +106,10 @@
 </script>
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse">
+	
 	<div class="culmn">
 		<nav
-			class="navbar navbar-light navbar-expand-lg  navbar-fixed gray no-background bootsnav">
+			class="navbar navbar-light navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
 			<!-- Start Top Search -->
 			<div class="top-search">
 				<div class="container">
@@ -119,14 +123,14 @@
 			</div>
 			<!-- End Top Search -->
 			<div class="container">
-				<!-- Start Atribute Navigation -->
+				<!-- Start Attribute Navigation -->
 				<div class="attr-nav">
 					<ul>
-						<li><a href="loginform.do">LOGIN</a></li>
-						<li><a href="joinform.do">JOIN</a></li>
+						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+						<li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
 					</ul>
 				</div>
-				<!-- End Atribute Navigation -->
+				<!-- End Attribute Navigation -->
 
 				<!-- Start Header Navigation -->
 				<div class="navbar-header">
@@ -134,9 +138,9 @@
 						data-target="#navbar-menu">
 						<span></span> <span></span> <span></span>
 					</button>
-					<a class="navbar-brand" href="#brand"> <img
-						src="resources/assets/images/logo.jpg"
-						class="logo logo-display m-top-10" alt="">
+
+					<a class="navbar-brand" href="main.do"><img
+						src="resources/assets/images/logo2.jpg" class="logo logo-scrolled" alt="logo">
 					</a>
 				</div>
 				<!-- End Header Navigation -->
@@ -144,25 +148,45 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li><a href="#hello">About us</a></li>
-						<li><a href="#about">Map</a></li>
-						<li><a href="sponsor">Sponsor</a></li>
-						<li><a href="#portfolio">review</a></li>
-						<li><a href="#">Portfolio</a></li>
-						<li><a href="#">Contact</a></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#hello'">About us</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#about'">Map</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='sponsor.do'">Sponsor</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#pricing'">Pricing</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#blog'">Blog</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#contact'">Contact</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do'">보호소</button></li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li>
+						<sec:authorize access="isAnonymous()">
+						<button type="button" class="btn btn-link text-dark"onclick="location.href='<c:url value='loginform.do'/>'">LOGIN</button>
+						</sec:authorize>	
+						</li>
+						<li>
+						<sec:authorize access="isAuthenticated()">
+								<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+								<input type="submit" class="btn btn-link text-dark" value="LOGOUT" />
+							</form:form>
+						</sec:authorize>
+						</li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='joinform.do'">JOIN</button></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
 			<!-- Start Side Menu -->
-			<div class="side">
+			<div class="side bg-light">
 				<a href="#" class="close-side"><i class="fa fa-times"></i></a>
 				<div class="widget">
 					<h6 class="title">Custom Pages</h6>
 					<ul class="link">
-						<li><a href="#">About</a></li>
-						<li><a href="#">Services</a></li>
-						<li><a href="#">Blog</a></li>
+						<li><a href="#hello">About us</a></li>
+						<li><a href="#about">Map</a></li>
+						<li><a href="sponsor.do">Sponsor</a></li>
+						<li><a href="#portfolio">review</a></li>
 						<li><a href="#">Portfolio</a></li>
 						<li><a href="#">Contact</a></li>
 					</ul>
@@ -180,12 +204,16 @@
 			</div>
 			<!-- End Side Menu -->
 		</nav>
+
 		<br> <br> <br> <br> <br> <br>
-		<div class="container text-center">
-			<h1>[ THE FOREST ]</h1>
-			<br>
-			<h3>JOIN</h3>
-			<form action="join">
+	<div class="ima container text-center">
+			<form class="image" action="join">
+				<div class="form-group container">
+					<img alt="?" src="resources/assets/images/background/en.jpg">
+					<h1>[ THE FOREST ]</h1>
+					<br>
+					<h3>JOIN</h3>
+				</div>
 				<div class="form-group">
 					<label for="text">ID : </label>
 					<div class="row justify-content-center">
@@ -227,6 +255,12 @@
 						</div>
 				</div>
 				<div class="form-group">
+					<label for="text">이름 : </label>
+					<div class="row justify-content-center">
+						<input type="email" class="form-control col-sm-3" id="name" name="name">
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="phone">Phone : </label>
 					<div class="row justify-content-center">
 						<select class="form-control col-1">
@@ -259,14 +293,55 @@
 							<input type="text" class="form-control col-2" placeholder="인증번호" id="emailNum">
 						</div>
 					</div>
-				<div class="form-group form-check">
-					<label class="form-check-label"> <input
-						class="form-check-input" type="checkbox"> Remember me
-					</label>
+				<div class="form-group">
+  					<label for="comment">회원약관</label>
+  				<div class="row justify-content-center">
+  						<textarea class="form-control readonly col-lg-6" rows="10" id="comment">
+여러분은 본 약관을 읽고 동의하신 후 회원 가입을 신청하실 수 있으며, Forest(이하 포레스트)는 이에 대한 승낙을 통해 회원 가입 절차를 완료하고 
+
+여러분께 Forest(이하 포레스트) 서비스 이용 계정(이하 ‘계정’)을 부여합니다.
+
+계정이란 회원이Forest(이하 포레스트) 서비스에 로그인한 이후 이용하는 각종 서비스 이용 이력을 회원 별로 관리하기 위해 설정한 회원 식별 단위를 말합니다.
+
+회원은 자신의 계정을 통해 좀더 다양한 Forest(이하 포레스트) 서비스를 보다 편리하게 이용할 수 있습니다.
+
+  						</textarea>
+  				</div>
 				</div>
-				<button type="submit" class="btn btn-success">Submit</button>
+				<div class="form-group">
+  					<label for="comment">개인정보이용약관</label>
+  					<div class="row justify-content-center">
+  						<textarea class="form-control readonly col-lg-6" rows="10" id="comment">
+네이버는 서비스의 원활한 제공을 위하여 회원이 동의한 목적과 범위 내에서만 개인정보를 수집.이용하며, 개인정보 보호 관련 법령에 따라 안전하게 관리합니다.
+ 
+네이버가 이용자 및 회원에 대해 관련 개인정보를 안전하게 처리하기 위하여 기울이는 노력이나 기타 상세한 사항은 개인정보 처리방침에서 확인하실 수 있습니다.
+
+네이버는 여러분이 서비스를 이용하기 위해 일정 기간 동안 로그인 혹은 접속한 기록이 없는 경우, 
+
+전자메일, 서비스 내 알림 또는 기타 적절한 전자적 수단을 통해 사전에 안내해 드린 후 여러분의 정보를 파기하거나 분리 보관할 수 있으며, 
+
+만약 이로 인해 서비스 제공을 위해 필수적인 정보가 부족해질 경우 부득이 관련 서비스 이용계약을 해지할 수 있습니다.
+
+  						</textarea>
+  						</div>
+  					</div>
+				<button type="submit" class="btn btn-success btn-lg">가입하기</button>
 			</form>
+			<br><br><br><br>
 		</div>
-	</div>
+	</div>	
+	<footer id="footer" class="footer bg-black">
+		<div class="container">
+			<div class="row">
+				<div class="main_footer text-center p-top-40 p-bottom-30">
+					<p class="wow fadeInRight" data-wow-duration="1s">
+						Made with <i class="fa fa-heart"></i> by <a target="_blank"
+							href="https://bootstrapthemes.co">THE FOREST</a> 2019. All Rights
+						Reserved
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

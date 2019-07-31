@@ -162,7 +162,6 @@
 													<option>후원방법선택</option>
 													<option>정기후원</option>
 													<option>일시후원</option>
-													<option>일시후원</option>
 											</select></td>
 										</tr>
 										<tr>
@@ -176,25 +175,11 @@
 											<td><input type="text" class="form-control col-sm-8"
 												id="sponsorname" placeholder="후원자명"></td>
 										<tr>
-											<th>생년월일</th>
-											<td></td>
-										</tr>
-										<tr>
-											<th>성 별</th>
-											<td></td>
-										</tr>
-										<tr>
-											<th>휴대전화</th>
-											<td></td>
-										</tr>
-										<tr>
-											<th>이 메 일</th>
-											<td></td>
-										</tr>
-										<tr>
-											<th>주 소</th>
-											<td></td>
-										</tr>
+											<th></th>
+											<td>
+												<button type="button" class="btn btn-success">후원하기</button>
+											</td>
+										</tr>		
 									</tbody>
 								</table>
 						</div>
