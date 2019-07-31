@@ -135,7 +135,7 @@
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#pricing'">Pricing</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#blog'">Blog</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#contact'">Contact</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='content.do'">Contact</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do'">보호소</button></li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>

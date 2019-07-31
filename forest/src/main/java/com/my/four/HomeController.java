@@ -96,4 +96,33 @@ public class HomeController {
 		return map;
 	}
 	
+	@RequestMapping(value="content.do")
+	public String content() {
+		logger.info("후원하기");
+		
+		return "content";
+	}
+	
+	@RequestMapping(value="quiz.do")
+	public String quiz() {
+		logger.info("퀴즈 게임하기");
+		
+		return "quiz";
+	}
+	
+	
+	@RequestMapping(value="puzzle.do")
+	public String puzzle() {
+		logger.info("후원하기");
+		
+		return "puzzle";
+	}
+	
+	@RequestMapping(value="crossword.do")
+	public String crossword() {
+		logger.info("후원하기");
+		
+		return "crossword";
+	}
+	
 }
