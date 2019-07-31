@@ -8,5 +8,7 @@ public interface AnimalShelterListDao {
 
 	String namespace = "animal.";
 	
-	public int insert(List<AnimalShelterListDto> dtos);
+	public int aniInsert(List<AnimalShelterListDto> dtos);
+	public List<AnimalShelterListDto> aniSelectList(int begin, int end);
+	public int aniGetTotalCount();
 }

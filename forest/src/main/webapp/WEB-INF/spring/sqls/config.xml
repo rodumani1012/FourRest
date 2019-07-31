@@ -12,6 +12,7 @@
 	<!-- resource : src/main/resources -->
 	<mappers>
 		<mapper resource="/sqls/mapper.xml"/>
+		<mapper resource="/sqls/animalMapper.xml"/>
 	</mappers>
 	
 </configuration>
