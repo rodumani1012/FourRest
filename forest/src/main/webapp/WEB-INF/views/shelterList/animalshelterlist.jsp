@@ -13,7 +13,7 @@
 	
 <!-- 	<form action="ani_saveDb.do" method="post"> -->
 <!-- 	<input type="submit" value="db저장하기"> -->
-		<table>
+		<table border="1">
 			<thead>
 				<tr>
 					<th>관할구역</th>
@@ -42,6 +42,28 @@
 				</c:choose>	
 			</tbody>
 		</table>
-<!-- 	</form> -->
+		<!-- 	</form> -->
+		<div>
+			<c:if test="${pag.prev }">
+				<div onclick="location.href='boardController.do?command=selectlist&contentnum=3&pagenum=${pag.pagenum-1}'">◀</div>
+			</c:if>
+			<c:forEach begin="${pag.startPage }" end="${pag.endPage }" var="idx">
+				<c:choose>
+					<c:when test="${pag.pagenum == idx}">
+						<span><b><c:out value="【${idx }】"></c:out></b></span>
+					</c:when>
+					<c:otherwise>
+						<a
+							href="boardController.do?command=selectlist&contentNum=3&pageNum=${idx}">
+							<span><b><c:out value="【${idx }】"></c:out></b></span>
+						</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${pag.next }">
+				<div onclick="location.href='boardController.do?command=selectlist&contentnum=3&pagenum=${pag.pagenum+1}'"></div>
+			</c:if>
+		</div>
+
 </body>
 </html>

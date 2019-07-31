@@ -14,9 +14,11 @@
 
 	<!-- db에서 보호소 목록 가져오는 쿼리 -->
 	<select id="aniSelectList" parameterType="map" resultType="animalDto">
-		SELECT * FROM(SELECT ROWNUM RN, a.* FROM(
-			SELECT * FROM ANIMAL_SHELTER ORDER BY AREA)a)
-			WHERE RN &gt;=#{begin} AND &lt;=#{end}
+		SELECT * FROM(
+			SELECT	ROWNUM RN, a.* FROM(
+			(SELECT * FROM ANIMAL_SHELTER ORDER BY AREA )a
+			)
+		) WHERE RN &gt;=#{begin} AND RN &lt;=#{end}
 	</select>
 	
 	<!-- db 목록 갯수 가져오는 쿼리 -->
