@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -47,7 +46,6 @@
 <link rel="stylesheet" href="resources/assets/css/bootstrap.css">
 <link rel="stylesheet" href="resources/assets/css/magnific-popup.css">
 <link rel="stylesheet" href="resources/assets/css/bootsnav.css">
-
 
 <!--For Plugins external css-->
 <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
@@ -104,15 +102,6 @@
 			</div>
 			<!-- End Top Search -->
 			<div class="container">
-				<!-- Start Atribute Navigation -->
-				<div class="attr-nav">
-					<ul>
-						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-						<li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
-					</ul>
-				</div>
-				<!-- End Atribute Navigation -->
-
 				<!-- Start Header Navigation -->
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggler" data-toggle="collapse"
@@ -120,7 +109,7 @@
 						<span></span> <span></span> <span></span>
 					</button>
 
-					<a class="navbar-brand" href="main"><img
+					<a class="navbar-brand" href="main.do"><img
 						src="resources/assets/images/logo2.jpg" class="logo logo-scrolled" alt="logo">
 					</a>
 				</div>
@@ -152,38 +141,13 @@
 								<input type="submit" class="btn btn-link text-dark" value="LOGOUT" />
 							</form:form>
 						</sec:authorize>
-						</li>
+							</li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='joinform.do'">JOIN</button></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
-			<!-- Start Side Menu -->
-			<div class="side">
-				<a href="#" class="close-side"><i class="fa fa-times"></i></a>
-				<div class="widget">
-					<h6 class="title">Custom Pages</h6>
-					<ul class="link">
-						<li><a href="#hello">About us</a></li>
-						<li><a href="#about">Map</a></li>
-						<li><a href="sponsor.do">Sponsor</a></li>
-						<li><a href="#portfolio">review</a></li>
-						<li><a href="#">Portfolio</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-				<div class="widget">
-					<h6 class="title">Additional Links</h6>
-					<ul class="link">
-						<li><a href="#">Retina Homepage</a></li>
-						<li><a href="#">New Page Examples</a></li>
-						<li><a href="#">Parallax Sections</a></li>
-						<li><a href="#">Shortcode Central</a></li>
-						<li><a href="#">Ultimate Font Collection</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- End Side Menu -->
+
 		</nav>
 
 		<!--Slide Show-->
@@ -331,7 +295,6 @@
 			</div>
 		</div>
 	</footer>
-	</div>
 	<!-- JS includes -->
 
 	<script src="resources/assets/js/vendor/jquery-1.11.2.min.js"></script>
@@ -364,7 +327,5 @@
 			$('.maps_text h3').hide();
 		}
 	</script>
-
 </body>
-
 </html>
