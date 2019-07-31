@@ -6,5 +6,9 @@ import com.my.four.model.dto.AnimalShelterListDto;
 
 public interface AnimalShelterListDao {
 
-	public int insert(List<AnimalShelterListDto> dtos);
+	String namespace = "animal.";
+	
+	public int aniInsert(List<AnimalShelterListDto> dtos);
+	public List<AnimalShelterListDto> aniSelectList(int begin, int end);
+	public int aniGetTotalCount();
 }

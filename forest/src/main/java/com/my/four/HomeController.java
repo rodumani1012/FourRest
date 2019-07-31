@@ -14,13 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.four.model.biz.LoginBiz;
 import com.my.four.model.biz.MailService;
-
-import com.my.four.animal.AnimalShelterList;
 
 @Controller
 public class HomeController {
@@ -94,6 +91,35 @@ public class HomeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("email", mailSerivce.send(subject,sb.toString(),"wjy1408@gmail.com",email,null));
 		return map;
+	}
+	
+	@RequestMapping(value="content.do")
+	public String content() {
+		logger.info("후원하기");
+		
+		return "content";
+	}
+	
+	@RequestMapping(value="quiz.do")
+	public String quiz() {
+		logger.info("퀴즈 게임하기");
+		
+		return "quiz";
+	}
+	
+	
+	@RequestMapping(value="puzzle.do")
+	public String puzzle() {
+		logger.info("후원하기");
+		
+		return "puzzle";
+	}
+	
+	@RequestMapping(value="crossword.do")
+	public String crossword() {
+		logger.info("후원하기");
+		
+		return "crossword";
 	}
 	
 }
