@@ -1,22 +1,18 @@
 package com.my.four;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.my.four.animal.AnimalShelterList;
 import com.my.four.model.dao.AnimalShelterListDao;
 import com.my.four.model.dto.AnimalShelterListDto;
+import com.my.four.model.dto.AnimalShelterListPagingDto;
 
 @Controller
 public class AnimalController {
@@ -28,14 +24,20 @@ public class AnimalController {
 	
 
 	@RequestMapping(value = "ani_shelterList.do")
-	public String ani_shelterlist(Model model) {
-		
-//		AnimalShelterList list = new AnimalShelterList();
-//		
-//		list.returnJsonFile();
-//		
-//		logger.info("json파일 생성!");
+	public String ani_shelterlist(String pageNum, String contentNum, Model model) {
 		logger.info("보호소 목록으로!");
+		
+		int pageNumber = Integer.parseInt(pageNum); // 현재 페이지
+		int contentNumber = Integer.parseInt(contentNum); // 페이지당 보여줄 게시물 수
+		
+		int totalCount = dao.aniGetTotalCount(); // 총 게시물 갯수 가져오기
+		
+		AnimalShelterListPagingDto dto = new AnimalShelterListPagingDto(totalCount, pageNumber, contentNumber);
+		
+		List<AnimalShelterListDto> list = dao.aniSelectList(dto.getStartCon(), dto.getEndCon());
+		
+		model.addAttribute("list", list);
+		model.addAttribute("pag", dto);
 		
 		return "shelterList/animalshelterlist";
 	}
@@ -56,12 +58,13 @@ public class AnimalController {
 			
 			list.add(dto);
 		}
-		
-		int res = dao.insert(list);
+
+		int res = dao.aniInsert(list);
+		System.out.println("컨트롤러 갯수 : " + res);
 		if (res > 0) {
-			return "";
+			return "main";
 		}
-		return null;
+		return "main";
 	}
 	
 	
