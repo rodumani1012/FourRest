@@ -22,6 +22,9 @@ INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'관리자','admin','admin123','010-77
 'brooke1994@naver.com','서초구 역삼동','120-10',1,'ADMIN');
 INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user1','user1','user123','010-7777-7077',
 'alice1994@naver.com','강남구 개포동','25-18',1,'USER');
+INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user2','user2','user123','010-7777-7077',
+'alice1994@naver.com','강남구 개포동','25-18',0,'USER');
+
 
 SELECT * FROM MEMBER;
 COMMENT ON TABLE MEMBER is '회원';
@@ -35,14 +38,15 @@ ALTER TABLE users ADD CONSTRAINT IDX_users_PK PRIMARY KEY (username);
 /**********************************/
 /* Table Name: 권한 */
 /**********************************/
-CREATE TABLE authorities(
-		username                      		VARCHAR2(20)		 NOT NULL,
-		authority                     		VARCHAR2(20)		 NOT NULL
+DROP TABLE authorities
+CREATE TABLE AUTHORITIES(
+		ID                      		VARCHAR2(20)		 NOT NULL,
+		AUTHORITY                     		VARCHAR2(20)		 NOT NULL
 );
 
-COMMENT ON TABLE authorities is '권한';
-COMMENT ON COLUMN authorities.username is '회원아이디';
-COMMENT ON COLUMN authorities.authority is '권한';
+COMMENT ON TABLE AUTHORITIES is '권한';
+COMMENT ON COLUMN AUTHORITIES.ID is '회원아이디';
+COMMENT ON COLUMN AUTHORITIES.AUTHORITY is '권한';
 
 
 ALTER TABLE authorities ADD CONSTRAINT IDX_authorities_PK PRIMARY KEY (username, authority);
@@ -102,9 +106,9 @@ INSERT INTO users (username, password, enabled) VALUES ('user', '1', 1);
 INSERT INTO users (username, password, enabled) VALUES ('admin', '1', 1);
 
 -- 회원 권한 입력
-INSERT INTO authorities (username, authority) VALUES ('user', 'ROLE_USER');
-INSERT INTO authorities (username, authority) VALUES ('admin', 'ROLE_ADMIN');
-INSERT INTO authorities (username, authority) VALUES ('admin', 'ROLE_USER');
+INSERT INTO AUTHORITIES (ID, AUTHORITY) VALUES ('user1', 'ROLE_USER');
+INSERT INTO AUTHORITIES (ID, AUTHORITY) VALUES ('admin', 'ROLE_ADMIN');
+INSERT INTO AUTHORITIES (ID, AUTHORITY) VALUES ('admin', 'ROLE_USER');
 
 -- 그룹
 INSERT INTO groups (id, group_name) VALUES ('G01', '관리자 그룹');

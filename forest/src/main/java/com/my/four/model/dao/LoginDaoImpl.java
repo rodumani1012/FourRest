@@ -15,11 +15,6 @@ public class LoginDaoImpl implements LoginDao{
 	@Autowired
 	private SqlSessionTemplate sqlSesssion;
 
-	@Override
-	public int joinMember(LoginDto dto) {
-		int res = sqlSesssion.insert(namespace+"insert",dto);
-		return res;
-	}
 
 	@Override
 	public boolean idChk(String id) {
@@ -35,6 +30,14 @@ public class LoginDaoImpl implements LoginDao{
 		}
 		return idchk;
 	}
+
+	@Override
+	public int memberInsert(LoginDto dto) {
+		int res =sqlSesssion.insert(namespace+"insert",dto);
+		int res1 = sqlSesssion.insert(namespace+"insert_auth",dto); 
+		return res;
+	}
+	
 	
 	
 	

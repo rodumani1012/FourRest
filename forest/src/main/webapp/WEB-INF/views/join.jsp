@@ -62,14 +62,15 @@
 			document.getElementById("pwval").innerHTML='동일한 암호를 입력하세요.'
 		}else{
 			document.getElementById("pwval").innerHTML='동일한 암호 입니다.'
+			document.getElementsByName("pwchk")[0].title="y";
 		}
 	}
 	function addpop(){
     new daum.Postcode({
         oncomplete: function(data) {
-        	document.getElementById("addrWoo").value=data.postcode;
+        	document.getElementById("zonecode").value=data.postcode;
         	document.getElementById("addr").value=data.address;
-        	
+        	document.getElementsByName("zonecode")[0].title="y";
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
             // 예제를 참고하여 다양한 활용법을 확인해 보세요.
         }
@@ -92,7 +93,10 @@
 					method:'post',
 					datatype:'text',
 					success:function(msg){
-						alert(msg.email);
+						var email = msg.email
+						if(email==true){
+							alert("메일 전송 완료 했습니다.")
+						}
 						
 					},error:function(){
 						alert('통신실패')
@@ -101,6 +105,7 @@
 			}
 		})
 	})
+	
 
 	
 </script>
@@ -207,7 +212,7 @@
 
 		<br> <br> <br> <br> <br> <br>
 	<div class="ima container text-center">
-			<form class="image" action="join">
+			<form class="image" action="memberInsert.do" id="form">
 				<div class="form-group container">
 					<img alt="?" src="resources/assets/images/background/en.jpg">
 					<h1>[ THE FOREST ]</h1>
@@ -219,6 +224,10 @@
 					<div class="row justify-content-center">
 						<input type="email" class="form-control col-sm-3" id="id" title="n" name="id">
 					</div>
+					<label for="text">NAME : </label>
+					<div class="row justify-content-center">
+						<input type="text" class="form-control col-sm-3" id="name" title="n" name="name">
+					</div>
 				</div>
 				<div class="form-group">
 					<div class="row justify-content-center">
@@ -228,12 +237,12 @@
 				<div class="form-group">
 					<label for="pwd">Password : </label>
 					<div class="row justify-content-center">
-						<input type="password" class="form-control col-sm-3" id="pw" name="pw">
+						<input type="password" class="form-control col-sm-3" id="pw" name="pw" title="n" name="pw">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="row justify-content-center">
-						<input type="password" class="form-control col-sm-3" id="pwchk" name="pwchk" onkeyup="chkpw()">
+						<input type="password" class="form-control col-sm-3" id="pwchk" name="pwchk" onkeyup="chkpw()" title="n">
 					</div>
 				</div>	
 					<div id ="pwval">암호를 입력하세요</div>
@@ -246,7 +255,8 @@
 				<div class="form-group">
 					
 					<div class="row justify-content-center">
-						<input type="text" class="form-control col-sm-3" id="addrWoo" readonly="readonly">
+						<input type="text" class="form-control col-sm-3" id="addr" onclick="javascript:addpop()" name="addr">
+						<input type="text" class="form-control col-sm-3" name="zonecode" id="zonecode" readonly="readonly" title="n">
 					</div>
 				</div>
 				<div class="form-group">
@@ -254,29 +264,24 @@
 							<input type="text" class="form-control col-sm-3" id="addrDetail" placeholder="상세주소를 입력해주세요">
 						</div>
 				</div>
-				<div class="form-group">
-					<label for="text">이름 : </label>
-					<div class="row justify-content-center">
-						<input type="email" class="form-control col-sm-3" id="name" name="name">
-					</div>
 				</div>
 				<div class="form-group">
 					<label for="phone">Phone : </label>
 					<div class="row justify-content-center">
-						<select class="form-control col-1">
+						<select class="form-control col-1" name="phone1">
 							<option>010</option>
 							<option>011</option>
 							<option>017</option>
 						</select>&nbsp;_&nbsp;<input type="text" class="form-control col-1"
-							id="phone-mid">&nbsp;_&nbsp; <input type="text"
-							class="form-control col-1" id="phone-back">
+							id="phone-mid" name="phone2">&nbsp;_&nbsp; <input type="text"
+							class="form-control col-1" id="phone-back" name="phone3">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="phone">Email : </label>
 					<div class="row justify-content-center">
-						<input type="text" class="form-control col-sm-2" id="emailName">&nbsp;@
-						<select class="form-control col-sm-2" id="emailForm">
+						<input type="text" class="form-control col-2" id="emailName" name="emailName">&nbsp;@
+						<select class="form-control col-2" id="emailForm" name="emailForm">
 							<option>daum.net</option>
 							<option>naver.com</option>
 							<option>gmail.com</option>
@@ -290,7 +295,7 @@
 				</div>						
 					<div class="form-group">
 						<div class="row justify-content-center">
-							<input type="text" class="form-control col-2" placeholder="인증번호" id="emailNum">
+							<input type="text" class="form-control col-2" placeholder="인증번호" id="emailNum" name="emailNum" title="n">
 						</div>
 					</div>
 				<div class="form-group">
@@ -343,5 +348,49 @@
 			</div>
 		</div>
 	</footer>
+	</div>
+	<script type="text/javascript">
+	function emailNum(){
+		var emailNum = documnet.getElementsByName('emailNum')[0].value; 
+		return 'email='+emailNum
+	}
+	$(function(){
+		$("#form").submit(function(){
+			var id = document.getElementsByName("id")[0].title;
+			var pwchk = document.getElementsByName("pwchk")[0].title;
+			var addr = document.getElementsByName("zonecode")[0].title;
+			var phone = document.getElementsByName("phone3")[0].value;
+			var email = document.getElementsByName("emailNum")[0].value;
+			
+			
+			if(id == "n"){
+				alert("아이디 중복 체크 해주세요")
+				document.getElementsByName("id")[0].focus();
+				return false;
+			}else if (pwchk =="n"){
+				alert("비밀번호 확인해주세요")
+				document.getElementsByName("pw")[0].focus();
+				return false;
+			}else if (addr =="n"){
+				alert("주소를 입력해주세요.")
+				document.getElementsByName("addr")[0].focus();
+				return false;
+			}else if (phone== null || phone ==""){
+				alert("핸드폰 번호를 입력 하세요.")
+				document.getElementsByName("phone2")[0].focus();
+				return false;
+			}else if(email==null||email==""){
+				alert("인증번호를 입력하세요.")
+				document.getElementsByName("emailNum")[0].focus();
+				return false;
+			}else{
+				alert('왔니')
+				
+			}
+			
+		})
+	})
+	
+	</script>
 </body>
 </html>

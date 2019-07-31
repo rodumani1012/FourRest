@@ -6,7 +6,7 @@ public interface LoginDao {
 	
 	String namespace="login.";
 	
-	public int joinMember(LoginDto dto);
+
 	public boolean idChk(String id);
-	
+	public int memberInsert(LoginDto dto);
 }
