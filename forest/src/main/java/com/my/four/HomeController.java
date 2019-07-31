@@ -2,15 +2,19 @@ package com.my.four;
 
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.four.model.biz.LoginBiz;
 import com.my.four.model.biz.MailService;
+import com.my.four.model.dto.LoginDto;
 
 
 
@@ -28,6 +33,9 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
 	private MailService mailSerivce;
+	
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
 	
 	@Autowired
 	private LoginBiz biz;
@@ -95,18 +103,44 @@ public class HomeController {
 		return map;
 	}
 	@RequestMapping(value="mailNum.do")
-	public Map<String, Object> sendNum(HttpSession session,String emailName){
+	public String sendNum(HttpSession session,String email){
 		String emailNum = (String) session.getAttribute("joinCode");
-		boolean email = false;
-		if(emailNum.equals(emailName)) {
-			email=true;
-		}else {
-			email=false;
-		}
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("confirm", email);
+		logger.info("................넘어오니");
 		
-		return map;
+		if(emailNum.equals(email)) {
+			
+			return "redirect:loginform.do";
+		}else {
+			
+			return "redirect:joinform.do";
+		}
+		
+	
+	}
+	@RequestMapping(value="memberInsert.do")
+	public String memberInsert(HttpSession session,HttpServletResponse response,String pw,LoginDto dto,String phone1,String phone2,String phone3,String emailName,String emailForm, String emailNum) throws IOException {
+		String enpw=passEncoder.encode(pw);
+		String emailKey = (String) session.getAttribute("joinCode");
+		String phone = phone1+phone2+phone3;
+		String email= emailName+"@"+emailForm;
+		logger.info("................넘어오니");
+		dto.setPhone(phone);
+		dto.setEmail(email);
+		dto.setPw(enpw);
+		int res = biz.memberInsert(dto);
+		PrintWriter out = response.getWriter();
+		
+		if(emailKey.equals(emailNum)) {
+			if(res>1) {
+				return "redirect:main.do";
+			}else {
+				return "redirect:joinform.do";
+			}
+		}else {
+				logger.info("인증번호 틀림!");
+				
+				return "redirect:joinform.do";
+		}
 	}
 	
 }

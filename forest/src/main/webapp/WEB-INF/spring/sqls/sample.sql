@@ -38,14 +38,15 @@ ALTER TABLE users ADD CONSTRAINT IDX_users_PK PRIMARY KEY (username);
 /**********************************/
 /* Table Name: 권한 */
 /**********************************/
-CREATE TABLE authorities(
-		username                      		VARCHAR2(20)		 NOT NULL,
-		authority                     		VARCHAR2(20)		 NOT NULL
+DROP TABLE authorities
+CREATE TABLE AUTHORITIES(
+		ID                      		VARCHAR2(20)		 NOT NULL,
+		AUTHORITY                     		VARCHAR2(20)		 NOT NULL
 );
 
-COMMENT ON TABLE authorities is '권한';
-COMMENT ON COLUMN authorities.username is '회원아이디';
-COMMENT ON COLUMN authorities.authority is '권한';
+COMMENT ON TABLE AUTHORITIES is '권한';
+COMMENT ON COLUMN AUTHORITIES.ID is '회원아이디';
+COMMENT ON COLUMN AUTHORITIES.AUTHORITY is '권한';
 
 
 ALTER TABLE authorities ADD CONSTRAINT IDX_authorities_PK PRIMARY KEY (username, authority);
@@ -105,9 +106,9 @@ INSERT INTO users (username, password, enabled) VALUES ('user', '1', 1);
 INSERT INTO users (username, password, enabled) VALUES ('admin', '1', 1);
 
 -- 회원 권한 입력
-INSERT INTO authorities (username, authority) VALUES ('user', 'ROLE_USER');
-INSERT INTO authorities (username, authority) VALUES ('admin', 'ROLE_ADMIN');
-INSERT INTO authorities (username, authority) VALUES ('admin', 'ROLE_USER');
+INSERT INTO AUTHORITIES (ID, AUTHORITY) VALUES ('user1', 'ROLE_USER');
+INSERT INTO AUTHORITIES (ID, AUTHORITY) VALUES ('admin', 'ROLE_ADMIN');
+INSERT INTO AUTHORITIES (ID, AUTHORITY) VALUES ('admin', 'ROLE_USER');
 
 -- 그룹
 INSERT INTO groups (id, group_name) VALUES ('G01', '관리자 그룹');
