@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.my.four.model.dao.AnimalShelterListDao;
 import com.my.four.model.dto.AnimalShelterListDto;
-import com.my.four.model.dto.AnimalShelterListPagingDto;
+import com.my.four.util.Paging;
 
 @Controller
 public class AnimalController {
@@ -24,20 +24,25 @@ public class AnimalController {
 	
 
 	@RequestMapping(value = "ani_shelterList.do")
-	public String ani_shelterlist(String pageNum, String contentNum, Model model) {
+	public String ani_shelterlist(String txt_search, String page, Model model) {
 		logger.info("보호소 목록으로!");
 		
-		int pageNumber = Integer.parseInt(pageNum); // 현재 페이지
-		int contentNumber = Integer.parseInt(contentNum); // 페이지당 보여줄 게시물 수
-		
-		int totalCount = dao.aniGetTotalCount(); // 총 게시물 갯수 가져오기
-		
-		AnimalShelterListPagingDto dto = new AnimalShelterListPagingDto(totalCount, pageNumber, contentNumber);
-		
-		List<AnimalShelterListDto> list = dao.aniSelectList(dto.getStartCon(), dto.getEndCon());
-		
+		String txt_s = txt_search;
+
+		int totalCount = dao.aniGetTotalCount(txt_s);
+		int pag = (page == null) ? 1 : Integer.parseInt(page);
+
+		Paging paging = new Paging();
+
+		paging.setPageNo(pag); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
+		paging.setPageSize(5); // 한페이지에 불러낼 게시물의 개수 지정
+		paging.setTotalCount(totalCount);
+		pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
+
+		List<AnimalShelterListDto> list = dao.aniSelectList(pag, paging.getPageSize(), txt_s);
 		model.addAttribute("list", list);
-		model.addAttribute("pag", dto);
+		model.addAttribute("paging", paging);
+		model.addAttribute("txt_search", txt_s);
 		
 		return "shelterList/animalshelterlist";
 	}

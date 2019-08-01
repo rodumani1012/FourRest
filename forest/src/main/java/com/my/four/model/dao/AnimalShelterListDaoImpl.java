@@ -32,11 +32,13 @@ public class AnimalShelterListDaoImpl implements AnimalShelterListDao {
 	}
 
 	@Override
-	public List<AnimalShelterListDto> aniSelectList(int begin, int end) {
+	public List<AnimalShelterListDto> aniSelectList(int firstIndex, int recordCountPerPage,
+			String txt_search) {
 		
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("begin", begin);
-		map.put("end", end);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("firstIndex", String.valueOf(firstIndex));
+		map.put("recordCountPerPage", String.valueOf(recordCountPerPage));
+		map.put("txt_search", txt_search);
 		
 		List<AnimalShelterListDto> list = sqlSession.selectList(namespace + "aniSelectList", map);
 		
@@ -44,12 +46,8 @@ public class AnimalShelterListDaoImpl implements AnimalShelterListDao {
 	}
 
 	@Override
-	public int aniGetTotalCount() {
-		int res = 0;
-		
-		res = sqlSession.selectOne(namespace + "aniGetTotalCount");
-		
-		return res;
+	public int aniGetTotalCount(String txt_search) {
+		return 0;
 	}
 
 }

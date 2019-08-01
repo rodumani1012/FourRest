@@ -20,13 +20,14 @@ public class AnimalShelterListBizImpl implements AnimalShelterListBiz {
 	}
 
 	@Override
-	public List<AnimalShelterListDto> aniSelectList(int begin, int end) {
-		return dao.aniSelectList(begin, end);
+	public List<AnimalShelterListDto> aniSelectList(int firstIndex, int recordCountPerPage,
+			String txt_search) {
+		return dao.aniSelectList(firstIndex, recordCountPerPage, txt_search);
 	}
 
 	@Override
-	public int aniGetTotalCount() {
-		return dao.aniGetTotalCount();
+	public int aniGetTotalCount(String txt_search) {
+		return dao.aniGetTotalCount(txt_search);
 	}
 
 }

@@ -13,17 +13,30 @@
 	</insert>
 
 	<!-- db에서 보호소 목록 가져오는 쿼리 -->
-	<select id="aniSelectList" parameterType="map" resultType="animalDto">
-		SELECT * FROM(
-			SELECT	ROWNUM RN, a.* FROM(
-			(SELECT * FROM ANIMAL_SHELTER ORDER BY AREA )a
-			)
-		) WHERE RN &gt;=#{begin} AND RN &lt;=#{end}
+	<select id="aniSelectList" parameterType="map"
+		resultType="animalDto">
+		
+		SELECT *
+		FROM (SELECT ROWNUM AS RNUM, P.*
+			 FROM ( SELECT * 
+			 		FROM ANIMAL_SHELTER 
+					 <if test="txt_search != null">
+							WHERE upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%'
+					</if>
+						ORDER BY AREA
+						) P
+			 )
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
 	</select>
 	
 	<!-- db 목록 갯수 가져오는 쿼리 -->
-	<select id="aniGetTotalCount" resultType="int">
-		SELECT COUNT(*) FROM ANIMAL_SHELTER
+	<select id="selectTotalCount" parameterType="map"
+		resultType="Integer">
+		SELECT count(*)
+		FROM ANIMAL_SHELTER
+		<if test="txt_search != null">
+			WHERE upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%'
+		</if>
 	</select>
 
 </mapper>
