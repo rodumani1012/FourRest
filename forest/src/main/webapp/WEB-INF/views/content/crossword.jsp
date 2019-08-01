@@ -8,8 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Qurossword - A javascript crossword puzzle plugin</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
 <script src="resources/assets/js/jquery.crossword.js"></script>
 <script src="resources/assets/js/script.js"></script>
 
@@ -19,7 +18,7 @@
 	*/
 body {
 	font: 62.5%/1.3em Helvetica, sans-serif;
-	width: 90.3%;
+	width: 100%;
 	margin: 10px auto;
 }
 
@@ -103,11 +102,14 @@ input.done {
 </head>
 <body>
 
+<%@ include file="../header.jsp" %>
 
+<div class="culmn">
+<br><br><br><br><br>
 	<div id="puzzle-wrapper">
 		<!-- crossword puzzle appended here -->
 	</div>
-
+</div>
 
 </body>
 </html>

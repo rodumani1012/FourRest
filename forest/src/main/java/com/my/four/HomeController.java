@@ -122,4 +122,10 @@ public class HomeController {
 		return "content/crossword";
 	}
 	
+	@RequestMapping(value="puzzleiframe.do")
+	public String puzzleiframe() {
+		
+		
+		return "content/puzzleiframe";
+	}
 }
