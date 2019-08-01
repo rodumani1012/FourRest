@@ -47,7 +47,15 @@ public class AnimalShelterListDaoImpl implements AnimalShelterListDao {
 
 	@Override
 	public int aniGetTotalCount(String txt_search) {
-		return 0;
+		
+		int res = 0;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("txt_search", txt_search);
+		
+		res = sqlSession.selectOne(namespace + "aniGetTotalCount", map);
+		
+		return res;
 	}
 
 }

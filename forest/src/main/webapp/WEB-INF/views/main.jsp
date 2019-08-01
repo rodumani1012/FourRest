@@ -66,9 +66,8 @@
 
 
 </head>
-
+<!-- ${requestScope['javax.servlet.forward.context_path']} -->
 <body data-spy="scroll" data-target=".navbar-collapse">
-
 
 	<!-- Preloader -->
 	<div id="loading">

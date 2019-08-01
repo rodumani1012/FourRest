@@ -35,7 +35,7 @@ public class AnimalController {
 		Paging paging = new Paging();
 
 		paging.setPageNo(pag); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
-		paging.setPageSize(5); // 한페이지에 불러낼 게시물의 개수 지정
+		paging.setPageSize(10); // 한페이지에 불러낼 게시물의 개수 지정
 		paging.setTotalCount(totalCount);
 		pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
@@ -71,6 +71,5 @@ public class AnimalController {
 		}
 		return "main";
 	}
-	
 	
 }

@@ -30,7 +30,7 @@
 	</select>
 	
 	<!-- db 목록 갯수 가져오는 쿼리 -->
-	<select id="selectTotalCount" parameterType="map"
+	<select id="aniGetTotalCount" parameterType="map"
 		resultType="Integer">
 		SELECT count(*)
 		FROM ANIMAL_SHELTER
