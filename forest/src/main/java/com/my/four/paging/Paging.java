@@ -1,4 +1,4 @@
-package com.my.four.util;
+package com.my.four.paging;
 
 public class Paging {
 	private int pageSize; // 게시 글 수

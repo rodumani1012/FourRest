@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.my.four.model.dao.AnimalShelterListDao;
 import com.my.four.model.dto.AnimalShelterListDto;
-import com.my.four.util.Paging;
+import com.my.four.paging.Paging;
 
 @Controller
 public class AnimalController {
