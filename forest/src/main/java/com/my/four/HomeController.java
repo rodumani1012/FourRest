@@ -57,7 +57,7 @@ public class HomeController {
 	public String loginform() {
 		logger.info("로그인");
 		
-		return "login";
+		return "member/login";
 	}
 	
 	@RequestMapping(value="joinform.do")
@@ -65,7 +65,7 @@ public class HomeController {
 	public String joinform(){
 		logger.info("회원가입");
 		
-		return "join";
+		return "member/join";
 	}
 	
 	@RequestMapping(value="map.do")
@@ -143,7 +143,7 @@ public class HomeController {
 	
 	@RequestMapping(value="content.do")
 	public String content() {
-		logger.info("후원하기");
+		logger.info("game");
 		
 		return "content";
 	}
@@ -152,7 +152,7 @@ public class HomeController {
 	public String quiz() {
 		logger.info("퀴즈 게임하기");
 		
-		return "quiz";
+		return "content/quiz";
 	}
 	
 	
@@ -160,14 +160,14 @@ public class HomeController {
 	public String puzzle() {
 		logger.info("후원하기");
 		
-		return "puzzle";
+		return "content/puzzle";
 	}
 	
 	@RequestMapping(value="crossword.do")
 	public String crossword() {
 		logger.info("후원하기");
 		
-		return "crossword";
+		return "content/crossword";
 	}
 	
 }
