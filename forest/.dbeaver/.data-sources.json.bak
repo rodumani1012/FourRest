@@ -44,8 +44,8 @@
 						"enabled": false,
 						"save-password": true,
 						"properties": {
-							"socks-port": "1080",
-							"socks-host": ""
+							"socks-host": "",
+							"socks-port": "1080"
 						}
 					}
 				}
