@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.my.four.model.dto.AnimalShelterListDto;
 
 @Repository
-public class AnimalShelterListDaoImpl implements AnimalShelterListDao {
+public class AnimalListDaoImpl implements AnimalListDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
