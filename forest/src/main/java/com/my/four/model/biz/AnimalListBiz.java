@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.my.four.model.dto.AnimalShelterListDto;
 
-public interface AnimalShelterListBiz {
+public interface AnimalListBiz {
 
 	public int aniInsert(List<AnimalShelterListDto> dtos);
 	public List<AnimalShelterListDto> aniSelectList(int firstIndex, int recordCountPerPage,String txt_search);

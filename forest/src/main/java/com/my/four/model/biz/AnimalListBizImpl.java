@@ -5,14 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.my.four.model.dao.AnimalShelterListDao;
+import com.my.four.model.dao.AnimalListDao;
 import com.my.four.model.dto.AnimalShelterListDto;
 
 @Service
-public class AnimalShelterListBizImpl implements AnimalShelterListBiz {
+public class AnimalListBizImpl implements AnimalListBiz {
 
 	@Autowired
-	AnimalShelterListDao dao;
+	AnimalListDao dao;
 	
 	@Override
 	public int aniInsert(List<AnimalShelterListDto> dtos) {

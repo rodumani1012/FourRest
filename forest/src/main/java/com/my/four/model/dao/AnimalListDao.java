@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.my.four.model.dto.AnimalShelterListDto;
 
-public interface AnimalShelterListDao {
+public interface AnimalListDao {
 
 	String namespace = "animal.";
 	
