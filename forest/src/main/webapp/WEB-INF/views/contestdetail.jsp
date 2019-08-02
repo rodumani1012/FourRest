@@ -12,6 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
 	rel="stylesheet">
@@ -24,8 +25,7 @@
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css"
 	rel="stylesheet">
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 
 <script src="dist/lang/summernote-ko-KR.js"></script>
 <script type="text/javascript">
@@ -50,7 +50,7 @@ table {
 
 <body>
 	<div id="Detailform">
-		<table class="que-tbl">
+		<table class="que-tbl table">
 			<col width="20px">
 			<col width="600px">
 			<tr>
@@ -128,7 +128,7 @@ table {
 		<input type="hidden" name="groupnoReply" value="${dto.groupno}">
 		<table class="que-tbl2">
 			<tr>
-				<th colspan="2"">&nbsp;&nbsp;답변달 글 : ${dto.boardno } 작성자 : <input
+				<th colspan="2">&nbsp;&nbsp;답변달 글 : ${dto.boardno } 작성자 : <input
 					type="text" style="width: 100px" name="writerReply"
 					value="${ldto.id }" readonly="readonly"> 제 목 : <input
 					type="text" style="width: 150px" name="titleReply" value=" re."><input

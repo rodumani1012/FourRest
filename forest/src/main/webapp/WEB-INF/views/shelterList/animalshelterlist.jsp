@@ -7,6 +7,43 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<!--Google Font link-->
+<link rel="shortcut icon" href="">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="resources/assets/css/slick.css">
+<link rel="stylesheet" href="resources/assets/css/slick-theme.css">
+<link rel="stylesheet" href="resources/assets/css/animate.css">
+<link rel="stylesheet" href="resources/assets/css/fonticons.css">
+<link rel="stylesheet" href="resources/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="resources/assets/css/bootstrap.css">
+<link rel="stylesheet" href="resources/assets/css/bootsnav.css">
+
+<!--For Plugins external css-->
+<!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
+
+<!--Theme custom css -->
+<link rel="stylesheet" href="resources/assets/css/style.css">
+<!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
+
+<!--Theme Responsive css-->
+<link rel="stylesheet" href="resources/assets/css/responsive.css" />
+
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!-- <script type="text/javascript" src="resources/assets/js/crawling/animalshelterlist.js"></script> -->
 <script type="text/javascript">
@@ -20,9 +57,11 @@
 <!-- 	<input type="submit" value="db저장하기"> -->
 		
 		<!-- content -->
-	<div>
-		<div>
-			<table border="1">
+<%@ include file="../header.jsp" %>
+<br><br><br><br><br>			
+	<div class="culmn">
+		<div class="container">
+			<table class="table-bordered mx-auto" border="1">
 				<thead>
 					<tr>
 						<th>관할구역</th>
@@ -52,7 +91,7 @@
 				</tbody>
 			</table>
 
-			<table>
+			<table class="mx-auto">
 				<tr>
 					<td colspan="4">
 						<input type="text" id="txt_search" value="${txt_search }"> 
@@ -63,7 +102,7 @@
 			</table>
 
 			<!-- Pagination -->
-			<div>
+			<div class="text-center">
 				<a href="javascript:PageMove(${paging.firstPageNo})">&laquo;</a> 
 				<a href="javascript:PageMove(${paging.prevPageNo})">&lt;</a>
 					<c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
