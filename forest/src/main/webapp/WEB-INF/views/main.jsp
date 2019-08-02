@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -110,39 +111,53 @@
 					</button>
 
 					<a class="navbar-brand" href="main.do"><img
-						src="resources/assets/images/logo2.jpg" class="logo logo-scrolled" alt="logo">
-					</a>
+						src="resources/assets/images/logo2.jpg" class="logo logo-scrolled"
+						alt="logo"> </a>
 				</div>
 				<!-- End Header Navigation -->
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#hello'">About us</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#about'">Map</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='sponsor.do'">Sponsor</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#pricing'">Pricing</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#blog'">Blog</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='content.do'">Contact</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do?pageNum=1&contentNum=10'">보호소</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='#hello'">About us</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="test()">Map</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='sponsor.do'">Sponsor</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='#portfolio'">review</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='test.do'">문의하기</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='#blog'">Blog</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='content.do'">Contact</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='ani_shelterList.do?pageNum=1&contentNum=10'">보호소</button></li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-						<li>
-						<sec:authorize access="isAnonymous()">
-						<button type="button" class="btn btn-link text-dark"onclick="location.href='<c:url value='loginform.do'/>'">LOGIN</button>
-						</sec:authorize>	
-						</li>
-						<li>
-						<sec:authorize access="isAuthenticated()">
-								<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-								<input type="submit" class="btn btn-link text-dark" value="LOGOUT" />
-							</form:form>
-						</sec:authorize>
-							</li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='joinform.do'">JOIN</button></li>
+						<li><sec:authorize access="isAuthenticated()">
+								<sec:authentication property="principal.username" var="user_id" />
+								안녕하세요. ${user_id }
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<button type="button" class="btn btn-link text-dark"
+										onclick="location.href='<c:url value='loginform.do'/>'">LOGIN</button>
+								</sec:authorize></li>
+						<li><sec:authorize access="isAuthenticated()">
+								<form:form action="${pageContext.request.contextPath}/logout"
+									method="POST">
+									<input type="submit" class="btn btn-link text-dark"
+										value="LOGOUT" />
+								</form:form>
+							</sec:authorize></li>
+						<li><sec:authorize access="isAnonymous()">
+								<button type="button" class="btn btn-link text-dark"
+									onclick="location.href='joinform.do'">JOIN</button>
+							</sec:authorize></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -275,8 +290,8 @@
 		<div class="main_maps text-center fix">
 			<div class="overlay"></div>
 			<div class="maps_text">
-				<h3 class="text-white" onclick="showmap()">
-					FIND US ON THE MAP <i class="fa fa-angle-down"></i>
+				<h3 class="text-white" onclick="showmap()" id="user_id">
+					FIND US ON THE MAP<i class="fa fa-angle-down"></i>
 				</h3>
 				<div id="map_canvas" class="mapheight"></div>
 			</div>
@@ -314,6 +329,11 @@
 	<script src="resources/assets/js/main.js"></script>
 
 	<script type="text/javascript">
+		
+		function test() {
+			alert(${user_id})
+		}
+		
 		function showmap() {
 			var mapOptions = {
 				zoom : 8,
