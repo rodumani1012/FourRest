@@ -15,8 +15,19 @@ public class AnimalShelterListBizImpl implements AnimalShelterListBiz {
 	AnimalShelterListDao dao;
 	
 	@Override
-	public int insert(List<AnimalShelterListDto> dtos) {
-		return dao.insert(dtos);
+	public int aniInsert(List<AnimalShelterListDto> dtos) {
+		return dao.aniInsert(dtos);
+	}
+
+	@Override
+	public List<AnimalShelterListDto> aniSelectList(int firstIndex, int recordCountPerPage,
+			String txt_search) {
+		return dao.aniSelectList(firstIndex, recordCountPerPage, txt_search);
+	}
+
+	@Override
+	public int aniGetTotalCount(String txt_search) {
+		return dao.aniGetTotalCount(txt_search);
 	}
 
 }

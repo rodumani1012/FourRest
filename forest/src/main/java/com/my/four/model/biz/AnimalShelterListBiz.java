@@ -6,5 +6,7 @@ import com.my.four.model.dto.AnimalShelterListDto;
 
 public interface AnimalShelterListBiz {
 
-	public int insert(List<AnimalShelterListDto> dtos);
+	public int aniInsert(List<AnimalShelterListDto> dtos);
+	public List<AnimalShelterListDto> aniSelectList(int firstIndex, int recordCountPerPage,String txt_search);
+	public int aniGetTotalCount(String txt_search);
 }

@@ -4,10 +4,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+    
     <http pattern="/resources/**" security="none"></http>
     <!-- 검사 URL -->
     <http use-expressions="true">
         <intercept-url pattern="/main.do" access="permitAll" />
+        
         <intercept-url pattern="/loginform.do" access="permitAll" />
         <intercept-url pattern="/joinform.do" access="permitAll" />
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
@@ -15,13 +17,20 @@
         
         <csrf disabled="true"/>
         <form-login login-page="/loginform.do"
-        
                     default-target-url="/main.do"
                     authentication-failure-url="/joinform.do"
                     username-parameter="id"
                     password-parameter="password" />
-        <logout logout-url="/logout"
+        <logout logout-url="/logout" delete-cookies="true"
                 logout-success-url="/main.do" />
+        
+        	
+		<!-- 중복 로그인 방지 -->
+		<session-management invalid-session-url="/joinform.do">
+			<concurrency-control max-sessions="1" expired-url="/joinform.do"/>
+		</session-management>
+	
+        
                 
 <!--         <access-denied-handler error-page="/login/accessDenied.do" /> -->
     </http>
@@ -32,15 +41,21 @@
     
     <!--  provider  -->
     <authentication-manager>
-        <authentication-provider>
+        <authentication-provider >
+        <password-encoder hash="bcrypt"/>
         <jdbc-user-service 
             data-source-ref="dataSource"
             role-prefix=""
             users-by-username-query="SELECT ID, PW, ENABLED FROM MEMBER WHERE ID = ?"
+            authorities-by-username-query="SELECT ID, AUTHORITY FROM AUTHORITIES WHERE ID = ?"
         />
         </authentication-provider>
     </authentication-manager>
-    
+	
+	<!-- 암호화  불러주는  bean -->
+	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> 
+
+
     
    
 </beans:beans>

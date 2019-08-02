@@ -19,8 +19,6 @@
 <title>THE FOREST</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="favicon.ico">
-<link rel="shortcut icon" href="">
 
 <!--Google Font link-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
@@ -48,7 +46,6 @@
 <link rel="stylesheet" href="resources/assets/css/magnific-popup.css">
 <link rel="stylesheet" href="resources/assets/css/bootsnav.css">
 
-
 <!--For Plugins external css-->
 
 <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
@@ -71,9 +68,8 @@
 
 
 </head>
-
+<!-- ${requestScope['javax.servlet.forward.context_path']} -->
 <body data-spy="scroll" data-target=".navbar-collapse">
-
 
 	<!-- Preloader -->
 	<div id="loading">
@@ -105,15 +101,6 @@
 			</div>
 			<!-- End Top Search -->
 			<div class="container">
-				<!-- Start Atribute Navigation -->
-				<div class="attr-nav">
-					<ul>
-						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-						<li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
-					</ul>
-				</div>
-				<!-- End Atribute Navigation -->
-
 				<!-- Start Header Navigation -->
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggler" data-toggle="collapse"
@@ -121,9 +108,9 @@
 						<span></span> <span></span> <span></span>
 					</button>
 
-					<a class="navbar-brand" href="main"><img
-						src="resources/assets/images/logo2.jpg" class="logo logo-scrolled" alt="logo">
-					</a>
+					<a class="navbar-brand" href="main.do"><img
+						src="resources/assets/images/logo2.jpg" class="logo logo-scrolled"
+						alt="logo"> </a>
 				</div>
 				<!-- End Header Navigation -->
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -131,9 +118,11 @@
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#hello'">About us</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#about'">Map</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="test()">Map</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='sponsor.do'">Sponsor</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='test.do'">문의하기</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='contest.do?pagenum=1&contentnum=9'">공모</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#pricing'">Pricing</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='funlist.do'">Blog</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='content.do'">Content</button></li>
@@ -142,49 +131,30 @@
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-						<li>
-						<sec:authorize access="isAnonymous()">
-						<button type="button" class="btn btn-link text-dark"onclick="location.href='<c:url value='loginform.do'/>'">LOGIN</button>
-						</sec:authorize>	
-						</li>
-						<li>
-						<sec:authorize access="isAuthenticated()">
-								<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-								<input type="submit" class="btn btn-link text-dark" value="LOGOUT" />
-							</form:form>
-						</sec:authorize>
-						</li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='joinform.do'">JOIN</button></li>
+						<li><sec:authorize access="isAuthenticated()">
+								<sec:authentication property="principal.username" var="user_id" />
+								안녕하세요. ${user_id }
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<button type="button" class="btn btn-link text-dark"
+										onclick="location.href='<c:url value='loginform.do'/>'">LOGIN</button>
+								</sec:authorize></li>
+						<li><sec:authorize access="isAuthenticated()">
+								<form:form action="${pageContext.request.contextPath}/logout"
+									method="POST">
+									<input type="submit" class="btn btn-link text-dark"
+										value="LOGOUT" />
+								</form:form>
+							</sec:authorize></li>
+						<li><sec:authorize access="isAnonymous()">
+								<button type="button" class="btn btn-link text-dark"
+									onclick="location.href='joinform.do'">JOIN</button>
+							</sec:authorize></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
-			<!-- Start Side Menu -->
-			<div class="side">
-				<a href="#" class="close-side"><i class="fa fa-times"></i></a>
-				<div class="widget">
-					<h6 class="title">Custom Pages</h6>
-					<ul class="link">
-						<li><a href="#hello">About us</a></li>
-						<li><a href="#about">Map</a></li>
-						<li><a href="sponsor.do">Sponsor</a></li>
-						<li><a href="#portfolio">review</a></li>
-						<li><a href="#">Portfolio</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-				<div class="widget">
-					<h6 class="title">Additional Links</h6>
-					<ul class="link">
-						<li><a href="#">Retina Homepage</a></li>
-						<li><a href="#">New Page Examples</a></li>
-						<li><a href="#">Parallax Sections</a></li>
-						<li><a href="#">Shortcode Central</a></li>
-						<li><a href="#">Ultimate Font Collection</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- End Side Menu -->
+
 		</nav>
 
 		<!--Slide Show-->
@@ -312,8 +282,8 @@
 		<div class="main_maps text-center fix">
 			<div class="overlay"></div>
 			<div class="maps_text">
-				<h3 class="text-white" onclick="showmap()">
-					FIND US ON THE MAP <i class="fa fa-angle-down"></i>
+				<h3 class="text-white" onclick="showmap()" id="user_id">
+					FIND US ON THE MAP<i class="fa fa-angle-down"></i>
 				</h3>
 				<div id="map_canvas" class="mapheight"></div>
 			</div>
@@ -332,7 +302,6 @@
 			</div>
 		</div>
 	</footer>
-	</div>
 	<!-- JS includes -->
 
 	<script src="resources/assets/js/vendor/jquery-1.11.2.min.js"></script>
@@ -352,6 +321,11 @@
 	<script src="resources/assets/js/main.js"></script>
 
 	<script type="text/javascript">
+		
+		function test() {
+			alert(${user_id})
+		}
+		
 		function showmap() {
 			var mapOptions = {
 				zoom : 8,
@@ -365,7 +339,5 @@
 			$('.maps_text h3').hide();
 		}
 	</script>
-
 </body>
-
 </html>

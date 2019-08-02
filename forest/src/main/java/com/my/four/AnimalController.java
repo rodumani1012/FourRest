@@ -1,22 +1,18 @@
 package com.my.four;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.my.four.animal.AnimalShelterList;
 import com.my.four.model.dao.AnimalShelterListDao;
 import com.my.four.model.dto.AnimalShelterListDto;
+import com.my.four.paging.Paging;
 
 @Controller
 public class AnimalController {
@@ -28,14 +24,25 @@ public class AnimalController {
 	
 
 	@RequestMapping(value = "ani_shelterList.do")
-	public String ani_shelterlist(Model model) {
-		
-//		AnimalShelterList list = new AnimalShelterList();
-//		
-//		list.returnJsonFile();
-//		
-//		logger.info("json파일 생성!");
+	public String ani_shelterlist(String txt_search, String page, Model model) {
 		logger.info("보호소 목록으로!");
+		
+		String txt_s = txt_search;
+
+		int totalCount = dao.aniGetTotalCount(txt_s);
+		int pag = (page == null) ? 1 : Integer.parseInt(page);
+
+		Paging paging = new Paging();
+
+		paging.setPageNo(pag); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
+		paging.setPageSize(10); // 한페이지에 불러낼 게시물의 개수 지정
+		paging.setTotalCount(totalCount);
+		pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
+
+		List<AnimalShelterListDto> list = dao.aniSelectList(pag, paging.getPageSize(), txt_s);
+		model.addAttribute("list", list);
+		model.addAttribute("paging", paging);
+		model.addAttribute("txt_search", txt_s);
 		
 		return "shelterList/animalshelterlist";
 	}
@@ -56,13 +63,13 @@ public class AnimalController {
 			
 			list.add(dto);
 		}
-		
-		int res = dao.insert(list);
+
+		int res = dao.aniInsert(list);
+		System.out.println("컨트롤러 갯수 : " + res);
 		if (res > 0) {
-			return "";
+			return "main";
 		}
-		return null;
+		return "main";
 	}
-	
 	
 }

@@ -1,7 +1,5 @@
 package com.my.four.animal;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +87,7 @@ public class AnimalShelterList {
 		obj.put("list", jsonArray);
 
 		/*
+		 * JSON 파일 만들기
 		try {
 			File dir = new File("C:\\forest");
 			if(dir.mkdir()) {
