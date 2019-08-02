@@ -1,3 +1,4 @@
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -57,6 +58,7 @@
 <link rel="stylesheet" href="resources/assets/css/responsive.css" />
 <script
 	src="resources/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
 <style>
 /* Make the image fully responsive */
 .carousel-inner img {
@@ -64,13 +66,14 @@
 	height: 100%;
 }
 </style>
-
-
 </head>
 <!-- ${requestScope['javax.servlet.forward.context_path']} -->
 <body data-spy="scroll" data-target=".navbar-collapse">
 
 	<!-- Preloader -->
+<%@ include file="./header.jsp" %>
+
+	<!-- 시작시 빨간 화면 -->
 	<div id="loading">
 		<div id="loading-center">
 			<div id="loading-center-absolute">
@@ -81,9 +84,8 @@
 			</div>
 		</div>
 	</div>
-	<!--End off Preloader -->
+	<!--End -->
 	<div class="culmn">
-		<!--Home page style-->
 		<!--Home page style-->
 		<nav
 			class="navbar navbar-light navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
@@ -136,7 +138,7 @@
 								</sec:authorize>
 								<sec:authorize access="isAnonymous()">
 									<button type="button" class="btn btn-link text-dark"
-										onclick="location.href='<c:url value='loginform.do'/>'">LOGIN</button>
+										onclick="location.href='loginform.do'">LOGIN</button>
 								</sec:authorize></li>
 						<li><sec:authorize access="isAuthenticated()">
 								<form:form action="${pageContext.request.contextPath}/logout"
@@ -156,7 +158,8 @@
 
 		</nav>
 
-		<!--Slide Show-->
+<!-- 메인페이지  -->
+		<!--슬라이드 쇼 -->
 		<div class="container-fluid">
 			<div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -170,7 +173,7 @@
 					<li data-target="#demo" data-slide-to="5"></li>
 				</ul>
 
-				<!-- The slideshow -->
+				<!-- 슬라이드 쇼 사진  -->
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<img src="resources/assets/images/background/1.jpg" alt="trash"
@@ -193,32 +196,33 @@
 							style="height: 800px;">
 					</div>
 				</div>
-
-				<!-- Left and right controls -->
+				
+				<!-- 슬라이드 쇼 버튼 -->
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
-				</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+				</a> 
+				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
 
 			</div>
 		</div>
-
+		<!-- 슬라이드쇼 끝  -->			
+		<!-- 후원금은 어디에 사용 되나요? -->
 		<div class="container text-center">
 			<img src="resources/assets/images/ss.png" alt="후원금 사용내역">
 		</div>
+		<!-- 게스트board -->
 		<div class="container text-center">
-			<img src="resources/assets/images/fprojects/board.png" alt="게시판">
+			<img src="resources/assets/images/fprojects/board.png" alt="게시판으로 이동!">
 		</div>
 
 		<!-- 후원 및 봉사 사진 넣는 부분 -->
 		<div class="featured_slider">
-
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor1.jpeg"
-						class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> 
+					<a href="resources/assets/images/fprojects/wor1.jpeg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
@@ -230,29 +234,25 @@
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor3.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor3.jpeg"
-						class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor3.jpeg" alt="" /> 
+					<a href="resources/assets/images/fprojects/wor3.jpeg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor1.jpeg"
-						class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> 
+					<a href="resources/assets/images/fprojects/wor1.jpeg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor2.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor2.jpeg"
-						class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor2.jpeg" alt="" /> 
+					<a href="resources/assets/images/fprojects/wor2.jpeg" class="popup-img"></a>
 				</div>
 			</div>
 		</div>
 		<!-- End off Impress section-->
-		<!--Portfolio Section-->
-		<section id="portfolio" class="portfolio lightbg">
+		<section class="portfolio lightbg">
 			<div class="container">
 				<div class="row">
 					<div class="main_portfolio roomy-100">
@@ -272,22 +272,14 @@
 			</div>
 			<!--End off container -->
 		</section>
-		<!-- scroll up-->
+		<!-- ㅅ크롤 업 -->
 		<div class="scrollup">
 			<a href="#"><i class="fa fa-chevron-up"></i></a>
 		</div>
-
 		<!-- End off scroll up -->
-		<div class="main_maps text-center fix">
-			<div class="overlay"></div>
-			<div class="maps_text">
-				<h3 class="text-white" onclick="showmap()" id="user_id">
-					FIND US ON THE MAP<i class="fa fa-angle-down"></i>
-				</h3>
-				<div id="map_canvas" class="mapheight"></div>
-			</div>
-		</div>
 	</div>
+
+	<!-- footer -->
 	<footer id="footer" class="footer bg-black">
 		<div class="container">
 			<div class="row">
@@ -313,30 +305,9 @@
 	<script src="resources/assets/js/jquery.collapse.js"></script>
 	<script src="resources/assets/js/bootsnav.js"></script>
 
-	<script
-		src="http://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>
 	<script src="resources/assets/js/gmaps.min.js"></script>
 	<script src="resources/assets/js/plugins.js"></script>
 	<script src="resources/assets/js/main.js"></script>
 
-	<script type="text/javascript">
-		
-		function test() {
-			alert(${user_id})
-		}
-		
-		function showmap() {
-			var mapOptions = {
-				zoom : 8,
-				scrollwheel : false,
-				center : new google.maps.LatLng(-34.397, 150.644),
-				mapTypeId : google.maps.MapTypeId.ROADMAP
-			};
-			var map = new google.maps.Map(
-					document.getElementById('map_canvas'), mapOptions);
-			$('.mapheight').css('height', '350');
-			$('.maps_text h3').hide();
-		}
-	</script>
 </body>
 </html>

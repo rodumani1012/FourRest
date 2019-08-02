@@ -170,10 +170,10 @@ public class HomeController {
 		
 		return "content/crossword";
 	}
-	@RequestMapping(value="test.do")
-	public String test(@AuthenticationPrincipal String username) {
+	
+	@RequestMapping(value="puzzleiframe.do")
+	public String puzzleiframe() {
 		
-		logger.info("------------------------------"+username);
-		return "redirect:main.do";
+		return "content/puzzleiframe";
 	}
 }
