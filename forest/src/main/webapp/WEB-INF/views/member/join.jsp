@@ -222,18 +222,19 @@
 				<div class="form-group">
 					<label for="text">ID : </label>
 					<div class="row justify-content-center">
-						<input type="email" class="form-control col-sm-3" id="id" title="n" name="id">
+						<input type="text" class="form-control col-sm-3" id="id" title="n" name="id">
 					</div>
 					<label for="text">NAME : </label>
-					<div class="row justify-content-center">
-						<input type="text" class="form-control col-sm-3" id="name" title="n" name="name">
-					</div>
-				</div>
+					
+				
 				<div class="form-group">
 					<div class="row justify-content-center">
 						<input type="button" class="btn btn-light" value="중복확인" id="idchk" onclick="idChk()">
 					</div>
 				</div>	
+				<div class="row justify-content-center">
+						<input type="text" class="form-control col-sm-3" id="name" title="n" name="name">
+					</div>
 				<div class="form-group">
 					<label for="pwd">Password : </label>
 					<div class="row justify-content-center">
@@ -248,9 +249,7 @@
 					<div id ="pwval">암호를 입력하세요</div>
 				<div class="form-group">
 					<label for="addr">Address : </label>
-						<div class="row justify-content-center">
-							<input type="text" class="form-control col-sm-3" id="addr" onclick="javascript:addpop()">
-						</div>
+						
 				</div>
 				<div class="form-group">
 					

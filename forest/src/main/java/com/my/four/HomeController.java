@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +31,9 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
 	private MailService mailSerivce;
-	
+	//암호화 해주는 메소드
 	@Autowired
-	BCryptPasswordEncoder passEncoder;
+	private BCryptPasswordEncoder passEncoder;
 	
 	@Autowired
 	private LoginBiz biz;
@@ -116,6 +117,7 @@ public class HomeController {
 	}
 	@RequestMapping(value="memberInsert.do")
 	public String memberInsert(HttpSession session,HttpServletResponse response,String pw,LoginDto dto,String phone1,String phone2,String phone3,String emailName,String emailForm, String emailNum) throws IOException {
+		//디비에 암호화 저장
 		String enpw=passEncoder.encode(pw);
 		String emailKey = (String) session.getAttribute("joinCode");
 		String phone = phone1+phone2+phone3;
@@ -128,7 +130,7 @@ public class HomeController {
 		PrintWriter out = response.getWriter();
 		
 		if(emailKey.equals(emailNum)) {
-			if(res>1) {
+			if(res>0) {
 				return "redirect:main.do";
 			}else {
 				return "redirect:joinform.do";
@@ -168,5 +170,10 @@ public class HomeController {
 		
 		return "content/crossword";
 	}
-	
+	@RequestMapping(value="test.do")
+	public String test(@AuthenticationPrincipal String username) {
+		
+		logger.info("------------------------------"+username);
+		return "redirect:main.do";
+	}
 }
