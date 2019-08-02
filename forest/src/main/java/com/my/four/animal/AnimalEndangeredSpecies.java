@@ -27,7 +27,8 @@ public class AnimalEndangeredSpecies {
 		for (int i = 1; i <= 1; i++) {
 			
 			String url = "https://species.nibr.go.kr/endangeredspecies/rehome/exlist/exlist.jsp?1=1&1=1&search_key=all&search_yn=Y&sch_gbn=ex&chk_rcomm_group_all=Y&sch_rcomm_group0=MM&sch_rcomm_group1=AV&sch_rcomm_group2=RP&sch_rcomm_group3=AM&sch_rcomm_group4=-P&sch_rcomm_group5=IN&sch_rcomm_group6=IV&sch_rcomm_group7=VP&sch_rcomm_group8=AL&sch_rcomm_group9=FG&chk_ex_rl_all=Y&sch_ex1=Y&sch_ex2=Y&sch_sort=cls_kname&unit_count=20&sch_view_type=photo&page_count="+i;
-			String selector = ".wrapPost img";
+			String selector = ".wrapPost img, .desc > a > li";
+//			String selector = ".desc .bold";
 			Document doc = null;
 			
 			try {
@@ -39,10 +40,11 @@ public class AnimalEndangeredSpecies {
 			Elements contents = doc.select(selector); // doc(HTML문서)에서 (selector)내용을 가져옴.
 			
 			for(Element element : contents) {
-				if (element.text().equals("")) {
+				if (element.attr("src").startsWith("..") || element.text().equals("")) {
 					continue;
 				} else {
-					str += element.text()+"#";	
+					str += "https://species.nibr.go.kr" + element.getElementsByAttribute("src").attr("src") +"#";
+					str += element.text() + "\n";
 				}
 			}
 			System.out.println(str);
