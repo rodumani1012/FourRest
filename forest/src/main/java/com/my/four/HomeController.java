@@ -14,13 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.my.four.model.biz.FundingBiz;
 import com.my.four.model.biz.LoginBiz;
 import com.my.four.model.biz.MailService;
-
-import com.my.four.animal.AnimalShelterList;
 
 @Controller
 public class HomeController {
@@ -107,7 +105,7 @@ public class HomeController {
 	public String quiz() {
 		logger.info("퀴즈 게임하기");
 		
-		return "quiz";
+		return "content/quiz";
 	}
 	
 	
@@ -115,14 +113,14 @@ public class HomeController {
 	public String puzzle() {
 		logger.info("후원하기");
 		
-		return "puzzle";
+		return "content/puzzle";
 	}
 	
 	@RequestMapping(value="crossword.do")
 	public String crossword() {
 		logger.info("후원하기");
 		
-		return "crossword";
+		return "content/crossword";
 	}
 	
 }

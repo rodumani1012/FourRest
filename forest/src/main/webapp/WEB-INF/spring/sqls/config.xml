@@ -7,11 +7,13 @@
 	<typeAliases>
 		<typeAlias type="com.my.four.model.dto.LoginDto" alias="loginDto"/>
 		<typeAlias type="com.my.four.model.dto.AnimalShelterListDto" alias="animalDto"/>
+		<typeAlias type="com.my.four.model.dto.FundingDto" alias="FundingDto"/>
 	</typeAliases>
 	<!-- resource : java Resources -->
 	<!-- resource : src/main/resources -->
 	<mappers>
 		<mapper resource="/sqls/mapper.xml"/>
+		<mapper resource="/sqls/funmapper.xml"/>
 	</mappers>
 	
 </configuration>

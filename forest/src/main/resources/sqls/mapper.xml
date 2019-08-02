@@ -5,9 +5,5 @@
 	<select id="idchk" parameterType="map" resultType="loginDto">
 		SELECT ID FROM MEMBER WHERE ID = #{id}
 	</select>
-	
-	<insert id="insert" parameterType="loginDto">
-		
-	</insert>
 
 </mapper>
