@@ -8,7 +8,6 @@
 <meta content="text/html; charset=utf-8" http-equiv="content-type">
 
 <title>SlickQuiz Demo</title>
-
 <link href="resources/assets/css/reset.css" media="screen" rel="stylesheet"
 	type="text/css">
 <link href="resources/assets/css/slickQuiz.css" media="screen" rel="stylesheet"
@@ -27,6 +26,7 @@
 
 			<a class="button startQuiz" href="">시작!</a>
 		</div>
+
 
 		<!-- where the quiz gets built -->
 	</div>

@@ -71,7 +71,7 @@
 
 <%@ include file="./header.jsp" %>
 
-	<!-- Preloader -->
+	<!-- 시작시 빨간 화면 -->
 	<div id="loading">
 		<div id="loading-center">
 			<div id="loading-center-absolute">
@@ -82,12 +82,10 @@
 			</div>
 		</div>
 	</div>
-	<!--End off Preloader -->
+	<!--End -->
 	<div class="culmn">
-		<!--Home page style-->
-		<!--Home page style-->
-
-		<!--Slide Show-->
+<!-- 메인페이지  -->
+		<!--슬라이드 쇼 -->
 		<div class="container-fluid">
 			<div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -101,7 +99,7 @@
 					<li data-target="#demo" data-slide-to="5"></li>
 				</ul>
 
-				<!-- The slideshow -->
+				<!-- 슬라이드 쇼 사진  -->
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<img src="resources/assets/images/background/1.jpg" alt="trash"
@@ -124,32 +122,33 @@
 							style="height: 800px;">
 					</div>
 				</div>
-
-				<!-- Left and right controls -->
+				
+				<!-- 슬라이드 쇼 버튼 -->
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
-				</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+				</a> 
+				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
 
 			</div>
 		</div>
-
+		<!-- 슬라이드쇼 끝  -->			
+		<!-- 후원금은 어디에 사용 되나요? -->
 		<div class="container text-center">
 			<img src="resources/assets/images/ss.png" alt="후원금 사용내역">
 		</div>
+		<!-- 게스트board -->
 		<div class="container text-center">
-			<img src="resources/assets/images/fprojects/board.png" alt="게시판">
+			<img src="resources/assets/images/fprojects/board.png" alt="게시판으로 이동!">
 		</div>
 
 		<!-- 후원 및 봉사 사진 넣는 부분 -->
 		<div class="featured_slider">
-
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor1.jpeg"
-						class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> 
+					<a href="resources/assets/images/fprojects/wor1.jpeg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
@@ -161,29 +160,25 @@
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor3.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor3.jpeg"
-						class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor3.jpeg" alt="" /> 
+					<a href="resources/assets/images/fprojects/wor3.jpeg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor1.jpeg"
-						class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> 
+					<a href="resources/assets/images/fprojects/wor1.jpeg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor2.jpeg" alt="" /> <a
-						href="resources/assets/images/fprojects/wor2.jpeg"
-						class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor2.jpeg" alt="" /> 
+					<a href="resources/assets/images/fprojects/wor2.jpeg" class="popup-img"></a>
 				</div>
 			</div>
 		</div>
 		<!-- End off Impress section-->
-		<!--Portfolio Section-->
-		<section id="portfolio" class="portfolio lightbg">
+		<section class="portfolio lightbg">
 			<div class="container">
 				<div class="row">
 					<div class="main_portfolio roomy-100">
@@ -203,22 +198,15 @@
 			</div>
 			<!--End off container -->
 		</section>
-		<!-- scroll up-->
+		<!-- ㅅ크롤 업 -->
 		<div class="scrollup">
 			<a href="#"><i class="fa fa-chevron-up"></i></a>
 		</div>
-
 		<!-- End off scroll up -->
-		<div class="main_maps text-center fix">
-			<div class="overlay"></div>
-			<div class="maps_text">
-				<h3 class="text-white" onclick="showmap()">
-					FIND US ON THE MAP <i class="fa fa-angle-down"></i>
-				</h3>
-				<div id="map_canvas" class="mapheight"></div>
-			</div>
-		</div>
 	</div>
+			
+
+	<!-- footer -->
 	<footer id="footer" class="footer bg-black">
 		<div class="container">
 			<div class="row">
@@ -244,25 +232,9 @@
 	<script src="resources/assets/js/jquery.collapse.js"></script>
 	<script src="resources/assets/js/bootsnav.js"></script>
 
-	<script
-		src="http://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>
 	<script src="resources/assets/js/gmaps.min.js"></script>
 	<script src="resources/assets/js/plugins.js"></script>
 	<script src="resources/assets/js/main.js"></script>
 
-	<script type="text/javascript">
-		function showmap() {
-			var mapOptions = {
-				zoom : 8,
-				scrollwheel : false,
-				center : new google.maps.LatLng(-34.397, 150.644),
-				mapTypeId : google.maps.MapTypeId.ROADMAP
-			};
-			var map = new google.maps.Map(
-					document.getElementById('map_canvas'), mapOptions);
-			$('.mapheight').css('height', '350');
-			$('.maps_text h3').hide();
-		}
-	</script>
 </body>
 </html>

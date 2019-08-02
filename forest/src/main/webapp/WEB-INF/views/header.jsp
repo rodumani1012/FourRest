@@ -66,24 +66,22 @@
 						data-target="#navbar-menu">
 						<span></span> <span></span> <span></span>
 					</button>
-
-					<a class="navbar-brand" href="main.do"><img
-						src="resources/assets/images/logo2.jpg" class="logo logo-scrolled" alt="logo">
+					<a class="navbar-brand" href="main.do">
+					<img src="resources/assets/images/logo2.jpg" class="logo logo-scrolled" alt="logo">
 					</a>
 				</div>
 				<!-- End Header Navigation -->
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbar-menu">
-					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
-						data-out="fadeOutUp">
+					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#hello'">About us</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#about'">Map</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='sponsor.do'">Sponsor</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do?pageNum=1&contentNum=10'">보호소</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#pricing'">Pricing</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#blog'">Blog</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='content.do'">Contant</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do?pageNum=1&contentNum=10'">보호소</button></li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
@@ -105,10 +103,6 @@
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
-
 		</nav>
-
-
-
 </body>
 </html>
