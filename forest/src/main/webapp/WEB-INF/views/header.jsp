@@ -46,7 +46,8 @@
 
 </head>
 <body>
-<nav class= "navbar navbar-light navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
+	<nav
+			class="navbar navbar-light navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
 			<!-- Start Top Search -->
 			<div class="top-search">
 				<div class="container">
@@ -66,43 +67,53 @@
 						data-target="#navbar-menu">
 						<span></span> <span></span> <span></span>
 					</button>
-					<a class="navbar-brand" href="main.do">
-					<img src="resources/assets/images/logo2.jpg" class="logo logo-scrolled" alt="logo">
-					</a>
+
+					<a class="navbar-brand" href="main.do"><img
+						src="resources/assets/images/logo2.jpg" class="logo logo-scrolled"
+						alt="logo"> </a>
 				</div>
 				<!-- End Header Navigation -->
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbar-menu">
-					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
+						data-out="fadeOutUp">
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#hello'">About us</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#about'">Map</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="test()">Map</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='sponsor.do'">Sponsor</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do?pageNum=1&contentNum=10'">보호소</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#pricing'">Pricing</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='test.do'">문의하기</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='contest.do?pagenum=1&contentnum=9'">공모</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#blog'">Blog</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='content.do'">Contant</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do'">보호소</button></li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-						<li>
-						<sec:authorize access="isAnonymous()">
-						<button type="button" class="btn btn-link text-dark"onclick="location.href='<c:url value='loginform.do'/>'">LOGIN</button>
-						</sec:authorize>	
-						</li>
-						<li>
-						<sec:authorize access="isAuthenticated()">
-								<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-								<input type="submit" class="btn btn-link text-dark" value="LOGOUT" />
-							</form:form>
-						</sec:authorize>
-							</li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='joinform.do'">JOIN</button></li>
+						<li><sec:authorize access="isAuthenticated()">
+								<sec:authentication property="principal.username" var="user_id" />
+								안녕하세요. ${user_id }
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<button type="button" class="btn btn-link text-dark"
+										onclick="location.href='loginform.do'">LOGIN</button>
+								</sec:authorize></li>
+						<li><sec:authorize access="isAuthenticated()">
+								<form:form action="${pageContext.request.contextPath}/logout"
+									method="POST">
+									<input type="submit" class="btn btn-link text-dark"
+										value="LOGOUT" />
+								</form:form>
+							</sec:authorize></li>
+						<li><sec:authorize access="isAnonymous()">
+								<button type="button" class="btn btn-link text-dark"
+									onclick="location.href='joinform.do'">JOIN</button>
+							</sec:authorize></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
+
 		</nav>
 </body>
 </html>
