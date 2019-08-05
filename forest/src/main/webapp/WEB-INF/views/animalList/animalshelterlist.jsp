@@ -16,9 +16,6 @@
 </script>
 <body>
 	
-<!-- 	<form action="ani_saveDb.do" method="post"> -->
-<!-- 	<input type="submit" value="db저장하기"> -->
-		
 		<!-- content -->
 	<div>
 		<div>
