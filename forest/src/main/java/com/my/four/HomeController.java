@@ -27,7 +27,7 @@ import com.my.four.model.dto.LoginDto;
 
 @Controller
 public class HomeController {
-
+ 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
 	private MailService mailSerivce;
