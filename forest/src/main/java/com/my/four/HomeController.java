@@ -10,7 +10,7 @@ import com.my.four.animal.AnimalShelterList;
 
 @Controller
 public class HomeController {
-
+ 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@RequestMapping(value = "main.do")
