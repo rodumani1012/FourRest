@@ -154,6 +154,7 @@ public class HomeController {
 		logger.info("퀴즈 게임하기");
 		
 		return "content/quiz";
+	}
 
 	@RequestMapping(value = "admin.do")
 	public String admin() {
