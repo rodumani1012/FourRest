@@ -54,9 +54,6 @@
 						class="glyphicon glyphicon-envelope"></span> <span class="number">4</span>
 						<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Page 1-1</a></li>
-						<li><a href="#">Page 1-2</a></li>
-						<li><a href="#">Page 1-3</a></li>
 					</ul></li>
 
 				<li class="dropdown"><a class="alerts-link dropdown-toggle"
@@ -198,7 +195,7 @@
 						<div class="circle-tile-content orange">
 							<div class="circle-tile-description text-faded">공모게시판</div>
 							<div class="circle-tile-number text-faded">9 New</div>
-							<a href="#" class="circle-tile-footer">More Info <i
+							<a href="admin_conlist.do" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>
 						</div>
 					</div>

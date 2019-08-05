@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="contest">
-	<select id="listtest" resultType="ContestBoardDto">
-		SELECT * FROM CONTESTBOARD
-	</select>
 
+	<insert id="boardInsert" parameterType="ContestBoardDto">
+		INSERT INTO CONTESTBOARD
+		VALUES
+		(#{conlistno},CON_BOARDNOSQ.NEXTVAL,CON_GROUPNOSQ.NEXTVAL,1,0,0,0,#{writer},#{title},#{reppic},#{content},SYSDATE)
+	</insert>
+	<select id="getCount" resultType="int" parameterType="ContestBoardDto">
+		SELECT COUNT(*) FROM (SELECT * FROM CONTESTBOARD WHERE GROUPSQ=1
+		<if test="conlistno!=0">
+			AND CONLISTNO = #{conlistno}
+		</if>
+		)
+	</select>
+	<select id="selectThree" parameterType="ContestBoardDto" resultType="ContestBoardDto">
+		SELECT * FROM (SELECT * FROM CONTESTBOARD
+		<if test="conlistno!=0">
+			WHERE CONLISTNO = #{conlistno}
+		</if>
+		ORDER BY LIKERATE DESC ) WHERE ROWNUM &lt;=3
+	</select>
+	<select id="listOption" parameterType="Hashmap"
+		resultType="ContestBoardDto">
+		SELECT * FROM ( SELECT ROWNUM RN,a.* FROM CONTESTBOARD a WHERE
+		GROUPSQ=1
+		<if test="conlistno!=0">
+			AND CONLISTNO = #{conlistno}
+		</if>
+		ORDER BY GROUPNO DESC) WHERE RN &gt;=#{begin} AND RN &lt;=#{end}
+	</select>
+	<update id="updateStar" parameterType="ContestBoardDto">
+		UPDATE
+		CONTESTBOARD SET LIKECNT = LIKECNT+1 , LIKERATE = #{likerate} WHERE
+		BOARDNO = #{boardno}
+	</update>
+	<!-- 여기까지완성 -->
 	<select id="selectList" resultType="ContestBoardDto"
 		parameterType="HashMap">
 		SELECT * FROM ( SELECT ROWNUM RN,a.* FROM CONTESTBOARD a
@@ -15,14 +46,9 @@
 		SELECT * FROM CONTESTBOARD
 		WHERE BOARDNO = #{boardno}
 	</select>
-	<insert id="boardInsert" parameterType="ContestBoardDto">
-		INSERT INTO CONTESTBOARD
-		VALUES
-		(CON_BOARDNOSQ.NEXTVAL,CON_GROUPNOSQ.NEXTVAL,1,0,0,#{writer},#{title},#{content},SYSDATE)
-	</insert>
 	<update id="boardUpdate" parameterType="ContestBoardDto">
 		UPDATE CONTESTBOARD SET
-		TITLE=#{title}, CONTENT=#{content} WHERE
+		TITLE=#{title}, CONTENT=#{content},REPPIC=#{reppic} WHERE
 		BOARDNO=#{boardno}
 	</update>
 	<delete id="boardDelete" parameterType="int">
@@ -122,13 +148,6 @@
 		UPDATE CONTESTBOARD SET
 		LIKECNT = LIKECNT+1 WHERE BOARDNO=#{boardno}
 	</update>
-
-	<select id="selectThree" parameterType="ContestBoardDto" resultType="ContestBoardDto">
-		SELECT * FROM (SELECT *
-		FROM CONTESTBOARD ORDER BY LIKECNT DESC ) WHERE
-		ROWNUM &lt;=3
-	</select>
-
 
 
 </mapper>

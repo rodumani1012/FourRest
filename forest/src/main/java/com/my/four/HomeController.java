@@ -154,6 +154,19 @@ public class HomeController {
 		logger.info("퀴즈 게임하기");
 		
 		return "content/quiz";
+
+	@RequestMapping(value = "admin.do")
+	public String admin() {
+		logger.info("관리자");
+
+		return "admin/admin";
+	}
+
+	@RequestMapping(value = "admincal.do")
+	public String admincal() {
+		logger.info("관리자일정");
+
+		return "admin/admincal";
 	}
 	
 	

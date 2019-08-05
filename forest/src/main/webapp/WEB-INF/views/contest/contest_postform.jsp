@@ -32,7 +32,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#summernote').summernote({
+		$('.summernote').summernote({
 			height : 400
 
 		});
@@ -41,21 +41,28 @@
 
 </head>
 <body>
-	<form:form action="contest_write.do" modelAttribute="ContestBoardDto" method="post" >
+	<form:form action="contest_post.do" modelAttribute="ContestBoardDto" method="post" >
 		<input type="hidden" name="writer" value="test">
 		<table>
 			<tr>
-				<td>제 목</td>
-				<td><input type="text" name="title" style="width: 650px" /></td>
+				<td>
+				<select name="conlistno">
+				<c:forEach items="${conlist}" var="dto">
+					<option value="${dto.boardno }" >${dto.title }</option>
+				</c:forEach>
+				</select>
+				</td>
+				<td>제목<input type="text" name="title" style="width: 650px" /></td>
 			</tr>
 			<tr>
-				<td>내 용</td>
-				<td><textarea rows="10" cols="30" id="summernote"
+				<td>설명</td>
+				<td><textarea rows="10" cols="30" class="summernote"
 						name="content" style="width: 650px; height: 350px;"></textarea></td>
 			</tr>
 			<tr>
+			<tr>
 				<td colspan="2"><input type="submit" value="등록" />
-				<input type="button" value="작성 취소" onclick="location.href='contestboard.do'" />
+				<input type="button" value="작성 취소" onclick="location.href='contest_main.do'" />
 				</td>
 			</tr>
 		</table>

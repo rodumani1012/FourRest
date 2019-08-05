@@ -8,6 +8,7 @@
 		<typeAlias type="com.my.four.model.dto.LoginDto" alias="loginDto"/>
 		<typeAlias type="com.my.four.model.dto.AnimalShelterListDto" alias="animalDto"/>
 		<typeAlias type="com.my.four.model.dto.ContestBoardDto" alias="ContestBoardDto"/>
+		<typeAlias type="com.my.four.model.dto.ContestListDto" alias="ContestListDto"/>
 	</typeAliases>
 	<!-- resource : java Resources -->
 	<!-- resource : src/main/resources -->
@@ -15,6 +16,7 @@
 		<mapper resource="/sqls/mapper.xml"/>
 		<mapper resource="/sqls/animalMapper.xml"/>
     	<mapper resource="/sqls/contest_mapper.xml"/>
+    	<mapper resource="/sqls/contestlist_mapper.xml"/>
 	</mappers>
 	
 	

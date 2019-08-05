@@ -19,10 +19,15 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 		// TODO Auto-generated method stub
 		return dao.selectOne(boardno);
 	}
+	
+	@Override
+	public int getCount(int conlistno) {
+		// TODO Auto-generated method stub
+		return dao.getCount(conlistno);
+	}
 
 	@Override
 	public int boardInsert(ContestBoardDto dto) {
-		// TODO Auto-generated method stub
 		return dao.boardInsert(dto);
 	}
 
@@ -51,12 +56,6 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 	}
 
 	@Override
-	public int updateAns(int parentno) {
-		// TODO Auto-generated method stub
-		return dao.updateAns(parentno);
-	}
-
-	@Override
 	public int insertAns(ContestBoardDto dto) {
 		// TODO Auto-generated method stub
 		return dao.insertAns(dto);
@@ -69,11 +68,15 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 	}
 
 	@Override
-	public List<ContestBoardDto> selectListOption(int opt, String condition, int begin, int end) {
-		// TODO Auto-generated method stub
-		return dao.selectListOption(opt, condition, begin, end);
+	public int updateStar(int boardno, int star) {
+		ContestBoardDto dto = dao.selectOne(boardno);
+		int cnt = dto.getLikecnt();
+		double rate = dto.getLikerate();
+		double newrate = ((cnt*rate)+star)/(cnt+1);
+		return dao.updateStar(boardno, newrate);
 	}
 
+	
 	@Override
 	public List<ContestBoardDto> selectListReply(int groupno) {
 		// TODO Auto-generated method stub
@@ -99,9 +102,9 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 	}
 
 	@Override
-	public List<ContestBoardDto> selectThree() {
+	public List<ContestBoardDto> selectThree(int conlistno) {
 		// TODO Auto-generated method stub
-		return dao.selectThree();
+		return dao.selectThree(conlistno);
 	}
 
 	@Override
@@ -109,5 +112,13 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 		System.out.println("비즈임");
 		return dao.selectList(begin, end);
 	}
+
+
+	@Override
+	public List<ContestBoardDto> selectListOption(int conlistno, int begin, int end) {
+		// TODO Auto-generated method stub
+		return dao.selectListOption(conlistno, begin, end);
+	}
+
 
 }

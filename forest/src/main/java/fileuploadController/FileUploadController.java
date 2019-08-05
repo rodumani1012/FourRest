@@ -17,12 +17,7 @@ public class FileUploadController{
 
 	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
-	public String ContesetWriteForm(HttpServletRequest request, Model model) {
-		// 경로체크
-		
-		
-		return "contestboard";
-	}
+
 
 
 }
