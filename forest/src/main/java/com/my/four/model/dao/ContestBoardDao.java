@@ -10,6 +10,12 @@ public interface ContestBoardDao {
 	
 	@Autowired
 	String namespace="contest.";
+
+	public List<ContestBoardDto> selectListOption(int conlistno, int begin, int end);
+	public int getCount(int conlistno);
+	public int updateStar(int boardno,double newrate);
+	//여기까지다시
+	
 	public List<ContestBoardDto> selectList(int begin,int end);
 	public ContestBoardDto selectOne(int boardno);
 	public int boardInsert(ContestBoardDto dto);
@@ -25,5 +31,7 @@ public interface ContestBoardDao {
 	public int replyCntup(int boardno);
 	public int likeCntup(int boardno);
 	public int answProc(ContestBoardDto dto);
-	public List<ContestBoardDto> selectThree();
+	public List<ContestBoardDto> selectThree(int conlistno);
+
+	
 }

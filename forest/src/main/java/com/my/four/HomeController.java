@@ -63,14 +63,14 @@ public class HomeController {
 	public String admin() {
 		logger.info("관리자");
 
-		return "admin";
+		return "admin/admin";
 	}
 
 	@RequestMapping(value = "admincal.do")
 	public String admincal() {
 		logger.info("관리자일정");
 
-		return "admincal";
+		return "admin/admincal";
 	}
 
 	

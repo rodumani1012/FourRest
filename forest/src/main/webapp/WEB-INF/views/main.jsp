@@ -152,7 +152,7 @@
 						<li><a href="#about">Map</a></li>
 						<li><a href="sponsor.do">Sponsor</a></li>
 						<li><a href="#portfolio">review</a></li>
-						<li><a href="contest.do?pagenum=1&contentnum=9">공모</a></li>
+						<li><a href="contest_main.do">공모</a></li>
 						<li><a href="#blog">Blog</a></li>
 						<li><a href="#contact">Contact</a></li>
 						<li><a href="ani_shelterlist.do">보호소</a></li>
@@ -310,6 +310,9 @@
 			<a href="#"><i class="fa fa-chevron-up"></i></a>
 		</div>
 
+	<div>
+		<iframe src="https://www.youtube.com/watch?v=7A4RiJXvYBU" ></iframe>
+	</div>
 		<!-- End off scroll up -->
 		<div class="main_maps text-center fix">
 			<div class="overlay"></div>

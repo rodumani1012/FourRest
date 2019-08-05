@@ -5,6 +5,7 @@
 	<!-- type이 너무길어서 별칭을 준다. -->
 	<typeAliases>
 		<typeAlias type="com.my.four.model.dto.ContestBoardDto" alias="ContestBoardDto"/>
+		<typeAlias type="com.my.four.model.dto.ContestListDto" alias="ContestListDto"/>
 	</typeAliases>
 	
 	<!-- resource : java Resources -->
@@ -12,6 +13,7 @@
 	<mappers>
 		<mapper resource="/sqls/mapper.xml"/>
     	<mapper resource="/sqls/contest_mapper.xml"/>
+    	<mapper resource="/sqls/contestlist_mapper.xml"/>
 	</mappers>
 	
 	

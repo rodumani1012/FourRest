@@ -36,7 +36,6 @@ public class AnimalShelterList {
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 			}
-			
 			Elements contents = doc.select(selector); // doc(HTML문서)에서 (selector)내용을 가져옴.
 			
 			for(Element element : contents) {
