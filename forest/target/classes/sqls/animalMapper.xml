@@ -29,7 +29,7 @@
 		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
 	</select>
 	
-	<!-- db 목록 갯수 가져오는 쿼리 -->
+	<!-- db 보호소 목록 갯수 가져오는 쿼리 -->
 	<select id="aniGetTotalCount" parameterType="map"
 		resultType="Integer">
 		SELECT count(*)
