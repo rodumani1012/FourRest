@@ -7,10 +7,20 @@ CREATE TABLE users(
 		enabled                       		INTEGER		 NULL 
 );
 
-COMMENT ON TABLE users is '회원';
-COMMENT ON COLUMN users.username is '아이디';
-COMMENT ON COLUMN users.password is '비밀번호';
-COMMENT ON COLUMN users.enabled is '계정사용여부';
+INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'관리자','admin','admin123','010-7723-7077',
+'brooke1994@naver.com','서초구 역삼동','120-10',1,'ADMIN');
+INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user1','user1','user123','010-7777-7077',
+'alice1994@naver.com','강남구 개포동','25-18',1,'USER');
+INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user2','user2','user123','010-7777-7077',
+'alice1994@naver.com','강남구 개포동','25-18',0,'USER');
+
+
+SELECT * FROM MEMBER;
+SELECT * FROM AUTHORITIES
+COMMENT ON TABLE MEMBER is '회원';
+COMMENT ON COLUMN MEMBER.ID is '아이디';
+COMMENT ON COLUMN MEMBER.PW is '비밀번호';
+COMMENT ON COLUMN MEMBER.ENABLED is '계정사용여부';
 
 
 ALTER TABLE users ADD CONSTRAINT IDX_users_PK PRIMARY KEY (username);
