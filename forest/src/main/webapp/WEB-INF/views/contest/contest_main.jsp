@@ -251,7 +251,8 @@ object-fit:cover;
 </style>
 </head>
 <body>
-
+<%@ include file="../header.jsp" %>
+<br><br><br><br><br>
 <div class="container">
 	<div class="row">
 	<div class="flexslider left">
@@ -305,12 +306,15 @@ object-fit:cover;
 </div>
 <!-- .container -->
 <br>
+
+
+
 <div class="container">
 
 	<div class="col-sm-12">
 		<h3 style="display: inline;">RELATED POSTS</h3>
-		<input type="button" value="공모글작성" onclick="location.href='contest_postform.do'">
-		<input type="button" value="참여작보기" onclick="location.href='contest_postlist.do?conlistno=0&pagenum=1&contentnum=6'">
+		<button class="btn btn-outline-dark" type="button" onclick="location.href='contest_postform.do'">공모글작성</button>
+		<button class="btn btn-outline-dark"  type="button" onclick="location.href='contest_postlist.do?conlistno=0&pagenum=1&contentnum=6'">참여작보기</button>
 	</div>
 	<hr>	
 	<div class="col-sm-12">

@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!--Google Font link-->
-<link rel="shortcut icon" href="">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700"
@@ -32,6 +31,7 @@
 <link rel="stylesheet" href="resources/assets/css/fonticons.css">
 <link rel="stylesheet" href="resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="resources/assets/css/bootstrap.css">
+<link rel="stylesheet" href="resources/assets/css/magnific-popup.css">
 <link rel="stylesheet" href="resources/assets/css/bootsnav.css">
 
 <!--For Plugins external css-->
@@ -43,7 +43,6 @@
 
 <!--Theme Responsive css-->
 <link rel="stylesheet" href="resources/assets/css/responsive.css" />
-
 </head>
 <body>
 	<nav
@@ -77,7 +76,6 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#hello'">About us</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="test()">Map</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='sponsor.do'">Sponsor</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
