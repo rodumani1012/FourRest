@@ -2,7 +2,9 @@
 <%@ page import="com.my.four.model.dto.LoginDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,19 +13,16 @@ pageEncoding="UTF-8"%>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript"
-	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <title>결제 페이지</title>
 </head>
 
 <body>
+	<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal.username" var="user_id" />
+	</sec:authorize>
 
-	<%
-		LoginDto logindto = (LoginDto)session.getAttribute("logindto");
-		List<FundingDto> list = (List<FundingDto>)request.getAttribute("list");
-	%>
 	<script>
 	$(document).ready(function(){
 
@@ -52,14 +51,14 @@ pageEncoding="UTF-8"%>
 				 참고하세요.
 				 나중에 포스팅 해볼게요.
 				 */
-				name : '후원하기',
+				name : '${funtitle}',
 				//결제창에서 보여질 이름
-				amount : ${funmoney },
+				amount : ${funmoney},
 				//가격
-				buyer_email : '${logindto.getId() }',
-				buyer_name : '${logindto.getName() }',
-				buyer_tel : '${logindto.getPhone() }',
-				buyer_addr : '${logindto.getAddr() }',
+				buyer_email : 'sdg87000@naver.com',
+				buyer_name : '신동규',
+				buyer_tel : '010-2970-8764',
+				buyer_addr : '인천',
 				buyer_postcode : '123-456',
 				m_redirect_url : 'https://www.yourdomain.com/payments/complete'
 			/*
@@ -76,7 +75,7 @@ pageEncoding="UTF-8"%>
 					msg += '결제 금액 : ' + rsp.paid_amount;
 					msg += '카드 승인번호 : ' + rsp.apply_num;
 					
-					location.href='matching.do?command=kakaopay&id=<%=logindto.getId()%>&name=<%=logindto.getName()%>&stadium=<%=list.get(0).getStadiumaddr()%>&amount='+amount+'&addr=<%=logindto.getAddr()%>;
+					location.href='kakaopayload.do?id=${user_id }&funtitle=${funtitle}&funmoney=${funmoney}';
 
 				} else {
 					var msg = '결제에 실패하였습니다.';
@@ -86,13 +85,4 @@ pageEncoding="UTF-8"%>
 			});
 		});
 	</script>
-	
-<form action="./matching.do?command=kakaopay" method="post" id="muldelform">
-	<input type="hidden" id="id" value="<%=logindto.getId() %>">
-	<input type="hidden" id="name" value="<%=logindto.getName() %>">
-	<input type="hidden" id="stadium" value="<%=list.get(0).getStadiumaddr() %>">
-	<input type="hidden" id="amount" value='100'>
-	<input type="hidden" id="addr" value="<%=logindto.getAddr() %>">
-</form>
-
 </body>

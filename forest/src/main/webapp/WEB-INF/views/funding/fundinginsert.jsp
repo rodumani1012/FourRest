@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal.username" var="user_id" />
+	</sec:authorize>
 
 	<h1>회원가입</h1>
 	<form action="insertres.do" method="post">
@@ -28,7 +33,11 @@
 				<td><textarea rows="10" cols="60" name="fun_content"></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="펀딩등록">
+				<td><input type="hidden" name="fun_id" value=${user_id }></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				<input type="submit" value="펀딩등록">
 				<input type="button" value="취소"></td>
 			</tr>
 		</table>

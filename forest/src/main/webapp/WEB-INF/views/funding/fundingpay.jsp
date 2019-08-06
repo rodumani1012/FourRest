@@ -8,11 +8,11 @@
 </head>
 <body>
 
-	<form action="kakaopay.do">
+	<form action="kakaopay.do" method="get">
 	<table border="1">
 		<tr>
-			<th>펀딩 제목</th>
-			<td>${dto.funtitle }</td>
+			<th>후원 제목</th>
+			<td><input type="text" name="funtitle" value="${funtitle }" readonly="readonly" /></td>
 		</tr>
 		<tr>
 			<th>후원할 금액 입력</th>

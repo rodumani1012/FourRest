@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +11,15 @@
 </head>
 <body>
 
-	<form>
-	<table border="1">
+	<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal.username" var="user_id" />
+	</sec:authorize>
+
+	<form action="fundingpay.do" method="post">
+	<table border="1">	
 		<tr>
 			<th>펀딩 제목</th>
-			<td>${dto.funtitle }</td>
+			<td><input type="text" name="funtitle" value="${dto.funtitle }" readonly="readonly" /></td>
 		</tr>
 		<tr>
 			<th>목표 모금액</th>
@@ -36,8 +43,17 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" id="후원하기" onclick="location.href='fundingpay.do'"/>
-				<input type="button" value="돌아가기" onclick="location.href='funlist.do'">
+			
+    		<c:choose>
+        		<c:when test="${dto.goalmoney > dto.nowmoney}">
+            		<input type="submit" value="후원하기"/>
+            		<input type="button" value="돌아가기" onclick="location.href='funlist.do'">
+        		</c:when>
+        		<c:otherwise>
+            		<input type="button" value="종료된 후원입니다." onclick="location.href='funlist.do'">
+        		</c:otherwise>
+    		</c:choose>
+    		
 			</td>
 		</tr>
 	</table>

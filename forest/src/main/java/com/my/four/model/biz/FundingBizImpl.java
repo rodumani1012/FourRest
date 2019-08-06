@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.my.four.model.dao.FundingDao;
 import com.my.four.model.dto.FundingDto;
+import com.my.four.model.dto.FundingLoadDto;
 
 @Service
 public class FundingBizImpl implements FundingBiz {
@@ -30,8 +31,8 @@ public class FundingBizImpl implements FundingBiz {
 	}
 
 	@Override
-	public int update(FundingDto dto) {
-		return dao.update(dto);
+	public int update(String funtitle, String id) {
+		return dao.update(funtitle, id);
 	}
 
 	@Override
@@ -43,5 +44,17 @@ public class FundingBizImpl implements FundingBiz {
 	public int muldel(String[] chk) {
 		return dao.muldel(chk);
 	}
+
+	@Override
+	public int funupdate(String funtitle, int funmoney) {
+		return dao.funupdate(funtitle, funmoney);
+	}
+
+	@Override
+	public int funupdate1(String funtitle, int count) {
+		return dao.funupdate1(funtitle, count);
+	}
+	
+	
 
 }

@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 	
 <!DOCTYPE html>
 <html>
@@ -43,6 +45,10 @@
 </head>
 <body>
 
+	<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal.username" var="user_id" />
+	</sec:authorize>
+
 	<h1>전체 목록</h1>
 	<form action="muldel.do" method="post" id="muldelform">
 	<c:choose>
@@ -71,9 +77,9 @@
 				</tr>
 				<c:forEach items="${list }" var="dto">
 					<tr>
-						<td><input type="checkbox" name="chk" value="${dto.funtitle}" /></td>
+						<td><input type="checkbox" name="funtitle" value="${dto.funtitle}" /></td>
 						<td>${dto.fun_seq}</td>
-						<td><a href="detail.do?id=${dto.funtitle}">${dto.funtitle}</a></td>
+						<td><a href="fundingdetail.do?funtitle=${dto.funtitle}">${dto.funtitle}</a></td>
 						<td>${dto.goalmoney}</td>
 						<td>${dto.nowmoney}</td>
 						<td>${dto.fundate}</td>
@@ -81,8 +87,9 @@
 						<td>${dto.fun_content}</td>
 					</tr>
 				</c:forEach>
+				<input type="hidden" name="id" value="${user_id }" />
 				<tr>
-					<td colspan="4">
+					<td colspan="2">
 						<input type="button" value="처음으로" onclick="location.href='main.jsp'"> 
 						<input type="button" value="등록하기" onclick="location.href='insert.do'">
 						<input type="submit" value="선택삭제" />

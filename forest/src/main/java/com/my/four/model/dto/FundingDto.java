@@ -5,6 +5,7 @@ import java.sql.Date;
 public class FundingDto {
 	
 	private int fun_seq;
+	private String fun_id;
 	private String funtitle;
 	private int goalmoney;
 	private int nowmoney;
@@ -18,6 +19,12 @@ public class FundingDto {
 	}
 	public void setFun_seq(int fun_seq) {
 		this.fun_seq = fun_seq;
+	}
+	public String getFun_id() {
+		return fun_id;
+	}
+	public void setFun_id(String fun_id) {
+		this.fun_id = fun_id;
 	}
 	public String getFuntitle() {
 		return funtitle;

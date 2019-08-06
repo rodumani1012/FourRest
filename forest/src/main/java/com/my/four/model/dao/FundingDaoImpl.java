@@ -1,13 +1,16 @@
 package com.my.four.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.my.four.model.dto.FundingDto;
+import com.my.four.model.dto.FundingLoadDto;
 
 @Repository
 public class FundingDaoImpl implements FundingDao {
@@ -33,11 +36,12 @@ public class FundingDaoImpl implements FundingDao {
 
 	@Override
 	public FundingDto selectOne(String funtitle) {
-		
+		Map<String, String> map = new HashMap<String, String>();
 		FundingDto dto = new FundingDto();
 		
+		map.put("funtitle", funtitle);
 		try {
-			dto = sqlSession.selectOne(namespace + "selectOne", funtitle);
+			dto = sqlSession.selectOne(namespace + "selectOne", map);
 		} catch (Exception e) {
 			System.out.println("error");
 			e.printStackTrace();
@@ -59,10 +63,15 @@ public class FundingDaoImpl implements FundingDao {
 	}
 
 	@Override
-	public int update(FundingDto dto) {
+	public int update(String funtitle, String id) {
 		int res = 0;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("funtitle", funtitle);
+		map.put("id", id);
+		
 		try {
-			res = sqlSession.update(namespace + "update", dto);
+			res = sqlSession.update(namespace + "update", map);
 		} catch (Exception e) {
 			System.out.println("error");
 			e.printStackTrace();
@@ -94,6 +103,46 @@ public class FundingDaoImpl implements FundingDao {
 		}
 		
 		res = sqlSession.delete(namespace + "muldel", list);
+		
+		return res;
+	}
+
+	@Override
+	public int funupdate(String funtitle, int funmoney) {
+		
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		map.put("funtitle", funtitle);
+		map.put("funmoney", funmoney);
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(namespace + "funupdate", map);
+		} catch (Exception e) {
+			System.out.println("error");
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int funupdate1(String funtitle, int count) {
+		
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		map.put("funtitle", funtitle);
+		map.put("count", count);
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(namespace + "funupdate1", map);
+		} catch (Exception e) {
+			System.out.println("error");
+			e.printStackTrace();
+		}
 		
 		return res;
 	}
