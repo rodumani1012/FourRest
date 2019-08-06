@@ -8,6 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+img{
+width: 200px;
+height: 200px;
+}
+</style>
 </head>
 <body>
 	<h1>contestboard다</h1>
@@ -19,7 +25,7 @@
 			<option value="${dto.boardno}">${dto.title}</option>
 		</c:forEach>
 	</select>
-	<input type="submit" value="submit > ">
+	<input type="submit" value="submit">
 	</form>
 		<hr> <h3>123등;</h3> <hr>
 	<div id="3등까지보여줘">
@@ -31,14 +37,24 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${threelist }" var="threedto" varStatus="status" >
-					<div>
+					<div class="container-filed">
+						<div class="form-group">
 						대표사진: ${threedto.reppic}
+						</div>
+						<div class="form-group">
 						순위 : ${status.count }
+						</div>
+						<div class="form-group">
 						평점/5 : ${threedto.likerate }
+						</div>
+						<div class="form-group">
 						번호 : ${threedto.boardno }
+						</div>
+						<div class="form-group">
 						제목 : <a href="contest_detail.do?boardno=${threedto.boardno }">${threedto.title }[${threedto.replyno }]</a>
 						작성자 : ${threedto.writer }
 						작성일 : <fmt:formatDate value="${threedto.regdate }" pattern="yyyy-MM-dd"/>
+						</div>
 					</div>
 				</c:forEach>
 			</c:otherwise>

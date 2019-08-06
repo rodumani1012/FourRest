@@ -17,13 +17,45 @@
   <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
   <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!--  -->
+<!--Google Font link-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="resources/assets/css/slick.css">
+<link rel="stylesheet" href="resources/assets/css/slick-theme.css">
+<link rel="stylesheet" href="resources/assets/css/animate.css">
+<link rel="stylesheet" href="resources/assets/css/fonticons.css">
+<link rel="stylesheet" href="resources/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="resources/assets/css/bootstrap.css">
+<link rel="stylesheet" href="resources/assets/css/magnific-popup.css">
+<link rel="stylesheet" href="resources/assets/css/bootsnav.css">
+
+<!--For Plugins external css-->
+<!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
+
+<!--Theme custom css -->
+<link rel="stylesheet" href="resources/assets/css/style.css">
+<!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
+
+<!--Theme Responsive css-->
+<link rel="stylesheet" href="resources/assets/css/responsive.css" />
 
 
-  <style type="text/css">
-    table {
-      border-style: solid;
-    }
-  </style>
+
   <style type="text/css">
     #hearts { color: #FF0000;}
     #hearts-existing { color: #87bad7;}
@@ -57,7 +89,9 @@
   <title>공모글 세부</title>
 </head>
 <body>
-<div id="Detailform">
+<%@ include file="../header.jsp" %>
+<br><br><br><br><br><br><br><br>
+<div class="d-flex justify-content-center container" id="Detailform">
   <input type="hidden" id="boardnum" value="${dto.boardno}">
   <table class="que-tbl">
     <col width="60px">
@@ -68,7 +102,7 @@
       ${dto.title } |  ${dto.writer } <small><fmt:formatDate value="${dto.regdate }" pattern="yyyy-MM-dd" /></small>
       </td>
     </tr>
-    <tr height="300px">
+    <tr height="150px">
       <th>내 용</th>
       <td>${dto.content }</td>
     </tr>
@@ -78,7 +112,7 @@
         <div class="container">
           <div class="row lead">
             <div id="hearts" class="starrr"></div>
-		  <span id="count">0</span> 점 <a id="clicksubmit" style="cursor: grab;">투표 </a>
+	  <span id="count">0</span> 점 <button id="clicksubmit" class="btn btn-outline-dark">투표 </button>
       <span id="starhere" style="color: red;">${dto.likerate }</span> / 5 (평점투표수:${dto.likecnt })
           </div>
         </div>
@@ -86,8 +120,8 @@
     </tr>
     <tr>
       <td colspan="2">
-       <input type="button" value="글삭제" onclick="location.href='contest_delete.do?groupno=${dto.groupno}'">
-       <input type="button" value="목록으로" onclick="location.href='contest_main.do?'">
+       <button type="button" class="btn btn-outline-dark" onclick="location.href='contest_delete.do?groupno=${dto.groupno}'">글삭제</button>
+       <button type="button" class="btn btn-outline-dark" onclick="location.href='contest_main.do?'">목록으로</button>
       </td>
     </tr>
   </table>
@@ -96,10 +130,8 @@
 
 
 <hr>
-<h3>여기부터 댓글</h3>
-<hr>
-<div id="replydiv"></div>
-<table class="que-tbl2">
+<div class="container" id="replydiv"></div>
+<table class="d-flex justify-content-center container que-tbl2">
   <c:choose>
     <c:when test="${empty listReply }">
       <tr>
@@ -110,7 +142,7 @@
     <c:otherwise>
       <c:forEach items="${listReply }" var="dtoReply">
         <tr>
-          <th>댓글제목:${dtoReply.title } 작성자: ${dtoReply.writer }</th>
+          <th>댓글제목:${dtoReply.title } <input type="text" value="작성자: ${dtoReply.writer }" readonly="readonly"> </th>
         </tr>
         <tr>
           <th align="right"><fmt:formatDate
@@ -141,7 +173,7 @@
                           placeholder="댓글을 작성해주세요"></textarea></td>
           </tr>
           <tr>
-            <td><input type="submit" value="답변등록" style="float: right;">
+            <td><button class="btn btn-outline-dark" type="submit" style="float: right;">답변등록</button>
             </td>
           </tr>
         </table>

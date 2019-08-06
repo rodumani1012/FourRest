@@ -1,13 +1,33 @@
 package com.my.four.animal;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
+import java.util.Set;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.my.four.model.dto.AnimalEndangeredSpeciesDto;
 import com.my.four.model.dto.AnimalShelterListDto;
@@ -108,7 +128,7 @@ public class AnimalList {
 		*/
 	}
 	
-	public List<AnimalEndangeredSpeciesDto> returnEndangered() {
+	public List<AnimalEndangeredSpeciesDto> returnEndangered(String path) throws IOException {
 		/*
 		 * Document : 연결해서 가져온 HTML 전체 문서 Element : Document의 HTML 요소 Elements :
 		 * Element가 모인 자료
@@ -120,7 +140,7 @@ public class AnimalList {
 
 			String url = "https://species.nibr.go.kr/endangeredspecies/rehome/exlist/exlist.jsp?1=1&1=1&search_key=all&search_yn=Y&sch_gbn=ex&chk_rcomm_group_all=Y&sch_rcomm_group0=MM&sch_rcomm_group1=AV&sch_rcomm_group2=RP&sch_rcomm_group3=AM&sch_rcomm_group4=-P&sch_rcomm_group5=IN&sch_rcomm_group6=IV&sch_rcomm_group7=VP&sch_rcomm_group8=AL&sch_rcomm_group9=FG&chk_ex_rl_all=Y&sch_ex1=Y&sch_ex2=Y&sch_sort=cls_kname&unit_count=20&sch_view_type=photo&page_count="
 					+ i;
-			String selector = ".wrapPost > div > a > img, .desc > a > li, .wrapPost > p";
+			String selector = ".wrapPost > div > a > img";
 			Document doc = null;
 
 			try {
@@ -133,40 +153,71 @@ public class AnimalList {
 
 			for (Element element : contents) {
 				if (element.attr("src").equals("")) {
-					if (element.text().equals("")) {
 						continue;
-					} else {
-						str += element.text() + "#";
-					}
 				} else {
 					if (element.attr("src").startsWith("../../upload_data")) {
 						str += element.attr("src").replaceAll("../../", "https://species.nibr.go.kr/endangeredspecies/")
 								+ "#";
+						str += element.attr("alt") + "#";
 					} else {
 						str += "https://species.nibr.go.kr" + element.attr("src") + "#";
+						str += element.attr("alt") + "#";
 					}
 				}
 			}
 		}
 		// 배열에 담기
 		String[] endangered = str.split("#");
-
+		
 		AnimalEndangeredSpeciesDto dto = new AnimalEndangeredSpeciesDto();
 		List<AnimalEndangeredSpeciesDto> list = new ArrayList<AnimalEndangeredSpeciesDto>();
 
 		for (int i = 0; i < endangered.length; i++) {
-			if (i % 3 == 0) {
+			if (i % 7 == 0) {
 				dto.setImg(endangered[i]);
 			}
-			if (i % 3 == 1) {
-				dto.setName(endangered[i]);
+			if (i % 7 == 1) {
+				dto.setImg(endangered[i]);
 			}
-			if (i % 3 == 2) {
+			if (i % 7 == 2) {
+				dto.setImg(endangered[i]);
+			}
+			if (i % 7 == 3) {
+				dto.setImg(endangered[i]);
+			}
+			if (i % 7 == 4) {
+				dto.setImg(endangered[i]);
+			}
+			if (i % 7 == 5) {
+				dto.setImg(endangered[i]);
+			}
+			if (i % 7 == 6) {
 				dto.setGrade(endangered[i]);
 				list.add(dto);
 				dto = new AnimalEndangeredSpeciesDto();
 			}
 		}
+		return list;
+	}
+	
+	public List<List<String>> returnEndangeredCSV(String path) throws IOException {
+		
+		List<List<String>> list = new ArrayList<List<String>>();
+		
+		BufferedReader br = Files.newBufferedReader(Paths.get(path));
+		
+		String line = "";
+		
+		while ((line = br.readLine()) != null) {
+			List<String> temp = new ArrayList<String>();
+			String array[] = line.split(",");
+			
+			temp = Arrays.asList(array);
+
+			list.add(temp);
+ 		}
+		br.close();
+		
 		return list;
 	}
 }

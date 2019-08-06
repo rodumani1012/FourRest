@@ -55,8 +55,8 @@ CONSTRAINT CHECHSTAR CHECK (LIKERATE BETWEEN 0 AND 5)
 
 SELECT * FROM CONTESTBOARD ;
 
-INSERT INTO CONTESTBOARD VALUES(1,CON_BOARDNOSQ.NEXTVAL,CON_GROUPNOSQ.NEXTVAL,1,0,2.333,3,'TEST작성자','TESTTITLE','<img src="https://t1.daumcdn.net/cfile/tistory/214A374A524CEF0A0E" style="max-width:100%;height:auto" width="384" height="487" filename="지구 아이스크림.jpg" filemime="image/jpeg">','부연설명',SYSDATE);
-
+INSERT INTO CONTESTBOARD VALUES(1,CON_BOARDNOSQ.NEXTVAL,CON_GROUPNOSQ.NEXTVAL,1,0,2.333,3,'TEST작성자','TESTTITLE','<img src="https://t1.daumcdn.net/cfile/tistory/214A374A524CEF0A0E" filename="지구 아이스크림.jpg" filemime="image/jpeg">','부연설명',SYSDATE);
+delete from contestboard where boardno=1;
 SELECT count(*) FROM (SELECT * FROM contestboard WHERE groupsq=1 AND conlistno=1);
 
 UPDATE CONTESTBOARD 

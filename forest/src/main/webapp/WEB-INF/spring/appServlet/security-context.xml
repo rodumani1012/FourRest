@@ -26,9 +26,7 @@
         
         	
 		<!-- 중복 로그인 방지 -->
-		<session-management invalid-session-url="/joinform.do">
-			<concurrency-control max-sessions="1" expired-url="/joinform.do"/>
-		</session-management>
+		
 	
         
                 
