@@ -1,35 +1,36 @@
 package com.my.four.model.dto;
 
 public class AnimalEndangeredSpeciesDto {
-
-	private String img;
-	private String name;
+	
+	private String groups;
 	private String grade;
+	private String korName;
+	private String engName;
+	private String korRedList;
+	private String engRedList;
+	private String img;
 	
 	public AnimalEndangeredSpeciesDto() {
-		
-	}
 	
-	public AnimalEndangeredSpeciesDto(String img, String name, String grade) {
-		this.img = img;
-		this.name = name;
+	}
+
+	public AnimalEndangeredSpeciesDto(String groups, String grade, String korName, String engName, String korRedList,
+			String engRedList, String img) {
+		this.groups = groups;
 		this.grade = grade;
-	}
-	
-	public String getImg() {
-		return img;
-	}
-	
-	public void setImg(String img) {
+		this.korName = korName;
+		this.engName = engName;
+		this.korRedList = korRedList;
+		this.engRedList = engRedList;
 		this.img = img;
 	}
 
-	public String getName() {
-		return name;
+	public String getGroups() {
+		return groups;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setGroups(String groups) {
+		this.groups = groups;
 	}
 
 	public String getGrade() {
@@ -38,5 +39,45 @@ public class AnimalEndangeredSpeciesDto {
 
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+
+	public String getKorName() {
+		return korName;
+	}
+
+	public void setKorName(String korName) {
+		this.korName = korName;
+	}
+
+	public String getEngName() {
+		return engName;
+	}
+
+	public void setEngName(String engName) {
+		this.engName = engName;
+	}
+
+	public String getKorRedList() {
+		return korRedList;
+	}
+
+	public void setKorRedList(String korRedList) {
+		this.korRedList = korRedList;
+	}
+
+	public String getEngRedList() {
+		return engRedList;
+	}
+
+	public void setEngRedList(String engRedList) {
+		this.engRedList = engRedList;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 }

@@ -1,7 +1,10 @@
 package com.my.four;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,10 +80,14 @@ public class AnimalController {
 
 	// 멸종위기 목록으로 가는 메소드
 	@RequestMapping(value = "ani_endangeredList.do")
-	public String ani_endangeredList(String txt_search, String page, Model model) {
+	public String ani_endangeredList(String txt_search, String page, Model model, HttpServletRequest request) throws IOException {
 		
 		logger.info("멸종위기 목록으로!");
 
+//		request.getRealPath("resources/assets/csv/endangeredList.csv");
+		AnimalList ani = new AnimalList();
+		ani.returnEndangered(request.getSession().getServletContext().getRealPath("resources/assets/csv/endangeredList.csv"));
+			
 		String txt_s = txt_search;
 		
 		if (dao.aniGetTotalCount(txt_s) == 0) {
