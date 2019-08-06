@@ -9,7 +9,6 @@
 %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +25,7 @@
 			height : 300
 		});
 	});
+
 </script>
 <title>Insert title here</title>
 </head>

@@ -59,6 +59,10 @@
   <style type="text/css">
     #hearts { color: #FF0000;}
     #hearts-existing { color: #87bad7;}
+    
+    body{
+    	width:100%;
+    }
   </style>
 
   <script type="text/javascript">
