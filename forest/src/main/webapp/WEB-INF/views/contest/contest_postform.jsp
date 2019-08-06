@@ -39,6 +39,8 @@
 	});
 </script>
 
+
+
 </head>
 <body>
 	<form:form action="contest_post.do" modelAttribute="ContestBoardDto" method="post" >

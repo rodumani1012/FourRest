@@ -148,6 +148,8 @@
 		UPDATE CONTESTBOARD SET
 		LIKECNT = LIKECNT+1 WHERE BOARDNO=#{boardno}
 	</update>
-
+	<select id="">
+		<include refid=""></include>
+	</select>
 
 </mapper>
