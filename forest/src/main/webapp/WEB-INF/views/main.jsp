@@ -49,6 +49,7 @@
 <link rel="stylesheet" href="resources/assets/css/bootsnav.css">
 
 <!--For Plugins external css-->
+
 <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
 
 <!--Theme custom css -->

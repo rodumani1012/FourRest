@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="funding">
+	
+	<select id="selectList" resultType="FundingDto">
+		SELECT FUN_SEQ, FUNTITLE, GOALMONEY, NOWMONEY, FUNDATE, PARTICIPANTS, FUN_CONTENT FROM FUNDING WHERE NOTICE = 'Y'
+	</select>
+	
+	<select id="selectOne" parameterType="map" resultType="FundingDto">
+		SELECT FUNTITLE, GOALMONEY, NOWMONEY, FUNDATE, PARTICIPANTS, FUN_CONTENT FROM FUNDING WHERE FUNTITLE=#{funtitle}
+	</select>
+	
+	<insert id="insert" parameterType="FundingDto">
+		INSERT INTO FUNDING
+		VALUES (FUNSEQ.NEXTVAL, #{fun_id}, #{funtitle}, #{goalmoney}, 0, #{fundate}, 0, #{fun_content}, 'Y')
+	</insert>
+	
+	<update id="funupdate" parameterType="map">
+		UPDATE FUNDING SET NOWMONEY=#{funmoney} WHERE FUNTITLE LIKE #{funtitle} 
+	</update>
+	
+	<update id="funupdate1" parameterType="map">
+		UPDATE FUNDING SET PARTICIPANTS=#{count} WHERE FUNTITLE LIKE #{funtitle} 
+	</update>
+	
+	<update id="update" parameterType="map">
+		UPDATE FUNDING SET NOTICE='N' WHERE FUNTITLE = #{funtitle} AND FUN_ID = #{id}
+	</update>
+
+</mapper>

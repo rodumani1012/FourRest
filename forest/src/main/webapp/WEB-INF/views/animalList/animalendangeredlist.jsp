@@ -10,7 +10,7 @@
 	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function PageMove(page) {
-		location.href = "ani_shelterList.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
+		location.href = "ani_endangeredList.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
 	}
 </script>
 </head>
@@ -34,13 +34,13 @@
 				<c:forEach items="${list }" var="dto">
 					<div>
 						<div>
-							<img src="${dto.img }" alt="${dto.alt}">
+							<img src="${dto.img }" alt="${dto.korName}">
 						</div>	
 						<ul>
-							<li>${dto.name }</li>
+							<li>- ${dto.korName }(${dto.groups })</li>
 						</ul>
 						<p>
-					 		${dto.grade }
+					 		멸종위기 야생 생물 ${dto.grade }급
 						</p>
 					</div>
 				</c:forEach>

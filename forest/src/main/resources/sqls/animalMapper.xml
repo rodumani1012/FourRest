@@ -21,7 +21,9 @@
 			 FROM ( SELECT * 
 			 		FROM ANIMAL_SHELTER 
 					 <if test="txt_search != null">
-							WHERE upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%'
+							WHERE upper(AREA) like '%' || upper(#{txt_search}) || '%' or
+							upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%' or
+							upper(CENTERADDR) like '%' || upper(#{txt_search}) || '%'
 					</if>
 						ORDER BY AREA
 						) P
@@ -35,7 +37,9 @@
 		SELECT count(*)
 		FROM ANIMAL_SHELTER
 		<if test="txt_search != null">
-			WHERE upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%'
+			WHERE upper(AREA) like '%' || upper(#{txt_search}) || '%' or
+			upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%' or
+			upper(CENTERADDR) like '%' || upper(#{txt_search}) || '%'
 		</if>
 	</select>
 	
@@ -43,8 +47,8 @@
 	<insert id="aniInsertEndangered" parameterType="map">
 		INSERT ALL
 		<foreach collection="list" item="ani">
-			INTO ANIMAL_ENDANGERED(IMG, ALT, NAME, GRADE)
-			VALUES(#{ani.img},#{ani.alt},#{ani.name},#{ani.grade})
+			INTO ANIMAL_ENDANGERED(GROUPS, GRADE, KOR_NAME, ENG_NAME, KOR_RED_LIST, ENG_RED_LIST)
+			VALUES(#{ani.groups},#{ani.grade},#{ani.korName},#{ani.engName},#{ani.korRedList},#{ani.engRedList})
 		</foreach>
 		SELECT * FROM DUAL
 	</insert>
@@ -52,13 +56,13 @@
 	<!-- db에서 멸종위기 목록 가져오는 쿼리 -->
 	<select id="aniSelectListEndangered" parameterType="map"
 		resultType="animalEndangeredDto">
-		
 		SELECT *
 		FROM (SELECT ROWNUM AS RNUM, P.*
 			 FROM ( SELECT * 
 			 		FROM ANIMAL_ENDANGERED 
 					 <if test="txt_search != null">
-							WHERE upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%'
+						WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
+						upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
 					</if>
 						ORDER BY AREA
 						) P
@@ -72,7 +76,8 @@
 		SELECT count(*)
 		FROM ANIMAL_ENDANGERED
 		<if test="txt_search != null">
-			WHERE upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%'
+			WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
+			upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
 		</if>
 	</select>
 

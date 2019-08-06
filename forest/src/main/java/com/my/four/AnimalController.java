@@ -84,13 +84,13 @@ public class AnimalController {
 		
 		logger.info("멸종위기 목록으로!");
 
-//		request.getRealPath("resources/assets/csv/endangeredList.csv");
-		AnimalList ani = new AnimalList();
-		ani.returnEndangered(request.getSession().getServletContext().getRealPath("resources/assets/csv/endangeredList.csv"));
-			
 		String txt_s = txt_search;
 		
-		if (dao.aniGetTotalCount(txt_s) == 0) {
+		if (dao.aniGetTotalCountEndangered(txt_s) == 0) {
+			
+			// CSV 파일 경로 전달하기.
+			AnimalList ani = new AnimalList();
+			ani.returnEndangered(request.getSession().getServletContext().getRealPath("resources/assets/csv/endangeredList.csv"));
 			
 			// db에 저장하기
 			AnimalList shelter_list = new AnimalList();
