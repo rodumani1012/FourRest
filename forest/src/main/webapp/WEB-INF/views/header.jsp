@@ -81,7 +81,7 @@
 						<li><button type="button" class="btn btn-link text-dark" onclick="test()">Map</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='sponsor.do'">Sponsor</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='test.do'">문의하기</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='chat.do'">문의하기</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='contest.do?pagenum=1&contentnum=9'">공모</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#blog'">Blog</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='content.do'">Contant</button></li>

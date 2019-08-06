@@ -37,6 +37,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <link rel="stylesheet" href="resources/assets/css/slick.css">
 <link rel="stylesheet" href="resources/assets/css/slick-theme.css">
@@ -65,13 +66,21 @@
 	width: 100%;
 	height: 100%;
 }
+.test{
+	width: 800px;
+	height: 800px;
+}
+.iframe-chat{
+	width: 600px;
+	height: 600px;
+}
 </style>
 </head>
 <!-- ${requestScope['javax.servlet.forward.context_path']} -->
 <body data-spy="scroll" data-target=".navbar-collapse">
 
 	<!-- Preloader -->
-<%@ include file="./header.jsp" %>
+	<%@ include file="./header.jsp"%>
 
 	<!-- 시작시 빨간 화면 -->
 	<div id="loading">
@@ -87,8 +96,8 @@
 	<!--End -->
 	<div class="culmn">
 		<!--Home page style-->
-		<%@ include file="./header.jsp" %>
-<!-- 메인페이지  -->
+		<%@ include file="./header.jsp"%>
+		<!-- 메인페이지  -->
 		<!--슬라이드 쇼 -->
 		<div class="container-fluid">
 			<div id="demo" class="carousel slide" data-ride="carousel">
@@ -102,6 +111,7 @@
 					<li data-target="#demo" data-slide-to="4"></li>
 					<li data-target="#demo" data-slide-to="5"></li>
 				</ul>
+
 
 				<!-- 슬라이드 쇼 사진  -->
 				<div class="carousel-inner">
@@ -126,33 +136,45 @@
 							style="height: 800px;">
 					</div>
 				</div>
-				
+
 				<!-- 슬라이드 쇼 버튼 -->
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
-				</a> 
-				<a class="carousel-control-next" href="#demo" data-slide="next">
+				</a> <a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
 
 			</div>
 		</div>
-		<!-- 슬라이드쇼 끝  -->			
+		<!-- 슬라이드쇼 끝  -->
+		<div id="chat_box">
+		<ul id="#messages"></ul>
+		</div>
+		<div class="test">
+			<div class="modal-top">
+				<div id="modal-title">고객센터</div>
+				<span></span>
+			</div>
+			<a href="#" class="button-modal-close" onclick="closeChat()">X</a>
+			<iframe class="iframe-chat" src="http://192.168.220.22:8880/"></iframe>
+		</div>
 		<!-- 후원금은 어디에 사용 되나요? -->
 		<div class="container text-center">
 			<img src="resources/assets/images/ss.png" alt="후원금 사용내역">
 		</div>
 		<!-- 게스트board -->
 		<div class="container text-center">
-			<img src="resources/assets/images/fprojects/board.png" alt="게시판으로 이동!">
+			<img src="resources/assets/images/fprojects/board.png"
+				alt="게시판으로 이동!">
 		</div>
 
 		<!-- 후원 및 봉사 사진 넣는 부분 -->
 		<div class="featured_slider">
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> 
-					<a href="resources/assets/images/fprojects/wor1.jpeg" class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> <a
+						href="resources/assets/images/fprojects/wor1.jpeg"
+						class="popup-img"></a>
 				</div>
 			</div>
 			<div>
@@ -164,20 +186,23 @@
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor3.jpeg" alt="" /> 
-					<a href="resources/assets/images/fprojects/wor3.jpeg" class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor3.jpeg" alt="" /> <a
+						href="resources/assets/images/fprojects/wor3.jpeg"
+						class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> 
-					<a href="resources/assets/images/fprojects/wor1.jpeg" class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor1.jpeg" alt="" /> <a
+						href="resources/assets/images/fprojects/wor1.jpeg"
+						class="popup-img"></a>
 				</div>
 			</div>
 			<div>
 				<div class="featured_img">
-					<img src="resources/assets/images/fprojects/wor2.jpeg" alt="" /> 
-					<a href="resources/assets/images/fprojects/wor2.jpeg" class="popup-img"></a>
+					<img src="resources/assets/images/fprojects/wor2.jpeg" alt="" /> <a
+						href="resources/assets/images/fprojects/wor2.jpeg"
+						class="popup-img"></a>
 				</div>
 			</div>
 		</div>

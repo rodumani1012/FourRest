@@ -176,4 +176,8 @@ public class HomeController {
 		
 		return "content/puzzleiframe";
 	}
+	@RequestMapping(value="chat.do")
+	public String chat() {
+		return "chatting";
+	}
 }
