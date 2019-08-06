@@ -20,8 +20,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	
-	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-	<script type="text/javascript" src="192.168.220.22:8880/socket.io/socket.io.js">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="192.168.10.151:8880/socket.io/socket.io.js">
+	
 	$(function() {
 
 		//script의 attr 가져오기

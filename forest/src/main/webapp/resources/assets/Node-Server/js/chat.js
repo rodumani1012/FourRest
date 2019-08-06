@@ -13,7 +13,8 @@ $(function() {
 			e.preventDefault();
 			var msg = $('#m').val().trim();
 			if (msg != "" && msg != null) {
-				socket.emit('chat message'.msg);
+				
+				socket.emit('chat message',msg);
 			}
 			$('#messages').append($('<li class="me">').text(msg));
 			$('#m').val('');
@@ -22,8 +23,8 @@ $(function() {
 
 		socket.on('message', function(data) {
 			if (data.type === 'msg') {
-				$('#messagees').append(
-						$('li class="other">').text(data.chatMessage));
+				$('#messages').append(
+						$('<li class="other">').text(data.chatMessage));
 
 			}
 		})
