@@ -7,7 +7,7 @@ let fs = require('fs');
 app.use('/js', express.static('./js'))
 
 app.get('/', function (req, res) {
-    fs.readFile('./chatting.jsp', function (err, data) {
+    fs.readFile('./chat.html', function (err, data) {
       if (err) {
         res.send(err)
       } else {
@@ -19,7 +19,6 @@ app.get('/', function (req, res) {
   })
 
 io.sockets.on('connection',function(socket){
-    console.log("왔니");
     
     var room
     socket.on('newUser',function (name,_room){
@@ -34,19 +33,18 @@ io.sockets.on('connection',function(socket){
         })
 
     })
-    
+    socket.on('chat message', (msg) => {
+      //소켓을 통해 이벤트 전송
+      socket.broadcast.to(room).emit('message', { type: 'msg', chatMessage: msg });
+      console.log('[' + socket.name + '] sent >>' + msg);
+    });
+     
     socket.on('disconnet',function(){
-        console.log('한명의 유저가 나갔습니다.')
+      console.log('한명의 유저가 나갔습니다.')
     })
 
-    socket.on('send_msg', function (msg) {
-        //다시, 소켓을 통해 이벤트를 전송한다.
-        socket.broadcast.to(room).emit('message',{type: 'msg',chatMessage :msg})
-        console.log('['+socket.name+']sent >>'+msg);
-    });
-
     
-})
+});
 
 http.listen(8880,function(){
     console.log('listening on *:8880')

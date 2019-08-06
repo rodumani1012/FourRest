@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -19,12 +20,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.four.model.biz.FundingBiz;
 import com.my.four.model.biz.LoginBiz;
 import com.my.four.model.biz.MailService;
 import com.my.four.model.dto.LoginDto;
+import com.my.four.recaptcha.VerifyRecaptcha;
 
 @Controller
 public class HomeController {
@@ -38,6 +41,9 @@ public class HomeController {
 	
 	@Autowired
 	private LoginBiz biz;
+//	//recaptcha
+//	@Autowired
+//	private VerifyRecaptcha VerifyRecaptcha;
 	
 	@RequestMapping(value="main.do")
 	public String main() {
@@ -80,7 +86,7 @@ public class HomeController {
 	public String idChk(String id,Model model) {
 		logger.info("id=="+id);
 		model.addAttribute("idchk",biz.idChk(id));
-		return "idchk";
+		return "member/idchk";
 	}
 	@RequestMapping(value="addpop.do")
 	public String addPop() {
@@ -195,4 +201,23 @@ public class HomeController {
 	public String chat() {
 		return "chatting";
 	}
+	
+	
+	@ResponseBody
+    @RequestMapping(value = "VerifyRecaptcha.do", method = RequestMethod.POST)
+    public int VerifyRecaptcha(HttpServletRequest request) {
+        VerifyRecaptcha.setSecretKey("6LewgLEUAAAAAGv53SfBX_cHOgiNrxydgIlAnQ2-");
+        String gRecaptchaResponse = request.getParameter("recaptcha");
+        System.out.println(gRecaptchaResponse);
+        //0 = 성공, 1 = 실패, -1 = 오류
+        try {
+            if(VerifyRecaptcha.verify(gRecaptchaResponse))
+                return 0;
+            else return 1;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 }
