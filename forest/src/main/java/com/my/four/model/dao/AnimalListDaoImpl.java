@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.my.four.model.dto.AnimalEndangeredSpeciesDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 
 @Repository
@@ -56,6 +57,33 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		res = sqlSession.selectOne(namespace + "aniGetTotalCount", map);
 		
 		return res;
+	}
+
+	@Transactional
+	@Override
+	public int aniInsertEndangered(List<AnimalEndangeredSpeciesDto> dtos) {
+
+		int res = 0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", dtos);
+		
+		res = sqlSession.insert(namespace + "aniInsert", map);
+		
+		return res;
+	}
+
+	@Override
+	public List<AnimalEndangeredSpeciesDto> aniSelectListEndangered(int firstIndex, int recordCountPerPage,
+			String txt_search) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int aniGetTotalCountEndangered(String txt_search) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

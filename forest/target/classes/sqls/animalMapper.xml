@@ -38,5 +38,43 @@
 			WHERE upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%'
 		</if>
 	</select>
+	
+	<!-- db에 멸종위기 목록 저장하는 쿼리 -->
+	<insert id="aniInsertEndangered" parameterType="map">
+		INSERT ALL
+		<foreach collection="list" item="ani">
+			INTO ANIMAL_ENDANGERED(IMG, ALT, NAME, GRADE)
+			VALUES(#{ani.img},#{ani.alt},#{ani.name},#{ani.grade})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
 
+	<!-- db에서 멸종위기 목록 가져오는 쿼리 -->
+	<select id="aniSelectListEndangered" parameterType="map"
+		resultType="animalEndangeredDto">
+		
+		SELECT *
+		FROM (SELECT ROWNUM AS RNUM, P.*
+			 FROM ( SELECT * 
+			 		FROM ANIMAL_ENDANGERED 
+					 <if test="txt_search != null">
+							WHERE upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%'
+					</if>
+						ORDER BY AREA
+						) P
+			 )
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
+	</select>
+	
+	<!-- db 멸종위기 목록 갯수 가져오는 쿼리 -->
+	<select id="aniGetTotalCountEndangered" parameterType="map"
+		resultType="Integer">
+		SELECT count(*)
+		FROM ANIMAL_ENDANGERED
+		<if test="txt_search != null">
+			WHERE upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%'
+		</if>
+	</select>
+
+	
 </mapper>
