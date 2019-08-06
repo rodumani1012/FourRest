@@ -38,7 +38,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+ 
 <link rel="stylesheet" href="resources/assets/css/slick.css">
 <link rel="stylesheet" href="resources/assets/css/slick-theme.css">
 <link rel="stylesheet" href="resources/assets/css/animate.css">
@@ -60,7 +60,7 @@
 <link rel="stylesheet" href="resources/assets/css/responsive.css" />
 <script
 	src="resources/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
 <style>
 /* Make the image fully responsive */
 .carousel-inner img {
@@ -76,6 +76,9 @@
 	height: 600px;
 }
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="resources/assets/js/main-style.js"></script>
+
 </head>
 <!-- ${requestScope['javax.servlet.forward.context_path']} -->
 <body data-spy="scroll" data-target=".navbar-collapse">
@@ -112,8 +115,6 @@
 					<li data-target="#demo" data-slide-to="4"></li>
 					<li data-target="#demo" data-slide-to="5"></li>
 				</ul>
-
-
 				<!-- 슬라이드 쇼 사진  -->
 				<div class="carousel-inner">
 					<div class="carousel-item active">
@@ -228,12 +229,36 @@
 			</div>
 			<!--End off container -->
 		</section>
-		<!-- ㅅ크롤 업 -->
+		<!-- 스크롤 업 -->
 		<div class="scrollup">
 			<a href="#"><i class="fa fa-chevron-up"></i></a>
 		</div>
 		<!-- End off scroll up -->
 	</div>
+	
+	<button onclick="toggleChat()" 
+	style="width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+    top:500px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #000;
+    z-index: 1000;
+    transition: opacity .5s, background-color .5s;
+    -moz-transition: opacity .5s, background-color .5s;
+    -webkit-transition: opacity .5s, background-color .5s;"><i class='fas fa-comment-dots'></i></button>
+<div id="chat" style=" display: none; position: fixed; bottom: 50PX; right: 86PX;z-index: 9999">
+			<div  id="chat_box">
+		<ul id="#messages"></ul>
+		</div>
+		<div class="test">
+			<iframe class="iframe-chat" src="http://192.168.10.151:8880/"></iframe>
+		</div>
+</div>
 
 	<!-- footer -->
 	<footer id="footer" class="footer bg-black">
