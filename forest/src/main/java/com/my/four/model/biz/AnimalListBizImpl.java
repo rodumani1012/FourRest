@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.my.four.model.dao.AnimalListDao;
-import com.my.four.model.dto.AnimalEndangeredSpeciesDto;
+import com.my.four.model.dto.AnimalEndangeredCSVDto;
+import com.my.four.model.dto.AnimalEndangeredImgDto;
+import com.my.four.model.dto.AnimalEndangeredJoinDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 
 @Service
@@ -32,19 +34,30 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	}
 
 	@Override
-	public int aniInsertEndangered(List<AnimalEndangeredSpeciesDto> dtos) {
-		return dao.aniInsertEndangered(dtos);
+	public int aniInsertEndangeredCSV(List<AnimalEndangeredCSVDto> dtos) {
+		return dao.aniInsertEndangeredCSV(dtos);
 	}
 
 	@Override
-	public List<AnimalEndangeredSpeciesDto> aniSelectListEndangered(int firstIndex, int recordCountPerPage,
+	public List<AnimalEndangeredCSVDto> aniSelectListEndangeredCSV(int firstIndex, int recordCountPerPage,
 			String txt_search) {
-		return dao.aniSelectListEndangered(firstIndex, recordCountPerPage, txt_search);
+		return dao.aniSelectListEndangeredCSV(firstIndex, recordCountPerPage, txt_search);
 	}
 
 	@Override
-	public int aniGetTotalCountEndangered(String txt_search) {
-		return dao.aniGetTotalCountEndangered(txt_search);
+	public int aniGetTotalCountEndangeredCSV(String txt_search) {
+		return dao.aniGetTotalCountEndangeredCSV(txt_search);
+	}
+
+	@Override
+	public int aniInsertEndangeredImg(List<AnimalEndangeredImgDto> dtos) {
+		return dao.aniInsertEndangeredImg(dtos);
+	}
+
+	@Override
+	public List<AnimalEndangeredJoinDto> aniSelectListEndangeredJoin(int firstIndex, int recordCountPerPage,
+			String txt_search) {
+		return dao.aniSelectListEndangeredJoin(firstIndex, recordCountPerPage, txt_search);
 	}
 
 }

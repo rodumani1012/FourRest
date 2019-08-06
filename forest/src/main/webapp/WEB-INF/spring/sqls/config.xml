@@ -7,7 +7,9 @@
 	<typeAliases>
 		<typeAlias type="com.my.four.model.dto.LoginDto" alias="loginDto"/>
 		<typeAlias type="com.my.four.model.dto.AnimalShelterListDto" alias="animalDto"/>
-		<typeAlias type="com.my.four.model.dto.AnimalEndangeredSpeciesDto" alias="animalEndangeredDto"/>
+		<typeAlias type="com.my.four.model.dto.AnimalEndangeredCSVDto" alias="animalCSVDto"/>
+		<typeAlias type="com.my.four.model.dto.AnimalEndangeredImgDto" alias="animalImgDto"/>
+		<typeAlias type="com.my.four.model.dto.AnimalEndangeredJoinDto" alias="animalJoinDto"/>
 		<typeAlias type="com.my.four.model.dto.FundingDto" alias="FundingDto"/>
 		<typeAlias type="com.my.four.model.dto.FundingLoadDto" alias="FundingLoadDto"/>
 		<typeAlias type="com.my.four.model.dto.ContestBoardDto" alias="ContestBoardDto"/>

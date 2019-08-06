@@ -97,7 +97,7 @@
 	<!--End -->
 	<div class="culmn">
 		<!--Home page style-->
-		<%@ include file="./header.jsp"%>
+		<%@ include file="./header.jsp"%> 
 		<!-- 메인페이지  -->
 		<!--슬라이드 쇼 -->
 		<div class="container-fluid">
@@ -157,7 +157,7 @@
 				<span></span>
 			</div>
 			<a href="#" class="button-modal-close" onclick="closeChat()">X</a>
-			<iframe class="iframe-chat" src="http://192.168.220.22:8880/"></iframe>
+<!-- 			<iframe class="iframe-chat" src="http://192.168.220.22:8880/"></iframe> -->
 		</div>
 		<!-- 후원금은 어디에 사용 되나요? -->
 		<div class="container text-center">

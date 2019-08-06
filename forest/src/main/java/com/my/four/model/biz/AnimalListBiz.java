@@ -2,7 +2,9 @@ package com.my.four.model.biz;
 
 import java.util.List;
 
-import com.my.four.model.dto.AnimalEndangeredSpeciesDto;
+import com.my.four.model.dto.AnimalEndangeredCSVDto;
+import com.my.four.model.dto.AnimalEndangeredImgDto;
+import com.my.four.model.dto.AnimalEndangeredJoinDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 
 public interface AnimalListBiz {
@@ -11,7 +13,12 @@ public interface AnimalListBiz {
 	public List<AnimalShelterListDto> aniSelectList(int firstIndex, int recordCountPerPage,String txt_search);
 	public int aniGetTotalCount(String txt_search);
 	
-	public int aniInsertEndangered(List<AnimalEndangeredSpeciesDto> dtos);
-	public List<AnimalEndangeredSpeciesDto> aniSelectListEndangered(int firstIndex, int recordCountPerPage,String txt_search);
-	public int aniGetTotalCountEndangered(String txt_search);
+	public int aniInsertEndangeredCSV(List<AnimalEndangeredCSVDto> dtos);
+	public List<AnimalEndangeredCSVDto> aniSelectListEndangeredCSV(int firstIndex, int recordCountPerPage,String txt_search);
+	public int aniGetTotalCountEndangeredCSV(String txt_search);
+	
+	public int aniInsertEndangeredImg(List<AnimalEndangeredImgDto> dtos);
+	
+	public List<AnimalEndangeredJoinDto> aniSelectListEndangeredJoin(int firstIndex, int recordCountPerPage,String txt_search);
+	
 }

@@ -1,6 +1,6 @@
 package com.my.four.model.dto;
 
-public class AnimalEndangeredSpeciesDto {
+public class AnimalEndangeredCSVDto {
 	
 	private String groups;
 	private String grade;
@@ -9,11 +9,11 @@ public class AnimalEndangeredSpeciesDto {
 	private String korRedList;
 	private String engRedList;
 	
-	public AnimalEndangeredSpeciesDto() {
+	public AnimalEndangeredCSVDto() {
 	
 	}
 
-	public AnimalEndangeredSpeciesDto(String groups, String grade, String korName, String engName, String korRedList,
+	public AnimalEndangeredCSVDto(String groups, String grade, String korName, String engName, String korRedList,
 			String engRedList) {
 		this.groups = groups;
 		this.grade = grade;
