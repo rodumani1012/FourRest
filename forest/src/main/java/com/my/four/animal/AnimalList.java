@@ -13,7 +13,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.my.four.model.dto.AnimalEndangeredSpeciesDto;
+import com.my.four.model.dto.AnimalEndangeredImgDto;
+import com.my.four.model.dto.AnimalEndangeredCSVDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 
 public class AnimalList {
@@ -114,7 +115,7 @@ public class AnimalList {
 	}
 	
 	// 이미지 src와 alt를 list로 돌려주는 메소드
-	public List<AnimalEndangeredSpeciesDto> returnEndangered(String path) throws IOException {
+	public List<AnimalEndangeredImgDto> returnEndangeredImg() throws IOException {
 
 		String str = "";
 
@@ -143,6 +144,7 @@ public class AnimalList {
 						str += element.attr("alt") + ",";
 					} else {
 						str += "https://species.nibr.go.kr" + element.attr("src") + ",";
+						str += element.attr("alt") + ",";
 					}
 				}
 			}
@@ -152,52 +154,63 @@ public class AnimalList {
 		String[] endangered = str.split(",");
 		
 		// 객체 생성하여 dto에 set해준 후 dto를 list에 담기
-		AnimalEndangeredSpeciesDto dto = new AnimalEndangeredSpeciesDto();
-		List<AnimalEndangeredSpeciesDto> list = new ArrayList<AnimalEndangeredSpeciesDto>();
+		AnimalEndangeredImgDto dto = new AnimalEndangeredImgDto();
+		List<AnimalEndangeredImgDto> list = new ArrayList<AnimalEndangeredImgDto>();
 
 		for (int i = 0; i < endangered.length; i++) {
-			if (i % 6 == 0) {
-				dto.setGroups(endangered[i]);
+			if (i % 2 == 0) {
+				dto.setImg(endangered[i]);
 			}
-			if (i % 6 == 1) {
-				dto.setGrade(endangered[i]);
-			}
-			if (i % 6 == 2) {
+			if (i % 2 == 1) {
 				dto.setKorName(endangered[i]);
-			}
-			if (i % 6 == 3) {
-				dto.setEngName(endangered[i]);
-			}
-			if (i % 6 == 4) {
-				dto.setKorRedList(endangered[i]);
-			}
-			if (i % 6 == 5) {
-				dto.setEngRedList(endangered[i]);
 				list.add(dto);
-				dto = new AnimalEndangeredSpeciesDto();
+				dto = new AnimalEndangeredImgDto();
 			}
 		}
 		return list;
 	}
 	
-	public List<List<String>> returnEndangeredCSV(String path) throws IOException {
-		
-		List<List<String>> list = new ArrayList<List<String>>();
+	public List<AnimalEndangeredCSVDto> returnEndangeredCSV(String path) throws IOException {
 		
 		BufferedReader br = Files.newBufferedReader(Paths.get(path));
 		
-		String line = "";
+		List<String> line = new ArrayList<String>();
+		
+		String str = "";
 		String array[] = null;
-		while ((line = br.readLine()) != null) {
-			List<String> temp = new ArrayList<String>();
-			array = line.split(",");
-			
-//			temp = Arrays.asList(array);
-//
-//			list.add(temp);
+ 		while ((str = br.readLine()) != null) {
+			 array = str.split(",");
+			 
+			 line.addAll(Arrays.asList(array));
  		}
-//		br.close();
-		System.out.println(array);
+		br.close();
+		
+		AnimalEndangeredCSVDto dto = new AnimalEndangeredCSVDto();
+		List<AnimalEndangeredCSVDto> list = new ArrayList<AnimalEndangeredCSVDto>();
+		
+		for (int i = 0; i < line.size(); i++) {
+			if(i%6 == 0) {
+				dto.setGroups(line.get(i));
+			}
+			if(i%6 == 1) {
+				dto.setGrade(line.get(i));
+			}
+			if(i%6 == 2) {
+				dto.setKorName(line.get(i));
+			}
+			if(i%6 == 3) {
+				dto.setEngName(line.get(i));
+			}
+			if(i%6 == 4) {
+				dto.setKorRedList(line.get(i));
+			}
+			if(i%6 == 5) {
+				dto.setEngRedList(line.get(i));
+				list.add(dto);
+				dto = new AnimalEndangeredCSVDto();
+			}
+		}
+		
 		return list;
 	}
 }

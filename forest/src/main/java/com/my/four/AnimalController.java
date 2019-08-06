@@ -1,7 +1,6 @@
 package com.my.four;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.my.four.animal.AnimalList;
-import com.my.four.model.dao.AnimalListDao;
+import com.my.four.model.biz.AnimalListBiz;
+import com.my.four.model.dto.AnimalEndangeredJoinDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 import com.my.four.paging.Paging;
 
@@ -22,7 +22,7 @@ import com.my.four.paging.Paging;
 public class AnimalController {
 
 	@Autowired
-	AnimalListDao dao;
+	AnimalListBiz biz;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -33,14 +33,14 @@ public class AnimalController {
 
 		String txt_s = txt_search;
 		
-		if (dao.aniGetTotalCount(txt_s) == 0) {
+		if (biz.aniGetTotalCount(txt_s) == 0) {
 			
 			// db에 저장하기
 			AnimalList shelter_list = new AnimalList();
-			dao.aniInsert(shelter_list.returnShelterList());
+			biz.aniInsert(shelter_list.returnShelterList());
 			
 			// 페이징하기
-			int totalCount = dao.aniGetTotalCount(txt_s);
+			int totalCount = biz.aniGetTotalCount(txt_s);
 			int pag = (page == null) ? 1 : Integer.parseInt(page);
 
 			Paging paging = new Paging();
@@ -50,7 +50,7 @@ public class AnimalController {
 			paging.setTotalCount(totalCount);
 			pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
-			List<AnimalShelterListDto> list = dao.aniSelectList(pag, paging.getPageSize(), txt_s);
+			List<AnimalShelterListDto> list = biz.aniSelectList(pag, paging.getPageSize(), txt_s);
 			model.addAttribute("list", list);
 			model.addAttribute("paging", paging);
 			model.addAttribute("txt_search", txt_s);
@@ -59,7 +59,7 @@ public class AnimalController {
 			
 		} else {
 			// db에 있으면 그냥 페이징하기.
-			int totalCount = dao.aniGetTotalCount(txt_s);
+			int totalCount = biz.aniGetTotalCount(txt_s);
 			int pag = (page == null) ? 1 : Integer.parseInt(page);
 
 			Paging paging = new Paging();
@@ -69,7 +69,7 @@ public class AnimalController {
 			paging.setTotalCount(totalCount);
 			pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
-			List<AnimalShelterListDto> list = dao.aniSelectList(pag, paging.getPageSize(), txt_s);
+			List<AnimalShelterListDto> list = biz.aniSelectList(pag, paging.getPageSize(), txt_s);
 			model.addAttribute("list", list);
 			model.addAttribute("paging", paging);
 			model.addAttribute("txt_search", txt_s);
@@ -83,23 +83,20 @@ public class AnimalController {
 	public String ani_endangeredList(String txt_search, String page, Model model, HttpServletRequest request) throws IOException {
 		
 		logger.info("멸종위기 목록으로!");
-
+		
 		String txt_s = txt_search;
 		
-		if (dao.aniGetTotalCountEndangered(txt_s) == 0) {
-			
-			// CSV 파일 경로 전달하기.
-			AnimalList ani = new AnimalList();
-			ani.returnEndangered(request.getSession().getServletContext().getRealPath("resources/assets/csv/endangeredList.csv"));
+		if (biz.aniGetTotalCountEndangeredCSV(txt_s) == 0) {
 			
 			// db에 저장하기
-			AnimalList shelter_list = new AnimalList();
-			dao.aniInsert(shelter_list.returnShelterList());
+			AnimalList saveDb = new AnimalList();
+			biz.aniInsertEndangeredImg(saveDb.returnEndangeredImg());
+			biz.aniInsertEndangeredCSV(saveDb.returnEndangeredCSV(request.getSession().getServletContext().getRealPath("resources/assets/csv/endangeredList.csv")));
+			
 			
 			// 페이징하기
-			int totalCount = dao.aniGetTotalCount(txt_s);
+			int totalCount = biz.aniGetTotalCount(txt_s);
 			int pag = (page == null) ? 1 : Integer.parseInt(page);
-
 			Paging paging = new Paging();
 
 			paging.setPageNo(pag); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
@@ -107,7 +104,9 @@ public class AnimalController {
 			paging.setTotalCount(totalCount);
 			pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
-			List<AnimalShelterListDto> list = dao.aniSelectList(pag, paging.getPageSize(), txt_s);
+			List<AnimalEndangeredJoinDto> list = biz.aniSelectListEndangeredJoin(pag, paging.getPageSize(), txt_search);
+			System.out.println(list.get(0).getKorName() + "\n" + list.get(0).getImg());
+
 			model.addAttribute("list", list);
 			model.addAttribute("paging", paging);
 			model.addAttribute("txt_search", txt_s);
@@ -116,7 +115,7 @@ public class AnimalController {
 			
 		} else {
 			// db에 있으면 그냥 페이징하기.
-			int totalCount = dao.aniGetTotalCount(txt_s);
+			int totalCount = biz.aniGetTotalCount(txt_s);
 			int pag = (page == null) ? 1 : Integer.parseInt(page);
 
 			Paging paging = new Paging();
@@ -126,7 +125,7 @@ public class AnimalController {
 			paging.setTotalCount(totalCount);
 			pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
-			List<AnimalShelterListDto> list = dao.aniSelectList(pag, paging.getPageSize(), txt_s);
+			List<AnimalShelterListDto> list = biz.aniSelectList(pag, paging.getPageSize(), txt_s);
 			model.addAttribute("list", list);
 			model.addAttribute("paging", paging);
 			model.addAttribute("txt_search", txt_s);
