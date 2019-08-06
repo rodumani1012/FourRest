@@ -154,8 +154,8 @@ table {
 						<th>댓글제목:${dtoReply.title } 작성자: ${dtoReply.writer }</th>
 					</tr>
 					<tr>
-						<th align="right">${dtoReply.regdate }<input type="button"
-							value="삭제"
+						<th align="right">${dtoReply.regdate }
+						<input type="button" value="삭제"
 							onclick="location.href='recipeController.do?command=queDeleteReply&groupno=${dto.groupno }&boardno=${dtoReply.boardno}&pboardno=${dto.boardno}'">
 						</th>
 					</tr>

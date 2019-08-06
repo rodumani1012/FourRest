@@ -30,9 +30,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>하이디테일 conDto</h3>
-	<div id="Detailform">
-		<table class="que-tbl">
+<h3 class="text-center" >하이디테일 conDto</h3>
+	<div class="container d-flex justify-content-center" id="Detailform">
+		<table class="table que-tbl">
 			<col width="20px">
 			<col width="600px">
 			<tr>
@@ -63,10 +63,9 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="목록으로"
-					onclick="location.href='contest_main.do'">
-					<input type="button" value="참여하기" onclick="location.href='contest_postform.do'">
-					<input type="button" value="참여작보기" onclick="location.href='contest_postlist.do?pagenum=1&contentnum=9&conlistno=${conDto.boardno}'" >
+					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_main.do'">목록으로</button>
+					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postform.do'">참여하기</button>
+					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postlist.do?pagenum=1&contentnum=9&conlistno=${conDto.boardno}'" >참여작보기</button>
 				</td>
 			</tr>
 		</table>
@@ -88,7 +87,6 @@
 	new ShareNaver.makeButton({"type": "d"});
 	</script>
 </span>
-
 
 <a id="kakao-link-btn" href="javascript:;">
 <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style="width: 30px;height: 30px;"/>
@@ -135,5 +133,6 @@
     });
   //]]>
 </script>
+
 </body>
 </html>

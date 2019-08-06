@@ -150,20 +150,22 @@
 				</div>	
 					<div id ="pwval">암호를 입력하세요</div>
 				<div class="form-group">
-					<label for="addr">Address : </label>
-						
+					<label for="addr">Address : </label>					
 				</div>
 				<div class="form-group">
-					
 					<div class="row justify-content-center">
 						<input type="text" class="form-control col-sm-3" id="addr" onclick="javascript:addpop()" name="addr">
+					</div>
+				</div>	
+				<div class="form-group">
+					<div class="row justify-content-center">
 						<input type="text" class="form-control col-sm-3" name="zonecode" id="zonecode" readonly="readonly" title="n">
 					</div>
 				</div>
 				<div class="form-group">
-						<div class="row justify-content-center">
-							<input type="text" class="form-control col-sm-3" id="addrDetail" placeholder="상세주소를 입력해주세요">
-						</div>
+					<div class="row justify-content-center">
+						<input type="text" class="form-control col-sm-3" id="addrDetail" placeholder="상세주소를 입력해주세요">
+					</div>
 				</div>
 				</div>
 				<div class="form-group">
