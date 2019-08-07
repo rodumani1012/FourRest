@@ -52,23 +52,6 @@
 		</foreach>
 		SELECT * FROM DUAL
 	</insert>
-
-	<!-- db에서 CSV 목록 가져오는 쿼리 -->
-	<select id="aniSelectListEndangeredCSV" parameterType="map"
-		resultType="animalCSVDto">
-		SELECT *
-		FROM (SELECT ROWNUM AS RNUM, P.*
-			 FROM ( SELECT * 
-			 		FROM ANIMAL_ENDANGERED_CSV
-					 <if test="txt_search != null">
-						WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
-						upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
-					</if>
-						ORDER BY AREA
-						) P
-			 )
-		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
-	</select>
 	
 	<!-- db CSV 목록 갯수 가져오는 쿼리 -->
 	<select id="aniGetTotalCountEndangeredCSV" parameterType="map"
@@ -91,6 +74,7 @@
 		SELECT * FROM DUAL
 	</insert>
 	
+	<!-- 조인 된 쿼리를 담을 Dto -->
 	<resultMap type="animalJoinDto" id="joinCSVImg">
 		<result column="GROUPS" property="groups"/>
 		<result column="GRADE" property="grade"/>
@@ -101,12 +85,43 @@
 		<result column="IMG" property="img"/>
 	</resultMap>
 		
+	<!-- CSV와 IMG 테이블 조인시키는 쿼리 -->
 	<select id="join" resultMap="joinCSVImg" parameterType="map">
-		SELECT GROUPS, GRADE, KOR_NAME, ENG_NAME, KOR_RED_LIST, ENG_RED_LIST, IMG 
-		FROM ANIMAL_ENDANGERED_CSV c 
-			JOIN ANIMAL_ENDANGERED_IMG i 
-			USING(KOR_NAME)
-		ORDER BY GROUPS, KOR_NAME; 
+		SELECT GROUPS, GRADE, KOR_NAME, ENG_NAME, KOR_RED_LIST, ENG_RED_LIST, IMG
+		FROM (SELECT ROWNUM AS RNUM, P.*
+			 FROM ( SELECT * 
+			 		FROM ANIMAL_ENDANGERED_CSV 
+						JOIN ANIMAL_ENDANGERED_IMG
+						USING(KOR_NAME)
+					 <if test="txt_search != null">
+							WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
+							upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'							
+					</if>
+						ORDER BY GROUPS, KOR_NAME
+						) P
+			 )
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
+	</select>
+	
+	<!-- db에 join된 목록 저장하는 쿼리 -->
+	<insert id="aniInsertEndangeredJoin" parameterType="map">
+		INSERT ALL
+		<foreach collection="list" item="ani">
+			INTO ANIMAL_ENDANGERED_JOIN(GROUPS, GRADE, KOR_NAME, ENG_NAME, KOR_RED_LIST, ENG_RED_LIST, IMG)
+			VALUES(#{ani.groups},#{ani.grade},#{ani.korName},#{ani.engName},#{ani.korRedList},#{ani.engRedList},#{ani.img})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<!-- db 조인된 테이블 목록 갯수 가져오는 쿼리 -->
+	<select id="aniGetTotalCountEndangeredJoin" parameterType="map"
+		resultType="Integer">
+		SELECT count(*)
+		FROM ANIMAL_ENDANGERED_JOIN
+		<if test="txt_search != null">
+			WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
+			upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
+		</if>
 	</select>
 	
 </mapper>

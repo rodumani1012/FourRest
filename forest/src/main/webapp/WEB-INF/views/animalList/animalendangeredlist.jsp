@@ -34,11 +34,11 @@
 				<c:forEach items="${list }" var="dto">
 					<div>
 						<div>
-							<img src="${dto.img }" alt="${dto.korName}">
+							<img src="${dto.img }" alt="${dto.korName}" style="width: 150px; height: 100px;">
 						</div>	
-						<ul>
-							<li>- ${dto.korName }(${dto.groups })</li>
-						</ul>
+						<p>
+							- ${dto.korName }(${dto.groups })
+						</p>
 						<p>
 					 		멸종위기 야생 생물 ${dto.grade }급
 						</p>
