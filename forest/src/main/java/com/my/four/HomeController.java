@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.my.four.model.biz.FundingBiz;
 import com.my.four.model.biz.LoginBiz;
 import com.my.four.model.biz.MailService;
 import com.my.four.model.dto.LoginDto;

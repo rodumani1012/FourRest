@@ -8,21 +8,19 @@ public class AnimalEndangeredSpeciesDto {
 	private String engName;
 	private String korRedList;
 	private String engRedList;
-	private String img;
 	
 	public AnimalEndangeredSpeciesDto() {
 	
 	}
 
 	public AnimalEndangeredSpeciesDto(String groups, String grade, String korName, String engName, String korRedList,
-			String engRedList, String img) {
+			String engRedList) {
 		this.groups = groups;
 		this.grade = grade;
 		this.korName = korName;
 		this.engName = engName;
 		this.korRedList = korRedList;
 		this.engRedList = engRedList;
-		this.img = img;
 	}
 
 	public String getGroups() {
@@ -73,11 +71,4 @@ public class AnimalEndangeredSpeciesDto {
 		this.engRedList = engRedList;
 	}
 
-	public String getImg() {
-		return img;
-	}
-
-	public void setImg(String img) {
-		this.img = img;
-	}
 }

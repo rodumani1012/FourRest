@@ -1,39 +1,24 @@
 package com.my.four.animal;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Set;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.Servlet;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.my.four.model.dto.AnimalEndangeredSpeciesDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 
 public class AnimalList {
 	
+	// 동물보호소 목록을 리턴하는 메소드
 	public List<AnimalShelterListDto> returnShelterList() {
 		/*
 		  Document : 연결해서 가져온 HTML 전체 문서
@@ -128,14 +113,11 @@ public class AnimalList {
 		*/
 	}
 	
+	// 이미지 src와 alt를 list로 돌려주는 메소드
 	public List<AnimalEndangeredSpeciesDto> returnEndangered(String path) throws IOException {
-		/*
-		 * Document : 연결해서 가져온 HTML 전체 문서 Element : Document의 HTML 요소 Elements :
-		 * Element가 모인 자료
-		 */
+
 		String str = "";
 
-		// 1페이지부터 30페이지까지의 데이터
 		for (int i = 1; i <= 14; i++) {
 
 			String url = "https://species.nibr.go.kr/endangeredspecies/rehome/exlist/exlist.jsp?1=1&1=1&search_key=all&search_yn=Y&sch_gbn=ex&chk_rcomm_group_all=Y&sch_rcomm_group0=MM&sch_rcomm_group1=AV&sch_rcomm_group2=RP&sch_rcomm_group3=AM&sch_rcomm_group4=-P&sch_rcomm_group5=IN&sch_rcomm_group6=IV&sch_rcomm_group7=VP&sch_rcomm_group8=AL&sch_rcomm_group9=FG&chk_ex_rl_all=Y&sch_ex1=Y&sch_ex2=Y&sch_sort=cls_kname&unit_count=20&sch_view_type=photo&page_count="
@@ -157,42 +139,40 @@ public class AnimalList {
 				} else {
 					if (element.attr("src").startsWith("../../upload_data")) {
 						str += element.attr("src").replaceAll("../../", "https://species.nibr.go.kr/endangeredspecies/")
-								+ "#";
-						str += element.attr("alt") + "#";
+								+ ",";
+						str += element.attr("alt") + ",";
 					} else {
-						str += "https://species.nibr.go.kr" + element.attr("src") + "#";
-						str += element.attr("alt") + "#";
+						str += "https://species.nibr.go.kr" + element.attr("src") + ",";
 					}
 				}
 			}
 		}
+
 		// 배열에 담기
-		String[] endangered = str.split("#");
+		String[] endangered = str.split(",");
 		
+		// 객체 생성하여 dto에 set해준 후 dto를 list에 담기
 		AnimalEndangeredSpeciesDto dto = new AnimalEndangeredSpeciesDto();
 		List<AnimalEndangeredSpeciesDto> list = new ArrayList<AnimalEndangeredSpeciesDto>();
 
 		for (int i = 0; i < endangered.length; i++) {
-			if (i % 7 == 0) {
-				dto.setImg(endangered[i]);
+			if (i % 6 == 0) {
+				dto.setGroups(endangered[i]);
 			}
-			if (i % 7 == 1) {
-				dto.setImg(endangered[i]);
-			}
-			if (i % 7 == 2) {
-				dto.setImg(endangered[i]);
-			}
-			if (i % 7 == 3) {
-				dto.setImg(endangered[i]);
-			}
-			if (i % 7 == 4) {
-				dto.setImg(endangered[i]);
-			}
-			if (i % 7 == 5) {
-				dto.setImg(endangered[i]);
-			}
-			if (i % 7 == 6) {
+			if (i % 6 == 1) {
 				dto.setGrade(endangered[i]);
+			}
+			if (i % 6 == 2) {
+				dto.setKorName(endangered[i]);
+			}
+			if (i % 6 == 3) {
+				dto.setEngName(endangered[i]);
+			}
+			if (i % 6 == 4) {
+				dto.setKorRedList(endangered[i]);
+			}
+			if (i % 6 == 5) {
+				dto.setEngRedList(endangered[i]);
 				list.add(dto);
 				dto = new AnimalEndangeredSpeciesDto();
 			}
@@ -207,17 +187,17 @@ public class AnimalList {
 		BufferedReader br = Files.newBufferedReader(Paths.get(path));
 		
 		String line = "";
-		
+		String array[] = null;
 		while ((line = br.readLine()) != null) {
 			List<String> temp = new ArrayList<String>();
-			String array[] = line.split(",");
+			array = line.split(",");
 			
-			temp = Arrays.asList(array);
-
-			list.add(temp);
+//			temp = Arrays.asList(array);
+//
+//			list.add(temp);
  		}
-		br.close();
-		
+//		br.close();
+		System.out.println(array);
 		return list;
 	}
 }

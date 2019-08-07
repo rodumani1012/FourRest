@@ -82,8 +82,15 @@ public class AnimalListDaoImpl implements AnimalListDao {
 
 	@Override
 	public int aniGetTotalCountEndangered(String txt_search) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		int res = 0;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("txt_search", txt_search);
+		
+		res = sqlSession.selectOne(namespace + "aniGetTotalCountEndangered", map);
+		
+		return res;
 	}
 
 }

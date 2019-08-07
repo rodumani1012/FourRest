@@ -31,7 +31,6 @@ CREATE TABLE ANIMAL_ENDANGERED(
 	-- 절멸(EX), 야생절멸(EW), 지역절멸(RE), 위급(CR), 위기(EN), 취약(VU), 준위협(NT), 관심대상(LC), 정보부족(DD), 미평가(NE), 미적용(NA)
 	KOR_RED_LIST VARCHAR2(1000), -- 국가적색목록
 	ENG_RED_LIST VARCHAR2(1000), -- 세계자연보전연맹
-	IMG VARCHAR2(1000) NOT NULL, -- 이미지 경로(https://....)
 	CONSTRAINT CHECK_GROUPS CHECK(GROUPS IN ('고등균류', '곤충류', '무척추동물', '식물', '양서파충류', '어류', '조류', '포유류', '해조류')),
 	CONSTRAINT CHECK_GRADE CHECK(GRADE IN ('I','II')),
 	CONSTRAINT CHECK_KOR_RED_LIST CHECK(KOR_RED_LIST IN ('EX', 'EW', 'RE', 'CR', 'EN', 'VU', 'NT', 'LC', 'DD', 'NE', 'NA')),
@@ -39,3 +38,10 @@ CREATE TABLE ANIMAL_ENDANGERED(
 );
 
 SELECT * FROM ANIMAL_ENDANGERED;
+
+CREATE TABLE ANIMAL_ENDANGERED_IMG(
+	KOR_NAME VARCHAR2(1000) NOT NULL, -- 국명(늑대)
+	IMG VARCHAR2(1000) NOT NULL -- 이미지 경로(https://....)
+);
+
+SELECT * FROM ANIMAL_ENDANGERED_IMG;
