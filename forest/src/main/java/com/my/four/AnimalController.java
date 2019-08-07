@@ -87,7 +87,6 @@ public class AnimalController {
 		String txt_s = txt_search;
 		
 		if (biz.aniGetTotalCountEndangeredCSV(txt_s) == 0) {
-			
 			// db에 저장하기
 			AnimalList saveDb = new AnimalList();
 			biz.aniInsertEndangeredImg(saveDb.returnEndangeredImg());
@@ -114,7 +113,6 @@ public class AnimalController {
 			return "animalList/animalendangeredlist";
 			
 		} else {
-			
 			// db에 있으면 그냥 페이징하기.
 			int totalCount = biz.aniGetTotalCountEndangeredJoin(txt_s);
 			int pag = (page == null) ? 1 : Integer.parseInt(page);

@@ -25,6 +25,7 @@
 			</td>
 		</tr>
 	</table>
+		
 	<div>
 		<c:choose>
 			<c:when test="${empty list }">
