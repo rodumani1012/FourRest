@@ -57,8 +57,8 @@
 <%@ include file="../header.jsp" %>
 <br><br><br><br><br>			
 	<div class="culmn">
-		<div class="container">
-			<table class="table-bordered mx-auto" border="1">
+		<div class="container table-responsive">
+			<table class="table table-bordered mx-auto " border="1">
 				<thead>
 					<tr>
 						<th>관할구역</th>
@@ -88,33 +88,37 @@
 				</tbody>
 			</table>
 
-			<table class="mx-auto">
-				<tr>
-					<td colspan="4">
-						<input type="text" id="txt_search" value="${txt_search }"> 
-						<input type="button" class="small" value="검색" 
-							onclick="javascript:PageMove(${paging.pageNo})">
-					</td>
-				</tr>
-			</table>
 
 			<!-- Pagination -->
-			<div class="text-center">
-				<a href="javascript:PageMove(${paging.firstPageNo})">&laquo;</a> 
-				<a href="javascript:PageMove(${paging.prevPageNo})">&lt;</a>
+			<div class="pagination pagination-md justify-content-center">
+				<a class="page-link" href="javascript:PageMove(${paging.firstPageNo})">&laquo;</a> 
+				<a class="page-link" href="javascript:PageMove(${paging.prevPageNo})">&lt;</a>
 					<c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
 						<c:choose>
 							<c:when test="${i eq paging.pageNo}">
-								<a href="javascript:PageMove(${i})">${i}</a>
+								<a class="page-link" href="javascript:PageMove(${i})">${i}</a>
 							</c:when>
 							<c:otherwise>
-								<a href="javascript:PageMove(${i})">${i}</a>
+								<a class="page-link" href="javascript:PageMove(${i})">${i}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
-				<a href="javascript:PageMove(${paging.nextPageNo})">&gt;</a> 
-				<a href="javascript:PageMove(${paging.finalPageNo})">&raquo;</a>
+				<a class="page-link" href="javascript:PageMove(${paging.nextPageNo})">&gt;</a> 
+				<a class="page-link" href="javascript:PageMove(${paging.finalPageNo})">&raquo;</a>
 			</div>
+		<div class="cotainer">
+			<table class="pull-right">
+				<tr>
+					<td colspan="4">
+						<div class="form-group form-inline">
+						<input type="text" class="form-control" id="txt_search" value="${txt_search }"> 
+						<button type="button" class="small btn btn-secondary"
+							onclick="javascript:PageMove(${paging.pageNo})">검색하기</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>	
 		</div>
 	</div>
 

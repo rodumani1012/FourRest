@@ -77,7 +77,7 @@
 						class="form-check-input" type="checkbox"> Remember me
 					</label>
 				</div>
-				<button type="submit" class="btn btn-success">Sponsor</button>
+				<button type="submit" class="btn btn-success">LOGIN</button>
 			</form:form>
 		</div>
 		
