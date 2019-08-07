@@ -109,6 +109,7 @@ public class AnimalController {
 			model.addAttribute("list", list);
 			model.addAttribute("paging", paging);
 			model.addAttribute("txt_search", txt_s);
+			model.addAttribute("totalCount", totalCount);
 			
 			return "animalList/animalendangeredlist";
 			
@@ -127,6 +128,7 @@ public class AnimalController {
 			model.addAttribute("list", list);
 			model.addAttribute("paging", paging);
 			model.addAttribute("txt_search", txt_s);
+			model.addAttribute("totalCount", totalCount);
 
 			return "animalList/animalendangeredlist"; 
 		}
