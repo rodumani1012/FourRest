@@ -76,13 +76,6 @@ public class AnimalListDaoImpl implements AnimalListDao {
 	}
 
 	@Override
-	public List<AnimalEndangeredCSVDto> aniSelectListEndangeredCSV(int firstIndex, int recordCountPerPage,
-			String txt_search) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int aniGetTotalCountEndangeredCSV(String txt_search) {
 
 		int res = 0;
@@ -110,6 +103,14 @@ public class AnimalListDaoImpl implements AnimalListDao {
 	}
 
 	@Override
+	public List<AnimalEndangeredJoinDto> aniSelectListEndangeredJoin() {
+		
+		List<AnimalEndangeredJoinDto> list = sqlSession.selectList(namespace + "join");
+		
+		return list;
+	}
+	
+	@Override
 	public List<AnimalEndangeredJoinDto> aniSelectListEndangeredJoin(int firstIndex, int recordCountPerPage,
 			String txt_search) {
 		
@@ -123,4 +124,30 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		return list;
 	}
 
+	@Transactional
+	@Override
+	public int aniInsertEndangeredJoin(List<AnimalEndangeredJoinDto> dtos) {
+
+		int res = 0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", dtos);
+		
+		res = sqlSession.insert(namespace + "aniInsertEndangeredJoin", map);
+		
+		return res;
+	}
+	
+	@Override
+	public int aniGetTotalCountEndangeredJoin(String txt_search) {
+
+		int res = 0;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("txt_search", txt_search);
+		
+		res = sqlSession.selectOne(namespace + "aniGetTotalCountEndangeredJoin", map);
+		
+		return res;
+	}
 }

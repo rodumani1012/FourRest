@@ -39,12 +39,6 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	}
 
 	@Override
-	public List<AnimalEndangeredCSVDto> aniSelectListEndangeredCSV(int firstIndex, int recordCountPerPage,
-			String txt_search) {
-		return dao.aniSelectListEndangeredCSV(firstIndex, recordCountPerPage, txt_search);
-	}
-
-	@Override
 	public int aniGetTotalCountEndangeredCSV(String txt_search) {
 		return dao.aniGetTotalCountEndangeredCSV(txt_search);
 	}
@@ -55,9 +49,24 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	}
 
 	@Override
+	public List<AnimalEndangeredJoinDto> aniSelectListEndangeredJoin() {
+		return dao.aniSelectListEndangeredJoin();
+	}
+	
+	@Override
 	public List<AnimalEndangeredJoinDto> aniSelectListEndangeredJoin(int firstIndex, int recordCountPerPage,
 			String txt_search) {
 		return dao.aniSelectListEndangeredJoin(firstIndex, recordCountPerPage, txt_search);
+	}
+
+	@Override
+	public int aniInsertEndangeredJoin(List<AnimalEndangeredJoinDto> dtos) {
+		return dao.aniInsertEndangeredJoin(dtos);
+	}
+	
+	@Override
+	public int aniGetTotalCountEndangeredJoin(String txt_search) {
+		return dao.aniGetTotalCountEndangeredJoin(txt_search);
 	}
 
 }

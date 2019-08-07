@@ -14,11 +14,12 @@ public interface AnimalListBiz {
 	public int aniGetTotalCount(String txt_search);
 	
 	public int aniInsertEndangeredCSV(List<AnimalEndangeredCSVDto> dtos);
-	public List<AnimalEndangeredCSVDto> aniSelectListEndangeredCSV(int firstIndex, int recordCountPerPage,String txt_search);
 	public int aniGetTotalCountEndangeredCSV(String txt_search);
 	
 	public int aniInsertEndangeredImg(List<AnimalEndangeredImgDto> dtos);
 	
+	public List<AnimalEndangeredJoinDto> aniSelectListEndangeredJoin();
 	public List<AnimalEndangeredJoinDto> aniSelectListEndangeredJoin(int firstIndex, int recordCountPerPage,String txt_search);
-	
+	public int aniInsertEndangeredJoin(List<AnimalEndangeredJoinDto> dtos);
+	public int aniGetTotalCountEndangeredJoin(String txt_search);
 }
