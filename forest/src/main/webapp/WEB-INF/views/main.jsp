@@ -57,24 +57,10 @@
 
 <!--Theme Responsive css-->
 <link rel="stylesheet" href="resources/assets/css/responsive.css" />
-<script
-	src="resources/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<!-- 버튼이랑 슬라이드쇼 css -->
+<link rel="stylesheet" href="resources/assets/css/mainb.css" />
+
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-<style>
-/* Make the image fully responsive */
-.carousel-inner img {
-	width: 100%;
-	height: 100%;
-}
-.test{
-	width: 800px;
-	height: 800px;
-}
-.iframe-chat{
-	width: 600px;
-	height: 600px;
-}
-</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/javascript" src="resources/assets/js/main-style.js"></script>
 
@@ -104,7 +90,6 @@
 		<!--슬라이드 쇼 -->
 		<div class="container-fluid">
 			<div id="demo" class="carousel slide" data-ride="carousel">
-
 				<!-- Indicators -->
 				<ul class="carousel-indicators">
 					<li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -117,27 +102,26 @@
 				<!-- 슬라이드 쇼 사진  -->
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img src="resources/assets/images/background/1.jpg" alt="trash"
-							style="height: 800px;">
+						<img class="img-responsive" src="resources/assets/images/background/1.jpg" alt="animal"
+						style="max-width: 100%;, height: auto; , display: block;">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/assets/images/background/2.jpg" alt="smoking"
-							style="height: 800px;">
+						<img class="img-responsive" src="resources/assets/images/background/2.jpg" alt="animal"
+						style="max-width: 100%;, height: auto; , display: block;">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/assets/images/background/3.jpg" alt="animal"
-							style="height: 800px;">
+						<img class="img-responsive" src="resources/assets/images/background/3.jpg" alt="animal"
+						style="max-width: 100%;, height: auto; , display: block;">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/assets/images/background/4.jpg" alt="animal"
-							style="height: 800px;">
+						<img class="img-responsive" src="resources/assets/images/background/4.jpg" alt="animal"
+						style="max-width: 100%;, height: auto; , display: block;">
 					</div>
 					<div class="carousel-item">
-						<img src="resources/assets/images/background/5.jpg" alt="animal"
-							style="height: 800px;">
+						<img class="img-responsive" src="resources/assets/images/background/6.jpg" alt="animal"
+						style="max-width: 100%;, height: auto; , display: block;">
 					</div>
 				</div>
-
 				<!-- 슬라이드 쇼 버튼 -->
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
@@ -224,21 +208,7 @@
 		<!-- End off scroll up -->
 	</div>
 	
-	<button onclick="toggleChat()" 
-	style="width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    position: fixed;
-    bottom: 20px;
-    right: 50px;
-    top:500px;
-    color: #fff;
-    cursor: pointer;
-    background-color: #000;
-    z-index: 1000;
-    transition: opacity .5s, background-color .5s;
-    -moz-transition: opacity .5s, background-color .5s;
-    -webkit-transition: opacity .5s, background-color .5s;"><i class='fas fa-comment-dots'></i></button>
+	<button class="botton" onclick="toggleChat()"><i class='fas fa-comment-dots'></i></button>
 <div id="chat" style=" display: none; position: fixed; bottom: 50PX; right: 86PX;z-index: 9999">
 			<div  id="chat_box">
 		<ul id="#messages"></ul>
