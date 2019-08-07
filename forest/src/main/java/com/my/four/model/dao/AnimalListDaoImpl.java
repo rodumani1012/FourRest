@@ -105,7 +105,7 @@ public class AnimalListDaoImpl implements AnimalListDao {
 	@Override
 	public List<AnimalEndangeredJoinDto> aniSelectListEndangeredJoin() {
 		
-		List<AnimalEndangeredJoinDto> list = sqlSession.selectList(namespace + "join");
+		List<AnimalEndangeredJoinDto> list = sqlSession.selectList(namespace + "joinToSave");
 		
 		return list;
 	}
