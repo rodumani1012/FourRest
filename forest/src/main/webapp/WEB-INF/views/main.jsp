@@ -133,17 +133,7 @@
 			</div>
 		</div>
 		<!-- 슬라이드쇼 끝  -->
-		<div id="chat_box">
-		<ul id="#messages"></ul>
-		</div>
-		<div class="test">
-			<div class="modal-top">
-				<div id="modal-title">고객센터</div>
-				<span></span>
-			</div>
-			<a href="#" class="button-modal-close" onclick="closeChat()">X</a>
-<!-- 			<iframe class="iframe-chat" src="http://192.168.10.151:8880/"></iframe> -->
-		</div>
+
 		<!-- 후원금은 어디에 사용 되나요? -->
 		<div class="container text-center">
 			<img src="resources/assets/images/ss.png" alt="후원금 사용내역">
