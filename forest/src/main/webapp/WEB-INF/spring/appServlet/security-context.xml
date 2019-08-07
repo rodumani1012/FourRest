@@ -39,7 +39,7 @@
     
     <!--  provider  -->
     <authentication-manager>
-        <authentication-provider >
+        <authentication-provider>
         <jdbc-user-service 
             data-source-ref="dataSource"
             role-prefix=""

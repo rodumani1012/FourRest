@@ -9,4 +9,5 @@ public interface LoginDao {
 
 	public boolean idChk(String id);
 	public int memberInsert(LoginDto dto);
+	public boolean snsChk(String id);
 }

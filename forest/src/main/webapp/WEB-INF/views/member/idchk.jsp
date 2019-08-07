@@ -15,7 +15,7 @@
 	function idConfirm(bool){
 		if(bool=="true"){
 			opener.document.getElementsByName("id")[0].title="y";
-			opener.document.getElementsByName("pw")[0].focus();
+			opener.document.getElementsByName("name")[0].focus();
 		}else{
 			opener.document.getElementsByName("id")[0].title="";
 			opener.document.getElementsByName("id")[0].focus();

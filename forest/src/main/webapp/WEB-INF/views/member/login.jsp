@@ -22,6 +22,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <link rel="stylesheet" href="resources/assets/css/slick.css">
 <link rel="stylesheet" href="resources/assets/css/slick-theme.css">
@@ -80,6 +81,13 @@
 				<button type="submit" class="btn btn-success">Sponsor</button>
 			</form:form>
 		</div>
+		<div id="sns_login_btn">
+				<a id="kakao-login-btn"></a>
+				<script src="resources/assets/js/kakao.js"></script>
+				<br>
+		</div>
+		<%@ include file="../member/naverlogin.jsp"%>
+		
 		
 		
 	</div>

@@ -37,6 +37,19 @@ public class LoginDaoImpl implements LoginDao{
 		int res1 = sqlSesssion.insert(namespace+"insert_auth",dto); 
 		return res;
 	}
+
+	@Override
+	public boolean snsChk(String id) {
+		boolean snschk= false;
+		LoginDto dto = new LoginDto();
+		dto=sqlSesssion.selectOne(namespace+"idchk",id);
+		if(dto==null) {
+			snschk=true;
+		}else {
+			snschk=false;
+		}
+		return snschk;
+	}
 	
 	
 	

@@ -28,6 +28,7 @@ INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user2','user2','user123','010-7777-70
 
 SELECT * FROM MEMBER;
 SELECT * FROM AUTHORITIES
+
 COMMENT ON TABLE MEMBER is '회원';
 COMMENT ON COLUMN MEMBER.ID is '아이디';
 COMMENT ON COLUMN MEMBER.PW is '비밀번호';
@@ -40,6 +41,7 @@ ALTER TABLE users ADD CONSTRAINT IDX_users_PK PRIMARY KEY (username);
 /* Table Name: 권한 */
 /**********************************/
 DROP TABLE authorities
+
 CREATE TABLE AUTHORITIES(
 		ID                      		VARCHAR2(20)		 NOT NULL,
 		AUTHORITY                     		VARCHAR2(20)		 NOT NULL

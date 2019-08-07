@@ -23,6 +23,12 @@ public class LoginBizImpl implements LoginBiz{
 		// TODO Auto-generated method stub
 		return dao.memberInsert(dto);
 	}
+
+	@Override
+	public boolean snsChk(String id) {
+		// TODO Auto-generated method stub
+		return dao.snsChk(id);
+	}
 	
 	
 }

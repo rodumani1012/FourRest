@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.four.model.biz.LoginBiz;
@@ -201,12 +202,29 @@ public class HomeController {
 		return "chatting";
 	}
 	
+	//kakao 로그인
+	@RequestMapping(value="login.do")
+	public String kakaoLogin(Model model, String name,String id) {
+		boolean snschk = biz.snsChk(id);
+		logger.info("====pw"+name);
+		model.addAttribute("id",id);
+		model.addAttribute("name", name);
+		if(snschk==true) {
+			return "member/snsjoin";
+		}else {
+			
+			return "redirect:/login";
+		}
+		
+	}
+	
 	
 	@ResponseBody
     @RequestMapping(value = "VerifyRecaptcha.do", method = RequestMethod.POST)
     public int VerifyRecaptcha(HttpServletRequest request) {
         VerifyRecaptcha.setSecretKey("6LewgLEUAAAAAGv53SfBX_cHOgiNrxydgIlAnQ2-");
         String gRecaptchaResponse = request.getParameter("recaptcha");
+        System.out.println("왔니");
         System.out.println(gRecaptchaResponse);
         //0 = 성공, 1 = 실패, -1 = 오류
         try {
