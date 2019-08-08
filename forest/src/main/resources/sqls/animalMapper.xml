@@ -137,8 +137,14 @@
 		</if>
 	</select>
 
-	<!-- 멸종 1 & 포유류 -->
+	<!-- 멸종 1,2 & 포유류 -->
 	<select id="aniGetOne" parameterType="map" resultType="Integer">
-		SELECT COUNT(*) FROM ANIMAL_ENDANGERED_JOIN WHERE GROUPS = #{groups} AND GRADE = #{grade}
+		SELECT COUNT(*) FROM ANIMAL_ENDANGERED_JOIN WHERE GROUPS like '%' || #{groups} || '%' AND GRADE = #{grade} 
 	</select>
 </mapper>
+
+
+
+
+
+

@@ -74,8 +74,8 @@ div>img {
 		</tr>
 	</table>
 	
-	<table>
-		<tr>
+	<table class="table table-bordered">
+		<tr class="table-active">
 			<th>구분</th><th>포유류</th><th>조류</th><th>파충류</th><th>양서류</th><th>어류</th><th>곤충류</th><th>무척추동물</th><th>육상식물</th><th>해조류</th><th>고등균류</th><th>합계</th>
 		</tr>
 		<tr>
