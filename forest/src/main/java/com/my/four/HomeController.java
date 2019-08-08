@@ -242,6 +242,19 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping(value="mypagepwchk.do")
+	public String mypagepwchk() {
+		
+		return "member/mypagepwchk";
+	}
+	
+	@RequestMapping(value="mypage.do")
+	public String mypage() {
+	
+		return "member/mypage";
+	}
+	
+	
 	
 	@ResponseBody
     @RequestMapping(value = "VerifyRecaptcha.do", method = RequestMethod.POST)
