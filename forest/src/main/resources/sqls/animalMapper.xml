@@ -136,5 +136,9 @@
 			upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
 		</if>
 	</select>
-	
+
+	<!-- 멸종 1 & 포유류 -->
+	<select id="aniGetOne" parameterType="map" resultType="Integer">
+		SELECT COUNT(*) FROM ANIMAL_ENDANGERED_JOIN WHERE GROUPS = #{groups} AND GRADE = #{grade}
+	</select>
 </mapper>

@@ -12,12 +12,19 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import com.my.four.model.dto.AnimalEndangeredImgDto;
+import com.my.four.model.biz.AnimalListBiz;
 import com.my.four.model.dto.AnimalEndangeredCSVDto;
+import com.my.four.model.dto.AnimalEndangeredImgDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 
+@Component
 public class AnimalList {
+	
+	@Autowired
+	AnimalListBiz biz;
 	
 	// 동물보호소 목록을 리턴하는 메소드
 	public List<AnimalShelterListDto> returnShelterList() {
@@ -212,5 +219,56 @@ public class AnimalList {
 		}
 		
 		return list;
+	}
+	
+	public String[] returnTable() {
+		
+		List<String> grade = new ArrayList<String>();
+		grade.add("I");
+		grade.add("II");
+		
+		List<String> groups = new ArrayList<String>();
+		groups.add("포유류");
+		groups.add("조류");		
+		groups.add("파충류");
+		groups.add("양서류");
+		groups.add("어류");
+		groups.add("곤충류");
+		groups.add("무척추동물");
+		groups.add("육상식물");
+		groups.add("해조류");
+		groups.add("고등균류");
+		
+		List<List<String>> list = new ArrayList<List<String>>();
+		list.add(grade);
+		list.add(groups);
+		
+		
+		String str = "";
+		
+		for (int i = 0; i < list.size(); i++) {
+			for(int j = 0; j < list.get(1).size(); j++) {
+				str += biz.aniGetOne(list.get(0).get(i), list.get(1).get(j)) + "#";
+			}
+		}
+		
+		String array[] = str.split("#");
+		
+		return array;
+	}
+	
+	public int[] returnTotal() {
+		
+		String array[] = returnTable();
+		int res[] = new int[11];
+		int total = 0;
+		
+		for(int i = 0; i < 10; i++) {
+			res[i] = Integer.parseInt(array[i]) + Integer.parseInt(array[i+10]);
+			total += Integer.parseInt(array[i]) + Integer.parseInt(array[i+10]);
+		}
+		res[10] = total;
+		
+		return res;
 	}
 }

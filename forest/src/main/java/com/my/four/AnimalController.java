@@ -1,6 +1,7 @@
 package com.my.four;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,8 @@ public class AnimalController {
 
 	@Autowired
 	AnimalListBiz biz;
+	@Autowired
+	AnimalList ani;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -36,8 +39,7 @@ public class AnimalController {
 		if (biz.aniGetTotalCount(txt_s) == 0) {
 			
 			// db에 저장하기
-			AnimalList shelter_list = new AnimalList();
-			biz.aniInsert(shelter_list.returnShelterList());
+			biz.aniInsert(ani.returnShelterList());
 			
 			// 페이징하기
 			int totalCount = biz.aniGetTotalCount(txt_s);
@@ -88,9 +90,9 @@ public class AnimalController {
 		
 		if (biz.aniGetTotalCountEndangeredCSV(txt_s) == 0) {
 			// db에 저장하기
-			AnimalList saveDb = new AnimalList();
-			biz.aniInsertEndangeredImg(saveDb.returnEndangeredImg());
-			biz.aniInsertEndangeredCSV(saveDb.returnEndangeredCSV(request.getSession().getServletContext().getRealPath("resources/assets/csv/endangeredList.csv")));
+			
+			biz.aniInsertEndangeredImg(ani.returnEndangeredImg());
+			biz.aniInsertEndangeredCSV(ani.returnEndangeredCSV(request.getSession().getServletContext().getRealPath("resources/assets/csv/endangeredList.csv")));
 			biz.aniInsertEndangeredJoin(biz.aniSelectListEndangeredJoin());
 			
 			// 페이징하기
@@ -102,18 +104,42 @@ public class AnimalController {
 			paging.setPageSize(20); // 한페이지에 불러낼 게시물의 개수 지정
 			paging.setTotalCount(totalCount);
 			pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
-			
+
 			// 멸종위기 목록 불러오기
 			List<AnimalEndangeredJoinDto> list = biz.aniSelectListEndangeredJoin(pag, paging.getPageSize(), txt_search);
-
+			
+			// 테이블에 넣을 종류 및 등급
+			String table[] = ani.returnTable();
+			String one[] = new String[10];
+			String two[] = new String[10];
+			int totalOne = 0;
+			int totalTwo = 0;
+			
+			for (int i = 0; i < 10; i++) {
+				one[i] = table[i];
+				totalOne += Integer.parseInt(table[i]);
+			}
+			for (int i = 10; i < table.length; i++) {
+				two[i-10] = table[i];
+				totalTwo += Integer.parseInt(table[i]);
+			}
+			
+			int totalOneTwo[] = ani.returnTotal();
+			
 			model.addAttribute("list", list);
 			model.addAttribute("paging", paging);
 			model.addAttribute("txt_search", txt_s);
 			model.addAttribute("totalCount", totalCount);
-			
+			model.addAttribute("one", one);
+			model.addAttribute("two", two);
+			model.addAttribute("totalOne", totalOne);
+			model.addAttribute("totalTwo", totalTwo);
+			model.addAttribute("totalOneTwo", totalOneTwo);
+
 			return "animalList/animalendangeredlist";
 			
 		} else {
+
 			// db에 있으면 그냥 페이징하기.
 			int totalCount = biz.aniGetTotalCountEndangeredJoin(txt_s);
 			int pag = (page == null) ? 1 : Integer.parseInt(page);
@@ -124,11 +150,36 @@ public class AnimalController {
 			paging.setTotalCount(totalCount);
 			pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
+			// 멸종위기 목록 불러오기
 			List<AnimalEndangeredJoinDto> list = biz.aniSelectListEndangeredJoin(pag, paging.getPageSize(), txt_search);
+			
+			// 테이블에 넣을 종류 및 등급
+			String table[] = ani.returnTable();
+			String one[] = new String[10];
+			String two[] = new String[10];
+			int totalOne = 0;
+			int totalTwo = 0;
+			
+			for (int i = 0; i < 10; i++) {
+				one[i] = table[i];
+				totalOne += Integer.parseInt(table[i]);
+			}
+			for (int i = 10; i < table.length; i++) {
+				two[i-10] = table[i];
+				totalTwo += Integer.parseInt(table[i]);
+			}
+			
+			int totalOneTwo[] = ani.returnTotal();
+			
 			model.addAttribute("list", list);
 			model.addAttribute("paging", paging);
 			model.addAttribute("txt_search", txt_s);
 			model.addAttribute("totalCount", totalCount);
+			model.addAttribute("one", one);
+			model.addAttribute("two", two);
+			model.addAttribute("totalOne", totalOne);
+			model.addAttribute("totalTwo", totalTwo);
+			model.addAttribute("totalOneTwo", totalOneTwo);
 
 			return "animalList/animalendangeredlist"; 
 		}

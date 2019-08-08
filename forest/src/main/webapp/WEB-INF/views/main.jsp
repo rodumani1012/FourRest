@@ -216,7 +216,7 @@
 		<ul id="#messages"></ul>
 		</div>
 		<div class="test">
-			<iframe class="iframe-chat" src="http://192.168.10.151:8880/"></iframe>
+<!-- 			<iframe class="iframe-chat" src="http://192.168.10.151:8880/"></iframe> -->
 		</div>
 </div>
 

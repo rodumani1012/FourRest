@@ -69,4 +69,9 @@ public class AnimalListBizImpl implements AnimalListBiz {
 		return dao.aniGetTotalCountEndangeredJoin(txt_search);
 	}
 
+	@Override
+	public int aniGetOne(String grade, String groups) {
+		return dao.aniGetOne(grade, groups);
+	}
+
 }

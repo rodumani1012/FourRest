@@ -22,4 +22,6 @@ public interface AnimalListBiz {
 	public List<AnimalEndangeredJoinDto> aniSelectListEndangeredJoin(int firstIndex, int recordCountPerPage,String txt_search);
 	public int aniInsertEndangeredJoin(List<AnimalEndangeredJoinDto> dtos);
 	public int aniGetTotalCountEndangeredJoin(String txt_search);
+	
+	public int aniGetOne(String grade, String groups);
 }

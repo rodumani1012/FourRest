@@ -80,45 +80,23 @@ div>img {
 		</tr>
 		<tr>
 			<td>멸종위기 Ⅰ 급</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<c:forEach var="one" items="${one }">
+				<td>${one }</td>
+			</c:forEach>
+			<td>${totalOne }</td>
 		</tr>
 		<tr>
 			<td>멸종위기 Ⅱ 급</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<c:forEach var="two" items="${two }">
+				<td>${two }</td>
+			</c:forEach>
+			<td>${totalTwo }</td>
 		</tr>
 		<tr>
 			<td>합계</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<c:forEach var="totalOneTwo" items="${totalOneTwo }">
+				<td>${totalOneTwo }</td>
+			</c:forEach>
 		</tr>
 	</table>
 	
@@ -167,6 +145,7 @@ div>img {
 			<a class="page-link" href="javascript:PageMove(${paging.finalPageNo})">&raquo;</a>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>

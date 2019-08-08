@@ -150,4 +150,18 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		
 		return res;
 	}
+
+	@Override
+	public int aniGetOne(String grade, String groups) {
+		
+		int res = 0;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("grade", grade);
+		map.put("groups", groups);
+		
+		res = sqlSession.selectOne(namespace + "aniGetOne", map);
+		
+		return res;
+	}
 }
