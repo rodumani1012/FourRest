@@ -34,7 +34,8 @@
 	<link rel="stylesheet" href="resources/assets/css/responsive.css" />
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+
 	<script type="text/javascript">
 		function idChk() {
 			var idchk = document.getElementsByName("id")[0];
@@ -58,8 +59,8 @@
 		function addpop() {
 			new daum.Postcode({
 				oncomplete: function (data) {
-					document.getElementById("zonecode").value = data.postcode;
 					document.getElementById("addr").value = data.address;
+					document.getElementById("zonecode").value = data.zonecode;
 					document.getElementsByName("zonecode")[0].title = "y";
 					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
 					// 예제를 참고하여 다양한 활용법을 확인해 보세요.
@@ -95,34 +96,43 @@
 				}
 			})
 		})
+		$(function(){
+			
+		
+		$('#g-recaptcha-response').change(function(){
+			alert('왔니')
+			$.ajax({
+					url: './VerifyRecaptcha.do',
+					type: 'post',
+					data: {
+						recaptcha: $("#g-recaptcha-response").val()
+							
+					},
+					success: function (data) {
+						switch (data) {
+							case 0:
+								alert("자동 가입 방지 봇 통과");
+								break;
 
-				function captcha(){
-					alert(recaptcha)
-					$.ajax({
-							url: './VerifyRecaptcha.do',
-							type: 'post',
-							data: {
-								recaptcha: $("#g-recaptcha-response")
-									.val()
-							},
-							success: function (data) {
-								switch (data) {
-									case 0:
-										alert("자동 가입 방지 봇 통과");
-										break;
+							case 1:
+								alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+								break;
 
-									case 1:
-										alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
-										break;
-
-									default:
-										alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : "
-											+ Number(data) + "]");
-										break;
-								}
-							}
-						});
+							default:
+								alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : "
+									+ Number(data) + "]");
+								break;
+						}
 					}
+				});
+			
+		})
+		})
+		
+
+		
+
+				
 				
 	</script>
 </head>
@@ -146,16 +156,16 @@
 					<div class="row justify-content-center">
 						<input type="text" class="form-control col-sm-3" id="id" title="n" name="id">
 					</div>
-					<label for="text">NAME : </label>
-
-
 					<div class="form-group">
 						<div class="row justify-content-center">
 							<input type="button" class="btn btn-light" value="중복확인" id="idchk" onclick="idChk()">
 						</div>
 					</div>
+					<div class="form-group">
+					<label for="text">NAME : </label>
 					<div class="row justify-content-center">
 						<input type="text" class="form-control col-sm-3" id="name" title="n" name="name">
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="pwd">Password : </label>
@@ -257,10 +267,12 @@ Forest(이하포레스트)는 여러분이 서비스를 이용하기 위해 일�
   						</textarea>
 					</div>
 					<div class="g-recaptcha" data-sitekey="6LewgLEUAAAAAEopqwZlzCZ2e7AsRhHgTfCVKwCm" id="captcha"
-						title="n" ondurationchange="captcha()"></div>
+						title="n"></div>
+						
 				</div>
 				<button type="submit" class="btn btn-success btn-lg">가입하기</button>
 			</form>
+			
 			<br> <br> <br> <br>
 		</div>
 	</div>
@@ -284,13 +296,15 @@ Forest(이하포레스트)는 여러분이 서비스를 이용하기 위해 일�
 		}
 		$(function () {
 			$("#form").submit(function () {
+				alert("왔니")
 				var id = document.getElementsByName("id")[0].title;
+				alert(id);
+				var name = document.getElementsByName("name")[0].title;
 				var pwchk = document.getElementsByName("pwchk")[0].title;
 				var addr = document.getElementsByName("zonecode")[0].title;
 				var phone = document.getElementsByName("phone3")[0].value;
 				var email = document.getElementsByName("emailNum")[0].value;
-
-				if (id == "n") {
+				if (id=="n") {
 					alert("아이디 중복 체크 해주세요")
 					document.getElementsByName("id")[0].focus();
 					return false;
@@ -310,8 +324,14 @@ Forest(이하포레스트)는 여러분이 서비스를 이용하기 위해 일�
 					alert("인증번호를 입력하세요.")
 					document.getElementsByName("emailNum")[0].focus();
 					return false;
+				} else if(name ==null || email ==""){
+					alert("이름을 입력하세요.")
+					document.getElementsByName("name")[0].focus();
+					return false;
+				} else if (recaptcha == null || recaptcha ==""){
+					alert("자동방지 봇을 확인 하세요")
+					return false;
 				} else {
-					alert('왔니')
 
 				}
 

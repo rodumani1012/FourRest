@@ -13,4 +13,9 @@
 	<insert id="insert_auth" parameterType="loginDto">
 		INSERT INTO AUTHORITIES VALUES(#{id},'ROLE_USER')
 	</insert>
+	
+	<select id="login" parameterType="map" resultType="loginDto">
+		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLED,ROLE FROM MEMBER WHERE ID = #{id}
+	</select>
+	
 </mapper>

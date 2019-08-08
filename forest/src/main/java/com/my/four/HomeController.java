@@ -15,12 +15,20 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpRequest;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.four.model.biz.FundingBiz;
@@ -39,6 +47,7 @@ public class HomeController {
 	@Autowired
 	private BCryptPasswordEncoder passEncoder;
 	
+
 	@Autowired
 	private LoginBiz biz;
 //	//recaptcha
@@ -202,12 +211,44 @@ public class HomeController {
 		return "chatting";
 	}
 	
+	//kakao 로그인
+	@RequestMapping(value="login.do")
+	public String kakaoLogin(Model model, String name,String id ,HttpServletRequest request) {
+		
+		
+				
+		boolean snschk = biz.snsChk(id);
+		logger.info("====pw"+name);
+		model.addAttribute("id",id);
+		model.addAttribute("name", name);
+		if(snschk==true) {
+			return "member/snsjoin";
+		}else {
+			LoginDto dto = biz.login(id);
+			System.out.println("1");
+			Authentication auth = new UsernamePasswordAuthenticationToken(dto, dto.getPw(),dto.getAuthorities());
+			System.out.println(dto.getId());
+			SecurityContext securityContext = SecurityContextHolder.getContext();
+			System.out.println(dto.getPw());
+			securityContext.setAuthentication(auth);
+			System.out.println("4");
+			HttpSession session = request.getSession(true);
+			System.out.println("5");
+			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+			System.out.println("6");
+			
+			return "redirect:main.do";
+		}
+		
+	}
+	
 	
 	@ResponseBody
     @RequestMapping(value = "VerifyRecaptcha.do", method = RequestMethod.POST)
     public int VerifyRecaptcha(HttpServletRequest request) {
         VerifyRecaptcha.setSecretKey("6LewgLEUAAAAAGv53SfBX_cHOgiNrxydgIlAnQ2-");
         String gRecaptchaResponse = request.getParameter("recaptcha");
+        System.out.println("왔니");
         System.out.println(gRecaptchaResponse);
         //0 = 성공, 1 = 실패, -1 = 오류
         try {
