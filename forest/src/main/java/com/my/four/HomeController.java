@@ -2,8 +2,13 @@ package com.my.four;
 
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -12,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -225,22 +233,29 @@ public class HomeController {
 			return "member/snsjoin";
 		}else {
 			LoginDto dto = biz.login(id);
-			System.out.println("1");
 			Authentication auth = new UsernamePasswordAuthenticationToken(dto, dto.getPw(),dto.getAuthorities());
-			System.out.println(dto.getId());
 			SecurityContext securityContext = SecurityContextHolder.getContext();
-			System.out.println(dto.getPw());
 			securityContext.setAuthentication(auth);
-			System.out.println("4");
 			HttpSession session = request.getSession(true);
-			System.out.println("5");
 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-			System.out.println("6");
 			
 			return "redirect:main.do";
 		}
 		
 	}
+	
+	@RequestMapping(value="mypagepwchk.do")
+	public String mypagepwchk() {
+		
+		return "member/mypagepwchk";
+	}
+	
+	@RequestMapping(value="mypage.do")
+	public String mypage() {
+	
+		return "member/mypage";
+	}
+	
 	
 	
 	@ResponseBody
@@ -260,5 +275,63 @@ public class HomeController {
             return -1;
         }
     }
+	
+	@RequestMapping(value = "/callback.do")
+	public String navLogin(HttpServletRequest request) throws Exception {  
+		return "member/navercallback";
+	}
+	
+	@RequestMapping(value="/naverlogin.do")
+	public String naverLogin(HttpServletRequest request,Model model) throws IOException, ParseException {
+		HttpSession session = request.getSession();
+		String token = (String) session.getAttribute("access_token"); // 네이버 로그인 접근 토큰
+		String header = "Bearer " + token;
+		String apiURL = "https://openapi.naver.com/v1/nid/me";
+		
+			URL url = new URL(apiURL);
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Authorization", header);
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if (responseCode == 200) { // 정상 호출
+               br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            } else { // 에러 발생
+               br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+            }
+            String inputLine;
+            StringBuffer response_buffer = new StringBuffer();
+            while ((inputLine = br.readLine()) != null) {
+               response_buffer.append(inputLine);
+            }
+            br.close();
+
+            System.out.println(response_buffer.toString());
+
+            JSONParser parser = new JSONParser();
+
+            JSONObject result = (JSONObject) parser.parse(response_buffer.toString());
+
+            String id = (String) ((JSONObject) result.get("response")).get("id");
+            String name = (String) ((JSONObject) result.get("response")).get("name");
+            
+            boolean snschk = biz.snsChk(id);
+    		logger.info("====pw"+name);
+    		model.addAttribute("id",id);
+    		model.addAttribute("name", name);
+    		if(snschk==true) {
+    			return "member/snsjoin";
+    		}else {
+    			LoginDto dto = biz.login(id);
+    			Authentication auth = new UsernamePasswordAuthenticationToken(dto, dto.getPw(),dto.getAuthorities());
+    			SecurityContext securityContext = SecurityContextHolder.getContext();
+    			securityContext.setAuthentication(auth);
+    			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+    			
+    			return "redirect:main.do";
+		} 
+		
+	}
+
 
 }
