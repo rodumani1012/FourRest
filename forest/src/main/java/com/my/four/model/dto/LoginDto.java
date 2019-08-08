@@ -1,6 +1,15 @@
 package com.my.four.model.dto;
 
-public class LoginDto {
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class LoginDto implements UserDetails {
 	private int usernum;
 	private String name;
 	private String id;
@@ -9,15 +18,49 @@ public class LoginDto {
 	private String email;
 	private String addr;
 	private String zonecode;
-	private int enabled;
-	private String role;
-	
+	private int enabledDb;
+	private List<String> roles;
+	private Collection<? extends GrantedAuthority> authorities;
 	public LoginDto() {
 		// TODO Auto-generated constructor stub
 	}
-
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		
+		return authorities;
+	}
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return pw;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 	public LoginDto(int usernum, String name, String id, String pw, String phone, String email, String addr,
-			String zonecode, int enabled, String role) {
+			String zonecode, int enabledDb, List<String> roles) {
 		super();
 		this.usernum = usernum;
 		this.name = name;
@@ -27,89 +70,73 @@ public class LoginDto {
 		this.email = email;
 		this.addr = addr;
 		this.zonecode = zonecode;
-		this.enabled = enabled;
-		this.role = role;
+		this.enabledDb = enabledDb;
+		this.roles = roles;
 	}
-
 	public int getUsernum() {
 		return usernum;
 	}
-
 	public void setUsernum(int usernum) {
 		this.usernum = usernum;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getId() {
 		return id;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public String getPw() {
 		return pw;
 	}
-
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
-
 	public String getPhone() {
 		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getAddr() {
 		return addr;
 	}
-
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-
 	public String getZonecode() {
 		return zonecode;
 	}
-
 	public void setZonecode(String zonecode) {
 		this.zonecode = zonecode;
 	}
-
-	public int getEnabled() {
-		return enabled;
+	public int getEnabledDb() {
+		return enabledDb;
 	}
-
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
+	public void setEnabledDb(int enabledDb) {
+		this.enabledDb = enabledDb;
 	}
-
-	public String getRole() {
-		return role;
+	public List<String> getRoles() {
+		return roles;
 	}
-
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 	
+	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
+   }
 	
+
 }

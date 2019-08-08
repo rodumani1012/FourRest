@@ -15,7 +15,14 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpRequest;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +47,7 @@ public class HomeController {
 	@Autowired
 	private BCryptPasswordEncoder passEncoder;
 	
+
 	@Autowired
 	private LoginBiz biz;
 //	//recaptcha
@@ -205,7 +213,10 @@ public class HomeController {
 	
 	//kakao 로그인
 	@RequestMapping(value="login.do")
-	public String kakaoLogin(Model model, String name,String id) {
+	public String kakaoLogin(Model model, String name,String id ,HttpServletRequest request) {
+		
+		
+				
 		boolean snschk = biz.snsChk(id);
 		logger.info("====pw"+name);
 		model.addAttribute("id",id);
@@ -213,8 +224,20 @@ public class HomeController {
 		if(snschk==true) {
 			return "member/snsjoin";
 		}else {
+			LoginDto dto = biz.login(id);
+			System.out.println("1");
+			Authentication auth = new UsernamePasswordAuthenticationToken(dto, dto.getPw(),dto.getAuthorities());
+			System.out.println(dto.getId());
+			SecurityContext securityContext = SecurityContextHolder.getContext();
+			System.out.println(dto.getPw());
+			securityContext.setAuthentication(auth);
+			System.out.println("4");
+			HttpSession session = request.getSession(true);
+			System.out.println("5");
+			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+			System.out.println("6");
 			
-			return "redirect:/login";
+			return "redirect:main.do";
 		}
 		
 	}

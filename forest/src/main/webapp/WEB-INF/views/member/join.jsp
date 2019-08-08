@@ -128,34 +128,7 @@
 			
 		})
 		})
-		$(document).ready(function() {
-            $("#test_btn").click(function() {
-            	alert($("#g-recaptcha-response").val())
-                $.ajax({
-                    url: './VerifyRecaptcha.do',
-                    type: 'post',
-                    data: {
-                        recaptcha: $("#g-recaptcha-response").val()
-                    },
-                    success: function(data) {
-                        switch (data) {
-                            case 0:
-                                alert("자동 가입 방지 봇 통과");
-                                break;
- 
-                            case 1:
-                                alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
-                                break;
- 
-                            default:
-                                alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
-                                break;
-                        }
-                    }
-                });
-            });
-        });
-
+		
 
 		
 
@@ -299,7 +272,7 @@
 				</div>
 				<button type="submit" class="btn btn-success btn-lg">가입하기</button>
 			</form>
-			<button id="test_btn">테스트 버튼</button>
+			
 			<br> <br> <br> <br>
 		</div>
 	</div>
@@ -316,7 +289,7 @@
 			</div>
 		</div>
 	</footer>
-	</div>
+	
 	<script type="text/javascript">
 		function emailNum() {
 			var emailNum = documnet.getElementsByName('emailNum')[0].value;
@@ -324,14 +297,15 @@
 		}
 		$(function () {
 			$("#form").submit(function () {
+				alert("왔니")
 				var id = document.getElementsByName("id")[0].title;
+				alert(id);
 				var name = document.getElementsByName("name")[0].title;
 				var pwchk = document.getElementsByName("pwchk")[0].title;
 				var addr = document.getElementsByName("zonecode")[0].title;
 				var phone = document.getElementsByName("phone3")[0].value;
 				var email = document.getElementsByName("emailNum")[0].value;
-				var recaptcha = document.getElementsById("g-recaptcha-response")[0].value;
-				if (id == "n") {
+				if (id=="n") {
 					alert("아이디 중복 체크 해주세요")
 					document.getElementsByName("id")[0].focus();
 					return false;

@@ -1,5 +1,7 @@
 package com.my.four.model.biz;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,12 @@ public class LoginBizImpl implements LoginBiz{
 	public boolean snsChk(String id) {
 		// TODO Auto-generated method stub
 		return dao.snsChk(id);
+	}
+
+	@Override
+	public LoginDto login(String id) {
+		System.out.println(dao);
+		return dao.login(id);
 	}
 	
 	
