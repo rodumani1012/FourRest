@@ -9,38 +9,36 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="../header.jsp"%>
 	<sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
-
-	<h1>회원가입</h1>
+	<br><br><br><br><br>
+	<h1 class="text-center">후원등록하기</h1>
+<div class="container d-flex justify-content-center">
 	<form action="insertres.do" method="post">
-		<table border="1">
+		<table class="table row d-flex justify-content-center">
 			<tr>
 				<th>펀딩 제목</th>
-				<td><input type="text" name="funtitle"></td>
+				<td><input class="form-control col-md-5" type="text" name="funtitle"></td>
 			</tr>
 			<tr>
 				<th>목표모금액</th>
-				<td><input type="text" name="goalmoney"></td>
+				<td><input class="form-control col-md-9" type="text" name="goalmoney"></td>
 			</tr>
 			<tr>
 				<th>기간</th>
-				<td><input type="text" name="fundate"></td>
+				<td><input class="form-control col-md-9" type="text" name="fundate"></td>
 			</tr>
 			<tr>
 				<th>펀딩 내용</th>
-				<td><textarea rows="10" cols="60" name="fun_content"></textarea></td>
-			</tr>
-			<tr>
-				<td><input type="hidden" name="fun_id" value=${user_id }></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-				<input type="submit" value="펀딩등록">
-				<input type="button" value="취소"></td>
+				<td><textarea class="form-control col-md-9" rows="10" cols="60" name="fun_content"></textarea></td>
 			</tr>
 		</table>
+			<input type="hidden" name="fun_id" value=${user_id }>
+			<input type="submit" value="펀딩등록">
+			<input type="button" value="취소" onclick="location.href='main.do'">
 	</form>
+</div>	
 </body>
 </html>

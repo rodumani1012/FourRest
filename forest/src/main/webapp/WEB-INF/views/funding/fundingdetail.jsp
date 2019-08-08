@@ -11,16 +11,17 @@
 </head>
 <body>
 
+	<%@ include file="../header.jsp"%>	
 	<sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
-
+<div class="container form-horizontal table-responsive">
 	<form action="fundingpay.do" method="post">
-	<table border="1">	
-		<tr>
-			<th>펀딩 제목</th>
-			<td><input type="text" name="funtitle" value="${dto.funtitle }" readonly="readonly" /></td>
-		</tr>
+	<br><br><br><br><br><br>
+		<div class="form-group form-group-lg form-inline">
+			<input class="form-control form-control-lg" type="text" name="funtitle" value="${dto.funtitle }" readonly="readonly" />
+		 </div>	
+	<table class="table table-bordered">	
 		<tr>
 			<th>목표 모금액</th>
 			<td>${dto.goalmoney }</td>
@@ -46,11 +47,11 @@
 			
     		<c:choose>
         		<c:when test="${dto.goalmoney > dto.nowmoney}">
-            		<input type="submit" value="후원하기"/>
-            		<input type="button" value="돌아가기" onclick="location.href='funlist.do'">
+            		<button class="btn btn btn-light" type="submit" value="후원하기">후원하기</button>
+            		<button class="btn btn btn-light" type="button" value="돌아가기" onclick="location.href='funlist.do'">돌아가기</button>
         		</c:when>
         		<c:otherwise>
-            		<input type="button" value="종료된 후원입니다." onclick="location.href='funlist.do'">
+            		<button class="btn btn btn-light" type="button" value="종료된 후원입니다." onclick="location.href='funlist.do'">종료된 후원입니다</button>
         		</c:otherwise>
     		</c:choose>
     		
@@ -58,6 +59,6 @@
 		</tr>
 	</table>
 	</form>
-
+</div>
 </body>
 </html>
