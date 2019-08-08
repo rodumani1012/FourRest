@@ -252,7 +252,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 		<!-- page-wrapper END-->
 	</div>

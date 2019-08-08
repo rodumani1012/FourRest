@@ -45,10 +45,12 @@
 </head>
 <body>
 
+<%@ include file="./header.jsp"%>
+
 	<sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
-
+<div class="container table-responsive">
 	<h1>전체 목록</h1>
 	<form action="muldel.do" method="post" id="muldelform">
 	<c:choose>
@@ -56,7 +58,8 @@
 			<h3>펀딩 정보가 없습니다.</h3>
 		</c:when>
 		<c:otherwise>
-			<table border="1">
+		<br><br><br><br><br><br><br><br><br><br>
+			<table class="table table-bordered">
 				<col width="30">
 				<col width="100">
 				<col width="200">
@@ -87,18 +90,14 @@
 						<td>${dto.fun_content}</td>
 					</tr>
 				</c:forEach>
-				<input type="hidden" name="id" value="${user_id }" />
-				<tr>
-					<td colspan="2">
-						<input type="button" value="처음으로" onclick="location.href='main.jsp'"> 
-						<input type="button" value="등록하기" onclick="location.href='insert.do'">
-						<input type="submit" value="선택삭제" />
-					</td>
-				</tr>
 			</table>
+				<input type="hidden" name="id" value="${user_id }" />
+				<button class="btn btn btn-light" type="button" onclick="location.href='main.jsp'">처음으로</button> 
+				<button class="btn btn btn-light" type="button" onclick="location.href='insert.do'">등록하기</button>
+				<button class="btn btn btn-light" type="submit">선택삭제</button>
 		</c:otherwise>
 	</c:choose>
-	</form>
-
+	 </form>
+</div>
 </body>
 </html>

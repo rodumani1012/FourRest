@@ -144,10 +144,9 @@ div[class="form-group"]>img {
       <button type="button" class="btn btn-outline-dark"
          onclick="location.href='contest_Writteform.do'">글작성</button>
    </div>
-   <div class="paging">
+   <div class="paging pagination pagination-md justify-content-center">
       <c:if test="${pm.prev }">
-         <a
-            href="contest.do?contentnum=9&pagenum=${pm.pagenum-1}&condition=${con}">
+         <a class="page-link" href="contest.do?contentnum=9&pagenum=${pm.pagenum-1}&condition=${con}">
             <span>◀</span>
          </a>
       </c:if>
@@ -155,18 +154,17 @@ div[class="form-group"]>img {
       <c:forEach begin="${pag.startPage }" end="${pag.endPage }" var="idx">
          <c:choose>
             <c:when test="${pag.pagenum==idx}">
-               <span id="now"><b><c:out value="【${idx }】"></c:out></b></span>
+               <span class="page-link" id="now"><b><c:out value="${idx }"></c:out></b></span>
             </c:when>
             <c:otherwise>
-               <a href="contest.do?contentnum=9&pagenum=${idx}"> <span
-                  id="notnow"><b><c:out value="【${idx }】"></c:out></b></span>
+               <a class="page-link" href="contest.do?contentnum=9&pagenum=${idx}"> <span
+                  id="notnow"><b><c:out value="${idx }"></c:out></b></span>
                </a>
             </c:otherwise>
          </c:choose>
       </c:forEach>
       <c:if test="${pm.next }">
-         <a
-            href="contest.do?contentnum=9&pagenum=${pm.pagenum+1}&condition=${con}">
+         <a class="page-link" href="contest.do?contentnum=9&pagenum=${pm.pagenum+1}&condition=${con}">
             <span>▶</span>
          </a>
       </c:if>

@@ -19,6 +19,11 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <script src="dist/lang/summernote-ko-KR.js"></script>
+<style type="text/css">
+body{
+	width:"100%";
+}
+</style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#summernote').summernote({
@@ -30,11 +35,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="../header.jsp"%>
+	<br><br><br><br><br><br><br>
 <h3 class="text-center" >하이디테일 conDto</h3>
 	<div class="container d-flex justify-content-center" id="Detailform">
-		<table class="table que-tbl">
+		<table class="table que-tbl table-bordered">
 			<col width="20px">
-			<col width="600px">
+			<col width="400px">
 			<tr>
 				<th>글 번호</th>
 				<td>${conDto.boardno}</td>
@@ -66,11 +73,18 @@
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_main.do'">목록으로</button>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postform.do'">참여하기</button>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postlist.do?pagenum=1&contentnum=9&conlistno=${conDto.boardno}'" >참여작보기</button>
+					<a id="kakao-link-btn" href="javascript:;">
+					<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style="width: 30px;height: 30px;"/>
+					</a>
+					<span>
+						<script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+						<script type="text/javascript">
+						new ShareNaver.makeButton({"type": "d"});
+					</script>
+</span>
 				</td>
 			</tr>
 		</table>
-	</div>
-	
   <script>
     function share() {
       var url = encodeURI(encodeURIComponent(myform.url.value));
@@ -79,18 +93,7 @@
       document.location = shareURL;
     }
   </script>
-</head>
-<body>
-<span>
-	<script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
-	<script type="text/javascript">
-	new ShareNaver.makeButton({"type": "d"});
-	</script>
-</span>
 
-<a id="kakao-link-btn" href="javascript:;">
-<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style="width: 30px;height: 30px;"/>
-</a>
 <script type="text/javascript" src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type='text/javascript'>
   //<![CDATA[
@@ -133,6 +136,7 @@
     });
   //]]>
 </script>
+	</div>
 
 </body>
 </html>

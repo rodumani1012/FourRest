@@ -88,13 +88,13 @@
 							<td><label onclick="nextCalendar()">> </label></td>
 						</tr>
 						<tr>
-							<td align="center"><font color="#F79DC2">일</td>
+							<td align="center"><font color="#F79DC2"/>일</td>
 							<td align="center">월</td>
 							<td align="center">화</td>
 							<td align="center">수</td>
 							<td align="center">목</td>
 							<td align="center">금</td>
-							<td align="center"><font color="skyblue">토</td>
+							<td align="center"><font color="skyblue"/>토</td>
 						</tr>
 					</table>
 				</div>
