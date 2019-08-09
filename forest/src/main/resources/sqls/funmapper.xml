@@ -23,8 +23,8 @@
 		UPDATE FUNDING SET PARTICIPANTS=#{count} WHERE FUNTITLE LIKE #{funtitle} 
 	</update>
 	
-	<update id="update" parameterType="map">
-		UPDATE FUNDING SET NOTICE='N' WHERE FUNTITLE = #{funtitle} AND FUN_ID = #{id}
+	<update id="muldel" parameterType="map">
+		UPDATE FUNDING SET NOTICE='N' WHERE FUNTITLE = #{dto.funtitle} AND FUN_ID = #{id}
 	</update>
 
 </mapper>
