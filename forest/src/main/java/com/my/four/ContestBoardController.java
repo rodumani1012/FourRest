@@ -48,18 +48,22 @@ public class ContestBoardController {
 		logger.info("<admin_conlistwriteform.do>");
 		int res =0;
 		String [] strarr = dto.getContent().split("<img ");
-		if(strarr.length!=1) {
+		System.out.println("길이가요"+strarr.length);
+		if(strarr.length==1) {
+			dto.setReppic("<img src='http://placehold.it/400x400'>");
+		}else {
 			String [] arr = strarr[1].split("style|>");
-			dto.setReppic("<img "+arr[0]+">");
+			dto.setReppic("<img "+arr[0]+">");			
 		}
 		res = listbiz.insert(dto);			
 		System.out.println(dto);
 		if(res>0) {
 			System.out.println("성공");
-			return "admin/admin_conlist";
+			return "redirect:admin_conlist.do";
+		}else {
+			return "redirect:admin_conlist.do";			
 		}
 		
-		return "admin/admin_conlist";
 	}
 	//유저 contestmain가기
 	@RequestMapping("contest_main.do")
@@ -85,10 +89,11 @@ public class ContestBoardController {
 	public String contest_post(@ModelAttribute ContestBoardDto dto) {
 		int res =0;
 		String [] strarr = dto.getContent().split("<img ");
-		if(strarr.length!=1) {
-			
+		if(strarr.length==1) {
+			dto.setReppic("<img src='http://placehold.it/400x400'>");			
+		}else {
 			String [] arr = strarr[1].split("style|>");
-			dto.setReppic("<img "+arr[0]+">");
+			dto.setReppic("<img "+arr[0]+">");			
 		}
 		res = biz.boardInsert(dto);
 		if(res>0) {

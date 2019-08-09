@@ -1,8 +1,12 @@
- $(function() {
-    getJson();
-  });
 
-  function getJson() {
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 15 // 지도의 확대 레벨
+    };  
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
 
     $.getJSON("resources/assets/json/map.json", function(geson) {
     	
@@ -16,20 +20,7 @@
     	displayArea(coordinates,name);
     });
     	
-//      $.ajax({
-//        url:"maptest.do?",
-//        method:"post",
-//        data:{"obj":JSON.stringify(data)},
-//        success:function(msg){
-//          alert(msg+"성공");
-//        },
-//        error:function () {
-//          alert("실패");
-//        }
-//
-//      });
-    
-   });
+    });
     
     var polygons=[];
     
@@ -47,7 +38,7 @@
     	
     	var polygon = new kakao.maps.Polygon({
     		map : map, // 다각형을 표현할 지도 객체
-    		path : path, // 폴리곤 path
+    		path : path, // 폴리곤 path(그려질 다각형의 좌표 배열입니다)
     		strokeWeight: 5, // 선의 두께입니다
     	    strokeColor: '#39DE2A', // 선의 색깔입니다
     	    strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
@@ -74,5 +65,4 @@
     }
     
     
-    
-  }
+
