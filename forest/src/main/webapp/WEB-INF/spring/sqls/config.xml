@@ -12,6 +12,8 @@
 		<typeAlias type="com.my.four.model.dto.FundingLoadDto" alias="FundingLoadDto"/>
 		<typeAlias type="com.my.four.model.dto.ContestBoardDto" alias="ContestBoardDto"/>
 		<typeAlias type="com.my.four.model.dto.ContestListDto" alias="ContestListDto"/>
+		<typeAlias type="com.my.four.model.dto.CalendarDto" alias="CalendarDto"/>
+		<typeAlias type="com.my.four.model.dto.VolmemberDto" alias="VolmemberDto"/>
 	</typeAliases>
 	<!-- resource : java Resources -->
 	<!-- resource : src/main/resources -->
@@ -22,6 +24,7 @@
 		<mapper resource="/sqls/animalMapper.xml"/>
     	<mapper resource="/sqls/contest_mapper.xml"/>
     	<mapper resource="/sqls/contestlist_mapper.xml"/>
+    	<mapper resource="/sqls/calendarmapper.xml"/>
 	</mappers>
 	
 	

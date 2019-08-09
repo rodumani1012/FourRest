@@ -41,8 +41,8 @@ public class FundingBizImpl implements FundingBiz {
 	}
 
 	@Override
-	public int muldel(String[] chk) {
-		return dao.muldel(chk);
+	public int muldel(FundingDto dto, String id) {
+		return dao.muldel(dto, id);
 	}
 
 	@Override

@@ -94,15 +94,20 @@ public class FundingDaoImpl implements FundingDao {
 	}
 
 	@Override
-	public int muldel(String[] chk) {
+	public int muldel(FundingDto dto, String id) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dto", dto);
+		map.put("id", id);
+
 		int res = 0;
-		List<String> list = new ArrayList<String>();
 		
-		for(String i : chk) {
-			list.add(i);
+		try {
+			res = sqlSession.update(namespace + "muldel", map);
+		} catch (Exception e) {
+			System.out.println("오류라고?");
+			e.printStackTrace();
 		}
-		
-		res = sqlSession.delete(namespace + "muldel", list);
 		
 		return res;
 	}
