@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -55,6 +56,7 @@ public class HomeController {
 	@Autowired
 	private BCryptPasswordEncoder passEncoder;
 	
+	
 
 	@Autowired
 	private LoginBiz biz;
@@ -64,7 +66,6 @@ public class HomeController {
 	
 	@RequestMapping(value="main.do")
 	public String main() {
-
 		logger.info("메인!!");
 
 		return "main";
@@ -251,9 +252,17 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="mypage.do")
-	public String mypage() {
-	
-		return "member/mypage";
+	public String mypage(String pwchk,Principal principal) {
+		LoginDto dto = biz.pwChk(principal.getName());
+		boolean chk = passEncoder.matches(pwchk, dto.getPw());
+		if(chk==true) {
+			
+			return "member/mypage";	
+		}else {
+			logger.info("와이!");
+			return "redirect:member/mypagepwchk.do";
+		}
+		
 	}
 	
 	

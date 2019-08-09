@@ -97,7 +97,7 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 
 	@Override
 	public int answProc(ContestBoardDto dto) {
-		// TODO Auto-generated method stub
+
 		return dao.answProc(dto);
 	}
 

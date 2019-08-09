@@ -48,9 +48,11 @@ public class ContestBoardController {
 		logger.info("<admin_conlistwriteform.do>");
 		int res =0;
 		String [] strarr = dto.getContent().split("<img ");
-		String [] arr = strarr[1].split("style|>");
-		dto.setReppic("<img "+arr[0]+">");
-		res = listbiz.insert(dto);
+		if(strarr.length!=1) {
+			String [] arr = strarr[1].split("style|>");
+			dto.setReppic("<img "+arr[0]+">");
+		}
+		res = listbiz.insert(dto);			
 		System.out.println(dto);
 		if(res>0) {
 			System.out.println("성공");
@@ -83,8 +85,11 @@ public class ContestBoardController {
 	public String contest_post(@ModelAttribute ContestBoardDto dto) {
 		int res =0;
 		String [] strarr = dto.getContent().split("<img ");
-		String [] arr = strarr[1].split("style|>");
-		dto.setReppic("<img "+arr[0]+">");
+		if(strarr.length!=1) {
+			
+			String [] arr = strarr[1].split("style|>");
+			dto.setReppic("<img "+arr[0]+">");
+		}
 		res = biz.boardInsert(dto);
 		if(res>0) {
 			System.out.println("성공");
@@ -107,10 +112,13 @@ public class ContestBoardController {
 		list = biz.selectListOption(conlistno,pag.getStartCon(),pag.getEndCon());
 		threelist = biz.selectThree(conlistno);
 		conlist = listbiz.selectList();
+		ContestListDto listDto = listbiz.selectOne(conlistno);
 		model.addAttribute("list",list);
 		model.addAttribute("threelist",threelist);
 		model.addAttribute("conlist",conlist);
 		model.addAttribute("pag",pag);
+		model.addAttribute("conlistno",conlistno);
+		model.addAttribute("listDto",listDto);
 		return "contest/contest_postlist";
 	}
 	//list의 디테일보러간다
@@ -149,6 +157,45 @@ public class ContestBoardController {
 		}
 			return 5.0+"";
 	}
+	//관리자 공모글 삭제  매퍼확인
+	@RequestMapping("contest_deletelist.do")
+	public String contest_deletelist(int boardno) {
+		int res =0;
+		res = listbiz.delete(boardno);
+		if(res>0)
+			return "redirect:admin_conlist.do";
+		return "redirect:admin_conlist.do";
+	}
+	//참여글 삭제
+	@RequestMapping(value="contest_delete.do")
+	public String delete(@RequestParam int groupno,Model model) {
+		int res =0;
+		res = biz.boardDelete(groupno);
+		System.out.println(groupno);
+		model.addAttribute("pagenum",1);
+		model.addAttribute("contentnum",9);
+		if(res>0) {
+			return "redirect:contest.do";
+		}else {
+			System.out.println("삭제안댐");
+			return "redirect:contest.do";			
+		}
+	}
+	//댓글등록
+	@RequestMapping("contest_replyform.do")
+	public String postreply(@ModelAttribute ContestBoardDto dto,Model model,@RequestParam("parentno") int parentno) {
+		int res =0;
+		res = biz.insertAns(dto);
+		int result =0;
+		if(res>0) 
+			result = biz.replyCntup(parentno);
+		else 
+			System.out.println("안댐");
+		if(result>0)	
+			return "redirect:contest_detail.do?boardno="+parentno;
+		return "redirect:contest_detail.do?boardno="+parentno;
+		
+	}
 	
 	@RequestMapping(value="contest_update.do")
 	public String contestUpdate(Model model, ContestBoardDto dto) {
@@ -172,19 +219,6 @@ public class ContestBoardController {
 		return "redirect:detail.do";
 	}
 
-	@RequestMapping(value="contest_delete.do")
-	public String delete(@RequestParam int groupno,Model model) {
-		int res =0;
-		res = biz.boardDelete(groupno);
-		System.out.println(groupno);
-		model.addAttribute("pagenum",1);
-		model.addAttribute("contentnum",9);
-		if(res>0) {
-			return "redirect:contest.do";
-		}else {
-			System.out.println("삭제안댐");
-			return "redirect:contest.do";			
-		}
-	}
+
 	
 }

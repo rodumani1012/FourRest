@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="maparea">
+	
+	<insert id="trashdb" parameterType="map" >
+		INSERT ALL
+		<foreach collection="list" item="area">
+			INTO AREA_TRASH(REPYEAR,AREA,AMOUNT)
+			VALUES(#{area.repyear},#{area.area},#{area.amount})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<insert id="waterdb" parameterType="map" >
+		INSERT ALL
+		<foreach collection="list" item="area">
+			INTO AREA_WATER(REPYEAR,AREA,AMOUNT)
+			VALUES(#{area.repyear},#{area.area},#{area.amount})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<insert id="airdb" parameterType="map" >
+		INSERT ALL
+		<foreach collection="list" item="area">
+			INTO AREA_AIR(REPYEAR,AREA,AMOUNT)
+			VALUES(#{area.repyear},#{area.area},#{area.amount})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<select id="trashin" resultType="int">
+		SELECT COUNT(*) FROM AREA_TRASH
+	</select>
+	<select id="waterin" resultType="int">
+		SELECT COUNT(*) FROM AREA_WATER
+	</select>
+	<select id="airin" resultType="int">
+		SELECT COUNT(*) FROM AREA_AIR
+	</select>
+	
+	
+
+</mapper>

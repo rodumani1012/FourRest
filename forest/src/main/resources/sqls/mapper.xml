@@ -18,4 +18,8 @@
 		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLED,ROLE FROM MEMBER WHERE ID = #{id}
 	</select>
 	
+	<select id="pwChk" parameterType="map" resultType="loginDto">
+		SELECT PW FROM MEMBER WHERE ID = #{id}	
+	</select>
+	
 </mapper>

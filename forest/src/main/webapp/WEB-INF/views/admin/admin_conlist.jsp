@@ -13,6 +13,8 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="resources/assets/css/admin.css" rel="stylesheet"
+	type="text/css">
 <style type="text/css">
 body {
 	font-family: 'Open Sans', sans-serif;
@@ -184,6 +186,26 @@ body {
 </style>
 </head>
 <body>
+	<!--top nav start=======-->
+	<nav class="navbar navbar-inverse top-navbar" id="top-nav">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="" href="admin.do"><img align="left"
+					src="resources/image/logowhite.png" alt="로곤디" width="103"
+					height="49"></a>
+			</div>
+			<ul class="social-icon pull-right list-inline">
+				<li class="dropdown"><a class="messages-link dropdown-toggle"
+					href="#"><span class="glyphicon glyphicon-envelope"></span> </a></li>
+				<li class="dropdown"><a class="alerts-link dropdown-toggle"
+					href="#"><span class="glyphicon glyphicon-bell"></span> </a></li>
+				<li class="dropdown"><a class="tasks-link dropdown-toggle"
+					href="#"><span class="glyphicon glyphicon-th-list"></span> </a></li>
+				<li class="dropdown"><a class="user-link dropdown-toggle"
+					href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+			</ul>
+		</div>
+	</nav>
 	<div class="container">
 		<div class="row">
 			<section class="content">
@@ -195,11 +217,11 @@ body {
 									<button type="button" class="btn btn-success btn-filter"
 										data-target="pagado">진행중</button>
 									<button type="button" class="btn btn-warning btn-filter"
-										data-target="pendiente">마감임박</button>
+										data-target="pendiente">오늘마감</button>
 									<button type="button" class="btn btn-danger btn-filter"
 										data-target="cancelado">종료</button>
 									<button type="button" class="btn btn-default btn-filter"
-										data-target="all">진행예정</button>
+										data-target="all">전체</button>
 								</div>
 							</div>
 							<div class="table-container">
@@ -221,16 +243,48 @@ body {
 										</c:when>
 										<c:otherwise>
 											<c:forEach items="${conlist}" var="dto">
+												<jsp:useBean id="now" class="java.util.Date"/>
+												<fmt:formatDate value="${now }" pattern="yyyy-MM-dd" var="today"/>
+												<fmt:formatDate value="${dto.startdate }" pattern="yyyy-MM-dd" var="start"/>
+												<fmt:formatDate value="${dto.enddate }" pattern="yyyy-MM-dd" var="end"/>
+												
+												<c:choose>
+													<c:when test="${today<end&&today>start}">
 												<tr data-status="pagado">
 													<td>
 													</td>
 													<td>${dto.boardno}</td>
 													<td><a href="#">${dto.title }</a></td>
-													<td><fmt:formatDate value="${dto.startdate }"
-															pattern="yyyy-MM-dd" /> ~ <fmt:formatDate
-															value="${dto.enddate }" pattern="yyyy-MM-dd" /></td>
+													<td>
+													${start }~${end } <a style="color:#4cae4c; font-weight: bold; ">(진행중)</a>
+													</td>
 													<td>${dto.partnum }</td>
-												</tr>
+												</tr>													
+													</c:when>
+													<c:when test="${today==end }">
+													<tr data-status="pendiente">
+													<td>
+													</td>
+													<td>${dto.boardno}</td>
+													<td><a href="#">${dto.title }</a></td>
+													<td>
+													${start }~${end }<a style="color:#eea236; font-weight: bold;">(오늘마감)</a>
+													<td>${dto.partnum }
+													</td>
+												</tr>							
+													</c:when>
+													<c:when test="${today>end}">
+													<tr data-status="cancelado">
+													<td>
+													</td>
+													<td>${dto.boardno}</td>
+													<td><a href="#">${dto.title }</a></td>
+													<td>
+													${start }~${end }<a style="color:#d43f3a; font-weight: bold;">(종료)</a>
+													<td>${dto.partnum }</td>
+												</tr>															
+													</c:when>
+												</c:choose>
 											</c:forEach>
 										</c:otherwise>
 									</c:choose>
