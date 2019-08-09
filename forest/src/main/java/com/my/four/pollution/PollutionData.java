@@ -1,70 +1,104 @@
 package com.my.four.pollution;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Set;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.my.four.model.dto.TrashAreaDto;
-import com.my.four.model.dto.WaterAreaDto;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import com.my.four.model.dto.AreaDto;
 
 public class PollutionData {
-	
 
-	TrashAreaDto trashDto = null;
-	WaterAreaDto waterDto =null;
+	public List<AreaDto> returnTrashdata(String path) throws IOException {
 
-	public static void pull() throws IOException {
-		
-		
-//	ClassPathResource cpr = new ClassPathResource("garbage.xlsx");	
-//	System.out.println(cpr.getFile().getAbsolutePath());
-	
-//	
-//	FileInputStream fis = new FileInputStream(cpr.getFile());
-//	
-//	XSSFWorkbook wb = new XSSFWorkbook(fis);
-//	
-//	XSSFSheet sh = wb.getSheetAt(0);
-//	
-//	XSSFCell cell = sh.getRow(0).getCell(0);
-//	
-//	String ty = cell.getCellType()+"";
-//	
-//	
-	
-	
-	
-	
-//	ClassPathResource resource = new ClassPathResource("areadata/garbage.xlsx");	
-//	System.out.println(resource.getPath());
-//	System.out.println(resource.getURL());
-//	System.out.println(resource.getURI());
-//	System.out.println(resource.getInputStream());
+		BufferedReader br;
 
-	
-//	Path path = Paths.get(resource.getURI());
-//	List<String> content = Files.readAllLines(path);
-
-	
-//	XSSFWorkbook wb = new XSSFWorkbook(path);
-//	
-//	List<HashMap<String,Object>> listgb= new ArrayList<HashMap<String,Object>>();
-//	
-//	for(Row row:wb.getSheetAt(0)) {
-//		if(row.getRowNum()==1)
-//			continue;
-//		HashMap<String,Object> hmgb = new HashMap<String,Object>();
-//		hmgb.put("2011", new BigDecimal((row.getCell(2)).getNumericCellValue()));
-//		
-//		
-//	}
-//
-//	
-//	}
+		br = Files.newBufferedReader(Paths.get(path), Charset.defaultCharset());
+		String line = "";
+		List<AreaDto> list = new ArrayList<AreaDto>();
+		br.readLine();
+		br.readLine();
+		while ((line = br.readLine()) != null) {
+			System.out.println(line);
+			String[] arr = line.split(",");
+			int year = 2011;
+			for (int i = 1; i < arr.length; i++) {
+				AreaDto dto = new AreaDto();
+				dto.setArea(arr[0]);
+				dto.setRepyear(year);
+				if(arr[i].equals("NaN"))
+					dto.setAmount(0.0);
+				else 
+					dto.setAmount(Double.parseDouble(arr[i]));
+				list.add(dto);
+				year++;
+			}
+		}
+		return list;
 	}
-		
-public static void main(String[] args) throws IOException {
-	pull();
-}	
 	
+	
+	public List<AreaDto> returnairdata(String path) throws IOException {
+
+		BufferedReader br;
+
+		br = Files.newBufferedReader(Paths.get(path), Charset.defaultCharset());
+		String line = "";
+		List<AreaDto> list = new ArrayList<AreaDto>();
+		br.readLine();
+		br.readLine();
+		while ((line = br.readLine()) != null) {
+			System.out.println(line);
+			String[] arr = line.split(",");
+			AreaDto dto = new AreaDto();
+			dto.setRepyear(Integer.parseInt(arr[0].substring(0, 4)));
+			if(arr[1].equals("충청북도"))
+				dto.setArea("충북");
+			else if(arr[1].equals("충청남도"))
+				dto.setArea("충남");
+			else if(arr[1].equals("전라북도"))
+				dto.setArea("전북");
+			else if(arr[1].equals("전라남도"))
+				dto.setArea("전남");
+			else if(arr[1].equals("경상북도"))
+				dto.setArea("경북");
+			else if(arr[1].equals("경상남도"))
+				dto.setArea("경남");
+			else if(arr[1].equals("전국"))
+				continue;
+			else {
+				dto.setArea(arr[1].substring(0, 2));				
+			}
+			dto.setAmount(Double.parseDouble(arr[2]));
+			list.add(dto);
+		}
+		return list;
+	}
+	
+	public void mapjsonreturn(String path) throws FileNotFoundException, IOException, ParseException {
+		
+		JSONParser parser = new JSONParser();
+		
+		String str=Paths.get(path)+"";
+		Object obj = parser.parse(new FileReader(str));
+		
+		JSONObject jsonObj =(JSONObject) obj;
+		
+		String area_kor = (String)jsonObj.get("properties");
+		
+		
+		
+	}
+	
+	
+
 }

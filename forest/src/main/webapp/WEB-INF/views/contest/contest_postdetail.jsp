@@ -74,7 +74,7 @@
             data: {"starCount":starCount,"boardNum":boardNum},
             dateType:"json",
             success:function (data) {
-              alert('별점을주었습니다.');
+              alert('평점을주었습니다.');
               $("#starhere").text(data);
             },
             fail:function () {
@@ -159,18 +159,17 @@
   </c:choose>
   <tr>
     <td colspan="4">
-      <form action="replyform.do" method="post">
+      <form action="contest_replyform.do" method="post">
         <input type="hidden" name="parentno" value="${dto.boardno }">
-        <input type="hidden" name="groupnoReply" value="${dto.groupno}">
+        <input type="hidden" name="groupno" value="${dto.groupno}">
         <table>
           <tr>
-            <th colspan="2">작성자:<input type="text" style="width: 100px"
-                                       name="writerReply" value="testid" readonly="readonly">
+            <th colspan="2">
+            	작성자:<input type="text" style="width: 100px" name="writer" value="testid" readonly="readonly">
             </th>
           </tr>
           <tr>
-            <td><textarea rows="10" cols="100" name="contentReply"
-                          placeholder="댓글을 작성해주세요"></textarea></td>
+            <td><textarea rows="10" cols="100" name="content" placeholder="댓글을 작성해주세요"></textarea></td>
           </tr>
           <tr>
             <td><button class="btn btn-outline-dark" type="submit" style="float: right;">답변등록</button>

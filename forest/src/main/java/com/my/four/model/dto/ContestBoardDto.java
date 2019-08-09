@@ -29,7 +29,14 @@ public class ContestBoardDto {
 		this.boardno=boardno;
 		this.likerate=likerate;
 	}
-	
+	//댓글작성할때
+	public ContestBoardDto(int boardno, int groupno, String writer, String content) {
+		super();
+		this.boardno = boardno;
+		this.groupno = groupno;
+		this.writer = writer;
+		this.content = content;
+	}
 	//게시글작성할때
 	public ContestBoardDto(int conlistno, String writer, String title, String content) {
 		super();
@@ -38,7 +45,6 @@ public class ContestBoardDto {
 		this.title = title;
 		this.content = content;
 	}
-
 
 	public ContestBoardDto(int conlistno, int boardno, int groupno, int groupsq, int replyno, double likerate,
 			int likecnt, String writer, String title, String reppic, String content, Date regdate) {
