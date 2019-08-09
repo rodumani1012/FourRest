@@ -37,6 +37,12 @@ public class LoginBizImpl implements LoginBiz{
 		System.out.println(dao);
 		return dao.login(id);
 	}
+
+	@Override
+	public LoginDto pwChk(String pwChk) {
+		// TODO Auto-generated method stub
+		return dao.pwChk(pwChk);
+	}
 	
 	
 }

@@ -13,4 +13,5 @@ public interface LoginDao {
 	public int memberInsert(LoginDto dto);
 	public boolean snsChk(String id);
 	public LoginDto login(String id);
+	public LoginDto pwChk(String pwChk);
 }

@@ -64,6 +64,16 @@ public class LoginDaoImpl implements LoginDao{
 		dto= sqlSesssion.selectOne(namespace+"login",map);
 		return dto;
 	}
+
+	@Override
+	public LoginDto pwChk(String id) {
+		LoginDto dto = new LoginDto();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		System.out.println("-pwchk"+id);
+		dto=sqlSesssion.selectOne(namespace+"pwChk", id);
+		return dto;
+	}
 	
 	
 	
