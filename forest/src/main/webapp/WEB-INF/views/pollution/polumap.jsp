@@ -21,7 +21,6 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-
 // 다각형을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 다각형을 표시합니다
 var polygonPath = [
 	new kakao.maps.LatLng(33.5641592794216,126.76810769405087),
@@ -78,14 +77,28 @@ polygon.setMap(map);
 // 지도에 다각형을 표시합니다
 
 
-
+// 다각형에 마우스오버 이벤트가 발생했을 때 변경할 채우기 옵션입니다
 var mouseoverOption={
-	fillColor:'red',
-	fillOpacity:0.5
+	fillColor:'red', // 채우기 색깔입니다 
+	fillOpacity:0.5 // 채우기 불투명도 입니다  
 };
+
+//다각형에 마우스아웃 이벤트가 발생했을 때 변경할 채우기 옵션입니다
+var mouseoutOption = {
+    fillColor: 'blue', // 채우기 색깔입니다 
+    fillOpacity: 0.5 // 채우기 불투명도 입니다        
+};
+
 kakao.maps.event.addListener(polygon,'mouseover',function(){
-	polygon.getOptions(mouseoverOption);
+    // 다각형의 채우기 옵션을 변경합니다
+	polygon.setOptions(mouseoverOption);
 });
+
+kakao.maps.event.addListener(polygon, 'mouseout', function() { 
+    // 다각형의 채우기 옵션을 변경합니다
+    polygon.setOptions(mouseoutOption);
+}); 
+
 //다각형에 마우스다운 이벤트를 등록합니다
 var downCount = 0;
 kakao.maps.event.addListener(polygon, 'mousedown', function() { 

@@ -11,11 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-
-	var arlist = new Array();
-	
-</script>
 </head>
 <body>
 	<sec:authorize access="isAuthenticated()">
@@ -57,29 +52,16 @@
 				
 	    		<c:choose>
 	        		<c:when test="${dto.calrecpeo > dto.calnowpeo}">
-	        		<c:choose>
-		        		<c:when test="${empty list }">
-		        			<label>없을때</label>
-		        			<input type="button" value="봉사 신청하기" onclick="location.href='calapply.do?caltitle=${dto.caltitle }&id=${user_id }'"/>
-		            		<input type="button" value="돌아가기" onclick="location.href='calendar.do'">
-		            		<input type="button" value="삭제하기" onclick="location.href='caldelete.do?caltitle=${dto.caltitle}&id=${user_id }'">
-		        		</c:when>
-	        		</c:choose>
-	        			<c:forEach items="${list }" var="dto1">
-	        				<c:set var="compare" value="${fn:contains(dto1.volid, user_id)"/>
-	        				arlist.push("${compare }")
+	        			<c:forEach items="${list }" var="dto1" varStatus="status">
+	        				<c:set var="compare" value="${fn:contains(dto1.volid, user_id)}"/>
 	        			</c:forEach>
 	        				<c:choose>
-							<c:when test="${fn:contains(arlist, true) }">
-								<label>${arlist }</label>
-								<label>${fn:contains(arlist, true) }</label>
+							<c:when test="${fn:contains(c == true}">
 								<input type="button" value="신청 취소하기" onclick="location.href='calcancel.do?caltitle=${dto.caltitle }&id=${user_id }'"/>
 	            				<input type="button" value="돌아가기" onclick="location.href='calendar.do'">
 	            				<input type="button" value="삭제하기" onclick="location.href='caldelete.do'">
 							</c:when>
 							<c:otherwise>
-								<label>${arlist }</label>
-								<label>${fn:contains(arlist, true) }</label>
 								<input type="button" value="봉사 신청하기" onclick="location.href='calapply.do?caltitle=${dto.caltitle }&id=${user_id }'"/>
 	            				<input type="button" value="돌아가기" onclick="location.href='calendar.do'">
 	            				<input type="button" value="삭제하기" onclick="location.href='caldelete.do'">
