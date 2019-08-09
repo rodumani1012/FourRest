@@ -110,6 +110,10 @@
 								<button type="button" class="btn btn-link text-dark"
 									onclick="location.href='joinform.do'">JOIN</button>
 							</sec:authorize></li>
+							<li><sec:authorize access="isAuthenticated()">
+								<button type="button" class="btn btn-link text-dark"
+									onclick="location.href='mypagepwchk.do'">내정보</button>
+							</sec:authorize></li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
