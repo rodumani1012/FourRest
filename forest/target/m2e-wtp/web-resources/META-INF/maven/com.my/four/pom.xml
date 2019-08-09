@@ -268,7 +268,6 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>4.1.0</version>
 		</dependency>
-
 		<!-- 구글 리캡챠 -->
 		<dependency>
 			<groupId>net.tanesha.recaptcha4j</groupId>
@@ -287,7 +286,6 @@
 			<artifactId>javax.json</artifactId>
 			<version>1.1</version>
 		</dependency>
-
 		<!-- jxl -->
 		<dependency>
 			<groupId>net.sourceforge.jexcelapi</groupId>
