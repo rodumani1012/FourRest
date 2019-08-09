@@ -236,7 +236,7 @@ public class AnimalList {
 		groups.add("곤충류");
 		groups.add("무척추동물");
 		groups.add("육상식물");
-		groups.add("해조류");
+		groups.add("해초류");
 		groups.add("고등균류");
 		
 		List<List<String>> list = new ArrayList<List<String>>();

@@ -106,20 +106,19 @@
 				<a class="page-link" href="javascript:PageMove(${paging.nextPageNo})">&gt;</a> 
 				<a class="page-link" href="javascript:PageMove(${paging.finalPageNo})">&raquo;</a>
 			</div>
-		<div class="cotainer">
-			<table class="pull-right">
-			
-				<tr>
-					<td colspan="4">
-						<div class="form-group form-inline">
-						<input type="text" class="form-control" id="txt_search" value="${txt_search }"> 
-						<button type="button" class="small btn btn-secondary"
-							onclick="javascript:PageMove(${paging.pageNo})">검색하기</button>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>	
+			<div class="cotainer">
+				<table class="pull-right">
+					<tr>
+						<td colspan="4">
+							<div class="form-group form-inline">
+							<input type="text" class="form-control" id="txt_search" value="${txt_search }"> 
+							<button type="button" class="small btn btn-secondary"
+								onclick="javascript:PageMove(${paging.pageNo})">검색하기</button>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>	
 		</div>
 	</div>
 
