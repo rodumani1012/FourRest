@@ -41,49 +41,17 @@
 			<div class="navbar-header">
 				<a class="" href="admin.do"><img align="left"
 					src="resources/image/logowhite.png" alt="로곤디" width="103"
-					height="49"></a> <a href="javascript:;" class="sidebar-toggle">
-					<i class="fa fa-bars"></i>
-				</a> <span class="close-btn" id="hide-btn"><i class="fa fa-times"
-					aria-hidden="true"></i></span>
+					height="49"></a>
 			</div>
-
 			<ul class="social-icon pull-right list-inline">
-
 				<li class="dropdown"><a class="messages-link dropdown-toggle"
-					data-toggle="dropdown" href="#"><span
-						class="glyphicon glyphicon-envelope"></span> <span class="number">4</span>
-						<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-					</ul></li>
-
+					href="#"><span class="glyphicon glyphicon-envelope"></span> </a></li>
 				<li class="dropdown"><a class="alerts-link dropdown-toggle"
-					data-toggle="dropdown" href="#"><span
-						class="glyphicon glyphicon-bell"></span> <span class="number">6</span>
-						<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Page 1-1</a></li>
-						<li><a href="#">Page 1-2</a></li>
-						<li><a href="#">Page 1-3</a></li>
-					</ul></li>
-
+					href="#"><span class="glyphicon glyphicon-bell"></span> </a></li>
 				<li class="dropdown"><a class="tasks-link dropdown-toggle"
-					data-toggle="dropdown" href="#"><span
-						class="glyphicon glyphicon-th-list"></span> <span class="number">11</span>
-						<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Page 1-1</a></li>
-						<li><a href="#">Page 1-2</a></li>
-						<li><a href="#">Page 1-3</a></li>
-					</ul></li>
-
+					href="#"><span class="glyphicon glyphicon-th-list"></span> </a></li>
 				<li class="dropdown"><a class="user-link dropdown-toggle"
-					data-toggle="dropdown" href="#"><span
-						class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Page 1-1</a></li>
-						<li><a href="#">Page 1-2</a></li>
-						<li><a href="#">Page 1-3</a></li>
-					</ul></li>
+					href="#"><span class="glyphicon glyphicon-user"></span></a></li>
 			</ul>
 		</div>
 	</nav>
@@ -92,17 +60,6 @@
 	<!-- begin SIDE NAV USER PANEL -->
 	<div class="container-1" id="user-profil">
 		<ul id="side" class="nav navbar-nav-1 side-nav">
-
-			<li class="side-user">
-				<p class="welcome">
-					<i class="fa fa-key"></i> Logged in as
-				</p>
-				<p class="name tooltip-sidebar-logout">
-					Sumit <span class="last-name">Kumar</span> <a href="#"><i
-						class="fa fa-sign-out"></i></a>
-				</p>
-			</li>
-
 			<li class="nav-search">
 				<form class="navbar-form">
 					<div class="input-group">
@@ -126,27 +83,23 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="page-title">
-						<h2>ADMIN BOARD<small>관리자페이지</small></h2>
+						<a href="polu.do">수질,대기,쓰레기 table data insert! (
+							pollution.sql가서 테이블 3개 먼저 만들어주세요 !) </a>
+						<h2>
+							ADMIN BOARD<small>관리자페이지</small>
+						</h2>
 						<ol class="breadcrumb">
-			<!--				<li class="active">
-							<a href="admincalboard">봉사일정관리<i class="fa fa-chevron-circle-right"></i></a>
-							</li>
-							<li class="pull-right">
-								<div id="reportrange"class="btn btn-green btn-square date-picker">
-									<i class="fa fa-calendar"></i><span class="date-range"><%=today.substring(0, 8)%></span><i class="fa fa-caret-down"></i>
+							<li class="active">
+								<div id="reportrange"
+									class="btn btn-green btn-square date-picker">
+									<i class="fa fa-calendar"></i><span class="date-range">
+										<%=today.substring(0, 8)%></span><i class="fa fa-caret-down"></i>
 								</div>
 							</li>
-			 -->
-			 				<li class="active">
-			 												<div id="reportrange"class="btn btn-green btn-square date-picker">
-									<i class="fa fa-calendar"></i><span class="date-range">  <%=today.substring(0, 8) %></span><i class="fa fa-caret-down"></i>
-								</div>
-			 				</li>
-			 				<li class="pull-right">
-			 				<a href="admincal.do">봉사일정관리<i class="fa fa-chevron-circle-right"></i></a>
-			 				</li>
-			 
-			 				
+							<li class="pull-right"><a href="admincal.do">봉사일정관리<i
+									class="fa fa-chevron-circle-right"></i></a></li>
+
+
 						</ol>
 					</div>
 				</div>
@@ -195,8 +148,9 @@
 						<div class="circle-tile-content orange">
 							<div class="circle-tile-description text-faded">공모게시판</div>
 							<div class="circle-tile-number text-faded">9 New</div>
-							<a href="admin_conlist.do" class="circle-tile-footer">More Info <i
-								class="fa fa-chevron-circle-right"></i></a>
+							<a href="admin_conlist.do" class="circle-tile-footer">More
+								Info <i class="fa fa-chevron-circle-right"></i>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -210,7 +164,7 @@
 						<div class="circle-tile-content blue">
 							<div class="circle-tile-description text-faded">자유게시판</div>
 							<div class="circle-tile-number text-faded">
-								10 <span id="sparklineB"></span>
+								3 <span id="sparklineB"></span>
 							</div>
 							<a href="#" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>
@@ -225,9 +179,9 @@
 							</div>
 						</a>
 						<div class="circle-tile-content red">
-							<div class="circle-tile-description text-faded">멸종게시관리</div>
+							<div class="circle-tile-description text-faded">멸종게시판</div>
 							<div class="circle-tile-number text-faded">
-								24 <span id="sparklineC"></span>
+								262 <span id="sparklineC"></span>
 							</div>
 							<a href="#" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>
@@ -244,7 +198,7 @@
 						<div class="circle-tile-content purple">
 							<div class="circle-tile-description text-faded">문의채팅방</div>
 							<div class="circle-tile-number text-faded">
-								96 <span id="sparklineD"></span>
+								1:1 <span id="sparklineD"></span>
 							</div>
 							<a href="#" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>

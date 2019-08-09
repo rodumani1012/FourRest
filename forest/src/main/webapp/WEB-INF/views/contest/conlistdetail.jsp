@@ -37,7 +37,7 @@ body{
 <body>
 	<%@ include file="../header.jsp"%>
 	<br><br><br><br><br><br><br>
-<h3 class="text-center" >하이디테일 conDto</h3>
+<h3 class="text-center" >공모세부내용</h3>
 	<div class="container d-flex justify-content-center" id="Detailform">
 		<table class="table que-tbl table-bordered">
 			<col width="20px">
@@ -70,6 +70,7 @@ body{
 			</tr>
 			<tr>
 				<td colspan="2">
+					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_deletelist.do?boardno=${conDto.boardno}'"></button>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_main.do'">목록으로</button>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postform.do'">참여하기</button>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postlist.do?pagenum=1&contentnum=9&conlistno=${conDto.boardno}'" >참여작보기</button>

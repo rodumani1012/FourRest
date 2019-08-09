@@ -74,6 +74,7 @@ div[class="form-group"]>img {
             type="hidden" name="contentnum" value="6"> <select
             name="conlistno">
             <c:forEach items="${conlist }" var="dto">
+               <option value="0">전체보기</option>
                <option value="${dto.boardno}">${dto.title}</option>
             </c:forEach>
          </select>
@@ -106,37 +107,43 @@ div[class="form-group"]>img {
       </c:choose>
    </div>
    <hr>
-   <h3 class="text-center">모든 참여 작</h3>
+      <c:choose>
+         <c:when test="${empty listDto }">
+            <h3 class="text-center">모든 참여 작</h3>	
+         </c:when>
+         <c:otherwise>
+            <h3 class="text-center">${lsi }</h3>
+         </c:otherwise>
+      </c:choose>
    <hr>
    
    
     <div class="container">
         <div class="row">
         <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
+         <h1 class="gallery-title">Gallery</h1>
         </div>
-                 <c:choose>
-         <c:when test="${empty list }">
-            <div id="게시물없음">게시물이없습니다.</div>
-         </c:when>
-         <c:otherwise>
-            <c:forEach items="${list }" var="dto">
-               <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
-                  <div class="form-group">글번호: ${dto.boardno }</div>
-                  <div class="form-group">${dto.reppic}</div>
-                  <div class="form-group">
-                     글제목:<a href="contest_detail.do?boardno=${dto.boardno }">${dto.title }[${dto.replyno }]</a>
+         <c:choose>
+            <c:when test="${empty list }">
+               <div id="게시물없음">게시물이없습니다.</div>
+            </c:when>
+            <c:otherwise>
+               <c:forEach items="${list }" var="dto">
+                  <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
+                     <div class="form-group">글번호: ${dto.boardno }</div>
+                     <div class="form-group">${dto.reppic}</div>
+                     <div class="form-group">
+                        글제목:<a href="contest_detail.do?boardno=${dto.boardno }">${dto.title }[${dto.replyno }]</a>
+                     </div>
+                     <div class="form-group">작성자:${dto.writer }</div>
+                     <div class="form-group">
+                        작성일:
+                        <fmt:formatDate value="${dto.regdate }" pattern="yyyy-MM-dd" />
+                     </div>
                   </div>
-                  <div class="form-group">작성자:${dto.writer }</div>
-                  <div class="form-group">
-                     작성일:
-                     <fmt:formatDate value="${dto.regdate }" pattern="yyyy-MM-dd" />
-                  </div>
-               </div>
-            </c:forEach>
-         </c:otherwise>
-      </c:choose>
-
+               </c:forEach>
+            </c:otherwise>
+          </c:choose>
         </div>
     </div>
   
@@ -146,7 +153,7 @@ div[class="form-group"]>img {
    </div>
    <div class="paging pagination pagination-md justify-content-center">
       <c:if test="${pm.prev }">
-         <a class="page-link" href="contest.do?contentnum=9&pagenum=${pm.pagenum-1}&condition=${con}">
+         <a class="page-link" href="contest_postlist.do?contentnum=6&pagenum=${pm.pagenum-1}&conlistno=${conlistno}">
             <span>◀</span>
          </a>
       </c:if>
@@ -154,17 +161,17 @@ div[class="form-group"]>img {
       <c:forEach begin="${pag.startPage }" end="${pag.endPage }" var="idx">
          <c:choose>
             <c:when test="${pag.pagenum==idx}">
-               <span class="page-link" id="now"><b><c:out value="${idx }"></c:out></b></span>
+               <span class="page-link" id="now"><b><c:out value="【${idx }】"></c:out></b></span> 
             </c:when>
             <c:otherwise>
-               <a class="page-link" href="contest.do?contentnum=9&pagenum=${idx}"> <span
-                  id="notnow"><b><c:out value="${idx }"></c:out></b></span>
+               <a class="page-link" href="contest_postlist.do?contentnum=6&pagenum=${idx}&conlistno=${conlistno}"> <span
+                  id="notnow"><b><c:out value="【${idx }】"></c:out></b></span>
                </a>
             </c:otherwise>
          </c:choose>
       </c:forEach>
       <c:if test="${pm.next }">
-         <a class="page-link" href="contest.do?contentnum=9&pagenum=${pm.pagenum+1}&condition=${con}">
+         <a class="page-link" href="contest_postlist.do?contentnum=6&pagenum=${pm.pagenum+1}&conlistno=${conlistno}">
             <span>▶</span>
          </a>
       </c:if>

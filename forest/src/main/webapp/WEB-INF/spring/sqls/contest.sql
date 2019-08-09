@@ -1,3 +1,7 @@
+
+SELECT * FROM BIKE_DB;
+
+
 ------------------------------------------------------공모전 LIST 테이블 
 DROP TABLE CONTESTLIST CASCADE CONSTRAINT;
 DROP SEQUENCE CONLISTSQ;

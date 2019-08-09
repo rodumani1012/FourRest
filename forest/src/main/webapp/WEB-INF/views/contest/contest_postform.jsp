@@ -68,6 +68,8 @@ body {
 	});
 </script>
 
+
+
 </head>
 <body>
 <div class="culmn">
@@ -145,7 +147,7 @@ body {
 <div class="container">
 
 	<form:form action="contest_post.do" modelAttribute="ContestBoardDto" method="post" >
-		<input type="hidden" name="writer" value="test">
+		<input type="hidden" name="writer" value="${user_id }">
 		<table class="d-flex justify-content-center">
 			<tr>
 				<td>카테고리</td>
