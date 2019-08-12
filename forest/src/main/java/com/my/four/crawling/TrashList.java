@@ -8,13 +8,17 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
 import com.my.four.model.dto.TrashDto;
-
+@Component
 public class TrashList {
 	
 
+	
 	public List<TrashDto> trashCrawling() {
+//		public static void main(String[] args) {
+		
 		String str = "";
 		String url = "http://www.daegu.go.kr/env/index.do?menu_id=00932929";
 		Document doc = null;
@@ -32,40 +36,39 @@ public class TrashList {
 			if (el.text().equals("")) {
 				continue;
 			} else {
-				str += el.text() + "#";
+				str += "#" +el.text();
 			}
+			System.out.println(str);
 		}
 		String[] array = str.split("#");
 		// dto에 담기
 		TrashDto dto = new TrashDto();
 		List<TrashDto> list = new ArrayList<TrashDto>();
-		for (int i = 0; i < array.length; i++) {
-			if (i % 3 == 1) {
-				dto.setTrashName(array[i]);
+		int count = 1;
+		int name =1;
+		int life=2;
+		String ref[]=new String[30];
+		for (int i = 0; i < array.length+12; i++) {
+			System.out.println(array.length);
+			if(i%3==0) {
+					if(count<10) {
+						ref[count]= "http://www.daegu.go.kr/cmsh/daegu.go.kr/env/images/content/ico_reclaim0" + count + ".gif";
+						dto.setImgRef(ref[count]);
+					}else {
+						ref[count]= "http://www.daegu.go.kr/cmsh/daegu.go.kr/env/images/content/ico_reclaim" + count + ".gif";
+						dto.setImgRef(ref[count]);
+				}
+					count++;
+			}
+			else if (i % 3 == 1) {
+				dto.setTrashName(array[name]);
+				name+=2;
 			} else if (i % 3 == 2) {
-				dto.setTrashLife(array[i]);
+				dto.setTrashLife(array[life]);
+				life+=2;
 				list.add(dto);
 				dto = new TrashDto();
 			}
-		}
-		return list;
-	}
-
-	public List<TrashDto> imgRef() {
-		String ref="";
-		List<TrashDto> list = new ArrayList<TrashDto>();
-		TrashDto dto = new TrashDto();
-		for (int i = 1; i <= 14; i++) {
-			if (i < 10) {
-				ref = "http://www.daegu.go.kr/cmsh/daegu.go.kr/env/images/content/ico_reclaim0" + i + ".gif";
-				dto.setImgRef(ref);
-			} else {
-				ref = "http://www.daegu.go.kr/cmsh/daegu.go.kr/env/images/content/ico_reclaim" + i + ".gif";
-				dto.setImgRef(ref);
-			}
-			System.out.println(ref);
-			list.add(dto);
-			
 		}
 		return list;
 	}

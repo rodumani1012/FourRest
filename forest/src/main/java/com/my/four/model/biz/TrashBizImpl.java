@@ -3,11 +3,13 @@ package com.my.four.model.biz;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.my.four.model.dao.TrashDao;
 import com.my.four.model.dto.TrashDto;
 
-public class TrashBizImpl implements TrashBIz{
+@Service
+public class TrashBizImpl implements TrashBiz{
 	
 	@Autowired
 	private TrashDao dao;
@@ -18,10 +20,19 @@ public class TrashBizImpl implements TrashBIz{
 		return dao.trashList();
 	}
 
+
 	@Override
-	public int trashInsert(String imgRef, String trashName, String trashLife) {
+	public int trashCount() {
 		// TODO Auto-generated method stub
-		return dao.trashInsert(imgRef, trashName, trashLife);
+		return dao.trashCount();
 	}
+
+	@Override
+	public int trashInsert( List<TrashDto> trashCrawling) {
+		// TODO Auto-generated method stub
+		return dao.trashInsert(trashCrawling);
+	}
+
+
 	
 }

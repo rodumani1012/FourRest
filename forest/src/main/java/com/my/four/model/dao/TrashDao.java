@@ -9,6 +9,6 @@ public interface TrashDao {
 	String namespace="trash.";
 	
 	public List<TrashDto> trashList();
-	public int trashInsert(String imgRef,String trashName,String trashLife);
-
+	public int trashInsert(List<TrashDto> trashCrawling);
+	public int trashCount();
 }

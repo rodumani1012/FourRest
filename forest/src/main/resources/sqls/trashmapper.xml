@@ -2,8 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="trash">
 
-	<select id="">
-		
+	<select id="trashGetTotalCount" parameterType="TrashDto" resultType="Integer">
+		SELECT COUNT(*) FROM TRASH		
+	</select>
+	
+	<insert id="trashInsert" parameterType="map">
+		INSERT ALL
+		<foreach collection="trashName" item="trash">
+			INTO TRASH(IMGREF,TRASHNAME,TRASHLIFE)
+			VALUES(#{trash.imgRef},#{trash.trashName},#{trash.trashLife})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<select id="trashList" resultType="TrashDto">
+		SELECT * FROM TRASH		
 	</select>
 
 </mapper>

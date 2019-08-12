@@ -7,10 +7,12 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.my.four.model.dto.TrashDto;
 
+@Repository
 public class TrashDaoImpl implements TrashDao{
 
 	@Autowired
@@ -23,15 +25,22 @@ public class TrashDaoImpl implements TrashDao{
 		return list;
 	}
 
+
 	@Override
-	public int trashInsert(String imgRef, String trashName, String trashLife) {
-		// TODO Auto-generated method stub
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("imgRef", imgRef);
-		map.put("trashName", trashName);
-		map.put("trashLife",trashLife);
+	public int trashCount() {
+		return sqlSession.selectOne(namespace+"trashGetTotalCount");
+	}
+
+	@Override
+	public int trashInsert(List<TrashDto> trashCrawling) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println(trashCrawling.get(0).getImgRef());
+		System.out.println(trashCrawling.get(0).getTrashName() + "ㅋㅋㅋ");
+		System.out.println(trashCrawling.get(0).getTrashLife());
+		map.put("trashName", trashCrawling);
+	
 		return sqlSession.insert(namespace+"trashInsert",map);
 	}
-	
+
 
 }
