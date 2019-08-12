@@ -141,6 +141,17 @@
 	<select id="aniGetOne" parameterType="map" resultType="Integer">
 		SELECT COUNT(*) FROM ANIMAL_ENDANGERED_JOIN WHERE GROUPS like '%' || #{groups} || '%' AND GRADE = #{grade} 
 	</select>
+	
+	<!-- 생태교란 총 갯수 -->
+	<select id="aniGetTotalCountDisturbHarm" parameterType="map" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM upper(#{category})
+		<if test="txt_search != null">
+			WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
+			upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
+		</if>
+	</select>
+	
 </mapper>
 
 

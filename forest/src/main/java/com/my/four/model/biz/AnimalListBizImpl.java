@@ -74,4 +74,9 @@ public class AnimalListBizImpl implements AnimalListBiz {
 		return dao.aniGetOne(grade, groups);
 	}
 
+	@Override
+	public int aniGetTotalCountDisturbHarm(String category, String txt_search) {
+		return dao.aniGetTotalCountDisturbHarm(category, txt_search);
+	}
+
 }

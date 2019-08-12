@@ -164,4 +164,18 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		
 		return res;
 	}
+
+	@Override
+	public int aniGetTotalCountDisturbHarm(String category, String txt_search) {
+		
+		int res = 0;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("category", category);
+		map.put("txt_search", txt_search);
+		
+		res = sqlSession.selectOne(namespace + "aniGetTotalCountDisturbHarm", map);
+		
+		return res;
+	}
 }

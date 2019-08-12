@@ -24,4 +24,6 @@ public interface AnimalListBiz {
 	public int aniGetTotalCountEndangeredJoin(String txt_search);
 	
 	public int aniGetOne(String grade, String groups);
+
+	public int aniGetTotalCountDisturbHarm(String category, String txt_search);
 }
