@@ -1,6 +1,9 @@
 package com.my.four;
 
 import java.security.Principal;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,12 +27,27 @@ public class CalendarController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+	String today = formatter.format(new java.util.Date());
+	
 	@RequestMapping(value="calendar.do")
 	public String calendar(Model model) {
+		
+		biz.noticeupdate(today);
+		
+		List<String> list1 = new ArrayList<String>();
+		
+		for(int i = 0; i < biz.selectList().size(); i++) {
+			if(biz.selectList().get(i).getCalrecpeo() == biz.selectList().get(i).getCalnowpeo()) {
+				list1.add(biz.selectList().get(i).getCaltitle());
+			}
+		}
+		if(list1.size() != 0) {
+			biz.noticeupdate1(list1);
+		}
 	
 		logger.info("달력 리스트");
 		model.addAttribute("list", biz.selectList());
-		System.out.println(biz.selectList());
 		
 		return "calendar";
 	}
@@ -44,12 +62,17 @@ public class CalendarController {
 		
 		model.addAttribute("dto", biz.selectOne(caltitle));
 		model.addAttribute("list", biz.volList(caltitle));
+		model.addAttribute("voldto", biz.volselectOne(caltitle, principal.getName()));
+		
 		return "calendar/caldetail";
 	}
 	
 	@RequestMapping(value="calapply.do")
-	public String calapply(ModelMap model, String caltitle, String id) {
+	public String calapply(ModelMap model, String caltitle, String id, Principal principal, HttpServletRequest requset) {
 	
+		HttpSession session = requset.getSession(true);
+		session.setAttribute("id", principal.getName());
+		
 		int res = 0;
 		int res1 = 0;
 		
@@ -57,21 +80,25 @@ public class CalendarController {
 		res1 = biz.volupdate(caltitle, id);
 		
 		if(res > 0 && res1 > 0) {
+			logger.info("봉사 신청완료");
 			model.addAttribute("dto", biz.selectOne(caltitle));
 			model.addAttribute("list", biz.volList(caltitle));
-			logger.info("봉사 신청완료");
+			model.addAttribute("voldto", biz.volselectOne(caltitle, principal.getName()));
 			return "calendar/caldetail";
 		} else {
+			logger.info("봉사 신청실패");
 			model.addAttribute("dto", biz.selectOne(caltitle));
 			model.addAttribute("list", biz.volList(caltitle));
-			logger.info("봉사 신청실패");
+			model.addAttribute("voldto", biz.volselectOne(caltitle, principal.getName()));
 			return "calendar/caldetail";
 		}
 	}
 	
 	@RequestMapping(value="calcancel.do")
-	public String calcancel(ModelMap model, String caltitle, String id) {
-	
+	public String calcancel(ModelMap model, String caltitle, String id, Principal principal, HttpServletRequest requset) {
+		
+		HttpSession session = requset.getSession(true);
+		session.setAttribute("id", principal.getName());	
 		int res = 0;
 		
 		res = biz.voldelete(caltitle, id);
@@ -80,11 +107,14 @@ public class CalendarController {
 		if(res > 0) {
 			model.addAttribute("dto", biz.selectOne(caltitle));
 			model.addAttribute("list", biz.volList(caltitle));
+			model.addAttribute("voldto", biz.volselectOne(caltitle, principal.getName()));
+
 			logger.info("취소 완료");
 			return "calendar/caldetail";
 		} else {
 			model.addAttribute("dto", biz.selectOne(caltitle));
 			model.addAttribute("list", biz.volList(caltitle));
+			model.addAttribute("voldto", biz.volselectOne(caltitle, principal.getName()));
 			logger.info("취소 실패");
 			return "calendar/caldetail";
 		}
