@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.my.four.model.dao.AnimalListDao;
+import com.my.four.model.dto.AnimalDisturbDto;
 import com.my.four.model.dto.AnimalEndangeredCSVDto;
 import com.my.four.model.dto.AnimalEndangeredImgDto;
 import com.my.four.model.dto.AnimalEndangeredJoinDto;
+import com.my.four.model.dto.AnimalHarmDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 
 @Service
@@ -75,8 +77,24 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	}
 
 	@Override
-	public int aniGetTotalCountDisturbHarm(String category, String txt_search) {
-		return dao.aniGetTotalCountDisturbHarm(category, txt_search);
+	public int aniGetTotalCountDisturbHarm(String board, String txt_search) {
+		return dao.aniGetTotalCountDisturbHarm(board, txt_search);
 	}
+
+	@Override
+	public int aniInsertDisturbHarm(String board, Object dtos) {
+		return dao.aniInsertDisturbHarm(board, dtos);
+	}
+
+	@Override
+	public List<AnimalDisturbDto> aniSelectListDisturb(int firstIndex, int recordCountPerPage, String txt_search) {
+		return dao.aniSelectListDisturb(firstIndex, recordCountPerPage, txt_search);
+	}
+
+	@Override
+	public List<AnimalHarmDto> aniSelectListHarm(int firstIndex, int recordCountPerPage, String txt_search) {
+		return dao.aniSelectListHarm(firstIndex, recordCountPerPage, txt_search);
+	}
+
 
 }

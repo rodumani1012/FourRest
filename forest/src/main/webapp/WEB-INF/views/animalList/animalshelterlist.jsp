@@ -111,7 +111,7 @@
 					<tr>
 						<td colspan="4">
 							<div class="form-group form-inline">
-							<input type="text" class="form-control" id="txt_search" value="${txt_search }"> 
+							<input type="text" class="form-control" id="txt_search" value="${txt_search }" placeholder="업체명 또는 지역검색"> 
 							<button type="button" class="small btn btn-secondary"
 								onclick="javascript:PageMove(${paging.pageNo})">검색하기</button>
 							</div>

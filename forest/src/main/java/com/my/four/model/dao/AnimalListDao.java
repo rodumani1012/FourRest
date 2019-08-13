@@ -2,9 +2,11 @@ package com.my.four.model.dao;
 
 import java.util.List;
 
+import com.my.four.model.dto.AnimalDisturbDto;
 import com.my.four.model.dto.AnimalEndangeredCSVDto;
 import com.my.four.model.dto.AnimalEndangeredImgDto;
 import com.my.four.model.dto.AnimalEndangeredJoinDto;
+import com.my.four.model.dto.AnimalHarmDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 
 public interface AnimalListDao {
@@ -27,6 +29,9 @@ public interface AnimalListDao {
 	
 	public int aniGetOne(String grade, String groups);
 	
-	public int aniGetTotalCountDisturbHarm(String category, String txt_search);
+	public int aniGetTotalCountDisturbHarm(String board, String txt_search);
+	public int aniInsertDisturbHarm(String board, Object dtos);
+	public	List<AnimalDisturbDto> aniSelectListDisturb(int firstIndex, int recordCountPerPage,String txt_search);
+	public	List<AnimalHarmDto> aniSelectListHarm(int firstIndex, int recordCountPerPage,String txt_search);
 	
 }

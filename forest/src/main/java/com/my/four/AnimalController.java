@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.my.four.animal.AnimalList;
 import com.my.four.model.biz.AnimalListBiz;
+import com.my.four.model.dto.AnimalDisturbDto;
 import com.my.four.model.dto.AnimalEndangeredJoinDto;
+import com.my.four.model.dto.AnimalHarmDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 import com.my.four.paging.Paging;
 
@@ -186,7 +188,7 @@ public class AnimalController {
 	
 	//외래생물 목록으로!
 	@RequestMapping(value = "ani_alien.do")
-	public String ani_alien(String board, String txt_search, String page, Model model) {
+	public String ani_alien(String board, String txt_search, String page, Model model) throws IOException {
 
 		String txt_s = txt_search; // 검색어
 		
@@ -195,11 +197,12 @@ public class AnimalController {
 			logger.info("생태계 교란종 목록으로!");
 			
 			if (biz.aniGetTotalCountDisturbHarm(board, txt_search) == 0) {
+				
 				// db에 저장하기
-				biz.aniInsert(ani.returnShelterList());
+				biz.aniInsertDisturbHarm(board, ani.returnDisturb());
 				
 				// 페이징하기
-				int totalCount = biz.aniGetTotalCount(txt_s);
+				int totalCount = biz.aniGetTotalCountDisturbHarm(board, txt_s);
 				int pag = (page == null) ? 1 : Integer.parseInt(page);
 
 				Paging paging = new Paging();
@@ -209,15 +212,15 @@ public class AnimalController {
 				paging.setTotalCount(totalCount);
 				pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
-				List<AnimalShelterListDto> list = biz.aniSelectList(pag, paging.getPageSize(), txt_s);
+				List<AnimalDisturbDto> list = biz.aniSelectListDisturb(pag, paging.getPageSize(), txt_s);
 				model.addAttribute("list", list);
 				model.addAttribute("paging", paging);
 				model.addAttribute("txt_search", txt_s);
 				
-				return "animalList/animalshelterlist";
+				return "animalList/animaldisturb";
 			} else {
 				// db에 있으면 그냥 페이징하기.
-				int totalCount = biz.aniGetTotalCount(txt_s);
+				int totalCount = biz.aniGetTotalCountDisturbHarm(board, txt_s);
 				int pag = (page == null) ? 1 : Integer.parseInt(page);
 
 				Paging paging = new Paging();
@@ -227,23 +230,27 @@ public class AnimalController {
 				paging.setTotalCount(totalCount);
 				pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
-				List<AnimalShelterListDto> list = biz.aniSelectList(pag, paging.getPageSize(), txt_s);
+				List<AnimalDisturbDto> list = biz.aniSelectListDisturb(pag, paging.getPageSize(), txt_s);
 				model.addAttribute("list", list);
 				model.addAttribute("paging", paging);
 				model.addAttribute("txt_search", txt_s);
-				
-				return "animalList/animalshelterlist";
+				System.out.println("컨트롤러");
+				for(AnimalDisturbDto dto : list) {
+					System.out.println(dto.getKorName());
+				}
+				return "animalList/animaldisturb";
 			}
 
 		case "animal_alien_harm":
 			logger.info("위해 우려종 목록으로!");
 			
 			if (biz.aniGetTotalCountDisturbHarm(board, txt_search) == 0) {
+				System.out.println("저장 시작");
 				// db에 저장하기
-				biz.aniInsert(ani.returnShelterList());
-				
+				biz.aniInsertDisturbHarm(board, ani.returnHarm());
+				System.out.println("저장 종료");
 				// 페이징하기
-				int totalCount = biz.aniGetTotalCount(txt_s);
+				int totalCount = biz.aniGetTotalCountDisturbHarm(board, txt_s);
 				int pag = (page == null) ? 1 : Integer.parseInt(page);
 
 				Paging paging = new Paging();
@@ -253,15 +260,15 @@ public class AnimalController {
 				paging.setTotalCount(totalCount);
 				pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
-				List<AnimalShelterListDto> list = biz.aniSelectList(pag, paging.getPageSize(), txt_s);
+				List<AnimalHarmDto> list = biz.aniSelectListHarm(pag, paging.getPageSize(), txt_s);
 				model.addAttribute("list", list);
 				model.addAttribute("paging", paging);
 				model.addAttribute("txt_search", txt_s);
 				
-				return "animalList/animalshelterlist";
+				return "animalList/animalharm";
 			} else {
 				// db에 있으면 그냥 페이징하기.
-				int totalCount = biz.aniGetTotalCount(txt_s);
+				int totalCount = biz.aniGetTotalCountDisturbHarm(board, txt_s);
 				int pag = (page == null) ? 1 : Integer.parseInt(page);
 
 				Paging paging = new Paging();
@@ -271,12 +278,12 @@ public class AnimalController {
 				paging.setTotalCount(totalCount);
 				pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
-				List<AnimalShelterListDto> list = biz.aniSelectList(pag, paging.getPageSize(), txt_s);
+				List<AnimalHarmDto> list = biz.aniSelectListHarm(pag, paging.getPageSize(), txt_s);
 				model.addAttribute("list", list);
 				model.addAttribute("paging", paging);
 				model.addAttribute("txt_search", txt_s);
 				
-				return "animalList/animalshelterlist";
+				return "animalList/animalharm";
 			}
 		}
 		return "";
