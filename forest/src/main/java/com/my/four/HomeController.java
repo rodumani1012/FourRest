@@ -100,6 +100,14 @@ public class HomeController {
 		return "map";
 	}
 	
+	@RequestMapping(value = "service.do")
+	public String service(){
+		
+		logger.info("서비스전체보기");
+		
+		return "service";
+	}
+	
 	@RequestMapping(value="idChk.do")
 	public String idChk(String id,Model model) {
 		logger.info("id=="+id);

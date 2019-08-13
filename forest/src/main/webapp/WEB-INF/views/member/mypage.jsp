@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<%@ include file="../header.jsp"%>
+	<%@ include file="../header.jsp"%>
 
 	<div class="culmn">
 		<br> <br> <br> <br> <br> <br>
@@ -19,6 +19,19 @@
 					<div class="row justify-content-center">
 						<input type="text" class="form-control col-sm-3" id="id" title="n" name="id" readonly="readonly">
 					</div>
+					<div class="form-group">
+					<label for="text">NAME : </label>
+					<div class="row justify-content-center">
+						<input type="text" class="form-control col-sm-3" id="id" title="n" name="id">
+					</div>
+					</div>
+					<div class="form-group">
+						<div class="row justify-content-center">
+							<input type="button" class="btn btn-light" value="중복확인" id="idchk" onclick="idChk()">
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<input type="text" class="form-control col-sm-3" id="name" title="n" name="name">
 					</div>
 					<div class="form-group">
 						<label for="pwd">Password : </label>
@@ -30,12 +43,6 @@
 						<div class="row justify-content-center">
 							<input type="password" class="form-control col-sm-3" id="pwchk" name="pwchk"
 								onkeyup="chkpw()" title="n">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="pwd">NAME : </label>
-						<div class="row justify-content-center">
-							<input type="password" class="form-control col-sm-3" id="pw" name="pw" title="n" name="pw">
 						</div>
 					</div>
 					<div id="pwval">암호를 입력하세요</div>
@@ -83,18 +90,24 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
-					<div class="row justify-content-center">
-						<input type="button" class="btn btn-light" value="메일전송" id="emailAuth"><br>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="row justify-content-center">
-						<input type="text" class="form-control col-2" placeholder="인증번호" id="emailNum" name="emailNum"
-							title="n">
-					</div>
+				<button type="submit" class="btn btn-success btn-lg">수정완료</button>
+				<button type="button" class="btn btn-success btn-lg" onclick="location.href='main.do'">취소</button>
 			</form>
+			<br> <br> <br> <br>
 		</div>
+	</div>
+	<footer id="footer" class="footer bg-black">
+		<div class="container">
+			<div class="row">
+				<div class="main_footer text-center p-top-40 p-bottom-30">
+					<p class="wow fadeInRight" data-wow-duration="1s">
+						Made with <i class="fa fa-heart"></i> by <a target="_blank"
+							href="https://bootstrapthemes.co">THE FOREST</a> 2019. All Rights
+						Reserved
+					</p>
+				</div>
+			</div>
 		</div>
+	</footer>
 </body>
 </html>

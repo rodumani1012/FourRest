@@ -104,23 +104,23 @@
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<img class="img-responsive" src="resources/assets/images/background/1.jpg" alt="animal"
-						style="max-width: 100%;, height: auto; , display: block;">
+						style="max-width: 100%; height: auto;  display: block;">
 					</div>
 					<div class="carousel-item">
 						<img class="img-responsive" src="resources/assets/images/background/2.jpg" alt="animal"
-						style="max-width: 100%;, height: auto; , display: block;">
+						style="max-width: 100%; height: auto;  display: block;">
 					</div>
 					<div class="carousel-item">
 						<img class="img-responsive" src="resources/assets/images/background/3.jpg" alt="animal"
-						style="max-width: 100%;, height: auto; , display: block;">
+						style="max-width: 100%; height: auto;  display: block;">
 					</div>
 					<div class="carousel-item">
 						<img class="img-responsive" src="resources/assets/images/background/4.jpg" alt="animal"
-						style="max-width: 100%;, height: auto; , display: block;">
+						style="max-width: 100%; height: auto;  display: block;">
 					</div>
 					<div class="carousel-item">
 						<img class="img-responsive" src="resources/assets/images/background/6.jpg" alt="animal"
-						style="max-width: 100%;, height: auto; , display: block;">
+						style="max-width: 100%; height: auto;  display: block;">
 					</div>
 				</div>
 				<!-- 슬라이드 쇼 버튼 -->
@@ -220,17 +220,21 @@
 </div>
 
 	<!-- footer -->
-	<footer id="footer" class="footer bg-black">
+		<footer id="footer" class="footer footer-bg-black">
 		<div class="container">
+			<div class="main_footer p-top-40 p-bottom-30 pull-right">
+				<a href="service.do">서비스전체보기</a>
+			</div>
 			<div class="row">
 				<div class="main_footer text-center p-top-40 p-bottom-30">
-					<p class="wow fadeInRight" data-wow-duration="1s">
-						Made with <i class="fa fa-heart"></i> by <a target="_blank"
-							href="https://bootstrapthemes.co">THE FOREST</a> 2019. All Rights
-						Reserved
-					</p>
+						<h1>1588-1599</h1>
+						<p class="wow fadeInRight"  data-wow-duration="1s">
+						<i class="fa fa-heart"></i>대표자 : 우재영님 
+						<i class="fa fa-heart"></i>환경을 보호합시다.
+						<i class="fa fa-heart"></i>Copyright ⓒ4rest. All rights reserved.				
+						</p>
 				</div>
-			</div>
+			</div>	
 		</div>
 	</footer>
 	<!-- JS includes -->
