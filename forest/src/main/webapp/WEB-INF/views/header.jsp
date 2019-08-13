@@ -76,7 +76,7 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li><button type="button" class="btn btn-link text-dark" onclick="test()">Map</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='gotomap.do'">Map</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='mypagepwchk.do'">Test</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='calendar.do'">Calendar</button></li>

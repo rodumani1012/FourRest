@@ -16,5 +16,5 @@ public interface ContestListDao {
 	
 	public int insert(ContestListDto dto);
 	public int delete(int conlistno);
-
+	public int updatepart(int conlistno);
 }

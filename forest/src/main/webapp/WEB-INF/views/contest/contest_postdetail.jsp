@@ -184,7 +184,6 @@
 </table>
 
 <script type="text/javascript">
-  //Starrr plugin (https://github.com/dobtco/starrr)
   var __slice = [].slice;
 
   (function($, window) {

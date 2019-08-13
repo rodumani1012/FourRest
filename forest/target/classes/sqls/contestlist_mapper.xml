@@ -13,4 +13,7 @@
 	<insert id="insertlist" parameterType="ContestListDto">
 		INSERT INTO CONTESTLIST VALUES(CONLISTSQ.NEXTVAL,#{title},#{reppic},#{content},#{forwho},#{prize},#{startdate},#{enddate},0,#{sort},SYSDATE)
 	</insert>
+	<update id="updatepart" parameterType="int">
+		UPDATE CONTESTLIST SET PARTNUM = PARTNUM+1 WHERE BOARDNO=#{conlistno}
+	</update>
 </mapper>

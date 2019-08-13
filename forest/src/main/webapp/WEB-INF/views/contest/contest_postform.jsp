@@ -168,8 +168,8 @@ body {
 
 			<form:form action="contest_post.do" modelAttribute="ContestBoardDto"
 				method="post">
-				<%-- 		<input type="hidden" name="writer" value="${user_id }"> --%>
-				<input type="hidden" name="writer" value="testid">
+						<input type="hidden" name="writer" value="${user_id }">
+<!-- 				<input type="hidden" name="writer" value="testid"> -->
 				<table class="d-flex justify-content-center">
 					<tr>
 						<td>카테고리</td>
