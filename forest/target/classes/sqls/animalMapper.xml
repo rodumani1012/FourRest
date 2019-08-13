@@ -178,7 +178,7 @@
 	</insert>	
 	
 	<!-- db에서 생태교란 목록 가져오는 쿼리 -->
-	<select id="aniSelectListDisturb" parameterType="map" resultType="animalDisturbDto">
+	<select id="aniSelectListDisturb" resultType="animalDisturbDto">
 		SELECT *
 		FROM (SELECT ROWNUM AS RNUM, P.*
 			 FROM ( SELECT * 

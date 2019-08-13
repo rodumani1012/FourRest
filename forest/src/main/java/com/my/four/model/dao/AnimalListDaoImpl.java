@@ -1,6 +1,5 @@
 package com.my.four.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -209,10 +208,6 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		map.put("txt_search", txt_search);
 		
 		List<AnimalDisturbDto> list = sqlSession.selectList(namespace + "aniSelectListDisturb", map);
-		System.out.println("다오임플");
-		for(AnimalDisturbDto dto : list) {
-			System.out.println(dto.getKorName());
-		}
 		
 		return list;
 	}

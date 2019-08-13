@@ -49,12 +49,12 @@
 					<c:forEach items="${list }" var="dto">
 						<ul>
 							<li>
-								<img class="image" src="${dto.img }" alt="${dto.korName}">
+								<img class="image" src="${dto.img }" alt="${dto.kor_name}">
 							</li>
 							<li>
 								<dl>
-									<dt>${dto.korName }</dt>
-									<dd><span>영명 :</span>${dto.engName }</dd>
+									<dt>${dto.kor_name }</dt>
+									<dd><span>영명 :</span>${dto.eng_name }</dd>
 									<dd><span>분류군 :</span>${dto.groups }</dd>
 									<dd><span>관리현황 :</span>${dto.management }</dd>
 									<c:if test="${dto.country ne null }">

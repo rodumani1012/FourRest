@@ -12,6 +12,8 @@
 	height: 100px;
 }
 </style>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function PageMove(page) {
 		location.href = "ani_alien.do?board=animal_alien_disturb&page=" + page + "&txt_search=" + $('input#txt_search').val();
@@ -49,12 +51,12 @@
 					<c:forEach items="${list }" var="dto">
 						<ul>
 							<li>
-								<img class="image" src="${dto.img }" alt="${dto.korName}">
+								<img class="image" src="${dto.img }" alt="${dto.kor_name}">
 							</li>
 							<li>
 								<dl>
-									<dt>${dto.korName }</dt>
-									<dd><span>영명 :</span>${dto.engName }</dd>
+									<dt>${dto.kor_name }</dt>
+									<dd><span>영명 :</span>${dto.eng_name }</dd>
 									<dd><span>분류군 :</span>${dto.groups }</dd>
 									<dd><span>관리현황 :</span>${dto.management }</dd>
 									<c:if test="${dto.country ne null }">
@@ -86,6 +88,7 @@
 			<a href="javascript:PageMove(${paging.nextPageNo})">&gt;</a> 
 			<a href="javascript:PageMove(${paging.finalPageNo})">&raquo;</a>
 		</div>
+		
 	</div>
 </div>
 

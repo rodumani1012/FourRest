@@ -216,6 +216,7 @@ public class AnimalController {
 				model.addAttribute("list", list);
 				model.addAttribute("paging", paging);
 				model.addAttribute("txt_search", txt_s);
+				model.addAttribute("totalCount", totalCount);
 				
 				return "animalList/animaldisturb";
 			} else {
@@ -234,10 +235,8 @@ public class AnimalController {
 				model.addAttribute("list", list);
 				model.addAttribute("paging", paging);
 				model.addAttribute("txt_search", txt_s);
-				System.out.println("컨트롤러");
-				for(AnimalDisturbDto dto : list) {
-					System.out.println(dto.getKorName());
-				}
+				model.addAttribute("totalCount", totalCount);
+
 				return "animalList/animaldisturb";
 			}
 
@@ -264,6 +263,7 @@ public class AnimalController {
 				model.addAttribute("list", list);
 				model.addAttribute("paging", paging);
 				model.addAttribute("txt_search", txt_s);
+				model.addAttribute("totalCount", totalCount);
 				
 				return "animalList/animalharm";
 			} else {
@@ -282,6 +282,7 @@ public class AnimalController {
 				model.addAttribute("list", list);
 				model.addAttribute("paging", paging);
 				model.addAttribute("txt_search", txt_s);
+				model.addAttribute("totalCount", totalCount);
 				
 				return "animalList/animalharm";
 			}
