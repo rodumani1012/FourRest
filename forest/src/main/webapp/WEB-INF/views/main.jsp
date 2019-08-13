@@ -216,22 +216,26 @@
 		<ul id="#messages"></ul>
 		</div>
 		<div class="test">
-			<iframe class="iframe-chat" src="http://192.168.10.151:8880/"></iframe>
+<!--  		<iframe class="iframe-chat" src="http://192.168.10.151:8880/"></iframe> -->
 		</div>
 </div>
 
 	<!-- footer -->
-	<footer id="footer" class="footer bg-black">
+		<footer id="footer" class="footer footer-bg-black">
 		<div class="container">
+			<div class="main_footer p-top-40 p-bottom-30 pull-right">
+				<a href="service.do">서비스전체보기</a>
+			</div>
 			<div class="row">
 				<div class="main_footer text-center p-top-40 p-bottom-30">
-					<p class="wow fadeInRight" data-wow-duration="1s">
-						Made with <i class="fa fa-heart"></i> by <a target="_blank"
-							href="https://bootstrapthemes.co">THE FOREST</a> 2019. All Rights
-						Reserved
-					</p>
+						<h1>1588-1599</h1>
+						<p class="wow fadeInRight"  data-wow-duration="1s">
+						<i class="fa fa-heart"></i>대표자 : 우재영님 
+						<i class="fa fa-heart"></i>환경을 보호합시다.
+						<i class="fa fa-heart"></i>Copyright ⓒ4rest. All rights reserved.				
+						</p>
 				</div>
-			</div>
+			</div>	
 		</div>
 	</footer>
 	<!-- JS includes -->
