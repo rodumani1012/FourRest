@@ -1,5 +1,6 @@
 package com.my.four;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -98,6 +99,7 @@ public class ContestBoardController {
 		res = biz.boardInsert(dto);
 		if(res>0) {
 			System.out.println("성공");
+		
 			return "redirect:contest_main.do";
 		}else {
 			System.out.println("실패");
@@ -143,6 +145,8 @@ public class ContestBoardController {
 		List<ContestBoardDto> listReply =biz.selectListReply(groupno);
 		model.addAttribute("dto",dto);
 		model.addAttribute("listReply",listReply);
+		Object obj = null;
+		
 		return "contest/contest_postdetail";
 	}
 	//별점 update 하는곳
@@ -159,8 +163,8 @@ public class ContestBoardController {
 			return dto.getLikerate()+"";
 		}else {
 			System.out.println("안댐");
-		}
 			return 5.0+"";
+		}
 	}
 	//관리자 공모글 삭제  매퍼확인
 	@RequestMapping("contest_deletelist.do")

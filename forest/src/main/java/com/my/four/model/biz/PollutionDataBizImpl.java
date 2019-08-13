@@ -33,6 +33,18 @@ public class PollutionDataBizImpl implements PollutionDataBiz {
 			return 1;
 		return dao.insertair(list);
 	}
+
+	@Override
+	public List<AreaDto> selectBigList(int bigOption, int miniOption) {
+		// TODO Auto-generated method stub
+		return dao.selectBigList(bigOption, miniOption);
+	}
+
+	@Override
+	public List<AreaDto> selectMiniList(int bigOption, String areaname) {
+		// TODO Auto-generated method stub
+		return dao.selectMiniList(bigOption, areaname);
+	}
 	
 	
 

@@ -20,5 +20,8 @@ public interface PollutionDataDao {
 	
 	public boolean isairin();
 	
+	public List<AreaDto> selectBigList(int bigOption,int miniOption);
+	public List<AreaDto> selectMiniList(int bigOption,String areaname);
+	
 
 }
