@@ -3,6 +3,10 @@ package com.my.four.model.security;
 
 
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,10 +27,6 @@ public class AuthenticationService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-		System.out.println("------------------------"+id);
-		
-		System.out.println(biz);
-		
 		
 		LoginDto dto = biz.login(id);
 		
