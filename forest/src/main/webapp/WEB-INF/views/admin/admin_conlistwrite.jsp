@@ -89,8 +89,8 @@ $(function() {
 						<option value="작문">작문공모</option>
 				</select>
 				공고기간
-				<input type="text" id="datepicker1" name="startdate" />
-					~<input type="text" id="datepicker2" name="enddate"/>	 
+				<input type="text" id="datepicker1" name="startdate"  autocomplete="off"/>
+					~<input type="text" id="datepicker2" name="enddate"autocomplete="off"/>	 
 				</td>
 			</tr>
 			<tr height="80px">

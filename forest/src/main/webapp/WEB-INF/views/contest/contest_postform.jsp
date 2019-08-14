@@ -199,8 +199,7 @@ body {
 					<tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="등록" /> <input
-							type="button" value="작성 취소"
-							onclick="location.href='contest_main.do'" /></td>
+							type="button" value="작성 취소" onclick="location.href='contest_main.do'" /></td>
 					</tr>
 				</table>
 			</form:form>

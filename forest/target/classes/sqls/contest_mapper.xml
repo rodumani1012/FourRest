@@ -35,6 +35,10 @@
 		CONTESTBOARD SET LIKECNT = LIKECNT+1 , LIKERATE = #{likerate} WHERE
 		BOARDNO = #{boardno}
 	</update>
+	<update id="reupdateStar" parameterType="ContestBoardDto">
+		UPDATE 
+		CONTESTBOARD SET LIKERATE = #{likerate} WHERE BOARDNO = #{boardno}		
+	</update>
 	<!-- 여기까지완성 -->
 	<select id="selectList" resultType="ContestBoardDto"
 		parameterType="HashMap">
@@ -76,14 +80,14 @@
 
 	<insert id="insertAns" parameterType="ContestBoardDto">
 		INSERT INTO CONTESTBOARD
-		VALUES(CON_BOARDNOSQ.NEXTVAL,
+		VALUES(#{conlistno}CON_BOARDNOSQ.NEXTVAL,
 		(SELECT GROUPNO FROM CONTESTBOARD WHERE
 		BOARDNO=#{boardno}),
 		(SELECT GROUPSQ FROM CONTESTBOARD WHERE
 		BOARDNO=#{boardno})+1,
 		(SELECT REPLYNO FROM CONTESTBOARD WHERE
 		BOARDNO=#{boardno})+1,
-		'N',#{writer},#{title},#{content},SYSDATE)
+		0,0,#{writer},#{title},#{content},#{content},SYSDATE)
 	</insert>
 
 	<select id="selectListOption" parameterType="Hashmap"
@@ -143,10 +147,28 @@
 		UPDATE CONTESTBOARD SET
 		REPLYNO = REPLYNO+1 WHERE BOARDNO=#{boardno}
 	</update>
-
-	<update id="likeCntup" parameterType="int">
-		UPDATE CONTESTBOARD SET
-		LIKECNT = LIKECNT+1 WHERE BOARDNO=#{boardno}
+	
+	
+	<select id="amialready" parameterType="map" resultType="StarRecordDto">
+		SELECT * FROM STAR_RECORD WHERE USERNUM=#{usernum} AND BOARDNO=#{boardno}	
+	</select>
+	
+	<insert id="starboardinsert" parameterType="StarRecordDto">
+		INSERT INTO STAR_RECORD VALUES(#{usernum},#{boardno},#{starrate})
+	</insert>
+	<update id="starboardupdate" parameterType="StarRecordDto">
+		UPDATE STAR_RECORD SET STARRATE=#{starrate}	WHERE USERNUM=#{usernum} AND BOARDNO=#{boardno}	
+	</update>
+	<select id="getgustar" parameterType="map" resultType="int">
+		SELECT STARRATE FROM STAR_RECORD WHERE USERNUM=#{usernum} AND BOARDNO=#{boardno}
+	</select>
+	
+	<update id="updategustar" parameterType="map">
+		UPDATE STAR_RECORD SET STARRATE = #{starrate} WHERE USERNUM=#{usernum} AND BOARDNO=#{boardno}
+	</update>
+	
+	<update id="updatenewstar" parameterType="map">
+		UPDATE CONTESTBOARD SET LIKERATE = #{starrate} WHERE BOARDNO=#{boardno}
 	</update>
 	
 </mapper>

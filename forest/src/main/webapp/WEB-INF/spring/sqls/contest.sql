@@ -17,18 +17,13 @@ ENDDATE DATE,
 PARTNUM NUMBER,
 SORT VARCHAR2 (100),
 REGDATE DATE 
-)
-
-
-INSERT INTO CONTESTLIST VALUES(CONLISTSQ.NEXTVAL,'CON_TEST_TITLE','<img src="https://www.wevity.com/upload/contest/20190801160538_8dc7885c.jpg" alt="공모전">','공모전1은이런공모전이다'
-,'대학교재학생','100만원','20190725','20190902',0,'영상/사진',SYSDATE);
-
+);
 		
 SELECT * FROM CONTESTLIST;
 ------------------------------------------------------공모 게시글 테이블 
 DROP SEQUENCE CON_BOARDNOSQ;
 DROP SEQUENCE CON_GROUPNOSQ;
-DROP TABLE CONTESTBOARD;
+DROP TABLE CONTESTBOARD CASCADE CONSTRAINT;
 
 CREATE SEQUENCE CON_BOARDNOSQ;
 CREATE SEQUENCE CON_GROUPNOSQ; 
@@ -52,33 +47,6 @@ CONSTRAINT CHECHSTAR CHECK (LIKERATE BETWEEN 0 AND 5)
 
 SELECT * FROM CONTESTBOARD ;
 
-INSERT INTO CONTESTBOARD VALUES(1,CON_BOARDNOSQ.NEXTVAL,CON_GROUPNOSQ.NEXTVAL,1,0,2.333,3,'TEST작성자','TESTTITLE','<img src="https://t1.daumcdn.net/cfile/tistory/214A374A524CEF0A0E" filename="지구 아이스크림.jpg" filemime="image/jpeg">','부연설명',SYSDATE);
-delete from contestboard where boardno=1;
-SELECT count(*) FROM (SELECT * FROM contestboard WHERE groupsq=1 AND conlistno=1);
-
-UPDATE CONTESTBOARD 
-SET LIKECNT = LIKECNT+1 ,LIKERATE = 2.667 WHERE
-BOARDNO = 1;
-
-
-SELECT COUNT(*) AS CNT FROM CONTESTBOARD WHERE GROUPSQ=1;
-
-		INSERT INTO CONTESTBOARD
-		VALUES
-		(CON_BOARDNOSQ.NEXTVAL,CON_GROUPNOSQ.NEXTVAL,1,0,0,'asd','dd','ww',SYSDATE);
-------------------------------------------------------------------------
----------------------------------------------------------------------------------------------
-SELECT * FROM CONTESTBOARD;
-
-UPDATE CONTESTBOARD SET LIKECNT = LIKECNT+1 WHERE BOARDNO=5;
-
-SELECT * FROM (SELECT * FROM CONTESTBOARD ORDER BY LIKECNT DESC ) WHERE ROWNUM<=3;
-
-		
-		SELECT * FROM ( SELECT ROWNUM RN,a.* FROM CONTESTBOARD a 
-		ORDER BY GROUPNO DESC) WHERE RN &gt;=#{begin} AND RN &lt;=#{end}
-
-		
 -----------------------------------------------------------------------------별점주기중복방지위한 table
 DROP TABLE STAR_RECORD;
 CREATE TABLE STAR_RECORD(
@@ -89,3 +57,25 @@ CONSTRAINT STARUSER_REF FOREIGN KEY(USERNUM) REFERENCES MEMBER(USERNUM),
 CONSTRAINT STARBONO_REF FOREIGN KEY(BOARDNO) REFERENCES CONTESTBOARD(BOARDNO)
 );
 SELECT * FROM STAR_RECORD;
+---------------------------------------------------------------------------- data 넣기용 
+
+--공모전게시글
+INSERT INTO CONTESTLIST VALUES(CONLISTSQ.NEXTVAL,'2100년 기후를 체험하자','<img src="resources/defaultdata/go01.jpg" alt="공모전">'
+,'<img src="http://ideananumso.com/upload/contest/poster/idlabs_poster_20180514091508.png" alt="공모전"><br>2100년 지구와 우리의 모습을 다양한 방법으로 표현해주세요'
+,'대학교재학생','총100만원/기상청장상','20190725','20190909',0,'영상/사진',SYSDATE);
+INSERT INTO CONTESTLIST VALUES(CONLISTSQ.NEXTVAL,'우수환경도서 독후감공모','<img src="resources/defaultdata/go02.jpg" alt="공모전">'
+,'<img src="http://www.me.go.kr/upload/2/editor/201907/24/20190724171326.jpg" alt="공모사진"><br>환경부에서 선정한 우수환경도서(860)중 택 1'
+,'전국 초등학생/중고등학생/일반인','총 250만원','20190725','20190903',0,'글',SYSDATE);
+INSERT INTO CONTESTLIST VALUES(CONLISTSQ.NEXTVAL,'CON_TEST_TITLE','<img src="resources/defaultdata/go03.png" alt="공모전">'
+,'<img src="http://postfiles4.naver.net/MjAxOTA0MTlfMjgx/MDAxNTU1NjQ4NzM2NTkx.ELu8URjqQaLfIY8WIvuPtlWg3Vq1WdF7Cv8lRW5_O_Ig.9kwyq3UpRo7GqQWxNicsLlJmIE-Mlkce_wISPrtC8hEg.PNG.mesns/0419_%EA%B3%B5%EB%AA%A8%EC%A0%84_%EC%8D%B8%EB%84%A4%EC%9D%BC.png?type=w966" alt="공모사진"><br>종료된 공모전입니다.'
+,'제한없음','100만원','20190725','20190801',0,'영상/사진',SYSDATE);
+INSERT INTO CONTESTLIST VALUES(CONLISTSQ.NEXTVAL,'전국환경사진공모전','<img src="resources/defaultdata/go04.jpg" alt="공모전">'
+,'<img src="http://cfile207.uf.daum.net/image/264BF444532BC79B302886" alt="공모사진" ><br>환경 훼손현장및 보전을위한노력 ,자연과 인간의조화 ,우리나라의 아름다운 자연경관'
+,'대학교재학생','100만원','20190725','20191002',0,'영상/사진',SYSDATE);
+
+--공모출품data
+INSERT INTO CONTESTBOARD VALUES(1,CON_BOARDNOSQ.NEXTVAL,CON_GROUPNOSQ.NEXTVAL,1,0,0,0,'TEST작성자','TESTTITLE','<img src="https://t1.daumcdn.net/cfile/tistory/214A374A524CEF0A0E">','<img src="https://t1.daumcdn.net/cfile/tistory/214A374A524CEF0A0E"><br>베스킨라빈스',SYSDATE);
+
+
+UPDATE CONTESTLIST SET PARTNUM = PARTNUM+1 WHERE BOARDNO = 1;
+

@@ -68,22 +68,24 @@
   <script type="text/javascript">
    
       $(document).ready(function () {
+    	  var map = new Object();
         $("#clicksubmit").on("click",function(){
         	 var starCount = $('#count').text();
         	 var boardNum = $('#boardnum').val();
-        	           
+        	 var imuser = $('#imuser').val();         
         	$.ajax({
             url:"starupdate.do",
             type:'post',
-            data: {"starCount":starCount,"boardNum":boardNum},
+            data: {"starCount":starCount,"boardNum":boardNum,"userName":imuser},
             dateType:"json",
             success:function (data) {
-              alert('평점을주었습니다.');
-              $("#starhere").text(data);
+              map = data.msg+"";
+            	alert(map);
+              $("#starhere").text(data.updatedStar);
             },
             fail:function () {
                 alert('에러');
-                self.close();
+//                 self.close();
             }
 
           });
@@ -95,8 +97,11 @@
 <body>
 <%@ include file="../header.jsp" %>
 <br><br><br><br><br><br><br><br>
+<sec:authentication property="principal.username" var="user_id" />
+  <input type="hidden" id="imuser" value="${user_id}">
 <div class="d-flex justify-content-center container" id="Detailform">
   <input type="hidden" id="boardnum" value="${dto.boardno}">
+  <input type="hidden" id="usernum" value="${dto.writer}">
   <table class="que-tbl">
     <col width="60px">
     <col width="400px">
@@ -124,7 +129,9 @@
     </tr>
     <tr>
       <td colspan="2">
-       <button type="button" class="btn btn-outline-dark" onclick="location.href='contest_delete.do?groupno=${dto.groupno}'">글삭제</button>
+      <c:if test="${user_id==dto.writer }">
+       <button type="button" class="btn btn-outline-dark" onclick="location.href='contest_delete.do?groupno=${dto.groupno}'">글삭제</button>      
+      </c:if>
        <button type="button" class="btn btn-outline-dark" onclick="location.href='contest_main.do?'">목록으로</button>
       </td>
     </tr>
@@ -169,7 +176,7 @@
         <table>
           <tr>
             <th colspan="2">
-            	작성자:<input type="text" style="width: 100px" name="writer" value="testid" readonly="readonly">
+            	작성자:<input type="text" style="width: 100px" name="writer" value="${user_id }" readonly="readonly">
             </th>
           </tr>
           <tr>
@@ -252,7 +259,7 @@
           }
         }
         if (rating && rating < 5) {
-          for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+          for (i = _j = rating; rating <= 4 ? _j <= 4; : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
             this.$el.find('span').eq(i).removeClass('glyphicon-heart').addClass('glyphicon-heart-empty');
           }
         }

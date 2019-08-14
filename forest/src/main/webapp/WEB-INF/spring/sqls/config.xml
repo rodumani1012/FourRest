@@ -19,6 +19,8 @@
 		<typeAlias type="com.my.four.model.dto.CalendarDto" alias="CalendarDto"/>
 		<typeAlias type="com.my.four.model.dto.VolmemberDto" alias="VolmemberDto"/>
 		<typeAlias type="com.my.four.model.dto.AreaDto" alias="AreaDto"/>
+		<typeAlias type="com.my.four.model.dto.StarRecordDto" alias="StarRecordDto"/>
+		
 	</typeAliases>
 	<!-- resource : java Resources -->
 	<!-- resource : src/main/resources -->
