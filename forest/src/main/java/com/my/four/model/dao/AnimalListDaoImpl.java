@@ -3,6 +3,8 @@ package com.my.four.model.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +61,7 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		map.put("txt_search", txt_search);
 		
 		res = sqlSession.selectOne(namespace + "aniGetTotalCount", map);
-		
+
 		return res;
 	}
 
@@ -169,7 +171,7 @@ public class AnimalListDaoImpl implements AnimalListDao {
 
 	@Override
 	public int aniGetTotalCountDisturbHarm(String board, String txt_search) {
-		
+
 		int res = 0;
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -178,6 +180,33 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		
 		res = sqlSession.selectOne(namespace + "aniGetTotalCountDisturbHarm", map);
 		
+		return res;
+	}
+	
+	@Override
+	public int aniGetTotalCountDisturbHarm(String groups, String board, String txt_search) {
+		
+		int res = 0;
+		System.out.println("변환 : " + groups);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("board", board);
+
+		if(txt_search == null || txt_search.equals("")) {
+			map.put("txt_search", null);
+		} else {
+			map.put("txt_search", txt_search);
+		}
+		if(!groups.equals("all")) {
+			map.put("groups", groups);
+		}
+		
+//		Set<Entry<String, String>>entry = map.entrySet();
+//		for(Entry<String, String> e : entry) {
+//			System.out.println(e.getKey() + " : "+ e.getValue());
+//		}
+		
+		res = sqlSession.selectOne(namespace + "aniGetTotalCountDisturbHarm", map);
+		System.out.println("갯수 : " + res);
 		return res;
 	}
 

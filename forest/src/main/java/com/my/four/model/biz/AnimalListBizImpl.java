@@ -80,6 +80,45 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	public int aniGetTotalCountDisturbHarm(String board, String txt_search) {
 		return dao.aniGetTotalCountDisturbHarm(board, txt_search);
 	}
+	
+	@Override
+	public int aniGetTotalCountDisturbHarm(String groups, String board, String txt_search) {
+		if(groups == null) { 
+			groups = "all"; 
+		}
+		
+		switch (groups) {
+		case "mammal":
+			groups = "포유류";
+			break;
+		case "birds":
+			groups = "조류";
+			break;
+		case "reptile":
+			groups = "파충류";
+			break;
+		case "amphibian":
+			groups = "양서류";
+			break;
+		case "fish":
+			groups = "어류";
+			break;
+		case "insect":
+			groups = "곤충";
+			break;
+		case "invertebrate":
+			groups = "무척추동물";
+			break;
+		case "plants":
+			groups = "식물";
+			break;
+		default :
+			groups = "all";
+			break;
+		}
+		System.out.println("그룹은 : " + groups);
+		return dao.aniGetTotalCountDisturbHarm(groups, board, txt_search);
+	}
 
 	@Override
 	public int aniInsertDisturbHarm(String board, Object dtos) {
@@ -95,6 +134,5 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	public List<AnimalHarmDto> aniSelectListHarm(int firstIndex, int recordCountPerPage, String txt_search) {
 		return dao.aniSelectListHarm(firstIndex, recordCountPerPage, txt_search);
 	}
-
 
 }

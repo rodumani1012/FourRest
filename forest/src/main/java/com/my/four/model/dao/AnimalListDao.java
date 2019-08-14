@@ -28,8 +28,9 @@ public interface AnimalListDao {
 	public int aniGetTotalCountEndangeredJoin(String txt_search);
 	
 	public int aniGetOne(String grade, String groups);
-	
+
 	public int aniGetTotalCountDisturbHarm(String board, String txt_search);
+	public int aniGetTotalCountDisturbHarm(String groups, String board, String txt_search);
 	public int aniInsertDisturbHarm(String board, Object dtos);
 	public	List<AnimalDisturbDto> aniSelectListDisturb(int firstIndex, int recordCountPerPage,String txt_search);
 	public	List<AnimalHarmDto> aniSelectListHarm(int firstIndex, int recordCountPerPage,String txt_search);
