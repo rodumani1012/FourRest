@@ -80,6 +80,7 @@
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='mypagepwchk.do'">Test</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='calendar.do'">Calendar</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='youtube.do'">Youtube</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='chat.do'">문의하기</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='contest_main.do'">공모</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='funlist.do'">후원하기</button></li>

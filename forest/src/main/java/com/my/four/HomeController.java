@@ -250,6 +250,11 @@ public class HomeController {
 		
 		return "member/mypagepwchk";
 	}
+	@RequestMapping(value="youtube.do")
+	public String youtube() {
+		
+		return "youtube/youtube";
+	}
 	
 	@RequestMapping(value="mypage.do")
 	public String mypage(String pwchk,Principal principal) {

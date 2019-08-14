@@ -58,9 +58,7 @@
 			<h3>LOGIN</h3>
 			
 			<form:form name="f" action="logincheck.do" method="POST">
-				<c:if test="${param.error != null}">
-					<p>아이디와 비밀번호가 잘못되었습니다.</p>
-				</c:if>
+				
 				<div class="form-group">
 					<label for="username">ID : </label>
 					<div class="row justify-content-center">
