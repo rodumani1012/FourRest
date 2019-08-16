@@ -81,6 +81,10 @@
 						class="form-check-input" type="checkbox"> Remember me
 					</label>
 				</div>
+				<div class="form-group form-check">
+					<a href="findId.do">ID 찾기 /</a>
+					<a href="findPw.do">PW 찾기</a>
+				</div>
 				<button type="submit" class="btn btn-success">LOGIN</button>
 				<c:if test="${not empty ERRORMSG}">
 					<font color="red">

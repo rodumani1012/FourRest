@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -257,19 +258,105 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="mypage.do")
-	public String mypage(String pwchk,Principal principal) {
+	public String mypage(String pwchk,Principal principal,Model model) {
+		 
+			LoginDto dto1= biz.memberInfo(principal.getName());
+			String phone=dto1.getPhone().substring(3, 7);
+			String phone2=dto1.getPhone().substring(7, 11);
+			String[] email=dto1.getEmail().split("@");
+			String emailName = email[0];
+			model.addAttribute("dto",dto1);
+			model.addAttribute("phone",phone);
+			model.addAttribute("phone2",phone2);
+			model.addAttribute("emailName",emailName);
+			return "member/mypage";	
+		
+	}
+	@RequestMapping(value="pwChange.do")
+	public String pwChange(String pwchk,Principal principal,Model model) {
 		LoginDto dto = biz.pwChk(principal.getName());
 		boolean chk = passEncoder.matches(pwchk, dto.getPw());
 		if(chk==true) {
-			
-			return "member/mypage";	
+			return "member/pwchange";
 		}else {
-			logger.info("와이!");
-			return "redirect:member/mypagepwchk.do";
+			return "mypagepwchk.do";
+		}
+		
+	}
+	@RequestMapping(value="pwChangeConfirm.do")
+	public String pwChangeConfirm(String pw, Principal principal,ServletResponse response,String newPw) throws IOException {
+		String id=principal.getName();
+		LoginDto dto = biz.pwChk(id);
+		boolean chk = passEncoder.matches(pw, dto.getPw());
+		if(chk==true) {
+			System.out.println("111111111111"+id);
+			String encodePw = passEncoder.encode(newPw);
+			int res = biz.pwUpdate(encodePw, id);
+			if(res>0) {
+				System.out.println("-------------------------------"+res);
+				return "redirect:main.do";
+			}else {
+				System.out.println("------------------여긴가");
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('변경한 비밀번호를 확인 해주세요.')</script>");
+				out.flush();
+				return "member/pwchange";
+			}
+			
+		}else {
+			System.out.println("여긴가");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('기존 비밀번호가 다릅니다.')</script>");
+			out.flush();
+			return "member/pwchange";
+		}
+	}
+	@RequestMapping(value="memberUpdate.do")
+	public String memberUpdate(LoginDto dto,String phone1,String phone2,String phone3,String emailName,String emailForm) {
+		
+		String phone = phone1+phone2+phone3;
+		String email= emailName+"@"+emailForm;
+		dto.setPhone(phone);
+		dto.setEmail(email);
+		int res = biz.memberUpdate(dto);
+		if(res>0) {
+			return "redirect:main.do";
+		}else {
+			return "redirect:memberUpdate.do";
 		}
 		
 	}
 	
+	@RequestMapping(value = "findId.do")
+	public String findId() {
+		return "member/findid";
+	}
+	
+	@RequestMapping(value="findIdConfirm.do",  produces = "application/json")
+	public Map<String, Boolean> findIdConfirm(String emailName,String emailForm , HttpSession session) {
+		
+		
+		
+		String id= null;
+		String email = emailName +"@"+emailForm;
+		
+		String subject ="회원님의 아이디 입니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("귀하의 아이디는"+id+"입니다.");
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("email", mailSerivce.send(subject,sb.toString(),"wjy1408@gmail.com",email,null));
+		return map;
+		
+	}
+	@RequestMapping(value = "findPw.do")
+	public String findPw() {
+		logger.info("관리자");
+
+		return "admin/admin";
+	}
+
 	
 	
 	@ResponseBody

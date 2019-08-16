@@ -43,6 +43,24 @@ public class LoginBizImpl implements LoginBiz{
 		// TODO Auto-generated method stub
 		return dao.pwChk(pwChk);
 	}
+
+	@Override
+	public LoginDto memberInfo(String id) {
+		// TODO Auto-generated method stub
+		return dao.memberInfo(id);
+	}
+
+	@Override
+	public int memberUpdate(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return dao.memberUpdate(dto);
+	}
+
+	@Override
+	public int pwUpdate(String pw,String id) {
+		// TODO Auto-generated method stub
+		return dao.pwUpdate(pw,id);
+	}
 	
 	
 }

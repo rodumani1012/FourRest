@@ -114,7 +114,11 @@
 							</sec:authorize></li>
 							<li><sec:authorize access="isAuthenticated()">
 								<button type="button" class="btn btn-link text-dark"
-									onclick="location.href='mypagepwchk.do'">내정보</button>
+									onclick="location.href='mypage.do'">내정보</button>
+							</sec:authorize></li>
+							<li><sec:authorize access="isAuthenticated()">
+								<button type="button" class="btn btn-link text-dark"
+									onclick="location.href='mypagepwchk.do'">비밀번호 변경</button>
 							</sec:authorize></li>
 					</ul>
 				</div>
