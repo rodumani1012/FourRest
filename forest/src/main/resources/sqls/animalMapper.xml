@@ -151,6 +151,11 @@
 		<if test='board.equals("animal_alien_harm")'>
 		FROM ANIMAL_ALIEN_HARM
 		</if>
+		<if test="groups != null">
+			<if test='txt_search == null'>
+			WHERE GROUPS = #{groups}
+			</if>
+		</if>
 		<if test="txt_search != null">
 			WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
 			upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
@@ -163,7 +168,7 @@
 			INSERT ALL
 			<foreach collection="list" item="ani">
 				INTO ANIMAL_ALIEN_DISTURB(KOR_NAME, ENG_NAME, GROUPS, MANAGEMENT, COUNTRY, IMG)
-				VALUES(#{ani.korName},#{ani.engName},#{ani.groups},#{ani.management},#{ani.country},#{ani.img})
+				VALUES(#{ani.kor_name},#{ani.eng_name},#{ani.groups},#{ani.management},#{ani.country},#{ani.img})
 			</foreach>
 			SELECT * FROM DUAL
 		</if>
@@ -171,7 +176,7 @@
 			INSERT ALL
 			<foreach collection="list" item="ani">
 				INTO ANIMAL_ALIEN_HARM(KOR_NAME, ENG_NAME, GROUPS, MANAGEMENT, IMG)
-				VALUES(#{ani.korName},#{ani.engName},#{ani.groups},#{ani.management},#{ani.img})
+				VALUES(#{ani.kor_name},#{ani.eng_name},#{ani.groups},#{ani.management},#{ani.img})
 			</foreach>
 			SELECT * FROM DUAL
 		</if>
@@ -208,6 +213,8 @@
 			 )
 		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
 	</select>
+	
+	
 </mapper>
 
 

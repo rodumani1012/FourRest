@@ -188,21 +188,21 @@ public class AnimalController {
 	
 	//외래생물 목록으로!
 	@RequestMapping(value = "ani_alien.do")
-	public String ani_alien(String board, String txt_search, String page, Model model) throws IOException {
-
+	public String ani_alien(String groups, String board, String txt_search, String page, Model model) throws IOException {
+//		if(groups == null) groups = "all";
 		String txt_s = txt_search; // 검색어
-		
+
 		switch (board) {
 		case "animal_alien_disturb":
 			logger.info("생태계 교란종 목록으로!");
 			
-			if (biz.aniGetTotalCountDisturbHarm(board, txt_search) == 0) {
-				
+			if (biz.aniGetTotalCountDisturbHarm(board, txt_search) < 1) {
+				System.out.println("이프");
 				// db에 저장하기
 				biz.aniInsertDisturbHarm(board, ani.returnDisturb());
-				
+
 				// 페이징하기
-				int totalCount = biz.aniGetTotalCountDisturbHarm(board, txt_s);
+				int totalCount = biz.aniGetTotalCountDisturbHarm(groups, board, txt_s);
 				int pag = (page == null) ? 1 : Integer.parseInt(page);
 
 				Paging paging = new Paging();
@@ -220,8 +220,10 @@ public class AnimalController {
 				
 				return "animalList/animaldisturb";
 			} else {
+				System.out.println("엘스");
 				// db에 있으면 그냥 페이징하기.
-				int totalCount = biz.aniGetTotalCountDisturbHarm(board, txt_s);
+				int totalCount = biz.aniGetTotalCountDisturbHarm(groups, board, txt_s);
+
 				int pag = (page == null) ? 1 : Integer.parseInt(page);
 
 				Paging paging = new Paging();
@@ -249,7 +251,7 @@ public class AnimalController {
 				biz.aniInsertDisturbHarm(board, ani.returnHarm());
 				System.out.println("저장 종료");
 				// 페이징하기
-				int totalCount = biz.aniGetTotalCountDisturbHarm(board, txt_s);
+				int totalCount = biz.aniGetTotalCountDisturbHarm(groups, board, txt_s);
 				int pag = (page == null) ? 1 : Integer.parseInt(page);
 
 				Paging paging = new Paging();
@@ -268,7 +270,7 @@ public class AnimalController {
 				return "animalList/animalharm";
 			} else {
 				// db에 있으면 그냥 페이징하기.
-				int totalCount = biz.aniGetTotalCountDisturbHarm(board, txt_s);
+				int totalCount = biz.aniGetTotalCountDisturbHarm(groups, board, txt_s);
 				int pag = (page == null) ? 1 : Integer.parseInt(page);
 
 				Paging paging = new Paging();

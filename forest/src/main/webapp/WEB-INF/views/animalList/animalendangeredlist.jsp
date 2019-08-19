@@ -6,11 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+	$(function() {
+		var pageNum = $("#pageNum").val();
+		 $("#txt_search").keydown(function(key) {
+             if (key.keyCode == 13) {
+            	 PageMove(pageNum);
+             }
+         });
+	});
 	function PageMove(page) {
-		location.href = "ani_endangeredList.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
+		location.href = "ani_alien.do?board=animal_alien_disturb&page=" + page + "&txt_search=" + $('input#txt_search').val();
 	}
 </script>
 <style type="text/css">
@@ -69,6 +76,7 @@ div>img {
 			<tr>
 				<td colspan="5">
 					<input type="text" id="txt_search" value="${txt_search }" placeholder="국명 또는 영명 검색"> 
+					<input type="hidden" id="pageNum" value="${paging.pageNo }">
 					<button type="button" class="btn btn-outline-dark" onclick="javascript:PageMove(${paging.pageNo})">검색</button>
 				</td>
 			</tr>
