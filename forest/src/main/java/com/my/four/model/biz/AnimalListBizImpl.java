@@ -77,8 +77,8 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	}
 
 	@Override
-	public int aniGetTotalCountDisturbHarm(String board, String txt_search) {
-		return dao.aniGetTotalCountDisturbHarm(board, txt_search);
+	public int aniGetTotalCountDisturbHarm(String board) {
+		return dao.aniGetTotalCountDisturbHarm(board);
 	}
 	
 	@Override

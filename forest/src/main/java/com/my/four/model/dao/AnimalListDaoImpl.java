@@ -170,15 +170,14 @@ public class AnimalListDaoImpl implements AnimalListDao {
 	}
 
 	@Override
-	public int aniGetTotalCountDisturbHarm(String board, String txt_search) {
+	public int aniGetTotalCountDisturbHarm(String board) {
 
 		int res = 0;
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("board", board);
-		map.put("txt_search", txt_search);
 		
-		res = sqlSession.selectOne(namespace + "aniGetTotalCountDisturbHarm", map);
+		res = sqlSession.selectOne(namespace + "aniGetTotalCountDHDb", map);
 		
 		return res;
 	}
@@ -236,8 +235,7 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("firstIndex", String.valueOf(firstIndex));
 		map.put("recordCountPerPage", String.valueOf(recordCountPerPage));
-		
-		if (txt_search == null) {
+		if (txt_search.length() < 1) {
 			map.put("txt_search", null);
 		} else {
 			map.put("txt_search", txt_search);

@@ -142,6 +142,17 @@
 		SELECT COUNT(*) FROM ANIMAL_ENDANGERED_JOIN WHERE GROUPS like '%' || #{groups} || '%' AND GRADE = #{grade} 
 	</select>
 	
+	<!-- 생태교란 총 갯수 db 검사용 -->
+	<select id="aniGetTotalCountDHDb" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		<if test='board.equals("animal_alien_disturb")'>
+		FROM ANIMAL_ALIEN_DISTURB
+		</if>
+		<if test='board.equals("animal_alien_harm")'>
+		FROM ANIMAL_ALIEN_HARM
+		</if>
+	</select>
+	
 	<!-- 생태교란 총 갯수 -->
 	<select id="aniGetTotalCountDisturbHarm" parameterType="map" resultType="Integer">
 		SELECT COUNT(*)
@@ -192,9 +203,9 @@
 			 			<if test="groups != null">
 			 				AND GROUPS = #{groups}
 			 			</if>
-			 			<if test="txt_search != null">
-							AND upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
-							upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
+			 			<if test='txt_search != null'>
+							AND upper(KOR_NAME) like '%' || trim(upper(#{txt_search})) || '%' or
+							upper(ENG_NAME) like '%' || trim(upper(#{txt_search})) || '%'
 			 			</if>
 			 		</where>
 						ORDER BY KOR_NAME

@@ -196,7 +196,7 @@ public class AnimalController {
 		case "animal_alien_disturb":
 			logger.info("생태계 교란종 목록으로!");
 			
-			if (biz.aniGetTotalCountDisturbHarm(board, txt_search) < 1) {
+			if (biz.aniGetTotalCountDisturbHarm(board) < 1) {
 				System.out.println("이프");
 				// db에 저장하기
 				biz.aniInsertDisturbHarm(board, ani.returnDisturb());
@@ -247,7 +247,7 @@ public class AnimalController {
 		case "animal_alien_harm":
 			logger.info("위해 우려종 목록으로!");
 			
-			if (biz.aniGetTotalCountDisturbHarm(board, txt_search) == 0) {
+			if (biz.aniGetTotalCountDisturbHarm(board) < 1) {
 				System.out.println("저장 시작");
 				// db에 저장하기
 				biz.aniInsertDisturbHarm(board, ani.returnHarm());

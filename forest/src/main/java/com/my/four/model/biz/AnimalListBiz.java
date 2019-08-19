@@ -27,7 +27,7 @@ public interface AnimalListBiz {
 	
 	public int aniGetOne(String grade, String groups);
 
-	public int aniGetTotalCountDisturbHarm(String board, String txt_search);
+	public int aniGetTotalCountDisturbHarm(String board);
 	public int aniGetTotalCountDisturbHarm(String groups, String board, String txt_search);
 	public int aniInsertDisturbHarm(String board, Object dtos);
 	public	List<AnimalDisturbDto> aniSelectListDisturb(String groups, int firstIndex, int recordCountPerPage,String txt_search);
