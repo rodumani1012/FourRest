@@ -25,7 +25,7 @@
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="container d-flex justify-content-center">
 
-	<form class="form-inline row" id="form" action="mypage.do">
+	<form class="form-inline row" id="form" action="pwChange.do">
 		<input class="form-control col-lg-9 mb-2 mr-sm-2" type="password" name="pwchk" id="pwchk">
 		<button type="submit" class="btn btn-warning mb-2 col-lg-9">비밀번호 확인</button>
 	</form>

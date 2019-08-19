@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.my.four.animal.AnimalList;
+import com.my.four.crawling.AnimalList;
 import com.my.four.model.biz.AnimalListBiz;
 import com.my.four.model.dto.AnimalDisturbDto;
 import com.my.four.model.dto.AnimalEndangeredJoinDto;

@@ -41,6 +41,11 @@
 
 <!--Theme Responsive css-->
 <link rel="stylesheet" href="resources/assets/css/responsive.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+
+
+</script>
 
 </head>
 <body data-spy="scroll" data-target=".navbar-collapse">
@@ -57,10 +62,8 @@
 			<br>
 			<h3>LOGIN</h3>
 			
-			<form:form name="f" action="logincheck.do" method="POST">
-				<c:if test="${param.error != null}">
-					<p>아이디와 비밀번호가 잘못되었습니다.</p>
-				</c:if>
+			<form:form name="f" action="logincheck.do" method="POST" id="loginform">
+				
 				<div class="form-group">
 					<label for="username">ID : </label>
 					<div class="row justify-content-center">
@@ -78,7 +81,19 @@
 						class="form-check-input" type="checkbox"> Remember me
 					</label>
 				</div>
+				<div class="form-group form-check">
+					<a href="findId.do">ID 찾기 /</a>
+					<a href="findPw.do">PW 찾기</a>
+				</div>
 				<button type="submit" class="btn btn-success">LOGIN</button>
+				<c:if test="${not empty ERRORMSG}">
+					<font color="red">
+						<span>
+							아이디와 비밀번호를 확인 하세요!
+						</span>
+					</font>
+				</c:if>
+
 			</form:form>
 		</div>
 		<div id="sns_login_btn">

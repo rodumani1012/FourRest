@@ -82,11 +82,13 @@
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='mypagepwchk.do'">Test</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='calendar.do'">Calendar</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='youtube.do'">Youtube</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='chat.do'">문의하기</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='contest_main.do'">공모</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='funlist.do'">후원하기</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='content.do'">Contant</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do'">보호소</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='trash.do'">쓰레기</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_endangeredList.do'">멸종위기종</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_alien.do?board=animal_alien_disturb'">외래생물</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='admin.do'">관리자</button></li>
@@ -115,7 +117,11 @@
 							</sec:authorize></li>
 							<li><sec:authorize access="isAuthenticated()">
 								<button type="button" class="btn btn-link text-dark"
-									onclick="location.href='mypagepwchk.do'">내정보</button>
+									onclick="location.href='mypage.do'">내정보</button>
+							</sec:authorize></li>
+							<li><sec:authorize access="isAuthenticated()">
+								<button type="button" class="btn btn-link text-dark"
+									onclick="location.href='mypagepwchk.do'">비밀번호 변경</button>
 							</sec:authorize></li>
 					</ul>
 				</div>
