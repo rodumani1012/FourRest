@@ -13,7 +13,7 @@
 <%@ include file="../header.jsp" %>
 
 <br><br><br><br>
-<iframe src="${requestScope['javax.servlet.forward.context_path']}/puzzleiframe.do" width="1100px" height="450px"></iframe>
+<iframe src="${requestScope['javax.servlet.forward.context_path']}/puzzleselect.do" width="1100px" height="450px"></iframe>
 	
 	<button type="button" class="btn btn-outline-dark btn-lg" onclick="location.href='content.do'" >←뒤로가기</button>
 	

@@ -175,20 +175,6 @@ public class HomeController {
 				return "redirect:joinform.do";
 		}
 	}
-	
-	@RequestMapping(value="content.do")
-	public String content() {
-		logger.info("game");
-		
-		return "content";
-	}
-	
-	@RequestMapping(value="quiz.do")
-	public String quiz() {
-		logger.info("퀴즈 게임하기");
-		
-		return "content/quiz";
-	}
 
 	@RequestMapping(value = "admin.do")
 	public String admin() {
@@ -202,31 +188,6 @@ public class HomeController {
 		logger.info("관리자일정");
 
 		return "admin/admincal";
-	}
-	
-	
-	@RequestMapping(value="puzzle.do")
-	public String puzzle() {
-		logger.info("후원하기");
-		
-		return "content/puzzle";
-	}
-	
-	@RequestMapping(value="crossword.do")
-	public String crossword() {
-		logger.info("후원하기");
-		
-		return "content/crossword";
-	}
-	
-	@RequestMapping(value="puzzleiframe.do")
-	public String puzzleiframe() {
-		
-		return "content/puzzleiframe";
-	}
-	@RequestMapping(value="chat.do")
-	public String chat() {
-		return "chatting";
 	}
 	
 	//kakao 로그인
