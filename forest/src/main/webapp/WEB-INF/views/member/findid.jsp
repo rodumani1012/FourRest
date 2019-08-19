@@ -11,7 +11,9 @@
 	function writeEmail(){
 		var select = $("#emailForm").val();
 		if(select=="직접 입력"){
-			$("#emailFormWrite").show();
+			
+		}else{
+			select=$("#emailFormWrite").val();
 		}
 	}
 	
@@ -20,7 +22,7 @@
 </head>
 <body>
 
-	<form action="findIdConfirm.do">
+	<form action="findIdConfirm.do" id="idForm">
 			<div class="form-group">
 				<label for="text">NAME : </label>
 				<div class="row justify-content-center">
@@ -32,7 +34,7 @@
 			<div class="row justify-content-center">
 				<input type="text" class="form-control col-2" id="emailName"
 					name="emailName">&nbsp;@ 
-					<input type="text" class="form-control col-2" id="emailFormWrite" name="emailFormWrite" style="display: none">
+					<input type="text" class="form-control col-2" id="emailFormWrite" name="emailForm" readonly="readonly">
 					<select class="form-control col-2" id="emailForm" name="emailForm" onclick="writeEmail()">
 					<option>daum.net</option>
 					<option>naver.com</option>

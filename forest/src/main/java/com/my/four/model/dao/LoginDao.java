@@ -17,4 +17,5 @@ public interface LoginDao {
 	public LoginDto memberInfo(String id);
 	public int memberUpdate(LoginDto dto);
 	public int pwUpdate(String pw,String id);
+	public LoginDto findId(String name, String email);
 }

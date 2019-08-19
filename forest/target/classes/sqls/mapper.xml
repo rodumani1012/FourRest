@@ -34,4 +34,8 @@
 		UPDATE MEMBER SET PW=#{pw} WHERE ID=#{id}
 	</update>
 	
+	<select id="findId" parameterType="map" resultType="loginDto">
+		SELECT ID FROM MEMBER WHERE NAME=#{name} AND EMAIL=#{email} 
+	</select>
+	
 </mapper>

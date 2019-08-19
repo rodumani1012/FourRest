@@ -335,19 +335,19 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="findIdConfirm.do",  produces = "application/json")
-	public Map<String, Boolean> findIdConfirm(String emailName,String emailForm , HttpSession session) {
-		
-		
-		
-		String id= null;
-		String email = emailName +"@"+emailForm;
-		
+	public String findIdConfirm(String name,String emailName,String emailForm) {
+		String email = emailName+"@"+emailForm;
+		System.out.println("-------------"+emailForm);
+		System.out.println("-------------"+name);
+		LoginDto dto = biz.findId(name, email);
+		String id= dto.getId();
 		String subject ="회원님의 아이디 입니다.";
 		StringBuilder sb = new StringBuilder();
 		sb.append("귀하의 아이디는"+id+"입니다.");
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		map.put("email", mailSerivce.send(subject,sb.toString(),"wjy1408@gmail.com",email,null));
-		return map;
+		
+		return "redirect:main.do";
 		
 	}
 	@RequestMapping(value = "findPw.do")

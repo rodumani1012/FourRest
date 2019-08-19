@@ -61,6 +61,12 @@ public class LoginBizImpl implements LoginBiz{
 		// TODO Auto-generated method stub
 		return dao.pwUpdate(pw,id);
 	}
+
+	@Override
+	public LoginDto findId(String name, String email) {
+		// TODO Auto-generated method stub
+		return dao.findId(name, email);
+	}
 	
 	
 }
