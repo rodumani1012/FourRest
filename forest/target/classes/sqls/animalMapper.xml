@@ -188,10 +188,15 @@
 		FROM (SELECT ROWNUM AS RNUM, P.*
 			 FROM ( SELECT * 
 			 		FROM ANIMAL_ALIEN_DISTURB
-					 <if test="txt_search != null">
-							WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
+			 		<where>
+			 			<if test="groups != null">
+			 				AND GROUPS = #{groups}
+			 			</if>
+			 			<if test="txt_search != null">
+							AND upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
 							upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
-					</if>
+			 			</if>
+			 		</where>
 						ORDER BY KOR_NAME
 						) P
 			 )

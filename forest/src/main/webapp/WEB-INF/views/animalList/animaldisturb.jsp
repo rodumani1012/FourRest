@@ -148,16 +148,16 @@ dd {
 		
 		<!-- Pagination -->
 		<div class="pagination pagination-md justify-content-center">
-			<a class="page-link" href="javascript:PageMove(${paging.firstPageNo})">&laquo;</a> 
-			<a class="page-link" href="javascript:PageMove(${paging.prevPageNo})">&lt;</a>
+			<a class="page-link" href="javascript:PageMove(${paging.firstPageNo}, ${groups })">&laquo;</a> 
+			<a class="page-link" href="javascript:PageMove(${paging.prevPageNo}, ${groups })">&lt;</a>
 			<c:forEach var="i" begin="${paging.startPageNo}"
 				end="${paging.endPageNo}" step="1">
 				<c:choose>
 					<c:when test="${i eq paging.pageNo}">
-						<a class="page-link" href="javascript:PageMove(${i})">${i}</a>
+						<a class="page-link" href="javascript:PageMove(${i}, ${groups })">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a class="page-link" href="javascript:PageMove(${i})">${i}</a>
+						<a class="page-link" href="javascript:PageMove(${i}, ${groups })">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>

@@ -231,7 +231,7 @@
 	<div id="chat" style="display: none; position: fixed; bottom: 20px; right: 100px; z-index: 9999">
 		<div id="chat_box">
 			<ul id="#messages"></ul>
-			<iframe class="iframe-chat" src="http://192.168.10.151:8880/"></iframe>
+<!-- 			<iframe class="iframe-chat" src="http://192.168.10.151:8880/"></iframe> -->
 		</div>
 	</div>
 

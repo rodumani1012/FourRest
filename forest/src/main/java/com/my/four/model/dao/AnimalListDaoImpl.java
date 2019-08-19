@@ -198,6 +198,8 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		}
 		if(!groups.equals("all")) {
 			map.put("groups", groups);
+		} else {
+			map.put("groups", null);
 		}
 		
 //		Set<Entry<String, String>>entry = map.entrySet();
@@ -229,15 +231,34 @@ public class AnimalListDaoImpl implements AnimalListDao {
 	}
 
 	@Override
-	public List<AnimalDisturbDto> aniSelectListDisturb(int firstIndex, int recordCountPerPage, String txt_search) {
+	public List<AnimalDisturbDto> aniSelectListDisturb(String groups, int firstIndex, int recordCountPerPage, String txt_search) {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("firstIndex", String.valueOf(firstIndex));
 		map.put("recordCountPerPage", String.valueOf(recordCountPerPage));
-		map.put("txt_search", txt_search);
+		
+		if (txt_search == null) {
+			map.put("txt_search", null);
+		} else {
+			map.put("txt_search", txt_search);
+		}
+		if(!groups.equals("all")) {
+			map.put("groups", groups);
+		} else {
+			map.put("groups", null);
+		}
 		
 		List<AnimalDisturbDto> list = sqlSession.selectList(namespace + "aniSelectListDisturb", map);
 		
+		Set<Entry<String, String>>entry = map.entrySet();
+		for(Entry<String, String> e : entry) {
+			System.out.println(e.getKey() + " : "+ e.getValue());
+		}
+		
+		for(AnimalDisturbDto dto : list) {
+			System.out.println(dto.getKor_name());
+		}
+
 		return list;
 	}
 

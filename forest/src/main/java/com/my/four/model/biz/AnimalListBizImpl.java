@@ -83,6 +83,25 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	
 	@Override
 	public int aniGetTotalCountDisturbHarm(String groups, String board, String txt_search) {
+		return dao.aniGetTotalCountDisturbHarm(returnGroups(groups), board, txt_search);
+	}
+
+	@Override
+	public int aniInsertDisturbHarm(String board, Object dtos) {
+		return dao.aniInsertDisturbHarm(board, dtos);
+	}
+
+	@Override
+	public List<AnimalDisturbDto> aniSelectListDisturb(String groups, int firstIndex, int recordCountPerPage, String txt_search) {
+		return dao.aniSelectListDisturb(returnGroups(groups), firstIndex, recordCountPerPage, txt_search);
+	}
+
+	@Override
+	public List<AnimalHarmDto> aniSelectListHarm(int firstIndex, int recordCountPerPage, String txt_search) {
+		return dao.aniSelectListHarm(firstIndex, recordCountPerPage, txt_search);
+	}
+
+	private String returnGroups(String groups) {
 		if(groups == null) { 
 			groups = "all"; 
 		}
@@ -116,23 +135,7 @@ public class AnimalListBizImpl implements AnimalListBiz {
 			groups = "all";
 			break;
 		}
-		System.out.println("그룹은 : " + groups);
-		return dao.aniGetTotalCountDisturbHarm(groups, board, txt_search);
+		
+		return groups;
 	}
-
-	@Override
-	public int aniInsertDisturbHarm(String board, Object dtos) {
-		return dao.aniInsertDisturbHarm(board, dtos);
-	}
-
-	@Override
-	public List<AnimalDisturbDto> aniSelectListDisturb(int firstIndex, int recordCountPerPage, String txt_search) {
-		return dao.aniSelectListDisturb(firstIndex, recordCountPerPage, txt_search);
-	}
-
-	@Override
-	public List<AnimalHarmDto> aniSelectListHarm(int firstIndex, int recordCountPerPage, String txt_search) {
-		return dao.aniSelectListHarm(firstIndex, recordCountPerPage, txt_search);
-	}
-
 }
