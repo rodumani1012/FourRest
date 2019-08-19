@@ -81,14 +81,14 @@
 조류,II,흰목물떼새,Charadrius placidus ,VU,LC
 조류,II,흰이마기러기,Anser erythropus ,VU,VU
 조류,II,흰죽지수리,Aquila heliaca ,VU,VU
-양서파충류,I,비바리뱀,Sibynophis chinensis,EN,LC
-양서파충류,I,수원청개구리,Hyla suweonensis,EN,EN
-양서파충류,II,고리도룡뇽,Hynobius yangi,EN,EN
-양서파충류,II,구렁이,Elaphe schrenckii,EN,NA
-양서파충류,II,금개구리,Pelophylax chosenicus,VU,VU
-양서파충류,II,남생이,Mauremys reevesii,VU,EN
-양서파충류,II,맹꽁이,Kaloula borealis,VU,LC
-양서파충류,II,표범장지뱀,Eremias argus,EN,NA
+파충류,I,비바리뱀,Sibynophis chinensis,EN,LC
+양서류,I,수원청개구리,Hyla suweonensis,EN,EN
+양서류,II,고리도롱뇽,Hynobius yangi,EN,EN
+파충류,II,구렁이,Elaphe schrenckii,EN,NA
+양서류,II,금개구리,Pelophylax chosenicus,VU,VU
+파충류,II,남생이,Mauremys reevesii,VU,EN
+양서류,II,맹꽁이,Kaloula borealis,VU,LC
+파충류,II,표범장지뱀,Eremias argus,EN,NA
 어류,I,감돌고기,Pseudopungtungia nigra,EN,NA
 어류,I,꼬치동자개,Pseudobagrus brevicorpus,EN,NA
 어류,I,남방동사리,Odontobutis obscura,CR,NA
@@ -128,7 +128,7 @@
 곤충류,II,닻무늬길앞잡이,Cicindela anchoralis,EN,NA
 곤충류,II,대모잠자리,Libellula angelina,EN,CR
 곤충류,II,두점박이사슴벌레,Prosopocoilus astacoides blanchardi,VU,NA
-곤충류,II,뚱보주름메뚜리,Haplotropis brunneriana,NA,NA
+곤충류,II,뚱보주름메뚜기,Haplotropis brunneriana,NA,NA
 곤충류,II,멋조롱박딱정벌레,Damaster mirabilissimus mirabilissimus,NT,NA
 곤충류,II,물방개,Cybister chinensis,NT,NA
 곤충류,II,물장군,Lethocerus deyrolli,NA,NA
@@ -174,94 +174,96 @@
 무척추동물,II,해송,Myriopathes japonica,NA,NA
 무척추동물,II,흰발농게,Uca lactea,NA,NA
 무척추동물,II,흰수지맨드라미,Dendronephthya alba,NA,NA
-식물,I,광릉요강꽃,Cypripedium japonicum,CR,EN
-식물,I,금자란,Gastrochilus fuscopunctatus,EN,NA
-식물,I,나도풍란,Sedirea japonica,CR,NA
-식물,I,만년콩,Euchresta japonica,CR,NA
-식물,I,비자란,Thrixspermum japonicum,EN,NA
-식물,I,암매,Diapensia lapponica var. obovata,CR,NA
-식물,I,죽백란,Cymbidium lancifolium,CR,NA
-식물,I,털복주머니란,Cypripedium guttatum,CR,LC
-식물,I,풍란,Neofinetia falcata,CR,NA
-식물,I,한라솜다리,Leontopodium hallaisanense,CR,NA
-식물,I,한란,Cymbidium kanran,CR,NA
-식물,II,가는동자꽃,Lychnis kiusiana,NA,NA
-식물,II,가시연,Euryale ferox,VU,LC
-식물,II,가시오갈피나무,Eleutherococcus senticosus,VU,NA
-식물,II,각시수련,Nymphaea tetragona var. minima,CR,LC
-식물,II,개가시나무,Quercus gilva,VU,NA
-식물,II,개병풍,Astilboides tabularis,VU,NA
-식물,II,갯봄맞이꽃,Glaux maritima var. obtusifolia,VU,NA
-식물,II,검은별고사리,Cyclosorus interruptus,NE,LC
-식물,II,구름병아리난초,Gymnadenia cucullata,VU,NA
-식물,II,기생꽃,Trientalis europaea ssp. arctica,VU,NA
-식물,II,끈끈이귀개,Drosera peltata var. nipponica,VU,LC
-식물,II,나도승마,Kirengeshoma koreana,EN,EN
-식물,II,날개하늘나리,Lilium dauricum,EN,NA
-식물,II,넓은잎제비꽃,Viola mirabilis,EN,NA
-식물,II,노랑만병초,Rhododendron aureum,EN,NA
-식물,II,노랑붓꽃,Iris koreana,VU,EN
-식물,II,단양쑥부쟁이,Aster altaicus var. uchiyamae,EN,NA
-식물,II,닻꽃,Halenia corniculata,VU,NA
-식물,II,대성쓴풀,Anagallidium dichotomum,EN,NA
-식물,II,대청부채,Iris dichotoma,EN,NA
-식물,II,대흥란,Cymbidium macrorhizon,EN,NA
-식물,II,독미나리,Cicuta virosa,VU,LC
-식물,II,두잎약난초,Cremastra unguiculata,CR,NA
-식물,II,매화마름,Ranunculus trichophyllus var. kadzusensis,VU,LC
-식물,II,무주나무,Lasianthus japonicus,EN,NA
-식물,II,물고사리,Ceratopteris thalictroides,VU,LC
-식물,II,방울난초,Habenaria flagellifera,CR,NA
-식물,II,백부자,Aconitum coreanum,VU,LC
-식물,II,백양더부살이,Orobanche filicicola,EN,NA
-식물,II,백운란,Vexillabium yakusimensis var. nakaianum,CR,NA
-식물,II,복주머니란,Cypripedium macranthos,EN,LC
-식물,II,분홍장구채,Silene capitata,VU,NA
-식물,II,산분꽃나무,Viburnum burejaeticum,NE,NA
-식물,II,산작약,Paeonia obovata,CR,NA
-식물,II,삼백초,Saururus chinensis,EN,NA
-식물,II,새깃아재비,Woodwardia japonica,VU,NA
-식물,II,서울개발나물,Pterygopleurum neurophyllum,CR,NA
-식물,II,석곡,Dendrobium moniliforme,EN,NA
-식물,II,선제비꽃,Viola raddeana,CR,NA
-식물,II,섬개야광나무,Cotoneaster wilsonii,CR,NA
-식물,II,섬개현삼,Scrophularia takesimensis,EN,NA
-식물,II,섬시호,Bupleurum latissimum,EN,CR
-식물,II,세뿔투구꽃,Aconitum austrokoreense,VU,NT
-식물,II,손바닥난초,Gymnadenia conopsea,VU,DD
-식물,II,솔붓꽃,Iris ruthenica var. nana,VU,NA
-식물,II,솔잎난,Psilotum nudum,EN,NA
-식물,II,순채,Brasenia schreberi,VU,LC
-식물,II,신안새우난초,Calanthe aristulifera,NE,NA
-식물,II,애기송이풀,Pedicularis ishidoyana,VU,NA
-식물,II,연잎꿩의다리,Thalictrum coreanum,EN,NA
-식물,II,왕제비꽃,Viola websteri,EN,NA
-식물,II,으름난초,Cyrtosia septentrionalis,VU,NA
-식물,II,자주땅귀개,Utricularia yakusimensis,VU,NA
-식물,II,전주물꼬리풀,Dysophylla yatabeana,EN,NA
-식물,II,정향풀,Amsonia elliptica,EN,NA
-식물,II,제비동자꽃,Lychnis wilfordii,EN,NA
-식물,II,제비붓꽃,Iris laevigata,VU,NA
-식물,II,제주고사리삼,Mankyua chejuense,CR,EN
-식물,II,조름나물,Menyanthes trifoliata,VU,LC
-식물,II,죽절초,Sarcandra glabra,EN,NA
-식물,II,지네발란,Cleisostoma scolopendrifolium,EN,NA
-식물,II,진노랑상사화,Lycoris chinensis var. sinuolata,EN,NA
-식물,II,차걸이란,Oberonia japonica,CR,NA
-식물,II,참물부추,Isoetes coreana,VU,NA
-식물,II,초령목,Michelia compressa,EN,NA
-식물,II,칠보치마,Metanarthecium luteo-viride,EN,NA
-식물,II,콩짜개란,Bulbophyllum drymoglossum,VU,NA
-식물,II,큰바늘꽃,Epilobium hirsutum,VU,LC
-식물,II,탐라란,Gastrochilus japonicus,CR,NA
-식물,II,파초일엽,Asplenium antiquum,EN,NA
-식물,II,피뿌리풀,Stellera chamaejasme,NE,NA
-식물,II,한라송이풀,Pedicularis hallaisanensis,EN,NA
-식물,II,한라옥잠난초,Liparis auriculata,EN,NA
-식물,II,해오라비난초,Habenaria radiata,EN,NA
-식물,II,혹난초,Bulbophyllum inconspicuum,VU,NA
-식물,II,홍월귤,Arctous alpinus var. japonicus,VU,NA
-식물,II,황근,Hibiscus hamabo,VU,NA
-해조류,II,그물공말,Dictyosphaeria cavernosa,NA,NA
-해조류,II,삼나무말,Coccophora langsdorfii,NA,NA
+육상식물,I,광릉요강꽃,Cypripedium japonicum,CR,EN
+육상식물,I,금자란,Gastrochilus fuscopunctatus,EN,NA
+육상식물,I,나도풍란,Sedirea japonica,CR,NA
+육상식물,I,만년콩,Euchresta japonica,CR,NA
+육상식물,I,비자란,Thrixspermum japonicum,EN,NA
+육상식물,I,암매,Diapensia lapponica var. obovata,CR,NA
+육상식물,I,죽백란,Cymbidium lancifolium,CR,NA
+육상식물,I,털복주머니란,Cypripedium guttatum,CR,LC
+육상식물,I,풍란,Neofinetia falcata,CR,NA
+육상식물,I,한라솜다리,Leontopodium hallaisanense,CR,NA
+육상식물,I,한란,Cymbidium kanran,CR,NA
+육상식물,II,가는동자꽃,Lychnis kiusiana,NA,NA
+육상식물,II,가시연,Euryale ferox,VU,LC
+육상식물,II,가시오갈피나무,Eleutherococcus senticosus,VU,NA
+육상식물,II,각시수련,Nymphaea tetragona var. minima,CR,LC
+육상식물,II,개가시나무,Quercus gilva,VU,NA
+육상식물,II,개병풍,Astilboides tabularis,VU,NA
+육상식물,II,갯봄맞이꽃,Glaux maritima var. obtusifolia,VU,NA
+육상식물,II,검은별고사리,Cyclosorus interruptus,NE,LC
+육상식물,II,구름병아리난초,Gymnadenia cucullata,VU,NA
+육상식물,II,기생꽃,Trientalis europaea ssp. arctica,VU,NA
+육상식물,II,끈끈이귀개,Drosera peltata var. nipponica,VU,LC
+육상식물,II,나도승마,Kirengeshoma koreana,EN,EN
+육상식물,II,날개하늘나리,Lilium dauricum,EN,NA
+육상식물,II,넓은잎제비꽃,Viola mirabilis,EN,NA
+육상식물,II,노랑만병초,Rhododendron aureum,EN,NA
+육상식물,II,노랑붓꽃,Iris koreana,VU,EN
+육상식물,II,단양쑥부쟁이,Aster altaicus var. uchiyamae,EN,NA
+육상식물,II,닻꽃,Halenia corniculata,VU,NA
+육상식물,II,대성쓴풀,Anagallidium dichotomum,EN,NA
+육상식물,II,대청부채,Iris dichotoma,EN,NA
+육상식물,II,대흥란,Cymbidium macrorhizon,EN,NA
+육상식물,II,독미나리,Cicuta virosa,VU,LC
+육상식물,II,두잎약난초,Cremastra unguiculata,CR,NA
+육상식물,II,매화마름,Ranunculus trichophyllus var. kadzusensis,VU,LC
+육상식물,II,무주나무,Lasianthus japonicus,EN,NA
+육상식물,II,물고사리,Ceratopteris thalictroides,VU,LC
+육상식물,II,방울난초,Habenaria flagellifera,CR,NA
+육상식물,II,백부자,Aconitum coreanum,VU,LC
+육상식물,II,백양더부살이,Orobanche filicicola,EN,NA
+육상식물,II,백운란,Vexillabium yakusimensis var. nakaianum,CR,NA
+육상식물,II,복주머니란,Cypripedium macranthos,EN,LC
+육상식물,II,분홍장구채,Silene capitata,VU,NA
+육상식물,II,산분꽃나무,Viburnum burejaeticum,NE,NA
+육상식물,II,산작약,Paeonia obovata,CR,NA
+육상식물,II,삼백초,Saururus chinensis,EN,NA
+육상식물,II,새깃아재비,Woodwardia japonica,VU,NA
+육상식물,II,서울개발나물,Pterygopleurum neurophyllum,CR,NA
+육상식물,II,석곡,Dendrobium moniliforme,EN,NA
+육상식물,II,선제비꽃,Viola raddeana,CR,NA
+육상식물,II,섬개야광나무,Cotoneaster wilsonii,CR,NA
+육상식물,II,섬개현삼,Scrophularia takesimensis,EN,NA
+육상식물,II,섬시호,Bupleurum latissimum,EN,CR
+육상식물,II,세뿔투구꽃,Aconitum austrokoreense,VU,NT
+육상식물,II,손바닥난초,Gymnadenia conopsea,VU,DD
+육상식물,II,솔붓꽃,Iris ruthenica var. nana,VU,NA
+육상식물,II,솔잎난,Psilotum nudum,EN,NA
+육상식물,II,순채,Brasenia schreberi,VU,LC
+육상식물,II,신안새우난초,Calanthe aristulifera,NE,NA
+육상식물,II,애기송이풀,Pedicularis ishidoyana,VU,NA
+육상식물,II,연잎꿩의다리,Thalictrum coreanum,EN,NA
+육상식물,II,왕제비꽃,Viola websteri,EN,NA
+육상식물,II,으름난초,Cyrtosia septentrionalis,VU,NA
+육상식물,II,자주땅귀개,Utricularia yakusimensis,VU,NA
+육상식물,II,전주물꼬리풀,Dysophylla yatabeana,EN,NA
+육상식물,II,정향풀,Amsonia elliptica,EN,NA
+육상식물,II,제비동자꽃,Lychnis wilfordii,EN,NA
+육상식물,II,제비붓꽃,Iris laevigata,VU,NA
+육상식물,II,제주고사리삼,Mankyua chejuense,CR,EN
+육상식물,II,조름나물,Menyanthes trifoliata,VU,LC
+육상식물,II,죽절초,Sarcandra glabra,EN,NA
+육상식물,II,지네발란,Cleisostoma scolopendrifolium,EN,NA
+육상식물,II,진노랑상사화,Lycoris chinensis var. sinuolata,EN,NA
+육상식물,II,차걸이란,Oberonia japonica,CR,NA
+육상식물,II,참물부추,Isoetes coreana,VU,NA
+육상식물,II,초령목,Michelia compressa,EN,NA
+육상식물,II,칠보치마,Metanarthecium luteo-viride,EN,NA
+육상식물,II,콩짜개란,Bulbophyllum drymoglossum,VU,NA
+육상식물,II,큰바늘꽃,Epilobium hirsutum,VU,LC
+육상식물,II,탐라란,Gastrochilus japonicus,CR,NA
+육상식물,II,파초일엽,Asplenium antiquum,EN,NA
+육상식물,II,피뿌리풀,Stellera chamaejasme,NE,NA
+육상식물,II,한라송이풀,Pedicularis hallaisanensis,EN,NA
+육상식물,II,한라옥잠난초,Liparis auriculata,EN,NA
+육상식물,II,해오라비난초,Habenaria radiata,EN,NA
+육상식물,II,혹난초,Bulbophyllum inconspicuum,VU,NA
+육상식물,II,홍월귤,Arctous alpinus var. japonicus,VU,NA
+육상식물,II,황근,Hibiscus hamabo,VU,NA
+해초류,II,그물공말,Dictyosphaeria cavernosa,NA,NA
+해초류,II,삼나무말,Coccophora langsdorfii,NA,NA
 고등균류,II,화경버섯,Lampteromyces japonicus,NA,NA
+,,,,,
+,,,,,

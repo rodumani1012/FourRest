@@ -22,6 +22,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <link rel="stylesheet" href="resources/assets/css/slick.css">
 <link rel="stylesheet" href="resources/assets/css/slick-theme.css">
@@ -55,8 +56,8 @@
 			<h1>[ THE FOREST ]</h1>
 			<br>
 			<h3>LOGIN</h3>
-			<c:url value="/login" var="loginUrl" />
-			<form:form name="f" action="${loginUrl}" method="POST">
+			
+			<form:form name="f" action="logincheck.do" method="POST">
 				<c:if test="${param.error != null}">
 					<p>아이디와 비밀번호가 잘못되었습니다.</p>
 				</c:if>
@@ -83,6 +84,13 @@
 				<label><a href="idpwfind.do" class="text-dark">아이디 비밀번호 찾기</a></label>
 			</div>
 		</div>
+		<div id="sns_login_btn">
+				<a id="kakao-login-btn"></a>
+				<script src="resources/assets/js/kakao.js"></script>
+				<br>
+		</div>
+		<%@ include file="../member/naverlogin.jsp"%>
+		
 		
 		
 	</div>

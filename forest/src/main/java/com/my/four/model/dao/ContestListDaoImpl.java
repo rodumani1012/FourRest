@@ -64,4 +64,11 @@ public class ContestListDaoImpl implements ContestListDao {
 		return dto;
 	}
 
+	@Override
+	public int updatepart(int conlistno) {
+		int cnt = 0;
+		cnt = sqlSession.update(namespace+"updatepart", conlistno);
+		return cnt;
+	}
+
 }

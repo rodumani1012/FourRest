@@ -24,7 +24,9 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
 <link rel="stylesheet" href="resources/assets/css/slick.css">
 <link rel="stylesheet" href="resources/assets/css/slick-theme.css">
 <link rel="stylesheet" href="resources/assets/css/animate.css">
@@ -76,14 +78,17 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li><button type="button" class="btn btn-link text-dark" onclick="test()">Map</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='gotomap.do'">Map</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='mypagepwchk.do'">Test</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='calendar.do'">Calendar</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='chat.do'">문의하기</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='contest_main.do'">공모</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='funlist.do'">후원하기</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='content.do'">Contant</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do'">보호소</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_endangeredList.do'">멸종위기종</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_alien.do?board=animal_alien_disturb'">외래생물</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='admin.do'">관리자</button></li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
@@ -108,6 +113,10 @@
 						<li><sec:authorize access="isAnonymous()">
 								<button type="button" class="btn btn-link text-dark"
 									onclick="location.href='joinform.do'">JOIN</button>
+							</sec:authorize></li>
+							<li><sec:authorize access="isAuthenticated()">
+								<button type="button" class="btn btn-link text-dark"
+									onclick="location.href='mypagepwchk.do'">내정보</button>
 							</sec:authorize></li>
 					</ul>
 				</div>

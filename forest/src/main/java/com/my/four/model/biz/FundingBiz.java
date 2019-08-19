@@ -12,7 +12,7 @@ public interface FundingBiz {
 	public int insert(FundingDto dto);
 	public int update(String funtitle, String id);
 	public int delete(String id);
-	public int muldel(String[] chk);
+	public int muldel(FundingDto dto, String id);
 	public int funupdate(String funtitle, int funmoney);
 	public int funupdate1(String funtitle, int count);
 

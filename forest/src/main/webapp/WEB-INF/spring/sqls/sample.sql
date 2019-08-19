@@ -20,14 +20,16 @@ CONSTRAINT CON_ROLE CHECK (ROLE IN ('ADMIN','USER'))
 
 INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'관리자','admin','admin123','010-7723-7077',
 'brooke1994@naver.com','서초구 역삼동','120-10',1,'ADMIN');
-INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user1','user1','user123','010-7777-7077',
+INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user1','user1','123','010-7777-7077',
 'alice1994@naver.com','강남구 개포동','25-18',1,'USER');
-INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user2','user2','user123','010-7777-7077',
-'alice1994@naver.com','강남구 개포동','25-18',0,'USER');
+INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user3','user2','123','010-7777-7077',
+'alice1994@naver.com','강남구 개포동','25-18',1,'USER');
 
+SELECT USERNUM, ID AS username,PW AS password, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLED,ROLE FROM MEMBER WHERE ID = 'woo1'
 
 SELECT * FROM MEMBER;
 SELECT * FROM AUTHORITIES
+
 COMMENT ON TABLE MEMBER is '회원';
 COMMENT ON COLUMN MEMBER.ID is '아이디';
 COMMENT ON COLUMN MEMBER.PW is '비밀번호';
@@ -40,6 +42,7 @@ ALTER TABLE users ADD CONSTRAINT IDX_users_PK PRIMARY KEY (username);
 /* Table Name: 권한 */
 /**********************************/
 DROP TABLE authorities
+
 CREATE TABLE AUTHORITIES(
 		ID                      		VARCHAR2(20)		 NOT NULL,
 		AUTHORITY                     		VARCHAR2(20)		 NOT NULL
@@ -109,7 +112,7 @@ INSERT INTO users (username, password, enabled) VALUES ('admin', '1', 1);
 -- 회원 권한 입력
 INSERT INTO AUTHORITIES (ID, AUTHORITY) VALUES ('user1', 'ROLE_USER');
 INSERT INTO AUTHORITIES (ID, AUTHORITY) VALUES ('admin', 'ROLE_ADMIN');
-INSERT INTO AUTHORITIES (ID, AUTHORITY) VALUES ('admin', 'ROLE_USER');
+INSERT INTO AUTHORITIES (ID, AUTHORITY) VALUES ('user3', 'ROLE_USER');
 
 -- 그룹
 INSERT INTO groups (id, group_name) VALUES ('G01', '관리자 그룹');

@@ -149,7 +149,6 @@
 			</div>
 		</div>
 		<!-- 슬라이드쇼 끝  -->
-
 		<!-- 후원금은 어디에 사용 되나요? -->
 		<div class="container text-center">
 			<img src="resources/assets/images/ss.png" alt="후원금 사용내역">
