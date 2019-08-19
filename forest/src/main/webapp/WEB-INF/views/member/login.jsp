@@ -77,8 +77,8 @@
 					</div>
 				</div>
 				<div class="form-group form-check">
-					<label class="form-check-label"> <input
-						class="form-check-input" type="checkbox"> Remember me
+					<label class="form-check-label"> 
+					<input class="form-check-input" type="checkbox"> Remember me
 					</label>
 				</div>
 				<div class="form-group form-check">
@@ -95,6 +95,9 @@
 				</c:if>
 
 			</form:form>
+			<div class="form-group">
+				<label><a href="idpwfind.do" class="text-dark">아이디 비밀번호 찾기</a></label>
+			</div>
 		</div>
 		<div id="sns_login_btn">
 				<a id="kakao-login-btn"></a>

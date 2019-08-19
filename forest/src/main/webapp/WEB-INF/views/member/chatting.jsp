@@ -35,6 +35,7 @@
 		console.log("??");	
 		
 		$('form').submit(function(e) {
+			
 			e.preventDefault();
 			var msg = $('#m').val().trim();
 			if (msg != "" && msg != null) {

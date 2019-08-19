@@ -21,6 +21,12 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link rel="icon" href="resources/assets/images/favicon.ico?v=2"
+	type="image/x-icon">
+<link rel="shortcut icon" href="resources/assets/images/favicon.ico?v=2"
+	type="image/x-icon">
+
+
 <!--Google Font link-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet">
@@ -37,8 +43,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
- 
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <link rel="stylesheet" href="resources/assets/css/slick.css">
 <link rel="stylesheet" href="resources/assets/css/slick-theme.css">
 <link rel="stylesheet" href="resources/assets/css/animate.css">
@@ -61,8 +67,13 @@
 <!-- 버튼이랑 슬라이드쇼 css -->
 <link rel="stylesheet" href="resources/assets/css/mainb.css" />
 
-<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<link rel='stylesheet'
+	href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+	integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ'
+	crossorigin='anonymous'>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 <script type="text/javascript" src="resources/assets/js/main-style.js"></script>
 
 </head>
@@ -86,7 +97,7 @@
 	<!--End -->
 	<div class="culmn">
 		<!--Home page style-->
-		<%@ include file="./header.jsp"%> 
+		<%@ include file="./header.jsp"%>
 		<!-- 메인페이지  -->
 		<!--슬라이드 쇼 -->
 		<div class="container-fluid">
@@ -103,24 +114,29 @@
 				<!-- 슬라이드 쇼 사진  -->
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img class="img-responsive" src="resources/assets/images/background/1.jpg" alt="animal"
-						style="max-width: 100%; height: auto;  display: block;">
+						<img class="img-responsive"
+							src="resources/assets/images/background/1.jpg" alt="animal"
+							style="max-width: 100%; height: auto; display: block;">
 					</div>
 					<div class="carousel-item">
-						<img class="img-responsive" src="resources/assets/images/background/2.jpg" alt="animal"
-						style="max-width: 100%; height: auto;  display: block;">
+						<img class="img-responsive"
+							src="resources/assets/images/background/2.jpg" alt="animal"
+							style="max-width: 100%; height: auto; display: block;">
 					</div>
 					<div class="carousel-item">
-						<img class="img-responsive" src="resources/assets/images/background/3.jpg" alt="animal"
-						style="max-width: 100%; height: auto;  display: block;">
+						<img class="img-responsive"
+							src="resources/assets/images/background/3.jpg" alt="animal"
+							style="max-width: 100%; height: auto; display: block;">
 					</div>
 					<div class="carousel-item">
-						<img class="img-responsive" src="resources/assets/images/background/4.jpg" alt="animal"
-						style="max-width: 100%; height: auto;  display: block;">
+						<img class="img-responsive"
+							src="resources/assets/images/background/4.jpg" alt="animal"
+							style="max-width: 100%; height: auto; display: block;">
 					</div>
 					<div class="carousel-item">
-						<img class="img-responsive" src="resources/assets/images/background/6.jpg" alt="animal"
-						style="max-width: 100%; height: auto;  display: block;">
+						<img class="img-responsive"
+							src="resources/assets/images/background/6.jpg" alt="animal"
+							style="max-width: 100%; height: auto; display: block;">
 					</div>
 				</div>
 				<!-- 슬라이드 쇼 버튼 -->
@@ -208,35 +224,19 @@
 		</div>
 		<!-- End off scroll up -->
 	</div>
-	
-	<button class="botton" onclick="toggleChat()"><i class='fas fa-comment-dots'></i></button>
-<div id="chat" style=" display: none; position: fixed; bottom: 50PX; right: 86PX;z-index: 9999">
-			<div  id="chat_box">
-		<ul id="#messages"></ul>
-		</div>
-		<div class="test">
+
+	<button class="botton" onclick="toggleChat()">
+		<i class='fas fa-comment-dots'></i>
+	</button>
+	<div id="chat" style="display: none; position: fixed; bottom: 20px; right: 100px; z-index: 9999">
+		<div id="chat_box">
+			<ul id="#messages"></ul>
 			<iframe class="iframe-chat" src="http://192.168.10.151:8880/"></iframe>
 		</div>
-</div>
+	</div>
 
 	<!-- footer -->
-		<footer id="footer" class="footer footer-bg-black">
-		<div class="container">
-			<div class="main_footer p-top-40 p-bottom-30 pull-right">
-				<a href="service.do">서비스전체보기</a>
-			</div>
-			<div class="row">
-				<div class="main_footer text-center p-top-40 p-bottom-30">
-						<h1>1588-1599</h1>
-						<p class="wow fadeInRight"  data-wow-duration="1s">
-						<i class="fa fa-heart"></i>대표자 : 우재영님 
-						<i class="fa fa-heart"></i>환경을 보호합시다.
-						<i class="fa fa-heart"></i>Copyright ⓒ4rest. All rights reserved.				
-						</p>
-				</div>
-			</div>	
-		</div>
-	</footer>
+	<%@ include file="./footer.jsp"%>
 	<!-- JS includes -->
 
 	<script src="resources/assets/js/vendor/jquery-1.11.2.min.js"></script>
