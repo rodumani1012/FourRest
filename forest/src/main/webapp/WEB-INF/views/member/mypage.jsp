@@ -1,10 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript">
+	function addpop() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				document.getElementById("zonecode").value = data.postcode;
+				document.getElementById("addr").value = data.address;
+
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+				// 예제를 참고하여 다양한 활용법을 확인해 보세요.
+			}
+		}).open();
+	}
+</script>
 </head>
 <body>
 
@@ -17,32 +31,37 @@
 				<div class="form-group">
 					<label for="text">ID : </label>
 					<div class="row justify-content-center">
-						<input type="text" class="form-control col-sm-3" id="id" title="n" name="id" readonly="readonly">
+						<input type="text" class="form-control col-sm-3" id="id" title="n"
+							name="id" readonly="readonly">
 					</div>
 					<div class="form-group">
-					<label for="text">NAME : </label>
-					<div class="row justify-content-center">
-						<input type="text" class="form-control col-sm-3" id="id" title="n" name="id">
-					</div>
+						<label for="text">NAME : </label>
+						<div class="row justify-content-center">
+							<input type="text" class="form-control col-sm-3" id="id"
+								title="n" name="id">
+						</div>
 					</div>
 					<div class="form-group">
 						<div class="row justify-content-center">
-							<input type="button" class="btn btn-light" value="중복확인" id="idchk" onclick="idChk()">
+							<input type="button" class="btn btn-light" value="중복확인"
+								id="idchk" onclick="idChk()">
 						</div>
 					</div>
 					<div class="row justify-content-center">
-						<input type="text" class="form-control col-sm-3" id="name" title="n" name="name">
+						<input type="text" class="form-control col-sm-3" id="name"
+							title="n" name="name">
 					</div>
 					<div class="form-group">
 						<label for="pwd">Password : </label>
 						<div class="row justify-content-center">
-							<input type="password" class="form-control col-sm-3" id="pw" name="pw" title="n" name="pw">
+							<input type="password" class="form-control col-sm-3" id="pw"
+								name="pw" title="n" name="pw">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row justify-content-center">
-							<input type="password" class="form-control col-sm-3" id="pwchk" name="pwchk"
-								onkeyup="chkpw()" title="n">
+							<input type="password" class="form-control col-sm-3" id="pwchk"
+								name="pwchk" onkeyup="chkpw()" title="n">
 						</div>
 					</div>
 					<div id="pwval">암호를 입력하세요</div>
@@ -51,19 +70,20 @@
 					</div>
 					<div class="form-group">
 						<div class="row justify-content-center">
-							<input type="text" class="form-control col-sm-3" id="addr" onclick="javascript:addpop()"
-								name="addr">
+							<input type="text" class="form-control col-sm-3" id="addr"
+								onclick="javascript:addpop()" name="addr">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row justify-content-center">
-							<input type="text" class="form-control col-sm-3" name="zonecode" id="zonecode"
-								readonly="readonly" title="n">
+							<input type="text" class="form-control col-sm-3" name="zonecode"
+								id="zonecode" readonly="readonly" title="n">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="row justify-content-center">
-							<input type="text" class="form-control col-sm-3" id="addrDetail" placeholder="상세주소를 입력해주세요">
+							<input type="text" class="form-control col-sm-3" id="addrDetail"
+								placeholder="상세주소를 입력해주세요">
 						</div>
 					</div>
 				</div>
@@ -74,15 +94,17 @@
 							<option>010</option>
 							<option>011</option>
 							<option>017</option>
-						</select>&nbsp;_&nbsp;<input type="text" class="form-control col-1" id="phone-mid"
-							name="phone2">&nbsp;_&nbsp; <input type="text" class="form-control col-1" id="phone-back"
+						</select>&nbsp;_&nbsp;<input type="text" class="form-control col-1"
+							id="phone-mid" name="phone2">&nbsp;_&nbsp; <input
+							type="text" class="form-control col-1" id="phone-back"
 							name="phone3">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="phone">Email : </label>
 					<div class="row justify-content-center">
-						<input type="text" class="form-control col-2" id="emailName" name="emailName">&nbsp;@ <select
+						<input type="text" class="form-control col-2" id="emailName"
+							name="emailName">&nbsp;@ <select
 							class="form-control col-2" id="emailForm" name="emailForm">
 							<option>daum.net</option>
 							<option>naver.com</option>
@@ -96,18 +118,6 @@
 			<br> <br> <br> <br>
 		</div>
 	</div>
-	<footer id="footer" class="footer bg-black">
-		<div class="container">
-			<div class="row">
-				<div class="main_footer text-center p-top-40 p-bottom-30">
-					<p class="wow fadeInRight" data-wow-duration="1s">
-						Made with <i class="fa fa-heart"></i> by <a target="_blank"
-							href="https://bootstrapthemes.co">THE FOREST</a> 2019. All Rights
-						Reserved
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<%@ include file="../footer.jsp"%>
 </body>
 </html>

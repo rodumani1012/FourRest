@@ -50,9 +50,5 @@
     </authentication-manager>
 	
 	<!-- 암호화  불러주는  bean -->
-	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> 
-
-
-    
-   
+	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />   
 </beans:beans>

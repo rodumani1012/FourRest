@@ -73,12 +73,15 @@
 					</div>
 				</div>
 				<div class="form-group form-check">
-					<label class="form-check-label"> <input
-						class="form-check-input" type="checkbox"> Remember me
+					<label class="form-check-label"> 
+					<input class="form-check-input" type="checkbox"> Remember me
 					</label>
 				</div>
 				<button type="submit" class="btn btn-success">LOGIN</button>
 			</form:form>
+			<div class="form-group">
+				<label><a href="idpwfind.do" class="text-dark">아이디 비밀번호 찾기</a></label>
+			</div>
 		</div>
 		
 		

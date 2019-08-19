@@ -8,31 +8,28 @@
 </head>
 <body>
 
-
-	<%@ include file="./header.jsp"%>
+<%@ include file="./header.jsp"%>
 	<br><br><br><br><br>
-	
-<div class="container d-flex justify-content-center">	
-	<div class="form-group">
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
+	<br><br><br><br><br>
+	<div class="container">
+	<h2>서비스 전체보기</h2>
+<div class="form-inline row">
+	<div class="col-lg-4">
+		<div class="table-bordered">
+			<a href="">기능들</a>
+		</div>
 	</div>
-	<br><br><br><br>
-	<div class="form-group">
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
+	<div class="col-lg-4">
+		<div class="table-bordered">
+			<a href="">정렬해</a>
+		</div>
 	</div>
-	<br><br><br><br>
-	<div class="form-group">
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
-		<button type="button" class="btn btn-info btn-lg">기능1</button>
+	<div class="col-lg-4">
+		<div class="table-bordered">
+			<a href="">놓을겁니댜</a>
+		</div>
 	</div>
-</div>	
+</div>
+</div>
 </body>
 </html>

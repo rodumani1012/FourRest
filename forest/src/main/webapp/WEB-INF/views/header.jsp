@@ -53,8 +53,8 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-search"></i></span>
 						<input type="text" class="form-control" placeholder="Search">
-						<span class="input-group-addon close-search"><i
-							class="fa fa-times"></i></span>
+						<span class="input-group-addon close-search">
+						<i class="fa fa-times"></i></span>
 					</div>
 				</div>
 			</div>
@@ -91,7 +91,8 @@
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li><sec:authorize access="isAuthenticated()">
 								<sec:authentication property="principal.username" var="user_id" />
-								안녕하세요. ${user_id }
+								<input type="submit" class="btn btn-link text-dark"
+										value="${user_id }"/>
 								</sec:authorize>
 								<sec:authorize access="isAnonymous()">
 									<button type="button" class="btn btn-link text-dark"
@@ -112,7 +113,6 @@
 				</div>
 				<!-- /.navbar-collapse -->
 			</div>
-
 		</nav>
 </body>
 </html>
