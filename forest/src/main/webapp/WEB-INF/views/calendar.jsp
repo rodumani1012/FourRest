@@ -25,7 +25,7 @@
 				right : 'month'
 			},
 			defaultDate : '2019-08',
-			editable : true,
+			editable : false,
 			eventLimit : true, // allow "more" link when too many events
 			
 			events : [
