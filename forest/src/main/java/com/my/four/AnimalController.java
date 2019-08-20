@@ -248,10 +248,9 @@ public class AnimalController {
 			logger.info("위해 우려종 목록으로!");
 			
 			if (biz.aniGetTotalCountDisturbHarm(board) < 1) {
-				System.out.println("저장 시작");
 				// db에 저장하기
 				biz.aniInsertDisturbHarm(board, ani.returnHarm());
-				System.out.println("저장 종료");
+
 				// 페이징하기
 				int totalCount = biz.aniGetTotalCountDisturbHarm(groups, board, txt_s);
 				int pag = (page == null) ? 1 : Integer.parseInt(page);
@@ -263,11 +262,12 @@ public class AnimalController {
 				paging.setTotalCount(totalCount);
 				pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
-				List<AnimalHarmDto> list = biz.aniSelectListHarm(pag, paging.getPageSize(), txt_s);
+				List<AnimalHarmDto> list = biz.aniSelectListHarm(groups, pag, paging.getPageSize(), txt_s);
 				model.addAttribute("list", list);
 				model.addAttribute("paging", paging);
 				model.addAttribute("txt_search", txt_s);
 				model.addAttribute("totalCount", totalCount);
+				model.addAttribute("groups", groups);
 				
 				return "animalList/animalharm";
 			} else {
@@ -282,11 +282,12 @@ public class AnimalController {
 				paging.setTotalCount(totalCount);
 				pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
 
-				List<AnimalHarmDto> list = biz.aniSelectListHarm(pag, paging.getPageSize(), txt_s);
+				List<AnimalHarmDto> list = biz.aniSelectListHarm(groups, pag, paging.getPageSize(), txt_s);
 				model.addAttribute("list", list);
 				model.addAttribute("paging", paging);
 				model.addAttribute("txt_search", txt_s);
 				model.addAttribute("totalCount", totalCount);
+				model.addAttribute("groups", groups);
 				
 				return "animalList/animalharm";
 			}

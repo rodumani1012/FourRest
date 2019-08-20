@@ -186,7 +186,7 @@ public class AnimalListDaoImpl implements AnimalListDao {
 	public int aniGetTotalCountDisturbHarm(String groups, String board, String txt_search) {
 		
 		int res = 0;
-		System.out.println("변환 : " + groups);
+
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("board", board);
 
@@ -207,7 +207,7 @@ public class AnimalListDaoImpl implements AnimalListDao {
 //		}
 		
 		res = sqlSession.selectOne(namespace + "aniGetTotalCountDisturbHarm", map);
-		System.out.println("갯수 : " + res);
+
 		return res;
 	}
 
@@ -248,25 +248,34 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		
 		List<AnimalDisturbDto> list = sqlSession.selectList(namespace + "aniSelectListDisturb", map);
 		
-		Set<Entry<String, String>>entry = map.entrySet();
-		for(Entry<String, String> e : entry) {
-			System.out.println(e.getKey() + " : "+ e.getValue());
-		}
-		
-		for(AnimalDisturbDto dto : list) {
-			System.out.println(dto.getKor_name());
-		}
+//		Set<Entry<String, String>>entry = map.entrySet();
+//		for(Entry<String, String> e : entry) {
+//			System.out.println(e.getKey() + " : "+ e.getValue());
+//		}
+//		
+//		for(AnimalDisturbDto dto : list) {
+//			System.out.println(dto.getKor_name());
+//		}
 
 		return list;
 	}
 
 	@Override
-	public List<AnimalHarmDto> aniSelectListHarm(int firstIndex, int recordCountPerPage, String txt_search) {
+	public List<AnimalHarmDto> aniSelectListHarm(String groups, int firstIndex, int recordCountPerPage, String txt_search) {
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("firstIndex", String.valueOf(firstIndex));
 		map.put("recordCountPerPage", String.valueOf(recordCountPerPage));
-		map.put("txt_search", txt_search);
+		if (txt_search.length() < 1) {
+			map.put("txt_search", null);
+		} else {
+			map.put("txt_search", txt_search);
+		}
+		if(!groups.equals("all")) {
+			map.put("groups", groups);
+		} else {
+			map.put("groups", null);
+		}
 		
 		List<AnimalHarmDto> list = sqlSession.selectList(namespace + "aniSelectListHarm", map);
 		

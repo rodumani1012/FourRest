@@ -219,11 +219,16 @@
 		SELECT *
 		FROM (SELECT ROWNUM AS RNUM, P.*
 			 FROM ( SELECT * 
-			 		FROM ANIMAL_ALIEN_HARM 
-					 <if test="txt_search != null">
-							WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
-							upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
-					</if>
+			 		FROM ANIMAL_ALIEN_HARM
+			 		<where>
+			 			<if test="groups != null">
+			 				AND GROUPS = #{groups}
+			 			</if>
+			 			<if test='txt_search != null'>
+							AND upper(KOR_NAME) like '%' || trim(upper(#{txt_search})) || '%' or
+							upper(ENG_NAME) like '%' || trim(upper(#{txt_search})) || '%'
+			 			</if>
+			 		</where>
 						ORDER BY KOR_NAME
 						) P
 			 )

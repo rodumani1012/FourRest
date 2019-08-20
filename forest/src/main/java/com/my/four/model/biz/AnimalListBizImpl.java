@@ -97,8 +97,8 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	}
 
 	@Override
-	public List<AnimalHarmDto> aniSelectListHarm(int firstIndex, int recordCountPerPage, String txt_search) {
-		return dao.aniSelectListHarm(firstIndex, recordCountPerPage, txt_search);
+	public List<AnimalHarmDto> aniSelectListHarm(String groups, int firstIndex, int recordCountPerPage, String txt_search) {
+		return dao.aniSelectListHarm(returnGroups(groups), firstIndex, recordCountPerPage, txt_search);
 	}
 
 	private String returnGroups(String groups) {

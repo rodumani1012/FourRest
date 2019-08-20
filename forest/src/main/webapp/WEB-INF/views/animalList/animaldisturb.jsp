@@ -45,7 +45,7 @@ dd {
 	<div>
 		<div>
 			<button disabled="disabled">생태교란종</button>
-			<button onclick="location.href='ani_alien.do?board=animal_alien_harm'">위해우려종</button>
+			<button onclick="location.href='ani_alien.do?board=animal_alien_harm&txt_search='">위해우려종</button>
 		</div>
 		<!-- content -->
 		<table class="form-group gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-5 filter hdpe">

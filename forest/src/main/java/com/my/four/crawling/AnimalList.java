@@ -376,7 +376,11 @@ public class AnimalList {
 			Elements contents = doc.select(selector); // doc(HTML문서)에서 (selector)내용을 가져옴.
 
 			for (Element element : contents) {
-				dto.setImg("http://kias.nie.re.kr" + element.getElementsByTag("img").attr("src"));
+				if (element.getElementsByTag("img").attr("src").length() < 1) {
+					dto.setImg("http://kias.nie.re.kr/home/images/common/noimg169_127.gif");
+				} else {
+					dto.setImg("http://kias.nie.re.kr" + element.getElementsByTag("img").attr("src"));
+				}
 				dto.setKor_name(element.text().substring(0, element.text().indexOf("영명")).trim());
 				if(element.text().substring(element.text().indexOf("영명")+5, element.text().indexOf("분류군")).trim().length() < 1) {
 					dto.setEng_name("NA");
