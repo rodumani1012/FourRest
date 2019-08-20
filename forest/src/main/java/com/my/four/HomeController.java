@@ -283,6 +283,7 @@ public class HomeController {
 		}
 		
 	}
+	//내정보에서 비밀번호 변경
 	@RequestMapping(value="pwChangeConfirm.do")
 	public String pwChangeConfirm(String pw, Principal principal,ServletResponse response,String newPw) throws IOException {
 		String id=principal.getName();
@@ -322,6 +323,7 @@ public class HomeController {
 		dto.setEmail(email);
 		int res = biz.memberUpdate(dto);
 		if(res>0) {
+			
 			return "redirect:main.do";
 		}else {
 			return "redirect:memberUpdate.do";
@@ -333,28 +335,113 @@ public class HomeController {
 	public String findId() {
 		return "member/findid";
 	}
-	
+	//아이디 찾기 이메일 전송
 	@RequestMapping(value="findIdConfirm.do",  produces = "application/json")
-	public String findIdConfirm(String name,String emailName,String emailForm) {
-		String email = emailName+"@"+emailForm;
-		System.out.println("-------------"+emailForm);
+	public String findIdConfirm(String name,String emailName,String emailFormWrite,HttpServletResponse response) throws IOException {
+		String email = emailName+"@"+emailFormWrite;
+		System.out.println("-------------"+emailFormWrite);
 		System.out.println("-------------"+name);
 		LoginDto dto = biz.findId(name, email);
+		if(dto!=null) {
 		String id= dto.getId();
 		String subject ="회원님의 아이디 입니다.";
 		StringBuilder sb = new StringBuilder();
 		sb.append("귀하의 아이디는"+id+"입니다.");
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		map.put("email", mailSerivce.send(subject,sb.toString(),"wjy1408@gmail.com",email,null));
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('메일을 전송 했습니다.')</script>");
+			out.flush();
+			return "main";
+		}
+		else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('이름이나 이메일을 확인 해주세요.')</script>");
+			out.flush();
+			return "member/findid";
+		}
 		
-		return "redirect:main.do";
 		
 	}
 	@RequestMapping(value = "findPw.do")
 	public String findPw() {
-		logger.info("관리자");
 
-		return "admin/admin";
+		return "member/findpw";
+	}
+	//비밀번호 찾기 이메일 보내기
+	@RequestMapping(value="mailSendPw.do",produces = "application/json",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Boolean> mailSendPw(HttpSession session,String id, String emailName,String emailForm,HttpServletResponse response) throws IOException {
+		String email = emailName+"@"+emailForm;
+		LoginDto dto = biz.findPw(id, email);
+		if(dto!=null) {
+			int ran = new Random().nextInt(100000)+10000;//10000~99999 
+			String joinCode = String.valueOf(ran);
+			session.setAttribute("joinCode", joinCode);
+			session.setAttribute("id", id);
+			String subject ="비밀번호 인증 코드 입니다.";
+			StringBuilder sb = new StringBuilder();
+			sb.append("귀하의 인증코드는"+joinCode+"입니다.");
+			Map<String, Boolean> map = new HashMap<String, Boolean>();
+			map.put("email", mailSerivce.send(subject,sb.toString(),"wjy1408@gmail.com",email,null));
+			return map;
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('아이디나 이메일을 확인 해주세요.')</script>");
+			out.flush();
+			Map<String, Boolean> map = new HashMap<String, Boolean>();
+			map.put("email", false);
+			return map;
+			
+		}
+		
+	}
+	
+	//비밀번호 찾기
+	@RequestMapping(value="findPwConfirm.do")
+	public String findPwConfirm(String number,HttpServletResponse response,HttpSession session) throws IOException {
+			String emailKey = (String) session.getAttribute("joinCode");
+			if(number.equals(emailKey)) {
+				return "member/changepw";
+			}else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('인증번호가 다릅니다.')</script>");
+				out.flush();
+				return "member/findpw";
+			}
+			
+	}
+	// 비밀번호 찾기에서 비밀번호 바꾸기
+	@RequestMapping(value="changePw.do")
+	public String pwChange(String pw,String pwchk,HttpServletResponse response,HttpSession session) throws IOException {
+		String id = session.getAttribute("id")+"";
+		String encodePw = passEncoder.encode(pw);
+		int res = biz.pwUpdate(encodePw, id);
+		if(pw.equals(pwchk)) {
+			if(res>0) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('수정이 완료 됐습니다.')</script>");
+				out.flush();
+				return "main";
+			}else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('비밀번호를 확인하세요')</script>");
+				out.flush();
+				return "member/changepw";
+			}
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('동일한 비밀번호를 쓰세요.')</script>");
+			out.flush();
+			return "member/changepw";
+		}
 	}
 
 	

@@ -105,6 +105,15 @@ public class LoginDaoImpl implements LoginDao{
 		return sqlSesssion.selectOne(namespace+"findId", map);
 	}
 
+	@Override
+	public LoginDto findPw(String id, String email) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("email", email);
+		return sqlSesssion.selectOne(namespace+"findPw", map);
+	}
+
+
 	
 	
 	

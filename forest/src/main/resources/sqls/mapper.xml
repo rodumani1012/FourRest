@@ -7,7 +7,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="loginDto">
-		INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,#{name},#{id},#{pw},#{phone},#{email},#{addr},#{zonecode},1,'USER')
+		INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,#{name},#{id},#{pw},#{phone},#{email},#{addr},#{zonecode},1,'USER',SYSDATE)
 	</insert>
 	
 	<insert id="insert_auth" parameterType="loginDto">
@@ -36,6 +36,10 @@
 	
 	<select id="findId" parameterType="map" resultType="loginDto">
 		SELECT ID FROM MEMBER WHERE NAME=#{name} AND EMAIL=#{email} 
+	</select>
+	
+	<select id="findPw" parameterType="map" resultType="loginDto">
+		SELECT * FROM MEMBER WHERE ID=#{id} AND EMAIL=#{email} 
 	</select>
 	
 </mapper>

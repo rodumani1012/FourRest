@@ -11,9 +11,11 @@
 	function writeEmail(){
 		var select = $("#emailForm").val();
 		if(select=="직접 입력"){
-			
+			$("#emailFormWrite").css('background','white');
+			document.getElementById("emailFormWrite").value="";
+			$("#emailFormWrite").attr("readonly",false);
 		}else{
-			select=$("#emailFormWrite").val();
+			document.getElementById("emailFormWrite").value=select;
 		}
 	}
 	
@@ -34,7 +36,7 @@
 			<div class="row justify-content-center">
 				<input type="text" class="form-control col-2" id="emailName"
 					name="emailName">&nbsp;@ 
-					<input type="text" class="form-control col-2" id="emailFormWrite" name="emailForm" readonly="readonly">
+					<input type="text" class="form-control col-2" id="emailFormWrite" name="emailFormWrite" readonly="readonly" style="background: gray;">
 					<select class="form-control col-2" id="emailForm" name="emailForm" onclick="writeEmail()">
 					<option>daum.net</option>
 					<option>naver.com</option>
