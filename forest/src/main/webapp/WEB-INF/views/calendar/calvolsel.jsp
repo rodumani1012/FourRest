@@ -1,8 +1,11 @@
 <%@page import="com.my.four.model.dto.CalendarDto"%>
 <%@page import="java.util.List"%>
+<%@page import="java.sql.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +19,28 @@
 <script>
 
 	$(document).ready(function() {
-		
-		
+
+		var mylist = [
+			
+			<c:forEach items="${list }" var="dto">
+			
+			{
+				<jsp:useBean id="now" class="java.util.Date" />
+				<fmt:formatDate value="${now}" pattern="yyyyMMdd" var="today" />
+				
+				title : '${dto.caltitle }',
+	        	start : '${dto.calvolundate }',
+	        	end : '${dto.calvolundateend }' + "T23:59:59",
+	        	
+	        	<c:if test="${today > (fn:join(fn:split((dto.calvolundateend), '-'), '')) }">
+	        		color : '#C0C0C0'
+	        	</c:if>
+				},
+			
+		    </c:forEach>
+				
+		]
+
 		$('#calendar').fullCalendar({
 			header : {
 				left : 'prev,next today',
@@ -28,27 +51,9 @@
 			editable : false,
 			eventLimit : true, // allow "more" link when too many events
 			
-			events : [
-				<c:forEach items="${list }" var="dto">
-					{
-	    			title : '${dto.caltitle }',
-	            	start : "${dto.calrecdate }",
-					},
-	    	    </c:forEach>
-			],
-
- 			eventClick:function(event) {
- 				var title = event.title;
-				location.href='caldetail.do?caltitle=' + title;
-            } 
+			events : mylist,
 
 		});
-		
-		<c:forEach items="${list }" var="dto">
-			$(".fc-day-grid-event").attr("title=", "abc");
-   		 </c:forEach>
-		
-		
 	});
 	
 	
@@ -77,12 +82,6 @@ body {
 	font-weight: normal; /* undo jqui's ui-widget-header bold */
 }
 
-.fc-event[title='Y'] {
-	background-color: #3a87ad;
-}
-.fc-event[title='N'] {
-	background-color: #C0C0C0;
-}
 </style>
 </head>
 <body>

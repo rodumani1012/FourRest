@@ -33,8 +33,16 @@
 				<td>${dto.calrecdate }</td>
 			</tr>
 			<tr>
+				<th>모집 마감</th>
+				<td>${dto.calrecdateend }</td>
+			</tr>
+			<tr>
 				<th>봉사 활동 기간</th>
 				<td>${dto.calvolundate }</td>
+			</tr>
+			<tr>
+				<th>봉사 활동 종료</th>
+				<td>${dto.calvolundateend }</td>
 			</tr>
 			<tr>
 				<th>봉사 활동 내용</th>
@@ -53,13 +61,13 @@
 					<c:choose>
 	                 <c:when test="${dto.calrecpeo > dto.calnowpeo}">
 				     	<c:if test="${voldto != null}">
-							<input type="button" value="신청 취소하기" onclick="location.href='calcancel.do?caltitle=${dto.caltitle }&id=${user_id }'"/>
-							<input type="button" value="돌아가기" onclick="location.href='calendar.do'">
+							<input type="button" value="신청 취소하기" onclick="location.href='calcancel.do?seq=${dto.calnum }&caltitle=${dto.caltitle }&id=${user_id }'"/>
+							<input type="button" value="돌아가기" onclick="location.href='calrecsel.do'">
 							<input type="button" value="삭제하기" onclick="location.href='caldelete.do'">
 						</c:if>
 				  		<c:if test="${voldto == null}">
-				   			<input type="button" value="봉사 신청하기" onclick="location.href='calapply.do?caltitle=${dto.caltitle }&id=${user_id }'"/>
-				      		<input type="button" value="돌아가기" onclick="location.href='calendar.do'">
+				   			<input type="button" value="봉사 신청하기" onclick="location.href='calapply.do?seq=${dto.calnum }&caltitle=${dto.caltitle }&id=${user_id }'"/>
+				      		<input type="button" value="돌아가기" onclick="location.href='calrecsel.do'">
 				     		<input type="button" value="삭제하기" onclick="location.href='caldelete.do'">
 				    	</c:if>
 	                 </c:when>

@@ -410,5 +410,12 @@ public class HomeController {
 	      return "site";
 	   }
 
+	@RequestMapping(value = "site.do")
+	public String site() {
+		logger.info("stie");
+
+		return "relationsite";
+	}
+
 
 }

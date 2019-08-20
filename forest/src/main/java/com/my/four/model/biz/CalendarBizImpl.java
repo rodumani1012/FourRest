@@ -21,8 +21,8 @@ public class CalendarBizImpl implements CalendarBiz {
 	}
 
 	@Override
-	public CalendarDto selectOne(String caltitle) {
-		return dao.selectOne(caltitle);
+	public CalendarDto selectOne(int seq) {
+		return dao.selectOne(seq);
 	}
 
 	@Override
