@@ -34,13 +34,13 @@ public class CalendarDaoImpl implements CalendarDao {
 	}
 
 	@Override
-	public CalendarDto selectOne(String caltitle) {
-		Map<String, String> map = new HashMap<String, String>();
+	public CalendarDto selectOne(int seq) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
 		CalendarDto dto = new CalendarDto();
 		
-		map.put("caltitle", caltitle);
+		map.put("seq", seq);
 		try {
-			dto = sqlSession.selectOne(namespace + "selectOne", map);
+			dto = sqlSession.selectOne(namespace + "selectOne", seq);
 		} catch (Exception e) {
 			System.out.println("error");
 			e.printStackTrace();
