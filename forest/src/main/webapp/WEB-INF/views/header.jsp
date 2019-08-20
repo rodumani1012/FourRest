@@ -76,29 +76,47 @@
 				<!-- End Header Navigation -->
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbar-menu">
-					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
-						data-out="fadeOutUp">
+					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown">
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='gotomap.do'">Map</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='mypagepwchk.do'">Test</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='calendar.do'">Calendar</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='youtube.do'">Youtube</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='chat.do'">문의하기</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='contest_main.do'">공모</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='funlist.do'">후원하기</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='content.do'">Contant</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do'">보호소</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='trash.do'">쓰레기</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_endangeredList.do'">멸종위기종</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_alien.do?board=animal_alien_disturb'">외래생물</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='admin.do'">관리자</button></li>
-						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='site.do'">sitelist</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href=''">만들자..</button></li>
+						<li>
+							<div class="dropdown">
+								<button type="button" class="text-dark btn btn-link dropdown-toggle" data-toggle="dropdown">board</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="contest_main.do">공모게시판</a>
+									<a class="dropdown-item" href="#portfolio">리뷰만들어야함</a>
+								</div>
+							</div>
+						</li>
+						<li>
+						<div class="dropdown">
+						<button type="button" class="text-dark btn btn-link dropdown-toggle" data-toggle="dropdown">save</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="ani_shelterList.do">보호소</a>
+							<a class="dropdown-item" href="ani_endangeredList.do">멸종위기종</a>
+							<a class="dropdown-item" href="ani_alien.do?board=animal_alien_disturb">외래생물</a>
+							<a class="dropdown-item" href="trash.do">쓰레기</a>
+						</div>
+						</div>
+						</li>
+						<li>
+							<div class="dropdown">
+								<button type="button" class="text-dark btn btn-link dropdown-toggle" data-toggle="dropdown">content</button>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="content.do">GAME</a>
+										<a class="dropdown-item" href="youtube.do">YOUTUBE</a>
+									</div>
+							</div>
+						</li>	
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li><sec:authorize access="isAuthenticated()">
 								<sec:authentication property="principal.username" var="user_id" />
-								<input type="submit" class="btn btn-link text-dark"
+								<input type="submit" class="btn btn-link text-dark" onclick="location.href='mypage.do'"
 										value="${user_id }"/>
 								</sec:authorize>
 								<sec:authorize access="isAnonymous()">
@@ -115,14 +133,6 @@
 						<li><sec:authorize access="isAnonymous()">
 								<button type="button" class="btn btn-link text-dark"
 									onclick="location.href='joinform.do'">JOIN</button>
-							</sec:authorize></li>
-							<li><sec:authorize access="isAuthenticated()">
-								<button type="button" class="btn btn-link text-dark"
-									onclick="location.href='mypage.do'">내정보</button>
-							</sec:authorize></li>
-							<li><sec:authorize access="isAuthenticated()">
-								<button type="button" class="btn btn-link text-dark"
-									onclick="location.href='mypagepwchk.do'">비밀번호 변경</button>
 							</sec:authorize></li>
 					</ul>
 				</div>

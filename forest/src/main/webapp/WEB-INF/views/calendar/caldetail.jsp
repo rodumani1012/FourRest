@@ -16,9 +16,10 @@
 	<sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
-
+	
+	<%@ include file="../header.jsp"%>
 	<form>
-		<table border="1">	
+		<table class="table">	
 			<tr>
 				<th>봉사 제목</th>
 				<td>${dto.caltitle }</td>

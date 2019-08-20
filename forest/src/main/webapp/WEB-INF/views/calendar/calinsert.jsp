@@ -11,9 +11,11 @@
 	<sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
-
+<%@ include file="../header.jsp"%>
+<br><br><br><br><br><br><br><br><br><br>
+<div class="container row mx-auto">
 	<form action="calinsertres.do" method="post">
-		<table border="1">
+		<table class="table table-bordered col-lg-12 col-lg-12">
 			<tr>
 				<th>봉사 제목</th>
 				<td><input type="text" name="caltitle"></td>
@@ -34,13 +36,14 @@
 				<th>모집 인원</th>
 				<td><input type="text" name="calrecpeo"></td>
 			</tr>
-			<input type="hidden" name="calid" value=${user_id }>
+			<input type="hidden" name="calid" value=${user_id }/>
 			<tr>
 				<td colspan="2">
-				<input type="submit" value="봉사등록">
-				<input type="button" value="취소" onclick="location.href='calendar.do'"></td>
+				<button type="submit" class="btn btn-light">봉사등록</button>
+				<button type="button" class="btn btn-light" onclick="location.href='calendar.do'">취소</button></td>
 			</tr>
 		</table>
 	</form>
+</div>	
 </body>
 </html>
