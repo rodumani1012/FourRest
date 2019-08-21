@@ -171,7 +171,7 @@
   <tr>
     <td colspan="4">
       <form action="contest_replyform.do" method="post">
-        <input type="hidden" name="parentno" value="${dto.boardno }">
+        <input type="hidden" name="boardno" value="${dto.boardno }">
         <input type="hidden" name="groupno" value="${dto.groupno}">
         <table>
           <tr>
@@ -259,7 +259,7 @@
           }
         }
         if (rating && rating < 5) {
-          for (i = _j = rating; rating <= 4 ? _j <= 4; : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+          for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
             this.$el.find('span').eq(i).removeClass('glyphicon-heart').addClass('glyphicon-heart-empty');
           }
         }

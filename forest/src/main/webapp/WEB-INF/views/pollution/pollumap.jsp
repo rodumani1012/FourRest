@@ -286,7 +286,6 @@
 				
 
 			var areanm = area.name;
-			console.log('-----------꾜');
 			console.log(areanm);
 			console.log(bigOpt);
 			var minilist = [];

@@ -80,14 +80,14 @@
 
 	<insert id="insertAns" parameterType="ContestBoardDto">
 		INSERT INTO CONTESTBOARD
-		VALUES(#{conlistno}CON_BOARDNOSQ.NEXTVAL,
+		VALUES(1,CON_BOARDNOSQ.NEXTVAL,
 		(SELECT GROUPNO FROM CONTESTBOARD WHERE
 		BOARDNO=#{boardno}),
 		(SELECT GROUPSQ FROM CONTESTBOARD WHERE
 		BOARDNO=#{boardno})+1,
 		(SELECT REPLYNO FROM CONTESTBOARD WHERE
 		BOARDNO=#{boardno})+1,
-		0,0,#{writer},#{title},#{content},#{content},SYSDATE)
+		0,0,#{writer},'댓글',#{content},#{content},SYSDATE)
 	</insert>
 
 	<select id="selectListOption" parameterType="Hashmap"

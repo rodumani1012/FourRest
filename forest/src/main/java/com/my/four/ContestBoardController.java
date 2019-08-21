@@ -229,18 +229,18 @@ public class ContestBoardController {
 
 	// 댓글등록
 	@RequestMapping("contest_replyform.do")
-	public String postreply(@ModelAttribute ContestBoardDto dto, Model model, @RequestParam("parentno") int parentno) {
-		int res = 0;
-		res = biz.insertAns(dto);
-		int result = 0;
-		if (res > 0) 
-			result = biz.replyCntup(parentno);
-		else
-			System.out.println("안댐");
-		if (result > 0)
+	public String postreply(@ModelAttribute ContestBoardDto dto, Model model) {
+		int parentno = dto.getBoardno();
+		System.out.println("컨트롤러"+dto.getBoardno()+"/"+dto.getContent()+"/"+dto.getWriter()+"/"+dto.getGroupno());
+		int cnt = biz.replyCntup(parentno);
+		int rescnt = biz.ansProc(dto);
+		if(cnt>0&&rescnt>1) {
+			System.out.println("댓글등록!");
 			return "redirect:contest_detail.do?boardno=" + parentno;
-		return "redirect:contest_detail.do?boardno=" + parentno;
-
+		}else {
+			System.out.println("댓글실패..!");
+			return "redirect:contest_detail.do?boardno=" + parentno;
+		}
 	}
 
 //	@RequestMapping(value="contest_update.do")
