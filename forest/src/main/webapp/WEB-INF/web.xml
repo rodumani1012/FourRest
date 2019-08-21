@@ -87,4 +87,14 @@
     <servlet-name>contentController</servlet-name>
     <url-pattern>/contentController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FreeboardController</display-name>
+    <servlet-name>FreeboardController</servlet-name>
+    <servlet-class>com.my.four.FreeboardController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FreeboardController</servlet-name>
+    <url-pattern>/FreeboardController</url-pattern>
+  </servlet-mapping>
 </web-app>
