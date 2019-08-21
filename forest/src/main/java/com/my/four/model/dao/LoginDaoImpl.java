@@ -37,7 +37,6 @@ public class LoginDaoImpl implements LoginDao{
 	@Override
 	public int memberInsert(LoginDto dto) {
 		int res =sqlSesssion.insert(namespace+"insert",dto);
-		int res1 = sqlSesssion.insert(namespace+"insert_auth",dto); 
 		return res;
 	}
 
@@ -74,6 +73,38 @@ public class LoginDaoImpl implements LoginDao{
 		dto=sqlSesssion.selectOne(namespace+"pwChk", id);
 		return dto;
 	}
+
+	@Override
+	public LoginDto memberInfo(String id) {
+		LoginDto dto = new LoginDto();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		dto=sqlSesssion.selectOne(namespace+"memberInfo", id);
+		return dto;
+	}
+
+	@Override
+	public int memberUpdate(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return sqlSesssion.update(namespace+"memberUpdate", dto);
+	}
+
+	@Override
+	public int pwUpdate(String pw,String id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("pw", pw);
+		return sqlSesssion.update(namespace+"pwUpdate", map);
+	}
+
+	@Override
+	public LoginDto findId(String name, String email) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", name);
+		map.put("email", email);
+		return sqlSesssion.selectOne(namespace+"findId", map);
+	}
+
 	
 	
 	

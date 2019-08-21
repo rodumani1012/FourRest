@@ -21,6 +21,7 @@
 		<typeAlias type="com.my.four.model.dto.AreaDto" alias="AreaDto"/>
 		<typeAlias type="com.my.four.model.dto.StarRecordDto" alias="StarRecordDto"/>
 		
+		<typeAlias type="com.my.four.model.dto.TrashDto" alias="TrashDto"/>
 	</typeAliases>
 	<!-- resource : java Resources -->
 	<!-- resource : src/main/resources -->
@@ -33,6 +34,7 @@
     	<mapper resource="/sqls/contestlist_mapper.xml"/>
     	<mapper resource="/sqls/calendarmapper.xml"/>
     	<mapper resource="/sqls/areadata_mapper.xml"/>
+    	<mapper resource="/sqls/trashmapper.xml"/>
 	</mappers>
 	
 	

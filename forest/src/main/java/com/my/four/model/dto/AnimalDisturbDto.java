@@ -2,8 +2,8 @@ package com.my.four.model.dto;
 
 public class AnimalDisturbDto {
 
-	private String korName;
-	private String engName;
+	private String kor_name;
+	private String eng_name;
 	private String groups;
 	private String management;
 	private String country;
@@ -13,29 +13,29 @@ public class AnimalDisturbDto {
 		
 	}
 
-	public AnimalDisturbDto(String korName, String engName, String groups, String management, String country, String img) {
-		this.korName = korName;
-		this.engName = engName;
+	public AnimalDisturbDto(String kor_name, String eng_name, String groups, String management, String country, String img) {
+		this.kor_name = kor_name;
+		this.eng_name = eng_name;
 		this.groups = groups;
 		this.management = management;
 		this.country = country;
 		this.img = img;
 	}
 
-	public String getKorName() {
-		return korName;
+	public String getKor_name() {
+		return kor_name;
 	}
 
-	public void setKorName(String korName) {
-		this.korName = korName;
+	public void setKor_name(String kor_name) {
+		this.kor_name = kor_name;
 	}
 
-	public String getEngName() {
-		return engName;
+	public String getEng_name() {
+		return eng_name;
 	}
 
-	public void setEngName(String engName) {
-		this.engName = engName;
+	public void setEng_name(String eng_name) {
+		this.eng_name = eng_name;
 	}
 
 	public String getGroups() {
@@ -69,4 +69,5 @@ public class AnimalDisturbDto {
 	public void setImg(String img) {
 		this.img = img;
 	}
+	
 }

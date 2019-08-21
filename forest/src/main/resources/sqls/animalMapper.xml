@@ -142,6 +142,17 @@
 		SELECT COUNT(*) FROM ANIMAL_ENDANGERED_JOIN WHERE GROUPS like '%' || #{groups} || '%' AND GRADE = #{grade} 
 	</select>
 	
+	<!-- 생태교란 총 갯수 db 검사용 -->
+	<select id="aniGetTotalCountDHDb" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		<if test='board.equals("animal_alien_disturb")'>
+		FROM ANIMAL_ALIEN_DISTURB
+		</if>
+		<if test='board.equals("animal_alien_harm")'>
+		FROM ANIMAL_ALIEN_HARM
+		</if>
+	</select>
+	
 	<!-- 생태교란 총 갯수 -->
 	<select id="aniGetTotalCountDisturbHarm" parameterType="map" resultType="Integer">
 		SELECT COUNT(*)
@@ -150,6 +161,11 @@
 		</if>
 		<if test='board.equals("animal_alien_harm")'>
 		FROM ANIMAL_ALIEN_HARM
+		</if>
+		<if test="groups != null">
+			<if test='txt_search == null'>
+			WHERE GROUPS = #{groups}
+			</if>
 		</if>
 		<if test="txt_search != null">
 			WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
@@ -163,7 +179,7 @@
 			INSERT ALL
 			<foreach collection="list" item="ani">
 				INTO ANIMAL_ALIEN_DISTURB(KOR_NAME, ENG_NAME, GROUPS, MANAGEMENT, COUNTRY, IMG)
-				VALUES(#{ani.korName},#{ani.engName},#{ani.groups},#{ani.management},#{ani.country},#{ani.img})
+				VALUES(#{ani.kor_name},#{ani.eng_name},#{ani.groups},#{ani.management},#{ani.country},#{ani.img})
 			</foreach>
 			SELECT * FROM DUAL
 		</if>
@@ -171,22 +187,27 @@
 			INSERT ALL
 			<foreach collection="list" item="ani">
 				INTO ANIMAL_ALIEN_HARM(KOR_NAME, ENG_NAME, GROUPS, MANAGEMENT, IMG)
-				VALUES(#{ani.korName},#{ani.engName},#{ani.groups},#{ani.management},#{ani.img})
+				VALUES(#{ani.kor_name},#{ani.eng_name},#{ani.groups},#{ani.management},#{ani.img})
 			</foreach>
 			SELECT * FROM DUAL
 		</if>
 	</insert>	
 	
 	<!-- db에서 생태교란 목록 가져오는 쿼리 -->
-	<select id="aniSelectListDisturb" parameterType="map" resultType="animalDisturbDto">
+	<select id="aniSelectListDisturb" resultType="animalDisturbDto">
 		SELECT *
 		FROM (SELECT ROWNUM AS RNUM, P.*
 			 FROM ( SELECT * 
 			 		FROM ANIMAL_ALIEN_DISTURB
-					 <if test="txt_search != null">
-							WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
-							upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
-					</if>
+			 		<where>
+			 			<if test="groups != null">
+			 				AND GROUPS = #{groups}
+			 			</if>
+			 			<if test='txt_search != null'>
+							AND upper(KOR_NAME) like '%' || trim(upper(#{txt_search})) || '%' or
+							upper(ENG_NAME) like '%' || trim(upper(#{txt_search})) || '%'
+			 			</if>
+			 		</where>
 						ORDER BY KOR_NAME
 						) P
 			 )
@@ -198,16 +219,23 @@
 		SELECT *
 		FROM (SELECT ROWNUM AS RNUM, P.*
 			 FROM ( SELECT * 
-			 		FROM ANIMAL_ALIEN_HARM 
-					 <if test="txt_search != null">
-							WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
-							upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
-					</if>
+			 		FROM ANIMAL_ALIEN_HARM
+			 		<where>
+			 			<if test="groups != null">
+			 				AND GROUPS = #{groups}
+			 			</if>
+			 			<if test='txt_search != null'>
+							AND upper(KOR_NAME) like '%' || trim(upper(#{txt_search})) || '%' or
+							upper(ENG_NAME) like '%' || trim(upper(#{txt_search})) || '%'
+			 			</if>
+			 		</where>
 						ORDER BY KOR_NAME
 						) P
 			 )
 		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
 	</select>
+	
+	
 </mapper>
 
 

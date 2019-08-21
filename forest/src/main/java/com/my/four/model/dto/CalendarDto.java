@@ -8,7 +8,9 @@ public class CalendarDto {
 	private String caltitle;
 	private String calid;
 	private Date calrecdate;
+	private Date calrecdateend;
 	private Date calvolundate;
+	private Date calvolundateend;
 	private String calcontent;
 	private int calrecpeo;
 	private int calnowpeo;
@@ -69,20 +71,33 @@ public class CalendarDto {
 	public void setNotice(String notice) {
 		this.notice = notice;
 	}
-
+	public Date getCalrecdateend() {
+		return calrecdateend;
+	}
+	public void setCalrecdateend(Date calrecdateend) {
+		this.calrecdateend = calrecdateend;
+	}
+	public Date getCalvolundateend() {
+		return calvolundateend;
+	}
+	public void setCalvolundateend(Date calvolundateend) {
+		this.calvolundateend = calvolundateend;
+	}
 	
 	public CalendarDto() {
 		
 	}
 	
-	public CalendarDto(int calnum, String caltitle, String calid, Date calrecdate, Date calvolundate, String calcontent,
+	public CalendarDto(int calnum, String caltitle, String calid, Date calrecdate, Date calrecdateend, Date calvolundate, Date calvolundateend, String calcontent,
 			int calrecpeo, int calnowpeo, String notice) {
 		super();
 		this.calnum = calnum;
 		this.caltitle = caltitle;
 		this.calid = calid;
 		this.calrecdate = calrecdate;
+		this.calrecdateend = calrecdateend;
 		this.calvolundate = calvolundate;
+		this.calvolundateend = calvolundateend;
 		this.calcontent = calcontent;
 		this.calrecpeo = calrecpeo;
 		this.calnowpeo = calnowpeo;

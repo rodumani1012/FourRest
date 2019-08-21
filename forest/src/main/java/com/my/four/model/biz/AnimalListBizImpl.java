@@ -77,8 +77,13 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	}
 
 	@Override
-	public int aniGetTotalCountDisturbHarm(String board, String txt_search) {
-		return dao.aniGetTotalCountDisturbHarm(board, txt_search);
+	public int aniGetTotalCountDisturbHarm(String board) {
+		return dao.aniGetTotalCountDisturbHarm(board);
+	}
+	
+	@Override
+	public int aniGetTotalCountDisturbHarm(String groups, String board, String txt_search) {
+		return dao.aniGetTotalCountDisturbHarm(returnGroups(groups), board, txt_search);
 	}
 
 	@Override
@@ -87,14 +92,50 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	}
 
 	@Override
-	public List<AnimalDisturbDto> aniSelectListDisturb(int firstIndex, int recordCountPerPage, String txt_search) {
-		return dao.aniSelectListDisturb(firstIndex, recordCountPerPage, txt_search);
+	public List<AnimalDisturbDto> aniSelectListDisturb(String groups, int firstIndex, int recordCountPerPage, String txt_search) {
+		return dao.aniSelectListDisturb(returnGroups(groups), firstIndex, recordCountPerPage, txt_search);
 	}
 
 	@Override
-	public List<AnimalHarmDto> aniSelectListHarm(int firstIndex, int recordCountPerPage, String txt_search) {
-		return dao.aniSelectListHarm(firstIndex, recordCountPerPage, txt_search);
+	public List<AnimalHarmDto> aniSelectListHarm(String groups, int firstIndex, int recordCountPerPage, String txt_search) {
+		return dao.aniSelectListHarm(returnGroups(groups), firstIndex, recordCountPerPage, txt_search);
 	}
 
-
+	private String returnGroups(String groups) {
+		if(groups == null) { 
+			groups = "all"; 
+		}
+		
+		switch (groups) {
+		case "mammal":
+			groups = "포유류";
+			break;
+		case "birds":
+			groups = "조류";
+			break;
+		case "reptile":
+			groups = "파충류";
+			break;
+		case "amphibian":
+			groups = "양서류";
+			break;
+		case "fish":
+			groups = "어류";
+			break;
+		case "insect":
+			groups = "곤충";
+			break;
+		case "invertebrate":
+			groups = "무척추동물";
+			break;
+		case "plants":
+			groups = "식물";
+			break;
+		default :
+			groups = "all";
+			break;
+		}
+		
+		return groups;
+	}
 }

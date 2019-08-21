@@ -11,30 +11,179 @@
 	width: 150px; 
 	height: 100px;
 }
+ul {
+	list-style: none;
+}
+dd {
+	margin: 0 auto;
+}
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-	function PageMove(page) {
-		location.href = "ani_alien.do?board=animal_alien_disturb&page=" + page + "&txt_search=" + $('input#txt_search').val();
+	$(function() {
+		var pageNum = $("#pageNum").val();
+		var groupsName = $("#groupsName").val();
+		 $("#txt_search").keydown(function(key) {
+             if (key.keyCode == 13) {
+            	 PageMove(pageNum, groupsName);
+             }
+         });
+	});
+	
+	function PageMove(page, groups) {
+ 		location.href = "ani_alien.do?board=animal_alien_disturb&groups="+ groups +"&page=" + page + "&txt_search=" + $('input#txt_search').val();
 	}
+	
+	function del(){
+		$("#txt_search").val('');
+	}
+	
 </script>
 </head>
 <body>
-
 <div>
 	<div>
 		<div>
 			<button disabled="disabled">생태교란종</button>
-			<button onclick="location.href='ani_alien.do?board=animal_alien_harm'">위해우려종</button>
+			<button onclick="location.href='ani_alien.do?board=animal_alien_harm&txt_search='">위해우려종</button>
 		</div>
 		<!-- content -->
-		<table>
+		<table class="form-group gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-5 filter hdpe">
 			<tr>
 				<td colspan="5">
 					<input type="text" id="txt_search" value="${txt_search }" placeholder="생물종의 이름을 입력하세요."> 
-					<button type="button" onclick="javascript:PageMove(${paging.pageNo})">검색</button>
+					<button type="button" class="btn btn-outline-dark" onclick="javascript:PageMove(${paging.pageNo}, ${groups })">검색</button>
+					<button type="button" class="btn btn-outline-dark" onclick="del()">초기화</button>
+					<input type="hidden" id="pageNum" value="${paging.pageNo }">
+					<input type="hidden" id="groupsName" value="${groups }">
 				</td>
 			</tr>
 		</table>
+		
+		<div>
+			<table>
+				<tr>
+					<td>
+						<a href="javascript:PageMove(${paging.pageNo}, 'all')">
+						<c:choose>
+							<c:when test="${groups eq 'all'}">
+								<img alt="전체" src="resources/assets/images/animal/all_click.png" >
+							</c:when>
+							<c:otherwise>
+								<img alt="전체" src="resources/assets/images/animal/all.png">
+							</c:otherwise>
+						</c:choose>
+							<p>전체</p>
+						</a>
+					</td>
+					<td>
+						<a href="javascript:PageMove(${paging.pageNo}, 'mammal')">
+						<c:choose>
+							<c:when test="${groups eq 'mammal'}">
+								<img alt="포유류" src="resources/assets/images/animal/mammal_click.png">
+							</c:when>
+							<c:otherwise>
+								<img alt="포유류" src="resources/assets/images/animal/mammal.png">
+							</c:otherwise>
+						</c:choose>
+							<p>포유류</p>
+						</a>
+					</td>
+					<td>
+						<a href="javascript:PageMove(${paging.pageNo}, 'birds')">
+						<c:choose>
+							<c:when test="${groups eq 'birds'}">
+								<img alt="조류" src="resources/assets/images/animal/birds_click.png">
+							</c:when>
+							<c:otherwise>
+								<img alt="조류" src="resources/assets/images/animal/birds.png">
+							</c:otherwise>
+						</c:choose>
+							<p>조류</p>
+						</a>
+					</td>
+					<td>
+						<a href="javascript:PageMove(${paging.pageNo}, 'reptile')">
+						<c:choose>
+							<c:when test="${groups eq 'reptile'}">
+								<img alt="파충류" src="resources/assets/images/animal/reptile_click.png">
+							</c:when>
+							<c:otherwise>
+								<img alt="파충류" src="resources/assets/images/animal/reptile.png">
+							</c:otherwise>
+						</c:choose>
+							<p>파충류</p>
+						</a>
+					</td>
+					<td>
+						<a href="javascript:PageMove(${paging.pageNo}, 'amphibian')">
+						<c:choose>
+							<c:when test="${groups eq 'amphibian'}">
+								<img alt="양서류" src="resources/assets/images/animal/amphibian_click.png">
+							</c:when>
+							<c:otherwise>
+								<img alt="양서류" src="resources/assets/images/animal/amphibian.png">
+							</c:otherwise>
+						</c:choose>
+							<p>양서류</p>
+						</a>
+					</td>
+					<td>
+						<a href="javascript:PageMove(${paging.pageNo}, 'fish')">
+						<c:choose>
+							<c:when test="${groups eq 'fish'}">
+								<img alt="어류" src="resources/assets/images/animal/fish_click.png">
+							</c:when>
+							<c:otherwise>
+								<img alt="어류" src="resources/assets/images/animal/fish.png">
+							</c:otherwise>
+						</c:choose>
+							<p>어류</p>
+						</a>
+					</td>
+					<td>
+						<a href="javascript:PageMove(${paging.pageNo}, 'insect')">
+						<c:choose>
+							<c:when test="${groups eq 'insect'}">
+								<img alt="곤충" src="resources/assets/images/animal/insect_click.png">
+							</c:when>
+							<c:otherwise>
+								<img alt="곤충" src="resources/assets/images/animal/insect.png">
+							</c:otherwise>
+						</c:choose>
+							<p>곤충</p>
+						</a>
+					</td>
+					<td>
+						<a href="javascript:PageMove(${paging.pageNo}, 'invertebrate')">
+						<c:choose>
+							<c:when test="${groups eq 'invertebrate'}">
+							<img  alt="무척추동물" src="resources/assets/images/animal/invertebrate_click.png">
+							</c:when>
+							<c:otherwise>
+							<img  alt="무척추동물" src="resources/assets/images/animal/invertebrate.png">
+							</c:otherwise>
+						</c:choose>
+							<p>무척추동물</p>
+						</a>
+					</td>
+					<td>
+						<a href="javascript:PageMove(${paging.pageNo}, 'plants')">
+						<c:choose>
+							<c:when test="${groups eq 'plants'}">
+							<img alt="식물" src="resources/assets/images/animal/plants_click.png">
+							</c:when>
+							<c:otherwise>
+							<img alt="식물" src="resources/assets/images/animal/plants.png">
+							</c:otherwise>
+						</c:choose>
+							<p>식물</p>
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
 		
 		<div>
 			> 검색결과 ( 총 ${totalCount }종)
@@ -49,16 +198,16 @@
 					<c:forEach items="${list }" var="dto">
 						<ul>
 							<li>
-								<img class="image" src="${dto.img }" alt="${dto.korName}">
+								<img class="image" src="${dto.img }" alt="${dto.kor_name}">
 							</li>
 							<li>
 								<dl>
-									<dt>${dto.korName }</dt>
-									<dd><span>영명 :</span>${dto.engName }</dd>
-									<dd><span>분류군 :</span>${dto.groups }</dd>
-									<dd><span>관리현황 :</span>${dto.management }</dd>
-									<c:if test="${dto.country ne null }">
-										<dd><span>원산지 :</span>${dto.country }</dd>
+									<dt>${dto.kor_name }</dt>
+									<dd><span>영명 : </span>${dto.eng_name }</dd>
+									<dd><span>분류군 : </span>${dto.groups }</dd>
+									<dd><span>관리현황 : </span>${dto.management }</dd>
+									<c:if test="${dto.country ne 'NA' }">
+										<dd><span>원산지 : </span>${dto.country }</dd>
 									</c:if>
 								</dl>
 							</li>
@@ -69,23 +218,24 @@
 		</div>
 		
 		<!-- Pagination -->
-		<div>
-			<a href="javascript:PageMove(${paging.firstPageNo})">&laquo;</a> 
-			<a href="javascript:PageMove(${paging.prevPageNo})">&lt;</a>
+		<div class="pagination pagination-md justify-content-center">
+			<a class="page-link" href="javascript:PageMove(${paging.firstPageNo}, '${groups }')">&laquo;</a> 
+			<a class="page-link" href="javascript:PageMove(${paging.prevPageNo}, '${groups }')">&lt;</a>
 			<c:forEach var="i" begin="${paging.startPageNo}"
 				end="${paging.endPageNo}" step="1">
 				<c:choose>
 					<c:when test="${i eq paging.pageNo}">
-						<a href="javascript:PageMove(${i})">${i}</a>
+						<a class="page-link" href="javascript:PageMove(${i}, '${groups }')">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="javascript:PageMove(${i})">${i}</a>
+						<a class="page-link" href="javascript:PageMove(${i}, '${groups }')">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-			<a href="javascript:PageMove(${paging.nextPageNo})">&gt;</a> 
-			<a href="javascript:PageMove(${paging.finalPageNo})">&raquo;</a>
+			<a class="page-link" href="javascript:PageMove(${paging.nextPageNo})">&gt;</a> 
+			<a class="page-link" href="javascript:PageMove(${paging.finalPageNo})">&raquo;</a>
 		</div>
+		
 	</div>
 </div>
 

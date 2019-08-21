@@ -1,4 +1,4 @@
-package com.my.four.animal;
+package com.my.four.crawling;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -299,8 +299,8 @@ public class AnimalList {
 
 			for (Element element : contents) {
 				dto.setImg("http://kias.nie.re.kr" + element.getElementsByTag("img").attr("src"));
-				dto.setKorName(element.text().substring(0, element.text().indexOf("영명")).trim());
-				dto.setEngName(element.text().substring(element.text().indexOf("영명")+5, element.text().indexOf("분류군")).trim());
+				dto.setKor_name(element.text().substring(0, element.text().indexOf("영명")).trim());
+				dto.setEng_name(element.text().substring(element.text().indexOf("영명")+5, element.text().indexOf("분류군")).trim());
 				dto.setGroups(element.text().substring(element.text().indexOf("분류군")+5, element.text().indexOf("관리현황")).trim());
 				if(element.text().contains("원산지")) {
 					dto.setManagement(element.text().substring(element.text().indexOf("관리현황")+6, element.text().indexOf("원산지")).trim());
@@ -376,12 +376,16 @@ public class AnimalList {
 			Elements contents = doc.select(selector); // doc(HTML문서)에서 (selector)내용을 가져옴.
 
 			for (Element element : contents) {
-				dto.setImg("http://kias.nie.re.kr" + element.getElementsByTag("img").attr("src"));
-				dto.setKorName(element.text().substring(0, element.text().indexOf("영명")).trim());
-				if(element.text().substring(element.text().indexOf("영명")+5, element.text().indexOf("분류군")).trim().length() < 1) {
-					dto.setEngName("NA");
+				if (element.getElementsByTag("img").attr("src").length() < 1) {
+					dto.setImg("http://kias.nie.re.kr/home/images/common/noimg169_127.gif");
 				} else {
-					dto.setEngName(element.text().substring(element.text().indexOf("영명")+5, element.text().indexOf("분류군")).trim());
+					dto.setImg("http://kias.nie.re.kr" + element.getElementsByTag("img").attr("src"));
+				}
+				dto.setKor_name(element.text().substring(0, element.text().indexOf("영명")).trim());
+				if(element.text().substring(element.text().indexOf("영명")+5, element.text().indexOf("분류군")).trim().length() < 1) {
+					dto.setEng_name("NA");
+				} else {
+					dto.setEng_name(element.text().substring(element.text().indexOf("영명")+5, element.text().indexOf("분류군")).trim());
 				}
 				dto.setGroups(kor_category);
 				if(element.text().substring(element.text().indexOf("관리현황")+6).trim().contains("사진 더보기")) {

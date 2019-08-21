@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,12 +24,8 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpRequest;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -37,10 +33,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.my.four.model.biz.FundingBiz;
 import com.my.four.model.biz.LoginBiz;
 import com.my.four.model.biz.MailService;
 import com.my.four.model.dto.LoginDto;
@@ -174,20 +168,6 @@ public class HomeController {
 				return "redirect:joinform.do";
 		}
 	}
-	
-	@RequestMapping(value="content.do")
-	public String content() {
-		logger.info("game");
-		
-		return "content";
-	}
-	
-	@RequestMapping(value="quiz.do")
-	public String quiz() {
-		logger.info("퀴즈 게임하기");
-		
-		return "content/quiz";
-	}
 
 	@RequestMapping(value = "admin.do")
 	public String admin() {
@@ -201,31 +181,6 @@ public class HomeController {
 		logger.info("관리자일정");
 
 		return "admin/admincal";
-	}
-	
-	
-	@RequestMapping(value="puzzle.do")
-	public String puzzle() {
-		logger.info("후원하기");
-		
-		return "content/puzzle";
-	}
-	
-	@RequestMapping(value="crossword.do")
-	public String crossword() {
-		logger.info("후원하기");
-		
-		return "content/crossword";
-	}
-	
-	@RequestMapping(value="puzzleiframe.do")
-	public String puzzleiframe() {
-		
-		return "content/puzzleiframe";
-	}
-	@RequestMapping(value="chat.do")
-	public String chat() {
-		return "chatting";
 	}
 	
 	//kakao 로그인
@@ -258,21 +213,112 @@ public class HomeController {
 		
 		return "member/mypagepwchk";
 	}
+	@RequestMapping(value="youtube.do")
+	public String youtube() {
+		
+		return "youtube/youtube";
+	}
 	
 	@RequestMapping(value="mypage.do")
-	public String mypage(String pwchk,Principal principal) {
+	public String mypage(String pwchk,Principal principal,Model model) {
+		 
+			LoginDto dto1= biz.memberInfo(principal.getName());
+			String phone=dto1.getPhone().substring(3, 7);
+			String phone2=dto1.getPhone().substring(7, 11);
+			String[] email=dto1.getEmail().split("@");
+			String emailName = email[0];
+			model.addAttribute("dto",dto1);
+			model.addAttribute("phone",phone);
+			model.addAttribute("phone2",phone2);
+			model.addAttribute("emailName",emailName);
+			return "member/mypage";	
+		
+	}
+	@RequestMapping(value="pwChange.do")
+	public String pwChange(String pwchk,Principal principal,Model model) {
 		LoginDto dto = biz.pwChk(principal.getName());
 		boolean chk = passEncoder.matches(pwchk, dto.getPw());
 		if(chk==true) {
-			
-			return "member/mypage";	
+			return "member/pwchange";
 		}else {
-			logger.info("와이!");
-			return "redirect:member/mypagepwchk.do";
+			return "mypagepwchk.do";
+		}
+		
+	}
+	@RequestMapping(value="pwChangeConfirm.do")
+	public String pwChangeConfirm(String pw, Principal principal,ServletResponse response,String newPw) throws IOException {
+		String id=principal.getName();
+		LoginDto dto = biz.pwChk(id);
+		boolean chk = passEncoder.matches(pw, dto.getPw());
+		if(chk==true) {
+			System.out.println("111111111111"+id);
+			String encodePw = passEncoder.encode(newPw);
+			int res = biz.pwUpdate(encodePw, id);
+			if(res>0) {
+				System.out.println("-------------------------------"+res);
+				return "redirect:main.do";
+			}else {
+				System.out.println("------------------여긴가");
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('변경한 비밀번호를 확인 해주세요.')</script>");
+				out.flush();
+				return "member/pwchange";
+			}
+			
+		}else {
+			System.out.println("여긴가");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('기존 비밀번호가 다릅니다.')</script>");
+			out.flush();
+			return "member/pwchange";
+		}
+	}
+	@RequestMapping(value="memberUpdate.do")
+	public String memberUpdate(LoginDto dto,String phone1,String phone2,String phone3,String emailName,String emailForm) {
+		
+		String phone = phone1+phone2+phone3;
+		String email= emailName+"@"+emailForm;
+		dto.setPhone(phone);
+		dto.setEmail(email);
+		int res = biz.memberUpdate(dto);
+		if(res>0) {
+			return "redirect:main.do";
+		}else {
+			return "redirect:memberUpdate.do";
 		}
 		
 	}
 	
+	@RequestMapping(value = "findId.do")
+	public String findId() {
+		return "member/findid";
+	}
+	
+	@RequestMapping(value="findIdConfirm.do",  produces = "application/json")
+	public String findIdConfirm(String name,String emailName,String emailForm) {
+		String email = emailName+"@"+emailForm;
+		System.out.println("-------------"+emailForm);
+		System.out.println("-------------"+name);
+		LoginDto dto = biz.findId(name, email);
+		String id= dto.getId();
+		String subject ="회원님의 아이디 입니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("귀하의 아이디는"+id+"입니다.");
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("email", mailSerivce.send(subject,sb.toString(),"wjy1408@gmail.com",email,null));
+		
+		return "redirect:main.do";
+		
+	}
+	@RequestMapping(value = "findPw.do")
+	public String findPw() {
+		logger.info("관리자");
+
+		return "admin/admin";
+	}
+
 	
 	
 	@ResponseBody
@@ -349,6 +395,11 @@ public class HomeController {
 		} 
 		
 	}
-
-
+	
+	@RequestMapping(value = "site.do")
+	public String site() {
+	   logger.info("stie");
+	
+	   return "site";
+	}
 }
