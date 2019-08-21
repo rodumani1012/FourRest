@@ -4,26 +4,22 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
+<%@ page import="java.util.*, java.text.*"  %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-
-	var arlist = new Array();
-	
-</script>
 </head>
 <body>
 	<sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
-
+	
+	<%@ include file="../header.jsp"%>
 	<form>
-		<table border="1">	
+		<table class="table">	
 			<tr>
 				<th>봉사 제목</th>
 				<td>${dto.caltitle }</td>
@@ -37,8 +33,16 @@
 				<td>${dto.calrecdate }</td>
 			</tr>
 			<tr>
+				<th>모집 마감</th>
+				<td>${dto.calrecdateend }</td>
+			</tr>
+			<tr>
 				<th>봉사 활동 기간</th>
 				<td>${dto.calvolundate }</td>
+			</tr>
+			<tr>
+				<th>봉사 활동 종료</th>
+				<td>${dto.calvolundateend }</td>
 			</tr>
 			<tr>
 				<th>봉사 활동 내용</th>
@@ -54,42 +58,23 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-				
-	    		<c:choose>
-	        		<c:when test="${dto.calrecpeo > dto.calnowpeo}">
-	        		<c:choose>
-		        		<c:when test="${empty list }">
-		        			<label>없을때</label>
-		        			<input type="button" value="봉사 신청하기" onclick="location.href='calapply.do?caltitle=${dto.caltitle }&id=${user_id }'"/>
-		            		<input type="button" value="돌아가기" onclick="location.href='calendar.do'">
-		            		<input type="button" value="삭제하기" onclick="location.href='caldelete.do?caltitle=${dto.caltitle}&id=${user_id }'">
-		        		</c:when>
-	        		</c:choose>
-	        			<c:forEach items="${list }" var="dto1">
-	        				<c:set var="compare" value="${fn:contains(dto1.volid, user_id)"/>
-	        				arlist.push("${compare }")
-	        			</c:forEach>
-	        				<c:choose>
-							<c:when test="${fn:contains(arlist, true) }">
-								<label>${arlist }</label>
-								<label>${fn:contains(arlist, true) }</label>
-								<input type="button" value="신청 취소하기" onclick="location.href='calcancel.do?caltitle=${dto.caltitle }&id=${user_id }'"/>
-	            				<input type="button" value="돌아가기" onclick="location.href='calendar.do'">
-	            				<input type="button" value="삭제하기" onclick="location.href='caldelete.do'">
-							</c:when>
-							<c:otherwise>
-								<label>${arlist }</label>
-								<label>${fn:contains(arlist, true) }</label>
-								<input type="button" value="봉사 신청하기" onclick="location.href='calapply.do?caltitle=${dto.caltitle }&id=${user_id }'"/>
-	            				<input type="button" value="돌아가기" onclick="location.href='calendar.do'">
-	            				<input type="button" value="삭제하기" onclick="location.href='caldelete.do'">
-							</c:otherwise>
-							</c:choose>
-	        		</c:when>
-	        		<c:otherwise>
-	            		<input type="button" value="모집 마감" onclick="location.href='calendar.do'">
-	        		</c:otherwise>
-	    		</c:choose>
+					<c:choose>
+	                 <c:when test="${dto.calrecpeo > dto.calnowpeo}">
+				     	<c:if test="${voldto != null}">
+							<input type="button" value="신청 취소하기" onclick="location.href='calcancel.do?seq=${dto.calnum }&caltitle=${dto.caltitle }&id=${user_id }'"/>
+							<input type="button" value="돌아가기" onclick="location.href='calrecsel.do'">
+							<input type="button" value="삭제하기" onclick="location.href='caldelete.do'">
+						</c:if>
+				  		<c:if test="${voldto == null}">
+				   			<input type="button" value="봉사 신청하기" onclick="location.href='calapply.do?seq=${dto.calnum }&caltitle=${dto.caltitle }&id=${user_id }'"/>
+				      		<input type="button" value="돌아가기" onclick="location.href='calrecsel.do'">
+				     		<input type="button" value="삭제하기" onclick="location.href='caldelete.do'">
+				    	</c:if>
+	                 </c:when>
+	                 <c:otherwise>
+	                     <input type="button" value="모집 마감" onclick="location.href='calendar.do'">
+	                 </c:otherwise>
+	             </c:choose>
 	    		
 				</td>
 			</tr>

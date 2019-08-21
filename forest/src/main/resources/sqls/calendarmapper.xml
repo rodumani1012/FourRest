@@ -3,12 +3,12 @@
 <mapper namespace="calendar">
 	
 	<select id="selectList" resultType="CalendarDto">
-		SELECT CALNUM, CALTITLE, CALID, CALRECDATE, CALVOLUNDATE, CALCONTENT, CALRECPEO, CALNOWPEO FROM VOLCALENDAR
+		SELECT CALNUM, CALTITLE, CALID, CALRECDATE, CALRECDATEEND, CALVOLUNDATE, CALVOLUNDATEEND, CALCONTENT, CALRECPEO, CALNOWPEO FROM VOLCALENDAR
 		WHERE CALDEL = 'Y'
 	</select>
 	
 	<select id="selectOne" parameterType="map" resultType="CalendarDto">
-		SELECT CALTITLE, CALID, CALRECDATE, CALVOLUNDATE, CALCONTENT, CALRECPEO, CALNOWPEO FROM VOLCALENDAR WHERE CALTITLE = #{caltitle}
+		SELECT CALNUM, CALTITLE, CALID, CALRECDATE, CALRECDATEEND, CALVOLUNDATE, CALVOLUNDATEEND, CALCONTENT, CALRECPEO, CALNOWPEO FROM VOLCALENDAR WHERE CALNUM = #{seq}
 	</select>
 	
 	<insert id="volInsert" parameterType="VolmemberDto">
@@ -27,7 +27,7 @@
 	
 	<insert id="calinsert" parameterType="VolmemberDto">
 		INSERT INTO VOLCALENDAR
-		VALUES (CALSEQ.NEXTVAL, #{caltitle}, #{calid}, #{calrecdate}, #{calvolundate}, #{calcontent}, #{calrecpeo}, 0, 'Y')
+		VALUES (CALSEQ.NEXTVAL, #{caltitle}, #{calid}, #{calrecdate}, #{calrecdateend}, #{calvolundate}, #{calvolundateend}, #{calcontent}, #{calrecpeo}, 0, 'Y', 'Y')
 	</insert>
 	
 	<update id="caldelete">
@@ -36,6 +36,20 @@
 	
 	<update id="volupdate">
 		UPDATE VOLCALENDAR SET CALNOWPEO = (SELECT COUNT(VOLTITLE) FROM VOLMEMBER WHERE VOLTITLE = #{caltitle}) WHERE CALTITLE = #{caltitle}
+	</update>
+	
+	<select id="volselectOne" parameterType="map" resultType="VolmemberDto">
+		SELECT VOLID FROM VOLMEMBER WHERE VOLTITLE = #{caltitle} AND VOLID = #{id}
+	</select>
+	
+	<update id="noticeupdate">
+		UPDATE VOLCALENDAR SET NOTICE = 'N' WHERE CALRECDATE <![CDATA[ < ]]>= #{today }
+	</update>
+	
+	<update id="noticeupdate1">
+		<foreach collection="list" item="not">
+			UPDATE VOLCALENDAR SET NOTICE = 'N' WHERE CALTITLE = #{not.caltitle }
+		</foreach>
 	</update>
 
 </mapper>

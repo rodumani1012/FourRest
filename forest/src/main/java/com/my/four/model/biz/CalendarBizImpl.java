@@ -21,8 +21,8 @@ public class CalendarBizImpl implements CalendarBiz {
 	}
 
 	@Override
-	public CalendarDto selectOne(String caltitle) {
-		return dao.selectOne(caltitle);
+	public CalendarDto selectOne(int seq) {
+		return dao.selectOne(seq);
 	}
 
 	@Override
@@ -53,6 +53,21 @@ public class CalendarBizImpl implements CalendarBiz {
 	@Override
 	public int volupdate(String caltitle, String id) {
 		return dao.volupdate(caltitle, id);
+	}
+
+	@Override
+	public VolmemberDto volselectOne(String caltitle, String id) {
+		return dao.volselectOne(caltitle, id);
+	}
+
+	@Override
+	public int noticeupdate(String today) {
+		return dao.noticeupdate(today);
+	}
+
+	@Override
+	public int noticeupdate1(List list) {
+		return dao.noticeupdate1(list);
 	}
 
 }

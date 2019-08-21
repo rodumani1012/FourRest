@@ -78,4 +78,14 @@
     <servlet-name>CalendarController</servlet-name>
     <url-pattern>/CalendarController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>contentController</display-name>
+    <servlet-name>contentController</servlet-name>
+    <servlet-class>com.my.four.contentController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>contentController</servlet-name>
+    <url-pattern>/contentController</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -34,13 +34,13 @@ public class CalendarDaoImpl implements CalendarDao {
 	}
 
 	@Override
-	public CalendarDto selectOne(String caltitle) {
-		Map<String, String> map = new HashMap<String, String>();
+	public CalendarDto selectOne(int seq) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
 		CalendarDto dto = new CalendarDto();
 		
-		map.put("caltitle", caltitle);
+		map.put("seq", seq);
 		try {
-			dto = sqlSession.selectOne(namespace + "selectOne", map);
+			dto = sqlSession.selectOne(namespace + "selectOne", seq);
 		} catch (Exception e) {
 			System.out.println("error");
 			e.printStackTrace();
@@ -139,6 +139,56 @@ public class CalendarDaoImpl implements CalendarDao {
 		
 		try {
 			res = sqlSession.delete(namespace + "volupdate", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public VolmemberDto volselectOne(String caltitle, String id) {
+		
+		VolmemberDto dto = new VolmemberDto();
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("caltitle", caltitle);
+		map.put("id", id);
+		
+		try {
+			dto = sqlSession.selectOne(namespace + "volselectOne", map);
+		} catch (Exception e) {
+			System.out.println("error");
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
+
+	@Override
+	public int noticeupdate(String today) {
+		
+		int res = 0;
+		
+		try {
+			res = sqlSession.update(namespace + "noticeupdate", today);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int noticeupdate1(List list) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int res = 0;
+		map.put("list", list);
+		
+		try {
+			res = sqlSession.update(namespace + "noticeupdate1", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

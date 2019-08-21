@@ -4,12 +4,13 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <%
 	response.setContentType("text/html; charset=UTF-8");
 %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>    
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,16 +48,22 @@
 <!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
 
 <!--Theme Responsive css-->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+	rel="stylesheet">
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <script src="dist/lang/summernote-ko-KR.js"></script>
 <style type="text/css">
 body {
-	width:"100%";
+	width: "100%";
 }
 </style>
 <script type="text/javascript">
@@ -72,8 +79,8 @@ body {
 
 </head>
 <body>
-<div class="culmn">
-<nav
+	<div class="culmn">
+		<nav
 			class="navbar navbar-light navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
 			<!-- Start Top Search -->
 			<div class="top-search">
@@ -104,15 +111,24 @@ body {
 				<div class="collapse navbar-collapse" id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown"
 						data-out="fadeOutUp">
-						<li><button type="button" class="btn btn-link text-dark" onclick="test()">Map</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='sponsor.do'">Sponsor</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#portfolio'">review</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='test.do'">문의하기</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='contest_main.do'">공모</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='#blog'">Blog</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='content.do'">Contant</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do'">보호소</button></li>
-						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='admin.do'">관리자</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="test()">Map</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='sponsor.do'">Sponsor</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='#portfolio'">review</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='test.do'">문의하기</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='contest_main.do'">공모</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='#blog'">Blog</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='content.do'">Contant</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='ani_shelterList.do'">보호소</button></li>
+						<li><button type="button" class="btn btn-link text-dark"
+								onclick="location.href='admin.do'">관리자</button></li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
@@ -120,11 +136,10 @@ body {
 						<li><sec:authorize access="isAuthenticated()">
 								<sec:authentication property="principal.username" var="user_id" />
 								안녕하세요. ${user_id }
-								</sec:authorize>
-								<sec:authorize access="isAnonymous()">
-									<button type="button" class="btn btn-link text-dark"
-										onclick="location.href='loginform.do'">LOGIN</button>
-								</sec:authorize></li>
+								</sec:authorize> <sec:authorize access="isAnonymous()">
+								<button type="button" class="btn btn-link text-dark"
+									onclick="location.href='loginform.do'">LOGIN</button>
+							</sec:authorize></li>
 						<li><sec:authorize access="isAuthenticated()">
 								<form:form action="${pageContext.request.contextPath}/logout"
 									method="POST">
@@ -142,50 +157,54 @@ body {
 			</div>
 
 		</nav>
-	
-<br><br><br><br><br><br>
-<div class="container">
 
-	<form:form action="contest_post.do" modelAttribute="ContestBoardDto" method="post" >
-		<input type="hidden" name="writer" value="${user_id }">
-		<table class="d-flex justify-content-center">
-			<tr>
-				<td>카테고리</td>
-				<td>
-				<select name="conlistno">
-				<c:forEach items="${conlist}" var="dto">
-					<option value="${dto.boardno }" >${dto.title }</option>
-				</c:forEach>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<th></th>
-				<td></td>
-			</tr>
-			<tr>	
-				<td>제목</td>
-				<td><input type="text" name="title" style="width: 650px" /></td>
-			</tr>
-			<tr>
-				<th></th>
-				<td></td>
-			</tr>
-			<tr>
-				<td>설명</td>
-				<td><textarea rows="10" cols="30" class="summernote"
-						name="content" style="width: 650px; height: 350px;"></textarea></td>
-			</tr>
-			<tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="등록" />
-				<input type="button" value="작성 취소" onclick="location.href='contest_main.do'" />
-				</td>
-			</tr>
-		</table>
-</form:form>
-</div>
-</div>	
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div class="container">
+
+			<form:form action="contest_post.do" modelAttribute="ContestBoardDto"
+				method="post">
+						<input type="hidden" name="writer" value="${user_id }">
+<!-- 				<input type="hidden" name="writer" value="testid"> -->
+				<table class="d-flex justify-content-center">
+					<tr>
+						<td>카테고리</td>
+						<td><select name="conlistno">
+								<c:forEach items="${conlist}" var="dto">
+									<option value="${dto.boardno }">${dto.title }</option>
+								</c:forEach>
+						</select></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td></td>
+					</tr>
+					<tr>
+						<td>제목</td>
+						<td><input type="text" name="title" style="width: 650px" /></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td></td>
+					</tr>
+					<tr>
+						<td>설명</td>
+						<td><textarea rows="10" cols="30" class="summernote"
+								name="content" style="width: 650px; height: 350px;"></textarea></td>
+					</tr>
+					<tr>
+					<tr>
+						<td colspan="2"><input type="submit" value="등록" /> <input
+							type="button" value="작성 취소" onclick="location.href='contest_main.do'" /></td>
+					</tr>
+				</table>
+			</form:form>
+		</div>
+	</div>
 </body>
 
 </html>

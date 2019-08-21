@@ -43,12 +43,18 @@
 <!--Theme Responsive css-->
 <link rel="stylesheet" href="resources/assets/css/responsive.css" />
 
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!-- <script type="text/javascript" src="resources/assets/js/crawling/animalshelterlist.js"></script> -->
 <script type="text/javascript">
+	$(function() {
+		var pageNum = $("#pageNum").val();
+		 $("#txt_search").keydown(function(key) {
+             if (key.keyCode == 13) {
+            	 PageMove(pageNum);
+             }
+         });
+	});
 	function PageMove(page) {
-		location.href = "ani_shelterList.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
+		location.href = "ani_alien.do?board=animal_alien_disturb&page=" + page + "&txt_search=" + $('input#txt_search').val();
 	}
 </script>
 <body>
@@ -106,20 +112,20 @@
 				<a class="page-link" href="javascript:PageMove(${paging.nextPageNo})">&gt;</a> 
 				<a class="page-link" href="javascript:PageMove(${paging.finalPageNo})">&raquo;</a>
 			</div>
-		<div class="cotainer">
-			<table class="pull-right">
-			
-				<tr>
-					<td colspan="4">
-						<div class="form-group form-inline">
-						<input type="text" class="form-control" id="txt_search" value="${txt_search }"> 
-						<button type="button" class="small btn btn-secondary"
-							onclick="javascript:PageMove(${paging.pageNo})">검색하기</button>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>	
+			<div class="cotainer">
+				<table class="pull-right">
+					<tr>
+						<td colspan="4">
+							<div class="form-group form-inline">
+							<input type="text" class="form-control" id="txt_search" value="${txt_search }" placeholder="업체명 또는 지역검색">
+							<input type="hidden" id="pageNum" value="${paging.pageNo }"> 
+							<button type="button" class="small btn btn-secondary"
+								onclick="javascript:PageMove(${paging.pageNo})">검색하기</button>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>	
 		</div>
 	</div>
 
