@@ -7,27 +7,23 @@ import org.springframework.stereotype.Service;
 
 import com.my.four.model.dao.ContestBoardDao;
 import com.my.four.model.dto.ContestBoardDto;
+import com.my.four.model.dto.StarRecordDto;
 
 @Service
 public class ContestBoardBizImpl implements ContestBoardBiz {
 
 	@Autowired
 	private ContestBoardDao dao;
-	
+
 	@Override
-	public ContestBoardDto selectOne(int boardno) {
+	public StarRecordDto amialready(int usernum, int boardno) {
 		// TODO Auto-generated method stub
-		return dao.selectOne(boardno);
-	}
-	
-	@Override
-	public int getCount(int conlistno) {
-		// TODO Auto-generated method stub
-		return dao.getCount(conlistno);
+		return dao.amialready(usernum, boardno);
 	}
 
 	@Override
 	public int boardInsert(ContestBoardDto dto) {
+		// TODO Auto-generated method stub
 		return dao.boardInsert(dto);
 	}
 
@@ -56,9 +52,9 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 	}
 
 	@Override
-	public int insertAns(ContestBoardDto dto) {
+	public int getCount(int conlistno) {
 		// TODO Auto-generated method stub
-		return dao.insertAns(dto);
+		return dao.getCount(conlistno);
 	}
 
 	@Override
@@ -68,25 +64,15 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 	}
 
 	@Override
-	public int updateStar(int boardno, int star) {
-		ContestBoardDto dto = dao.selectOne(boardno);
-		int cnt = dto.getLikecnt();
-		double rate = dto.getLikerate();
-		double newrate = ((cnt*rate)+star)/(cnt+1);
-		return dao.updateStar(boardno, newrate);
-	}
-
-	
-	@Override
-	public List<ContestBoardDto> selectListReply(int groupno) {
+	public int insertstarboard(StarRecordDto starDto) {
 		// TODO Auto-generated method stub
-		return dao.selectListReply(groupno);
+		return dao.insertstarboard(starDto);
 	}
 
 	@Override
-	public int replyCntup(int boardno) {
+	public int insertAns(ContestBoardDto dto) {
 		// TODO Auto-generated method stub
-		return dao.replyCntup(boardno);
+		return dao.insertAns(dto);
 	}
 
 	@Override
@@ -96,9 +82,15 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 	}
 
 	@Override
-	public int answProc(ContestBoardDto dto) {
+	public int replyCntup(int boardno) {
+		// TODO Auto-generated method stub
+		return dao.replyCntup(boardno);
+	}
 
-		return dao.answProc(dto);
+	@Override
+	public ContestBoardDto selectOne(int boardno) {
+		// TODO Auto-generated method stub
+		return dao.selectOne(boardno);
 	}
 
 	@Override
@@ -108,17 +100,70 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 	}
 
 	@Override
-	public List<ContestBoardDto> selectList(int begin, int end) {
-		System.out.println("비즈임");
-		return dao.selectList(begin, end);
+	public List<ContestBoardDto> selectListReply(int groupno) {
+		// TODO Auto-generated method stub
+		return dao.selectListReply(groupno);
 	}
 
+	@Override
+	public List<ContestBoardDto> selectList(int begin, int end) {
+		// TODO Auto-generated method stub
+		return dao.selectList(begin, end);
+	}
 
 	@Override
 	public List<ContestBoardDto> selectListOption(int conlistno, int begin, int end) {
 		// TODO Auto-generated method stub
 		return dao.selectListOption(conlistno, begin, end);
 	}
+
+	@Override
+	public int updateStar(int boardno, int star) {
+		ContestBoardDto dto = dao.selectOne(boardno);
+		int cnt = dto.getLikecnt();
+		double rate = dto.getLikerate();
+		double newrate = (double)((cnt*rate)+star)/(cnt+1);
+		return dao.updateStar(boardno, newrate);
+	}
+
+	@Override
+	public int starProc(int usernum, int boardno, int newstar) {
+		StarRecordDto starDto = null;
+		int res =0;
+		int result = 0;
+		starDto = dao.amialready(usernum, boardno);
+		if(starDto==null) {
+			StarRecordDto inStarDto = new StarRecordDto(usernum,boardno,newstar); 
+			res = dao.insertstarboard(inStarDto);
+			result = updateStar(boardno,newstar);
+		}else {
+			int gustar = starDto.getStarrate();
+			res = dao.updateStarboard(starDto);
+			result = reupdateStar(boardno, newstar, gustar);
+		}
+		return res+result;
+	}
+
+	@Override
+	public int reupdateStar(int boardno, int newstar, int gustar) {
+		ContestBoardDto dto = dao.selectOne(boardno);
+		int cnt = dto.getLikecnt();
+		double rate = dto.getLikerate();
+		double newrate = (cnt*rate-gustar+newstar)/(double)cnt;
+				
+		return dao.reupdateStar(boardno, newrate);
+	}
+
+	@Override
+	public int ansProc(ContestBoardDto dto) {
+		int parentno = dto.getBoardno();
+		int res1 = dao.updateAns(parentno);
+		System.out.println("비즌데여"+parentno);
+		int res2 = dao.insertAns(dto);
+		System.out.println("Res1:"+res1+"res2:"+res2);
+		return res1+res2;
+	}
+
 
 
 }

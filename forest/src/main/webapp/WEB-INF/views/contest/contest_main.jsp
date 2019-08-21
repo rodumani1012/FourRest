@@ -210,11 +210,11 @@ body {
 	<br>
 	<div class="container">
 		<div class="col-sm-12">
-			<h3 style="display: inline;">공모전목록</h3>
+			<h3 style="display: inline;">공모전</h3>
 			<button class="btn btn-outline-dark" type="button" onclick="showup()"
 				id="btninslide">리스트로보기</button>
 			<button class="btn btn-outline-dark" type="button"
-				onclick="showback()" id="btninlist">사진으로보기</button>
+				onclick="showback()" id="btninlist">슬라이드로보기</button>
 		</div>
 		<div class="" id="listdiv">
 
@@ -362,7 +362,7 @@ body {
 	<div class="container">
 
 		<div class="col-sm-12">
-			<h3 style="display: inline;">RELATED POSTS</h3>
+			<h3 style="display: inline;">관련 게시물</h3>
 			<button class="btn btn-outline-dark" type="button"
 				onclick="location.href='contest_postform.do'">공모글작성</button>
 			<button class="btn btn-outline-dark" type="button"
