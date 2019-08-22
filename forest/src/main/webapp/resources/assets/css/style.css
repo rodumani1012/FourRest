@@ -2045,10 +2045,6 @@ Footer Section style
 	margin: 10px 0;
 }
 
-.navbar-header button {
-	transition: all 0.3s ease-in-out;
-}
-
 .navbar-header button.active span:nth-of-type(2) {
 	display: none
 }
