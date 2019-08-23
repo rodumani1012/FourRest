@@ -77,7 +77,7 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		int res = 0;
 		
 		Query query = new Query();
-		query.addCriteria(Criteria.where("area").is(txt_search));
+		query.addCriteria(Criteria.where("centerName").regex(txt_search));
 		
 		res = (int) mongoTemplate.count(query, AnimalShelterListDto.class, "shelter");
 		System.out.println("갯수 : " + res);
