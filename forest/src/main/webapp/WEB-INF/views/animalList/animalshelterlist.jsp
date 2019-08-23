@@ -54,7 +54,7 @@
          });
 	});
 	function PageMove(page) {
-		location.href = "ani_alien.do?board=animal_alien_disturb&page=" + page + "&txt_search=" + $('input#txt_search').val();
+		location.href = "ani_shelterList.do?page=" + page + "&txt_search=" + $('input#txt_search').val();
 	}
 </script>
 <body>

@@ -8,6 +8,9 @@ import java.util.Set;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +26,8 @@ public class AnimalListDaoImpl implements AnimalListDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	@Autowired
+	private MongoTemplate mongoTemplate;
 	
 	@Transactional
 	@Override
@@ -42,26 +47,40 @@ public class AnimalListDaoImpl implements AnimalListDao {
 	public List<AnimalShelterListDto> aniSelectList(int firstIndex, int recordCountPerPage,
 			String txt_search) {
 		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("firstIndex", String.valueOf(firstIndex));
-		map.put("recordCountPerPage", String.valueOf(recordCountPerPage));
-		map.put("txt_search", txt_search);
-		
-		List<AnimalShelterListDto> list = sqlSession.selectList(namespace + "aniSelectList", map);
-		
+//		Map<String, String> map = new HashMap<String, String>();
+//		map.put("firstIndex", String.valueOf(firstIndex));
+//		map.put("recordCountPerPage", String.valueOf(recordCountPerPage));
+//		map.put("txt_search", txt_search);
+//		
+//		List<AnimalShelterListDto> list = sqlSession.selectList(namespace + "aniSelectList", map);
+//		
+//		return list;
+		List<AnimalShelterListDto> list = mongoTemplate.findAll(AnimalShelterListDto.class, "shelter");
+		for(AnimalShelterListDto dto : list) {
+			System.out.print(dto.getArea());
+		}
+		System.out.println();
 		return list;
 	}
 
 	@Override
 	public int aniGetTotalCount(String txt_search) {
 		
+//		int res = 0;
+//		
+//		Map<String, String> map = new HashMap<String, String>();
+//		map.put("txt_search", txt_search);
+//		
+//		res = sqlSession.selectOne(namespace + "aniGetTotalCount", map);
+//
+//		return res;
 		int res = 0;
 		
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("txt_search", txt_search);
+		Query query = new Query();
+		query.addCriteria(Criteria.where("area").is(txt_search));
 		
-		res = sqlSession.selectOne(namespace + "aniGetTotalCount", map);
-
+		res = (int) mongoTemplate.count(query, AnimalShelterListDto.class, "shelter");
+		System.out.println("갯수 : " + res);
 		return res;
 	}
 
