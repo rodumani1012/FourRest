@@ -47,8 +47,7 @@
 <link rel="stylesheet" href="resources/assets/css/responsive.css" />
 </head>
 <body>
-	<nav
-			class="navbar navbar-light navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
+	<nav class="navbar navbar-light navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
 			<!-- Start Top Search -->
 			<div class="top-search">
 				<div class="container">

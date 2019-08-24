@@ -73,6 +73,14 @@
 		</choose>
 		WHERE AREA=#{areaname}
 	</select>
-
-
+	
+<!-- 아래부터 분리수거게임  -->
+	<insert id="rankinsert" parameterType="SortGameDto" >
+		INSERT INTO SORTGAME VALUES(#{userid},#{taketime},#{correctcnt},#{score})
+	</insert>
+	
+	<select id="ranklist" resultType="SortRankDto">
+		SELECT ROWNUM AS RN ,a.* FROM SORTGAME a ORDER BY SCORE DESC
+	</select>
+	
 </mapper>

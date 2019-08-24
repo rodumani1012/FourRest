@@ -1,51 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.0/flexslider-min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
+<title>::ContestMain</title>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.2.0/flexslider-min.css">
+<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
 <link rel="stylesheet" href="resources/assets/css/contest_main.css">
-
 <style type="text/css">
 body {
 	font-family: 'Open Sans', sans-serif;
 	color: #353535;
 }
-
 .content h1 {
 	text-align: center;
 }
-
 .content .content-footer p {
 	color: #6d6d6d;
 	font-size: 12px;
 	text-align: center;
 }
-
 .content .content-footer p a {
 	color: inherit;
 	font-weight: bold;
 }
-
-/*	--------------------------------------------------
-	:: Table Filter
-	-------------------------------------------------- */
+/* 테이블필터링 */
 .panel {
 	border: 1px solid #ddd;
 	background-color: #fcfcfc;
@@ -154,7 +138,6 @@ body {
 
 .table-filter .media-body {
 	display: block;
-	/* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
 }
 
 .table-filter .media-meta {
@@ -216,7 +199,7 @@ body {
 			<button class="btn btn-outline-dark" type="button"
 				onclick="showback()" id="btninlist">슬라이드로보기</button>
 		</div>
-		<div class="" id="listdiv">
+		<div class="" id="listdiv" style="margin-left: 10%;">
 
 			<section class="content">
 				<div class="col-md-8 col-md-offset-2">
@@ -247,7 +230,7 @@ body {
 									<c:choose>
 										<c:when test="${empty conlist }">
 											<tr>
-												<td colspan="4">올려진 공모가 없습니다 !! 공모를 등록해주세요 !</td>
+												<td colspan="4">올려진 공모가 없습니다.</td>
 											</tr>
 										</c:when>
 										<c:otherwise>
@@ -298,13 +281,6 @@ body {
 									</c:choose>
 								</table>
 							</div>
-							<div class="pull-right">
-								<div class="btn-group">
-									<input type="button" value="공모작성"
-										onclick="location.href='admin_conlistwrite.do'">
-								</div>
-							</div>
-
 						</div>
 					</div>
 				</div>
@@ -363,8 +339,10 @@ body {
 
 		<div class="col-sm-12">
 			<h3 style="display: inline;">관련 게시물</h3>
+			<c:if test="${user_id !=null }">
 			<button class="btn btn-outline-dark" type="button"
-				onclick="location.href='contest_postform.do'">공모글작성</button>
+				onclick="location.href='contest_postform.do'">공모글작성</button>			
+			</c:if>
 			<button class="btn btn-outline-dark" type="button"
 				onclick="location.href='contest_postlist.do?conlistno=0&pagenum=1&contentnum=6'">참여작보기</button>
 		</div>
@@ -403,7 +381,7 @@ body {
 										<img class="d-block img-fluid"
 											src="http://placehold.it/400x400" alt="First slide">
 										<div class="text-center">
-											<h6 class="card-title">Lorem ipsum dolor sit amet.</h6>
+											<h6 class="card-title">올려진 공모글이없습니다.</h6>
 										</div>
 									</div>
 								</c:when>
