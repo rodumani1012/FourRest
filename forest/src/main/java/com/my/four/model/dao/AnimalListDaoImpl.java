@@ -3,12 +3,17 @@ package com.my.four.model.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.LimitOperation;
+import org.springframework.data.mongodb.core.aggregation.MatchOperation;
+import org.springframework.data.mongodb.core.aggregation.SkipOperation;
+import org.springframework.data.mongodb.core.aggregation.SortOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
@@ -44,43 +49,43 @@ public class AnimalListDaoImpl implements AnimalListDao {
 	}
 
 	@Override
-	public List<AnimalShelterListDto> aniSelectList(int firstIndex, int recordCountPerPage,
-			String txt_search) {
+	public List<AnimalShelterListDto> aniSelectList(int firstIndex, String txt_search) {
 		
-//		Map<String, String> map = new HashMap<String, String>();
-//		map.put("firstIndex", String.valueOf(firstIndex));
-//		map.put("recordCountPerPage", String.valueOf(recordCountPerPage));
-//		map.put("txt_search", txt_search);
-//		
-//		List<AnimalShelterListDto> list = sqlSession.selectList(namespace + "aniSelectList", map);
-//		
-//		return list;
-		List<AnimalShelterListDto> list = mongoTemplate.findAll(AnimalShelterListDto.class, "shelter");
-		for(AnimalShelterListDto dto : list) {
-			System.out.print(dto.getArea());
-		}
-		System.out.println();
+		 Criteria criteria = new Criteria("centerName");
+		 criteria.regex(txt_search);
+		 
+		 //조건절 설정(PreparedStatement 같은 역할)
+		 MatchOperation match = Aggregation.match(criteria);
+		 
+		 //정렬(아이디를 오름차순으로 정렬)
+		 SortOperation sort = Aggregation.sort(Sort.Direction.ASC, "_id");
+		 
+		 //다음 페이지 당 건너뛸 갯수
+		 SkipOperation skip = Aggregation.skip((firstIndex - 1) * 10);
+		 
+		 //지정한 수 만큼 게시물 가져오기
+		 LimitOperation limit = Aggregation.limit(10);
+		 
+		 // Aggregation은 집계 역할하는 클래스
+		 Aggregation aggregation = Aggregation.newAggregation(match, sort, skip, limit);
+		 
+		 AggregationResults<AnimalShelterListDto> result = mongoTemplate.aggregate(aggregation, "shelter", AnimalShelterListDto.class);
+		
+		List<AnimalShelterListDto> list = result.getMappedResults();
+		
 		return list;
 	}
 
 	@Override
 	public int aniGetTotalCount(String txt_search) {
 		
-//		int res = 0;
-//		
-//		Map<String, String> map = new HashMap<String, String>();
-//		map.put("txt_search", txt_search);
-//		
-//		res = sqlSession.selectOne(namespace + "aniGetTotalCount", map);
-//
-//		return res;
 		int res = 0;
 		
 		Query query = new Query();
 		query.addCriteria(Criteria.where("centerName").regex(txt_search));
 		
 		res = (int) mongoTemplate.count(query, AnimalShelterListDto.class, "shelter");
-		System.out.println("갯수 : " + res);
+
 		return res;
 	}
 

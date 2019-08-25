@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
 
+# pip install beautifulsoup4
+# pip install pymongo
 from bs4 import BeautifulSoup # 긁어온걸 파싱해주는 역할
 import urllib.request # 긁어오는 역할.
 from builtins import str
@@ -30,12 +32,12 @@ json_val = json.dumps(tmplist, ensure_ascii=False)
 print(json_val)
 
 # # 클래스 객체 할당
-# connection = MongoClient('localhost', 27017)
-# 
-# db = connection.shelter
-# collection = db.testCollection
-# 
-# collection.insert(json_val)
+connection = MongoClient('localhost', 27017)
+ 
+db = connection.animal
+collection = db.shelter
+ 
+collection.insert_many(tmplist)
 
 
 
