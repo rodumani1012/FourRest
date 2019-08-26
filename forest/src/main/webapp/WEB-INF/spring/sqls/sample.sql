@@ -20,10 +20,9 @@ CONSTRAINT CON_ROLE CHECK (ROLE IN ('ADMIN','USER'))
 
 DELETE FROM MEMBER WHERE USERNUM = 41;
 
-INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'관리자','admin','admin123','010-7723-7077',
-'brooke1994@naver.com','서초구 역삼동','120-10',1,'ADMIN');
+INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'관리자','admin','admin123','010-7723-7077','brooke1994@naver.com','서초구 역삼동','120-10',1,'ADMIN',SYSDATE);
 INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user1','user1','123','010-7777-7077',
-'alice1994@naver.com','강남구 개포동','25-18',1,'USER');
+'alice1994@naver.com','강남구 개포동','25-18',1,'USER',SYSDATE);
 INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user3','user2','123','010-7777-7077',
 'alice1994@naver.com','강남구 개포동','25-18',1,'USER');
 

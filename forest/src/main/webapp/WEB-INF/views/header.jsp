@@ -89,6 +89,7 @@
 								<button type="button" class="text-dark btn btn-link dropdown-toggle" data-toggle="dropdown">board</button>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="contest_main.do">공모게시판</a>
+									<a class="dropdown-item" href="freeboardlist.do">자유게시판</a>
 									<a class="dropdown-item" href="#portfolio">리뷰만들어야함</a>
 								</div>
 							</div>
