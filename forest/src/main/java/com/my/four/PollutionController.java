@@ -135,6 +135,11 @@ public class PollutionController {
 		return minimap;
 	}
 	
+	@RequestMapping("sortinggame.do")
+	public String sortinggame() {
+		return "pollution/sortinggame";
+	}
+	
 
 	
 	

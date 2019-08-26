@@ -25,9 +25,8 @@ public class AnimalListBizImpl implements AnimalListBiz {
 	}
 
 	@Override
-	public List<AnimalShelterListDto> aniSelectList(int firstIndex, int recordCountPerPage,
-			String txt_search) {
-		return dao.aniSelectList(firstIndex, recordCountPerPage, txt_search);
+	public List<AnimalShelterListDto> aniSelectList(int firstIndex,	String txt_search) {
+		return dao.aniSelectList(firstIndex, txt_search);
 	}
 
 	@Override

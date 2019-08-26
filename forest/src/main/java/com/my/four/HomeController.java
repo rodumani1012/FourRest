@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.Principal;
 import java.util.HashMap;
@@ -25,12 +24,8 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpRequest;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -38,10 +33,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.my.four.model.biz.FundingBiz;
 import com.my.four.model.biz.LoginBiz;
 import com.my.four.model.biz.MailService;
 import com.my.four.model.dto.LoginDto;
@@ -403,12 +396,10 @@ public class HomeController {
 		
 	}
 	
-	   @RequestMapping(value = "site.do")
-	   public String site() {
-	      logger.info("stie");
-
-	      return "site";
-	   }
-
-
+	@RequestMapping(value = "site.do")
+	public String site() {
+	   logger.info("stie");
+	
+	   return "site";
+	}
 }

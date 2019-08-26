@@ -83,8 +83,13 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="page-title">
+						<audio controls="controls" autoplay="autoplay" loop="loop">
+							<source src="resources/audio/birdsound.mp3" type="audio/mp3" />
+						</audio>
 						<a href="polu.do">수질,대기,쓰레기 table data insert! (
 							pollution.sql가서 테이블 3개 먼저 만들어주세요 !) </a>
+							<br>
+							<a href="sortinggame.do">소팅게임하러가자</a>
 						<h2>
 							ADMIN BOARD<small>관리자페이지</small>
 						</h2>
