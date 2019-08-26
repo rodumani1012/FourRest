@@ -109,6 +109,8 @@
 			</c:otherwise>
 		</c:choose>
 		</table>
+		
+		
 		<table class = "paging">
 <tr>
     <td align="center">
@@ -158,6 +160,9 @@
                   </td>
 			</tr>
 		</table>
+	<c:if test="${user_id != null}">
+		<button class="btn btn btn-light" type="button" onclick="location.href='freeinsert.do'">글 작성하기</button> 
+	</c:if>
 	</form>
 	
 	</div>
