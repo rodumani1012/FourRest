@@ -10,7 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -27,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpRequest;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -442,6 +446,27 @@ public class HomeController {
 			out.flush();
 			return "member/changepw";
 		}
+	}
+	
+	@RequestMapping(value="check.do")
+	@Scheduled(cron="0/1 * * * * ?")
+	public void check() {
+		List<LoginDto> list = biz.allMember();
+		for (int i = 0; i<list.size();i++) {
+			String id = list.get(i).getId();
+			System.out.println("id=========="+id);
+			LoginDto dto = biz.memberInfo(id);
+			SimpleDateFormat joindate = new SimpleDateFormat("yyyy-MM-dd");
+			String joinDate = joindate.format(dto.getJoindate());
+			System.out.println("00000000000000000000000"+joinDate);
+			boolean join = biz.joinDate(joinDate);
+			if(join==true) {
+				System.out.println("true===========");
+			}else {
+				System.out.println("false================");
+			}
+		}
+		
 	}
 
 	

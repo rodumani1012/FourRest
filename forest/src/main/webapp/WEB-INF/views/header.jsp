@@ -85,6 +85,7 @@
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='contest_main.do'">공모</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='funlist.do'">후원하기</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='content.do'">Contant</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='check.do'">Check</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_shelterList.do'">보호소</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='trash.do'">쓰레기</button></li>
 						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='ani_endangeredList.do'">멸종위기종</button></li>

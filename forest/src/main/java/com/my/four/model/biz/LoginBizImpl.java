@@ -1,5 +1,7 @@
 package com.my.four.model.biz;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +74,18 @@ public class LoginBizImpl implements LoginBiz{
 	public LoginDto findPw(String id, String email) {
 		// TODO Auto-generated method stub
 		return dao.findPw(id, email);
+	}
+
+	@Override
+	public boolean joinDate(String joinDate) {
+		// TODO Auto-generated method stub
+		return dao.joinDate(joinDate);
+	}
+
+	@Override
+	public List<LoginDto> allMember() {
+		// TODO Auto-generated method stub
+		return dao.allMember();
 	}
 
 	

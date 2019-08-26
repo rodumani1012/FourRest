@@ -1,6 +1,9 @@
 package com.my.four.model.dao;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -111,6 +114,25 @@ public class LoginDaoImpl implements LoginDao{
 		map.put("id", id);
 		map.put("email", email);
 		return sqlSesssion.selectOne(namespace+"findPw", map);
+	}
+
+	@Override
+	public boolean joinDate(String joinDate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("joinDate", joinDate);
+		LoginDto dto = new LoginDto();
+		dto=sqlSesssion.selectOne(namespace+"joinDate", map);
+		if(dto==null) {
+			return false;
+		}else {
+			return true;
+		}
+		 
+	}
+
+	@Override
+	public List<LoginDto> allMember() {
+		return sqlSesssion.selectList(namespace+"allMember");
 	}
 
 

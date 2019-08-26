@@ -26,6 +26,10 @@
 		SELECT * FROM MEMBER WHERE ID = #{id}
 	</select>
 	
+	<select id="allMember" resultType="loginDto">
+		SELECT * FROM MEMBER 
+	</select>
+	
 	<update id="memberUpdate" parameterType="loginDto">
 		UPDATE MEMBER SET NAME=#{name}, ADDR=#{addr}, ZONECODE=#{zonecode}, PHONE=#{phone}, EMAIL=#{email} WHERE ID=#{id}
 	</update>
@@ -40,6 +44,12 @@
 	
 	<select id="findPw" parameterType="map" resultType="loginDto">
 		SELECT * FROM MEMBER WHERE ID=#{id} AND EMAIL=#{email} 
+	</select>
+	
+	<select id="joinDate" parameterType="map" resultType="loginDto">
+		<![CDATA[
+		SELECT ID FROM MEMBER WHERE JOINDATE=#{joindate} < SYSDATE
+		]]>
 	</select>
 	
 </mapper>

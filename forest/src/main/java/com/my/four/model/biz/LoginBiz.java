@@ -1,5 +1,7 @@
 package com.my.four.model.biz;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
@@ -7,7 +9,8 @@ import org.springframework.stereotype.Component;
 import com.my.four.model.dto.LoginDto;
 
 public interface LoginBiz {
-
+	
+	public List<LoginDto> allMember();
 	public boolean idChk(String id);
 	public int memberInsert(LoginDto dto);
 	public boolean snsChk(String id);
@@ -18,4 +21,5 @@ public interface LoginBiz {
 	public int pwUpdate(String pw,String id);
 	public LoginDto findId(String name, String email);
 	public LoginDto findPw(String id,String email);
+	public boolean joinDate(String joinDate);
 }
