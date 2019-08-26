@@ -412,7 +412,6 @@ border-radius: 0.3rem;
 							<tbody></tbody>
 						</table>
 					</div>
-					<!-- 					<P>5개 리스트가져와서 1,2,3,4,5등 뿌려주기IF문 자기자신점수면 노란색</P> -->
 					<div
 						style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px;"
 						onClick="close_rankpop();" id="rankclosebtn">

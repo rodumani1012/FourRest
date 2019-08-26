@@ -82,5 +82,5 @@
 	<select id="ranklist" resultType="SortRankDto">
 		SELECT ROWNUM AS RN ,a.* FROM (SELECT * from SORTGAME ORDER BY SCORE DESC) a
 	</select>
-	
+		
 </mapper>

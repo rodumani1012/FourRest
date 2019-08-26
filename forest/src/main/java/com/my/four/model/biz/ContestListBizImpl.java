@@ -39,4 +39,12 @@ public class ContestListBizImpl implements ContestListBiz {
 		return dao.updatepart(conlistno);
 	}
 
+	@Override
+	public int concount() {
+		// TODO Auto-generated method stub
+		return dao.concount();
+	}
+	
+	
+
 }

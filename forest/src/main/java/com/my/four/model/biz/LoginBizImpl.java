@@ -1,5 +1,6 @@
 package com.my.four.model.biz;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,24 @@ public class LoginBizImpl implements LoginBiz{
 	public LoginDto findId(String name, String email) {
 		// TODO Auto-generated method stub
 		return dao.findId(name, email);
+	}
+
+	@Override
+	public List<LoginDto> memlist() {
+		// TODO Auto-generated method stub
+		return dao.memlist();
+	}
+
+	@Override
+	public int memupdate(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return dao.memupdate(dto);
+	}
+
+	@Override
+	public int memcount() {
+		// TODO Auto-generated method stub
+		return dao.memcount();
 	}
 	
 	

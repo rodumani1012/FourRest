@@ -18,7 +18,7 @@ public class LoginDto implements UserDetails {
 	private String email;
 	private String addr;
 	private String zonecode;
-	private int enabledDb;
+	private String enabledDb;
 	private List<String> roles;
 	private Collection<? extends GrantedAuthority> authorities;
 	public LoginDto() {
@@ -56,11 +56,24 @@ public class LoginDto implements UserDetails {
 	}
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
+		boolean memberChk=true;
+		if(enabledDb=="N") {
+			memberChk=false;
+		}else {
+			
+		}
+		return memberChk;
+	}
+	//관리자 회원정보수정
+	public LoginDto(int usernum, String phone, String email, String addr) {
+		super();
+		this.usernum = usernum;
+		this.phone = phone;
+		this.email = email;
+		this.addr = addr;
 	}
 	public LoginDto(int usernum, String name, String id, String pw, String phone, String email, String addr,
-			String zonecode, int enabledDb, List<String> roles) {
+			String zonecode, String enabledDb, List<String> roles) {
 		super();
 		this.usernum = usernum;
 		this.name = name;
@@ -121,10 +134,10 @@ public class LoginDto implements UserDetails {
 	public void setZonecode(String zonecode) {
 		this.zonecode = zonecode;
 	}
-	public int getEnabledDb() {
+	public String getEnabledDb() {
 		return enabledDb;
 	}
-	public void setEnabledDb(int enabledDb) {
+	public void setEnabledDb(String enabledDb) {
 		this.enabledDb = enabledDb;
 	}
 	public List<String> getRoles() {

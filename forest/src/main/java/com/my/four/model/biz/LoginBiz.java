@@ -1,8 +1,6 @@
 package com.my.four.model.biz;
 
-import java.util.Map;
-
-import org.springframework.stereotype.Component;
+import java.util.List;
 
 import com.my.four.model.dto.LoginDto;
 
@@ -17,4 +15,7 @@ public interface LoginBiz {
 	public int memberUpdate(LoginDto dto);
 	public int pwUpdate(String pw,String id);
 	public LoginDto findId(String name, String email);
+	public List<LoginDto> memlist();
+	public int memupdate(LoginDto dto);
+	public int memcount();
 }

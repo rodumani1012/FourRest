@@ -1,6 +1,7 @@
 package com.my.four.model.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -103,6 +104,41 @@ public class LoginDaoImpl implements LoginDao{
 		map.put("name", name);
 		map.put("email", email);
 		return sqlSesssion.selectOne(namespace+"findId", map);
+	}
+
+	@Override
+	public List<LoginDto> memlist() {
+		List<LoginDto> list = null;
+		try {
+			list = sqlSesssion.selectList(namespace+"memlist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int memupdate(LoginDto dto) {
+		int res =0;
+		try {
+			res = sqlSesssion.update(namespace+"memupdate",dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int memcount() {
+		int cnt = 0;
+		try {
+			cnt = sqlSesssion.selectOne(namespace+"memcount");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cnt;
 	}
 
 	
