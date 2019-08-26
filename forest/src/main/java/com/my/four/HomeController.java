@@ -42,6 +42,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.my.four.model.biz.ContestListBiz;
 import com.my.four.model.biz.LoginBiz;
 import com.my.four.model.biz.MailService;
 import com.my.four.model.dto.LoginDto;
@@ -64,6 +65,10 @@ public class HomeController {
 //	//recaptcha
 //	@Autowired
 //	private VerifyRecaptcha VerifyRecaptcha;
+	
+	@Autowired
+	private ContestListBiz contestlistbiz;
+	
 	
 	@RequestMapping(value="main.do")
 	public String main() {
@@ -177,8 +182,10 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "admin.do")
-	public String admin() {
+	public String admin(Model model) {
 		logger.info("관리자");
+		model.addAttribute("memcount",biz.memcount());
+		model.addAttribute("concount",contestlistbiz.concount());
 
 		return "admin/admin";
 	}
@@ -513,4 +520,30 @@ public class HomeController {
 	
 	   return "site";
 	}
+	
+	@RequestMapping("memlist.do")
+	public String memlist(Model model) {
+		List<LoginDto> memlist = null;
+		memlist = biz.memlist();
+		model.addAttribute("memlist",memlist);
+		for(LoginDto dto : memlist) {
+			System.out.println(dto.getUsername()+"/"+dto.getEnabledDb());
+		}
+		return "admin/admin_memlist";
+	}
+	@RequestMapping("memupdate.do")
+	@ResponseBody
+	public Map<String,Object> memupdate(Model model,String usernum,String phone,String email,String addr) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		LoginDto dto = new LoginDto(Integer.parseInt(usernum),phone,email,addr);
+		int res = biz.memupdate(dto);
+		if(res>0) {
+			map.put("code", "ok");
+			return map;
+		}
+		map.put("code", "no");
+		return map;
+	}
+	
+	
 }

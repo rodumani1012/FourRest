@@ -1,6 +1,5 @@
 package com.my.four.model.dao;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -23,4 +22,7 @@ public interface LoginDao {
 	public LoginDto findPw(String id, String email);
 	public boolean joinDate(String joinDate);
 	public int perpay(String id);
+	public List<LoginDto> memlist();
+	public int memupdate(LoginDto dto);
+	public int memcount();
 }

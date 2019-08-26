@@ -139,6 +139,40 @@ public class LoginDaoImpl implements LoginDao{
 	}
 
 
+	public List<LoginDto> memlist() {
+		List<LoginDto> list = null;
+		try {
+			list = sqlSesssion.selectList(namespace+"memlist");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int memupdate(LoginDto dto) {
+		int res =0;
+		try {
+			res = sqlSesssion.update(namespace+"memupdate",dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
+	@Override
+	public int memcount() {
+		int cnt = 0;
+		try {
+			cnt = sqlSesssion.selectOne(namespace+"memcount");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+
 	
 	
 	

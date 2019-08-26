@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.my.four.model.dto.AreaDto;
+import com.my.four.model.dto.SortGameDto;
+import com.my.four.model.dto.SortRankDto;
 @Repository
 public class PollutionDataDaoImpl implements PollutionDataDao {
 
@@ -99,6 +101,36 @@ public class PollutionDataDaoImpl implements PollutionDataDao {
 		map.put("areaname", areaname);
 		minilist = sqlSession.selectList(namespace+"minichart", map);
 		return minilist;
+	}
+
+	@Override
+	public int rankinsert(SortGameDto sortGameDto) {
+		int res =0;
+		String userid = sortGameDto.getUserid();
+		int takentime = sortGameDto.getTaketime();
+		int correctcnt = sortGameDto.getCorrectcnt();
+		int score = (correctcnt * 50)+(300-takentime);
+		sortGameDto.setScore(score);
+		try {
+			res = sqlSession.insert(namespace+"rankinsert",sortGameDto);
+		} catch (Exception e) {
+			System.out.println("error");
+			e.printStackTrace();
+		}
+	
+		return res;
+	}
+
+	@Override
+	public List<SortRankDto> ranklist() {
+		List<SortRankDto> list = null;
+		try {
+			list = sqlSession.selectList(namespace+"ranklist");
+		} catch (Exception e) {
+			System.out.println("error!");
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.my.four.model.biz;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -93,6 +92,22 @@ public class LoginBizImpl implements LoginBiz{
 		return dao.perpay(id);
 	}
 
+	public List<LoginDto> memlist() {
+		// TODO Auto-generated method stub
+		return dao.memlist();
+	}
+
+	@Override
+	public int memupdate(LoginDto dto) {
+		// TODO Auto-generated method stub
+		return dao.memupdate(dto);
+	}
+
+	@Override
+	public int memcount() {
+		// TODO Auto-generated method stub
+		return dao.memcount();
+	}
 	
 	
 }

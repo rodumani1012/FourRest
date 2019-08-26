@@ -16,4 +16,9 @@
 	<update id="updatepart" parameterType="int">
 		UPDATE CONTESTLIST SET PARTNUM = PARTNUM+1 WHERE BOARDNO=#{conlistno}
 	</update>
+	
+	<select id="concount" resultType="int">
+		SELECT COUNT(*) FROM CONTESTLIST
+	</select>
+	
 </mapper>

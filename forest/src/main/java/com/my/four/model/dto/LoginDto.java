@@ -71,6 +71,14 @@ public class LoginDto implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+	//관리자 회원정보수정
+	public LoginDto(int usernum, String phone, String email, String addr) {
+		super();
+		this.usernum = usernum;
+		this.phone = phone;
+		this.email = email;
+		this.addr = addr;
+	}
 
 	public LoginDto(int usernum, String name, String id, String pw, String phone, String email, String addr,
 			String zonecode, String enabledDb, Date joindate,String perpay, List<String> roles) {

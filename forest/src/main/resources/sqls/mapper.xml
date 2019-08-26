@@ -56,6 +56,16 @@
 		<![CDATA[
 		SELECT ID FROM MEMBER WHERE JOINDATE=#{joindate} < SYSDATE
 		]]>
+	<select id="memlist" resultType="loginDto" >
+		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLED,ROLE FROM MEMBER
+	</select>
+	
+	<update id="memupdate" parameterType="loginDto">
+		UPDATE MEMBER SET ADDR=#{addr},PHONE=#{phone},EMAIL=#{email} WHERE USERNUM=#{usernum}
+	</update>
+	
+	<select id="memcount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER 
 	</select>
 	
 </mapper>

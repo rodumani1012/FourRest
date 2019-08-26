@@ -11,15 +11,10 @@
 
 <link rel="stylesheet" href="resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="resources/assets/css/bootstrap.css">
-<link href="resources/assets/css/admin.css" rel="stylesheet"
-	type="text/css">
+<link href="resources/assets/css/admin.css" rel="stylesheet" type="text/css">
 <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <style type="text/css">
@@ -84,12 +79,10 @@
 				<div class="col-md-12">
 					<div class="page-title">
 						<audio controls="controls" autoplay="autoplay" loop="loop">
-							<source src="resources/audio/birdsound.mp3" type="audio/mp3" />
+							<source src="resources/audio/mix.mp3" type="audio/mp3" />
 						</audio>
-						<a href="polu.do">수질,대기,쓰레기 table data insert! (
-							pollution.sql가서 테이블 3개 먼저 만들어주세요 !) </a>
+						<a href="polu.do">수질,대기,쓰레기 table data insert! (pollution.sql)</a>
 							<br>
-							<a href="sortinggame.do">소팅게임하러가자</a>
 						<h2>
 							ADMIN BOARD<small>관리자페이지</small>
 						</h2>
@@ -121,7 +114,7 @@
 						<div class="circle-tile-content dark-blue">
 							<div class="circle-tile-description text-faded">회원목록</div>
 							<div class="circle-tile-number text-faded">
-								265 <span id="sparklineA"></span>
+								${memcount} <span id="sparklineA"></span>
 							</div>
 							<a href="memlist.do" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>
@@ -152,7 +145,7 @@
 						</a>
 						<div class="circle-tile-content orange">
 							<div class="circle-tile-description text-faded">공모게시판</div>
-							<div class="circle-tile-number text-faded">9 New</div>
+							<div class="circle-tile-number text-faded">${concount} New</div>
 							<a href="admin_conlist.do" class="circle-tile-footer">More
 								Info <i class="fa fa-chevron-circle-right"></i>
 							</a>

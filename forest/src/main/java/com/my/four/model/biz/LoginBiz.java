@@ -1,10 +1,6 @@
 package com.my.four.model.biz;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
-
-import org.springframework.stereotype.Component;
 
 import com.my.four.model.dto.LoginDto;
 
@@ -23,4 +19,7 @@ public interface LoginBiz {
 	public LoginDto findPw(String id,String email);
 	public boolean joinDate(String joinDate);
 	public int perPay(String id);
+	public List<LoginDto> memlist();
+	public int memupdate(LoginDto dto);
+	public int memcount();
 }

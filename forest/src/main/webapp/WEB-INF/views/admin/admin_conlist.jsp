@@ -6,15 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>::Contest Management</title>
+<link rel="stylesheet" href="resources/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="resources/assets/css/bootstrap.css">
+<link href="resources/assets/css/admin.css" rel="stylesheet"
+	type="text/css">
+<script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link href="resources/assets/css/admin.css" rel="stylesheet"
-	type="text/css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <style type="text/css">
 body {
 	font-family: 'Open Sans', sans-serif;
@@ -35,10 +38,6 @@ body {
 	color: inherit;
 	font-weight: bold;
 }
-
-/*	--------------------------------------------------
-	:: Table Filter
-	-------------------------------------------------- */
 .panel {
 	border: 1px solid #ddd;
 	background-color: #fcfcfc;
@@ -147,7 +146,6 @@ body {
 
 .table-filter .media-body {
 	display: block;
-	/* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
 }
 
 .table-filter .media-meta {
@@ -206,10 +204,9 @@ body {
 			</ul>
 		</div>
 	</nav>
-	<div class="container">
-		<div class="row">
+	<div class="container" style="margin-top: 3%; margin-left: 25%">
 			<section class="content">
-				<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-8">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="pull-right">
@@ -292,7 +289,7 @@ body {
 							</div>
 							<div class="pull-right">
 								<div class="btn-group">
-									<input type="button" value="공모작성"
+									<input type="button" class="btn btn-default" value="공모작성"
 										onclick="location.href='admin_conlistwrite.do'">
 								</div>
 							</div>
@@ -302,7 +299,6 @@ body {
 				</div>
 			</section>
 		</div>
-	</div>
 
 </body>
 <script type="text/javascript">
@@ -327,5 +323,5 @@ body {
 		});
 
 	});
-</script>
+</script> 
 </html>

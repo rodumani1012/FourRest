@@ -58,7 +58,6 @@ public class ContestBoardController {
 		logger.info("<admin_conlistwriteform.do>");
 		int res = 0;
 		String[] strarr = dto.getContent().split("<img ");
-		System.out.println("길이가요" + strarr.length);
 		if (strarr.length == 1) {
 			dto.setReppic("<img src='http://placehold.it/400x400'>");
 		} else {
@@ -185,7 +184,7 @@ public class ContestBoardController {
 			msg="별점을 주었습니다!";
 		int resultcnt = biz.starProc(userno, boardnum, newstarno);
 		if(resultcnt>1) {
-			System.out.println("됐다 !");
+			System.out.println("updateok");
 			ContestBoardDto dto = biz.selectOne(boardnum);
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("updatedStar", dto.getLikerate()+"");
@@ -193,7 +192,7 @@ public class ContestBoardController {
 			map.put("msg", msg);
 			return map;
 		}else {
-			System.out.println("안댔..");
+			System.out.println("retry");
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("updatedStar", 5.0+"");
 			map.put("CODE", "NO");
@@ -235,10 +234,10 @@ public class ContestBoardController {
 		int cnt = biz.replyCntup(parentno);
 		int rescnt = biz.ansProc(dto);
 		if(cnt>0&&rescnt>1) {
-			System.out.println("댓글등록!");
+			System.out.println("댓글등록");
 			return "redirect:contest_detail.do?boardno=" + parentno;
 		}else {
-			System.out.println("댓글실패..!");
+			System.out.println("댓글실패");
 			return "redirect:contest_detail.do?boardno=" + parentno;
 		}
 	}

@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.four.model.biz.PollutionDataBiz;
 import com.my.four.model.dto.AreaDto;
+import com.my.four.model.dto.SortGameDto;
+import com.my.four.model.dto.SortRankDto;
 import com.my.four.pollution.PollutionData;
 
 @Controller
@@ -30,7 +32,7 @@ public class PollutionController {
 	
 	@RequestMapping("polu.do")
 	public String polution(Model model, HttpServletRequest request) throws IOException {
-		logger.info("<<polu정보담으러왔니>>");
+		logger.info("<<polu정보>>");
 
 		int resultcnt=0;
 		PollutionData polu = new PollutionData();
@@ -39,10 +41,10 @@ public class PollutionController {
 		int res1 =0;
 		res1 = biz.inserttrash(trashlist);
 		if(res1>0) {
-			System.out.println("쓰레기성공!");
+			System.out.println("쓰레기db");
 			resultcnt++;
 		}else{
-			System.out.println("쓰레기실패 ..");
+			System.out.println("쓰레기실패 ");
 		}
 
 		
@@ -51,10 +53,10 @@ public class PollutionController {
 		int res2 =0;
 		res2 = biz.insertwater(waterlist);
 		if(res2>0) {
-			System.out.println("물성공!");
+			System.out.println("물db");
 			resultcnt++;
 		}else{
-			System.out.println("물실패 ..");
+			System.out.println("물실패 ");
 		}
 		
 		List<AreaDto> airlist = polu.returnairdata(request.getSession().getServletContext().getRealPath("resources/assets/csv/csvair.csv"));
@@ -63,16 +65,16 @@ public class PollutionController {
 		res3 = biz.insertair(airlist);
 		if(res3>0) {
 			resultcnt++;
-			System.out.println("공기성공!");
+			System.out.println("공기db");
 		
 		}else{
-			System.out.println("공기실패 ..");
+			System.out.println("공기실패");
 		}
 		
 		if(resultcnt>=3)
-			System.out.println("셋다성공");
+			System.out.println("셋db");
 		else
-			System.out.println("안댐");
+			System.out.println("셋완료실패");
 	
 		return "admin/admin";
 	}
@@ -87,15 +89,13 @@ public class PollutionController {
 	@RequestMapping("polu_showme.do")
 	@ResponseBody
 	public Map<String,Object> mapyear(@RequestParam("bigOption")String bigOption,String miniOption) {
-		System.out.println("들어았니?");
 		
-		System.out.println(bigOption+"//"+miniOption);
+//		System.out.println(bigOption+"//"+miniOption);
 		List<AreaDto> biglist = null;
 		biglist = biz.selectBigList(Integer.parseInt(bigOption),Integer.parseInt(miniOption));
 		Map<String,Object> bigmap = new HashMap<String,Object>();
 		bigmap.put("biglist", biglist);
 		if(Integer.parseInt(bigOption)==0) {
-			System.out.println("???????머야");
 			bigmap.put("bigtitle","지정폐기물 발생량");
 			bigmap.put("bigyaxis", "(단위 : 톤/일)");
 		}else if(Integer.parseInt(bigOption)==1) {
@@ -113,7 +113,6 @@ public class PollutionController {
 		}
 		else {
 			bigmap.put("code", "NO");
-			System.out.println("값안들어옴");
 			return bigmap;
 		}
 	}
@@ -140,8 +139,15 @@ public class PollutionController {
 		return "pollution/sortinggame";
 	}
 	
-
-	
-	
+	@RequestMapping("getrank.do")
+	@ResponseBody
+	public Map<String,Object> showrank(Model model,@RequestParam("correctcount")String correctcount,String takentime,String userid) {
+//		System.out.println(correctcount+"/"+takentime+"/"+userid);
+		SortGameDto sortGameDto = new SortGameDto(userid,Integer.parseUnsignedInt(takentime),Integer.parseInt(correctcount));
+		List<SortRankDto>  list =biz.ranklistProc(sortGameDto); 
+		Map<String ,Object > map = new HashMap<String,Object>();
+		map.put("ranklist",list );
+		return map;
+	}	
 
 }

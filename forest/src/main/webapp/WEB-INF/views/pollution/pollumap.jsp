@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%> 
 <!DOCTYPE html>
 
 <html>
 <head>
 <meta charset="utf-8">
-<title>들어가세요좀</title>
+<title>::Map statistics</title>
 <style type="text/css">
 .area {
 	position: absolute;
@@ -17,35 +19,137 @@
 	left: 15px;
 	padding: 2px;
 }
-
 .info {
 	font-size: 12px;
 	padding: 5px;
 }
-
 .info .title {
 	font-weight: bold;
 }
 </style>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
+<!-- 헤더위한 링크 -->
+<link rel="stylesheet" href="resources/assets/css/slick.css">
+<link rel="stylesheet" href="resources/assets/css/slick-theme.css">
+<link rel="stylesheet" href="resources/assets/css/animate.css">
+<link rel="stylesheet" href="resources/assets/css/fonticons.css">
+<link rel="stylesheet" href="resources/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="resources/assets/css/bootstrap.css">
+<link rel="stylesheet" href="resources/assets/css/magnific-popup.css">
+<link rel="stylesheet" href="resources/assets/css/bootsnav.css">
+<link rel="stylesheet" href="resources/assets/css/style.css">
+<link rel="stylesheet" href="resources/assets/css/responsive.css" />
+<!--Google Font link-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 </head>
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d71449af21090ce3a8d8c57f9cca8757"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d71449af21090ce3a8d8c57f9cca8757"></script>
 
 <body>
+<!--header start -->
+<nav class="navbar navbar-light navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
+			<!-- Start Top Search -->
+			<div class="top-search">
+				<div class="container">
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-search"></i></span>
+						<input type="text" class="form-control" placeholder="Search">
+						<span class="input-group-addon close-search">
+						<i class="fa fa-times"></i></span>
+					</div>
+				</div>
+			</div>
+			<!-- End Top Search -->
+			<div class="container">
+				<!-- Start Header Navigation -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggler" data-toggle="collapse"
+						data-target="#navbar-menu">
+						<span></span> <span></span> <span></span>
+					</button>
+
+					<a class="navbar-brand" href="main.do"><img
+						src="resources/assets/images/logo2.jpg" class="logo logo-scrolled"
+						alt="logo"> </a>
+				</div>
+				<!-- End Header Navigation -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown">
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='gotomap.do'">Map</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='calendar.do'">Calendar</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='chat.do'">문의하기</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='funlist.do'">후원하기</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='admin.do'">관리자</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href='site.do'">sitelist</button></li>
+						<li><button type="button" class="btn btn-link text-dark" onclick="location.href=''">만들자..</button></li>
+						<li>
+							<div class="dropdown">
+								<button type="button" class="text-dark btn btn-link dropdown-toggle" data-toggle="dropdown">board</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="contest_main.do">공모게시판</a>
+									<a class="dropdown-item" href="#portfolio">리뷰만들어야함</a>
+								</div>
+							</div>
+						</li>
+						<li>
+						<div class="dropdown">
+						<button type="button" class="text-dark btn btn-link dropdown-toggle" data-toggle="dropdown">save</button>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="ani_shelterList.do">보호소</a>
+							<a class="dropdown-item" href="ani_endangeredList.do">멸종위기종</a>
+							<a class="dropdown-item" href="ani_alien.do?board=animal_alien_disturb&txt_search=">외래생물</a>
+							<a class="dropdown-item" href="trash.do">쓰레기</a>
+						</div>
+						</div>
+						</li>
+						<li>
+							<div class="dropdown">
+								<button type="button" class="text-dark btn btn-link dropdown-toggle" data-toggle="dropdown">content</button>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="content.do">GAME</a>
+										<a class="dropdown-item" href="youtube.do">YOUTUBE</a>
+									</div>
+							</div>
+						</li>	
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+						<li><sec:authorize access="isAuthenticated()">
+								<sec:authentication property="principal.username" var="user_id" />
+								<input type="submit" class="btn btn-link text-dark" onclick="location.href='mypage.do'"
+										value="${user_id }"/>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<button type="button" class="btn btn-link text-dark"
+										onclick="location.href='loginform.do'">LOGIN</button>
+								</sec:authorize></li>
+						<li><sec:authorize access="isAuthenticated()">
+								<form:form action="${pageContext.request.contextPath}/logout"
+									method="POST">
+									<input type="submit" class="btn btn-link text-dark"
+										value="LOGOUT" />
+								</form:form>
+							</sec:authorize></li>
+						<li><sec:authorize access="isAnonymous()">
+								<button type="button" class="btn btn-link text-dark"
+									onclick="location.href='joinform.do'">JOIN</button>
+							</sec:authorize></li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+		</nav>
+<!-- header end  -->
 	<div class="row">
-		<div id="map" class="col-md-5" style="width: 500px; height: 700px; margin-top: 50px;"></div>
+		<div id="map" class="col-md-5" style="width: 500px; height: 700px; margin-top: 90px; margin-left: 40px; border-radius: 7px;"></div>
 		<div class="col-md-5" style="text-align: center;">
-			<!-- 	<form action="polu_showme.do"> -->
 			<select id="bigOption" name="bigOption" class="form-control"
-				style="width: auto; display: inline;">
+				style="width: auto; display: inline; margin-top: 90px;">
 				<option value="0">쓰레기배출량</option>
 				<option value="1">폐수방출량</option>
 				<option value="2">미세먼지농도</option>
@@ -93,27 +197,16 @@
 			success : function(data) {
 				if (data.code === 'OK') {
 					biglist = data.biglist;
-					// 					$.each(biglist, function(index, value) {
-
-					// 						console.log(index + ":" + value.area + ":"
-					// 								+ value.repyear + ":" + value.amount);
-					// 					});
-
 					var seridatalist = [];
 					var areanames = [];
 					$.each(biglist, function(index, value) {
 						var seridata = new Object();
-						// 						console.log(index + ":" + value.area + ":"
-						// 								+ value.repyear + ":" + value.amount);
 						seridata.name = value.area;
 						seridata.data = [ value.amount ];
 						seridatalist.push(seridata);
 						areanames.push(value.area);
 					});
 
-					//--------------------------------------------------
-					// 					console.log(data.bigtitle)
-					// 					console.log(data.bigyaxis)
 					$(function() {
 						$('#chartdivtop').highcharts({
 							chart : {
@@ -134,15 +227,14 @@
 						});
 					});
 
-					//--------------------------------------------------
-					console.log("값받기성공");
+// 					console.log("값받기성공");
 
 				} else {
-					console.log("값받기실패");
+// 					console.log("값받기실패");
 				}
 			},
 			fail : function() {
-				console.log('통신실패');
+// 				console.log('통신실패');
 			}
 		});
 
@@ -160,10 +252,8 @@
 		var name = new Object();
 
 		$.each(data, function(index, val) {
-
 			sortall(val.geometry.coordinates, val.properties.CTP_KOR_NM);
 		});
-
 	});
 
 	function sortall(coordinatesArr, areaname) {
@@ -172,33 +262,26 @@
 
 			var Arrayin = new Object();
 			let path = [];
-			let points = [];
 
 			$.each(coordinatesArr[i], function(index, coordinate) {
-				var point = new Object();
-				point.x = coordinate[1];
-				point.y = coordinate[0];
-				points.push(point);
-				path.push(new kakao.maps.LatLng(point.x, point.y));//concat
+// 				var point = new Object();
+// 				point.x = coordinate[1];
+// 				point.y = coordinate[0];
+				path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
 			});
-			paths.push(path);//concat
+			paths.push(path);
 
 			Arrayin.name = areaname;
 			Arrayin.path = paths;
-
 		}
 		displayArea(Arrayin);
 		areas.push(JSON.parse(JSON.stringify(Arrayin)));
-		//	areas.push(Arrayin);
-		console.log(areas.length);
+// 		console.log(areas.length);
 	}
-	console.log('-------------------------하');
-	console.log(areas);
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = {
 		center : new kakao.maps.LatLng(36.425949, 127.705363), // 지도의 중심좌표
-		level : 13
-	// 지도의 확대 레벨
+		level : 13// 지도의 확대 레벨
 	};
 
 	var map = new kakao.maps.Map(mapContainer, mapOption), customOverlay = new kakao.maps.CustomOverlay(
@@ -284,7 +367,6 @@
 				ay='(단위 : kg )'				
 			}
 				
-
 			var areanm = area.name;
 			console.log(areanm);
 			console.log(bigOpt);
@@ -333,7 +415,6 @@
 
 					//------------------------------------------
 
-					// 					alert("야이");
 				} else {
 					alert("안댄당");
 				}

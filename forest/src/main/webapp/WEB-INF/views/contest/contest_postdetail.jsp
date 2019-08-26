@@ -1,22 +1,26 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
-  request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-  response.setContentType("text/html; charset=UTF-8");
+	response.setContentType("text/html; charset=UTF-8");
 %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 <!-- heart채우기 부트스트랩추가하면 중복되는거 지워주세여 -->
-  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <!--  -->
 <!--Google Font link-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
@@ -56,16 +60,21 @@
 
 
 
-  <style type="text/css">
-    #hearts { color: #FF0000;}
-    #hearts-existing { color: #87bad7;}
-    
-    body{
-    	width:100%;
-    }
-  </style>
+<style type="text/css">
+#hearts {
+	color: #FF0000;
+}
 
-  <script type="text/javascript">
+#hearts-existing {
+	color: #87bad7;
+}
+
+body {
+	width: 100%;
+}
+</style>
+
+<script type="text/javascript">
    
       $(document).ready(function () {
     	  var map = new Object();
@@ -92,105 +101,134 @@
         });
       });
   </script>
-  <title>공모글 세부</title>
+<title>공모글 세부</title>
 </head>
 <body>
-<%@ include file="../header.jsp" %>
-<br><br><br><br><br><br><br><br>
-<sec:authentication property="principal.username" var="user_id" />
-  <input type="hidden" id="imuser" value="${user_id}">
-<div class="d-flex justify-content-center container" id="Detailform">
-  <input type="hidden" id="boardnum" value="${dto.boardno}">
-  <input type="hidden" id="usernum" value="${dto.writer}">
-  <table class="que-tbl">
-    <col width="60px">
-    <col width="400px">
-    <tr>
-    	<th>No.${dto.boardno }  </th>
-      <td>
-      ${dto.title } |  ${dto.writer } <small><fmt:formatDate value="${dto.regdate }" pattern="yyyy-MM-dd" /></small>
-      </td>
-    </tr>
-    <tr height="150px">
-      <th>내 용</th>
-      <td>${dto.content }</td>
-    </tr>
-    <tr>
-      <th>현재평점</th>
-      <td>
-        <div class="container">
-          <div class="row lead">
-            <div id="hearts" class="starrr"></div>
-	  <span id="count">0</span> 점 <button id="clicksubmit" class="btn btn-outline-dark">투표 </button>
-      <span id="starhere" style="color: red;">${dto.likerate }</span> / 5 (평점투표수:${dto.likecnt })
-          </div>
-        </div>
-        </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-      <c:if test="${user_id==dto.writer }">
-       <button type="button" class="btn btn-outline-dark" onclick="location.href='contest_delete.do?groupno=${dto.groupno}'">글삭제</button>      
-      </c:if>
-       <button type="button" class="btn btn-outline-dark" onclick="location.href='contest_main.do?'">목록으로</button>
-      </td>
-    </tr>
-  </table>
-  <div class="reply"></div>
-</div>
+	<%@ include file="../header.jsp"%>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<sec:authorize access="isAuthenticated()">
+		<sec:authentication property="principal.username" var="user_id" />
+		<input type="hidden" id="imuser" value="${user_id}">
+	</sec:authorize>
+	<sec:authorize access="isAnonymous()">
+	</sec:authorize>
+
+	<div class="d-flex justify-content-center container" id="Detailform">
+		<input type="hidden" id="boardnum" value="${dto.boardno}"> <input
+			type="hidden" id="usernum" value="${dto.writer}">
+		<table class="que-tbl">
+			<col width="60px">
+			<col width="400px">
+			<tr>
+				<th>No.${dto.boardno }</th>
+				<td>${dto.title } | ${dto.writer } <small><fmt:formatDate
+							value="${dto.regdate }" pattern="yyyy-MM-dd" /></small>
+				</td>
+			</tr>
+			<tr height="150px">
+				<th>내 용</th>
+				<td>${dto.content }</td>
+			</tr>
+			<tr>
+				<th>현재평점</th>
+				<td>
+					<div class="container">
+						<div class="row lead">
+							<div id="hearts" class="starrr"></div>
+							<span id="count">0</span> 점
+							<button id="clicksubmit" class="btn btn-outline-dark">투표
+							</button>
+							<span id="starhere" style="color: red;">${dto.likerate }</span> /
+							5 (평점투표수:${dto.likecnt })
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><c:if test="${user_id==dto.writer }">
+						<button type="button" class="btn btn-outline-dark"
+							onclick="location.href='contest_delete.do?groupno=${dto.groupno}'">글삭제</button>
+					</c:if>
+					<button type="button" class="btn btn-outline-dark"
+						onclick="location.href='contest_main.do?'">목록으로</button></td>
+			</tr>
+		</table>
+		<div class="reply"></div>
+	</div>
 
 
-<hr>
-<div class="container" id="replydiv"></div>
-<table class="d-flex justify-content-center container que-tbl2">
-  <c:choose>
-    <c:when test="${empty listReply }">
-      <tr>
-        <td colspan="4"><i class="far fa-sticky-note"></i>등록된 댓글이
-          없습니다.</td>
-      </tr>
-    </c:when>
-    <c:otherwise>
-      <c:forEach items="${listReply }" var="dtoReply">
-        <tr>
-          <th>댓글제목:${dtoReply.title } <input type="text" value="작성자: ${dtoReply.writer }" readonly="readonly"> </th>
-        </tr>
-        <tr>
-          <th align="right"><fmt:formatDate
-                  value="${dtoReply.regdate }" pattern="yyyy-MM-dd" /><input
-                  type="button" value="삭제"
-                  onclick="location.href='deleteReply.do?groupno=${dto.groupno }&boardno=${dtoReply.boardno}&pboardno=${dto.boardno}'">
-          </th>
-        </tr>
-        <tr>
-          <td><textarea rows="5" cols="100">${dtoReply.content }</textarea></td>
-        </tr>
-      </c:forEach>
-    </c:otherwise>
-  </c:choose>
-  <tr>
-    <td colspan="4">
-      <form action="contest_replyform.do" method="post">
-        <input type="hidden" name="boardno" value="${dto.boardno }">
-        <input type="hidden" name="groupno" value="${dto.groupno}">
-        <table>
-          <tr>
-            <th colspan="2">
-            	작성자:<input type="text" style="width: 100px" name="writer" value="${user_id }" readonly="readonly">
-            </th>
-          </tr>
-          <tr>
-            <td><textarea rows="10" cols="100" name="content" placeholder="댓글을 작성해주세요"></textarea></td>
-          </tr>
-          <tr>
-            <td><button class="btn btn-outline-dark" type="submit" style="float: right;">답변등록</button>
-            </td>
-          </tr>
-        </table>
-      </form>
-</table>
+	<hr>
+	<div class="container" id="replydiv"></div>
+	<table class="d-flex justify-content-center container que-tbl2">
+		<c:choose>
+			<c:when test="${empty listReply }">
+				<tr>
+					<td colspan="4"><i class="far fa-sticky-note"></i>등록된 댓글이
+						없습니다.</td>
+				</tr>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${listReply }" var="dtoReply">
+					<tr>
+						<th>댓글제목:${dtoReply.title } <input type="text"
+							value="작성자: ${dtoReply.writer }" readonly="readonly">
+						</th>
+					</tr>
+					<tr>
+						<th align="right"><fmt:formatDate
+								value="${dtoReply.regdate }" pattern="yyyy-MM-dd" />
+								<c:if test="${dtoReply.writer==user_id }">
+								<input type="button" value="삭제" onclick="location.href='deleteReply.do?groupno=${dto.groupno }&boardno=${dtoReply.boardno}&pboardno=${dto.boardno}'">								
+								</c:if>
+						</th>
+					</tr>
+					<tr>
+						<td><textarea rows="5" cols="100">${dtoReply.content }</textarea></td>
+					</tr>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+		<tr>
+			<td colspan="4">
+				<c:choose>
+				<c:when test="${user_id eq null}">
+					<strong>댓글을 달기위해 로그인을 해주세요!</strong>	
+				</c:when>
+				<c:otherwise>
+				
+				<form action="contest_replyform.do" method="post">
+					<input type="hidden" name="boardno" value="${dto.boardno }">
+					<input type="hidden" name="groupno" value="${dto.groupno}">
+					<table>
+						<tr>
+							<th colspan="2">작성자:<input type="text" style="width: 100px"
+								name="writer" value="${user_id }" readonly="readonly">
+							</th>
+						</tr>
+						<tr>
+							<td><textarea rows="10" cols="100" name="content"
+									placeholder="댓글을 작성해주세요"></textarea></td>
+						</tr>
+						<tr>
+							<td><button class="btn btn-outline-dark" type="submit"
+									style="float: right;">답변등록</button></td>
+						</tr>
+					</table>
+				</form>
+				</c:otherwise>
+				
+				</c:choose>
+	</table>
 
-<script type="text/javascript">
+	<script type="text/javascript">
   var __slice = [].slice;
 
   (function($, window) {
