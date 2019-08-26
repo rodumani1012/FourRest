@@ -80,7 +80,7 @@
 				</div>
 				<div class="form-group">
 					<c:if test="${not empty ERRORMSG}">
-						<font color="red"> <span> 아이디와 비밀번호를 확인 하세요! </span>
+						<font color="red"> <p>${ERRORMSG }</p>
 						</font>
 					</c:if>
 				</div>

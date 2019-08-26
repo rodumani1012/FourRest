@@ -4,10 +4,10 @@ package com.my.four.model.security;
 
 
 import java.io.PrintWriter;
-
-import javax.servlet.http.HttpServletResponse;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,14 +27,30 @@ public class AuthenticationService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+		System.out.println("id"+id);
 		
-		LoginDto dto = biz.login(id);
-		
-		
-		if (dto == null) {
-			throw new UsernameNotFoundException(id);
-		}
-		return dto; 
+			LoginDto dto = biz.login(id);
+			
+			System.out.println("11111111111111"+dto);
+			if (dto == null) {
+				throw new UsernameNotFoundException(id);
+			}else {
+				LoginDto dto1 = biz.memberInfo(id);
+				if(dto1.getEnabledDb().equals("N")) {
+					System.out.println("hi!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+					throw new DisabledException("이미 탈퇴된 회원입니다.");
+				}else {
+					if(dto1.getRoles().equals("ADMIN")) {
+						return dto;
+					}else {
+						return dto;
+					}
+					
+				}
+					
+			}
+			
+			
 	}
 
 }

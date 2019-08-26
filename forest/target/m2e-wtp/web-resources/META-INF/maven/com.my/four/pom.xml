@@ -11,6 +11,7 @@
 	<properties>
 		<java-version>1.7</java-version>
 		<org.springframework-version>4.3.4.RELEASE</org.springframework-version>
+		<spring.batch.version>2.2.0.RELEASE</spring.batch.version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -45,6 +46,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
 
@@ -314,6 +320,25 @@
 			<version>1.10.23.RELEASE</version>
 		</dependency>
 
+		<!-- sping batch -->
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-core</artifactId>
+			<version>${spring.batch.version}</version>
+			</dependency>
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-infrastructure</artifactId>
+			<version>${spring.batch.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.3.1</version>
+		</dependency>
+		
+
+		
 	</dependencies>
 	<build>
 		<plugins>

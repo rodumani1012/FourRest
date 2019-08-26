@@ -1,13 +1,11 @@
 package com.my.four.model.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
-import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.my.four.model.dto.LoginDto;
@@ -78,8 +76,10 @@ public class LoginDaoImpl implements LoginDao{
 	public LoginDto memberInfo(String id) {
 		LoginDto dto = new LoginDto();
 		Map<String, String> map = new HashMap<String, String>();
+		System.out.println("111111111id"+id);
 		map.put("id", id);
 		dto=sqlSesssion.selectOne(namespace+"memberInfo", id);
+		System.out.println("11111111111111"+dto.getEnabledDb());
 		return dto;
 	}
 
@@ -104,6 +104,40 @@ public class LoginDaoImpl implements LoginDao{
 		map.put("email", email);
 		return sqlSesssion.selectOne(namespace+"findId", map);
 	}
+
+	@Override
+	public LoginDto findPw(String id, String email) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("email", email);
+		return sqlSesssion.selectOne(namespace+"findPw", map);
+	}
+
+	@Override
+	public boolean joinDate(String joinDate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("joinDate", joinDate);
+		LoginDto dto = new LoginDto();
+		dto=sqlSesssion.selectOne(namespace+"joinDate", map);
+		if(dto==null) {
+			return false;
+		}else {
+			return true;
+		}
+		 
+	}
+
+	@Override
+	public List<LoginDto> allMember() {
+		return sqlSesssion.selectList(namespace+"allMember");
+	}
+
+	@Override
+	public int perpay(String id) {
+		
+		return sqlSesssion.update(namespace+"perPay", id);
+	}
+
 
 	
 	
