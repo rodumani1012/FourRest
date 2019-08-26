@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="animal">
+
+	<!-- db에 보호소 목록 저장하는 쿼리 -->
+	<insert id="aniInsert" parameterType="map">
+		INSERT ALL
+		<foreach collection="list" item="ani">
+			INTO ANIMAL_SHELTER(AREA,CENTERNAME,PHONENUMBER,CENTERADDR)
+			VALUES(#{ani.area},#{ani.centerName},#{ani.phoneNumber},#{ani.centerAddr})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+
+	<!-- db에서 보호소 목록 가져오는 쿼리 -->
+	<select id="aniSelectList" parameterType="map"
+		resultType="animalDto">
+		
+		SELECT *
+		FROM (SELECT ROWNUM AS RNUM, P.*
+			 FROM ( SELECT * 
+			 		FROM ANIMAL_SHELTER 
+					 <if test="txt_search != null">
+							WHERE upper(AREA) like '%' || upper(#{txt_search}) || '%' or
+							upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%' or
+							upper(CENTERADDR) like '%' || upper(#{txt_search}) || '%'
+					</if>
+						ORDER BY AREA
+						) P
+			 )
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
+	</select>
+	
+	<!-- db 보호소 목록 갯수 가져오는 쿼리 -->
+	<select id="aniGetTotalCount" parameterType="map"
+		resultType="Integer">
+		SELECT count(*)
+		FROM ANIMAL_SHELTER
+		<if test="txt_search != null">
+			WHERE upper(AREA) like '%' || upper(#{txt_search}) || '%' or
+			upper(CENTERNAME) like '%' || upper(#{txt_search}) || '%' or
+			upper(CENTERADDR) like '%' || upper(#{txt_search}) || '%'
+		</if>
+	</select>
+	
+	<!-- db에 CSV 목록 저장하는 쿼리 -->
+	<insert id="aniInsertEndangeredCSV" parameterType="map">
+		INSERT ALL
+		<foreach collection="list" item="ani">
+			INTO ANIMAL_ENDANGERED_CSV(GROUPS, GRADE, KOR_NAME, ENG_NAME, KOR_RED_LIST, ENG_RED_LIST)
+			VALUES(#{ani.groups},#{ani.grade},#{ani.korName},#{ani.engName},#{ani.korRedList},#{ani.engRedList})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<!-- db CSV 목록 갯수 가져오는 쿼리 -->
+	<select id="aniGetTotalCountEndangeredCSV" parameterType="map"
+		resultType="Integer">
+		SELECT count(*)
+		FROM ANIMAL_ENDANGERED_CSV
+		<if test="txt_search != null">
+			WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
+			upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
+		</if>
+	</select>
+	
+	<!-- db에 이미지 목록 저장하는 쿼리 -->
+	<insert id="aniInsertEndangeredImg" parameterType="map">
+		INSERT ALL
+		<foreach collection="list" item="ani">
+			INTO ANIMAL_ENDANGERED_IMG(KOR_NAME, IMG)
+			VALUES(#{ani.korName},#{ani.img})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<!-- 조인 된 쿼리를 담을 Dto -->
+	<resultMap type="animalJoinDto" id="joinCSVImg">
+		<result column="GROUPS" property="groups"/>
+		<result column="GRADE" property="grade"/>
+		<result column="KOR_NAME" property="korName"/>
+		<result column="ENG_NAME" property="engName"/>
+		<result column="KOR_RED_LIST" property="korRedList"/>
+		<result column="ENG_RED_LIST" property="engRedList"/>
+		<result column="IMG" property="img"/>
+	</resultMap>
+		
+	<!-- CSV와 IMG 테이블 조인시키는 쿼리 -->
+	<select id="join" resultMap="joinCSVImg" parameterType="map">
+		SELECT GROUPS, GRADE, KOR_NAME, ENG_NAME, KOR_RED_LIST, ENG_RED_LIST, IMG
+		FROM (SELECT ROWNUM AS RNUM, P.*
+			 FROM ( SELECT * 
+			 		FROM ANIMAL_ENDANGERED_CSV 
+						JOIN ANIMAL_ENDANGERED_IMG
+						USING(KOR_NAME)
+					 <if test="txt_search != null">
+							WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
+							upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'							
+					</if>
+						ORDER BY GROUPS, KOR_NAME
+						) P
+			 )
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
+	</select>
+	
+	<!-- 조인된 CSVImg 테이블의 리스트를 리턴하는 쿼리 -->
+	<select id="joinToSave" resultMap="joinCSVImg" parameterType="map">
+		SELECT GROUPS, GRADE, KOR_NAME, ENG_NAME, KOR_RED_LIST, ENG_RED_LIST, IMG
+		FROM (SELECT ROWNUM AS RNUM, P.*
+			 FROM ( SELECT * 
+			 		FROM ANIMAL_ENDANGERED_CSV 
+						JOIN ANIMAL_ENDANGERED_IMG
+						USING(KOR_NAME)
+						ORDER BY GROUPS, KOR_NAME
+						) P
+			 )
+	</select>
+	
+	<!-- db에 join된 목록 저장하는 쿼리 -->
+	<insert id="aniInsertEndangeredJoin" parameterType="map">
+		INSERT ALL
+		<foreach collection="list" item="ani">
+			INTO ANIMAL_ENDANGERED_JOIN(GROUPS, GRADE, KOR_NAME, ENG_NAME, KOR_RED_LIST, ENG_RED_LIST, IMG)
+			VALUES(#{ani.groups},#{ani.grade},#{ani.korName},#{ani.engName},#{ani.korRedList},#{ani.engRedList},#{ani.img})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<!-- db 조인된 테이블 목록 갯수 가져오는 쿼리 -->
+	<select id="aniGetTotalCountEndangeredJoin" parameterType="map"
+		resultType="Integer">
+		SELECT count(*)
+		FROM ANIMAL_ENDANGERED_JOIN
+		<if test="txt_search != null">
+			WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
+			upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
+		</if>
+	</select>
+
+	<!-- 멸종 1 & 포유류 -->
+	<select id="aniGetOne" parameterType="map" resultType="Integer">
+		SELECT COUNT(*) FROM ANIMAL_ENDANGERED_JOIN WHERE GROUPS = #{groups} AND GRADE = #{grade}
+	</select>
+</mapper>
