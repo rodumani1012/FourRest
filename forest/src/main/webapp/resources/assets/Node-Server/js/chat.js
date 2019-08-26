@@ -16,7 +16,8 @@ $(function() {
 				
 				socket.emit('chat message',msg);
 			}
-			$('#messages').append($('<li class="me">').text('me'+msg));
+			message = `<p class="chat_name">me</p><p>${msg}</p>`
+			$('#messages').append($('<li class="me">').html(message));
 			$('#m').val('');
 			return false;
 		});
@@ -24,7 +25,7 @@ $(function() {
 		socket.on('message', function(data) {
 			if (data.type === 'msg') {
 				$('#messages').append(
-						$('<li class="other">').text('other'+data.chatMessage));
+						$('<li class="other">').text('other : '+data.chatMessage));
 
 			}
 		})

@@ -7,14 +7,7 @@
 <title>Insert title here</title>
 	<script src="192.168.110.62:8880/socket.io/socket.io.js"></script>
 	 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script id="userInfo" src="resources/assets/js/chat.js" ></script>
-<style type="text/css">
-	#messages{
-		width:200px;
-		height: 200px;
-		background-color: yellow;
-	}
-</style>	
+	<script id="userInfo" src="resources/assets/js/chat.js" ></script>	
 </head>
 <body>
 
@@ -27,8 +20,5 @@
 			<button>전 송</button>
 		</form>
 	</div>
-
-	
-
 </body>
 </html>

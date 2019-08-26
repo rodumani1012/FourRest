@@ -177,14 +177,11 @@
 	</div>
 
 	<button class="botton" onclick="toggleChat()">
-		<i class='fas fa-comment-dots'></i>
-	</button>
-	<div id="chat" style="display: none; position: fixed; bottom: 20px; right: 100px; z-index: 9999">
+		<i class='fas fa-comment-dots'></i></button>
 		<div id="chat_box">
 			<ul id="#messages"></ul>
-<!-- 			<iframe class="iframe-chat" src="http://192.168.10.151:8880/"></iframe> -->
+ 			<iframe class="iframe-chat" src="http://192.168.110.46:8880/"></iframe> 
 		</div>
-	</div>
 
 	<!-- footer -->
 	<%@ include file="./footer.jsp"%>

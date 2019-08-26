@@ -3,16 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style type="text/css">
+ul {
+	list-style-type: none;
+}
+
+li {
+	padding: 5px 10px;
+	background: rgb(255, 229, 52);
+	border-radius: 0.4em;
+	font-size: 15px;
+	display: block;
+	max-width: 350px;
+	margin: 5px;
+	clear: both;
+	word-break: break-all;
+}
+li p.chat_name{
+	margin : 2px;
+	color: #c8c8c8;
+}
+
+div.div-button-send {
+	position: fixed;
+	bottom: 5px;
+	right: 5px;
+	background-color: #fff;
+}
+
+.me {
+	float: right;
+}
+
+.other {
+	float: left;
+}
+.chat-area{
+	overflow: auto;
+}
+</style>
 </head>
 <body>
-	<ul id="messages"></ul>
-	<div class="div-button-send">
-		<form action="">
-			<input id="m" autocomplete="off" />
-			<button>전 송</button>
-		</form>
+	<div class="container" style="background-color: green; width: 600px; height: 600px;">
+		<div class="chat-area">
+			<ul id="messages"></ul>
+		</div>
 	</div>
-
+	<div class="div-button-send form-inline">
+			<form action="">
+				<input class="form-control col-lg-7" id="m" autocomplete="off"
+					style="width: 300px;" />
+				<button class="btn btn-outline-dark">전 송</button>
+			</form>
+		</div>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script id="userInfo" src="js/chat.js" name="Test" room="Test"></script>
