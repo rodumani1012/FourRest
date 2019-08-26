@@ -50,18 +50,15 @@
 				<li class="dropdown"><a class="messages-link dropdown-toggle"
 					data-toggle="dropdown" href="#"><span
 						class="glyphicon glyphicon-envelope"></span> <span class="number">4</span>
-						<span class="caret"></span></a>
-				</li>
+						<span class="caret"></span></a></li>
 				<li class="dropdown"><a class="alerts-link dropdown-toggle"
 					data-toggle="dropdown" href="#"><span
 						class="glyphicon glyphicon-bell"></span> <span class="number">6</span>
-						<span class="caret"></span></a>
-				</li>
+						<span class="caret"></span></a></li>
 				<li class="dropdown"><a class="tasks-link dropdown-toggle"
 					data-toggle="dropdown" href="#"><span
 						class="glyphicon glyphicon-th-list"></span> <span class="number">11</span>
-						<span class="caret"></span></a>
-				</li>
+						<span class="caret"></span></a></li>
 				<li class="dropdown"><a class="user-link dropdown-toggle"
 					data-toggle="dropdown" href="#"><span
 						class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
@@ -72,7 +69,8 @@
 	<!--    top nav end===========-->
 	<br>
 	<div class="container">
-		<div class="row text-center" style="display: block; background-color:#f5f5f5; ">
+		<div class="row text-center"
+			style="display: block; background-color: #f5f5f5;">
 			<h3>봉사일정관리</h3>
 			<br>
 		</div>
@@ -88,13 +86,13 @@
 							<td><label onclick="nextCalendar()">> </label></td>
 						</tr>
 						<tr>
-							<td align="center"><font color="#F79DC2"/>일</td>
+							<td align="center"><font color="#F79DC2" />일</td>
 							<td align="center">월</td>
 							<td align="center">화</td>
 							<td align="center">수</td>
 							<td align="center">목</td>
 							<td align="center">금</td>
-							<td align="center"><font color="skyblue"/>토</td>
+							<td align="center"><font color="skyblue" />토</td>
 						</tr>
 					</table>
 				</div>
@@ -116,42 +114,6 @@
 						<div class="insidebox">
 							<span class="schedule-tag">8:00 AM</span> <span
 								class="schedule-start">Check-In, On-Site Hacking Starts</span>
-						</div>
-					</div>
-
-					<div class="schedule-card">
-						<div class="insidebox">
-							<span class="schedule-tag">8:30 AM</span> <span
-								class="schedule-start">Running Brunch</span>
-						</div>
-					</div>
-
-					<div class="schedule-card">
-						<div class="insidebox">
-							<span class="schedule-tag">1:00 PM</span> <span
-								class="schedule-start"> Lunch</span>
-						</div>
-					</div>
-
-					<div class="schedule-card">
-						<div class="insidebox">
-							<span class="schedule-tag">5:00 PM</span> <span
-								class="schedule-start"> Project Presentations, Judging,
-								Awards, Closing Ceremony</span>
-						</div>
-					</div>
-
-					<div class="schedule-card">
-						<div class="insidebox">
-							<span class="schedule-tag">5:30 PM</span> <span
-								class="schedule-start">On-Site Hacking Ends</span>
-						</div>
-					</div>
-
-					<div class="schedule-card">
-						<div class="insidebox">
-							<span class="schedule-tag">6:00 PM</span> <span
-								class="schedule-start">Go home and rest!</span>
 						</div>
 					</div>
 				</div>
