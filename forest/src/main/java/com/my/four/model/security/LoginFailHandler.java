@@ -79,6 +79,9 @@ public class LoginFailHandler implements AuthenticationFailureHandler{
 		String error =exception.getMessage();
 		System.out.println(error);
 		
+		
+		
+		
 	      request.setAttribute(id, userid);
 	      request.setAttribute(password, userpw);
 	      request.setAttribute(errormsg, error);      

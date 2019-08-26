@@ -22,4 +22,5 @@ public interface LoginDao {
 	public LoginDto findId(String name, String email);
 	public LoginDto findPw(String id, String email);
 	public boolean joinDate(String joinDate);
+	public int perpay(String id);
 }

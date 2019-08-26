@@ -1,16 +1,17 @@
 package com.my.four.model.dto;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class LoginDto implements UserDetails {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int usernum;
 	private String name;
 	private String id;
@@ -19,8 +20,9 @@ public class LoginDto implements UserDetails {
 	private String email;
 	private String addr;
 	private String zonecode;
-	private int enabledDb;
+	private String enabledDb;
 	private Date joindate;
+	private String perpay;
 	private List<String> roles;
 	private Collection<? extends GrantedAuthority> authorities;
 
@@ -66,12 +68,11 @@ public class LoginDto implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	public LoginDto(int usernum, String name, String id, String pw, String phone, String email, String addr,
-			String zonecode, int enabledDb, Date joindate, List<String> roles) {
+			String zonecode, String enabledDb, Date joindate,String perpay, List<String> roles) {
 		super();
 		this.usernum = usernum;
 		this.name = name;
@@ -83,6 +84,8 @@ public class LoginDto implements UserDetails {
 		this.zonecode = zonecode;
 		this.enabledDb = enabledDb;
 		this.roles = roles;
+		this.joindate=joindate;
+		this.perpay=perpay;
 	}
 
 	public int getUsernum() {
@@ -149,7 +152,7 @@ public class LoginDto implements UserDetails {
 		this.zonecode = zonecode;
 	}
 
-	public int getEnabledDb() {
+	public String getEnabledDb() {
 		return enabledDb;
 	}
 	
@@ -162,12 +165,21 @@ public class LoginDto implements UserDetails {
 		this.joindate = joindate;
 	}
 
-	public void setEnabledDb(int enabledDb) {
+	public void setEnabledDb(String enabledDb) {
 		this.enabledDb = enabledDb;
 	}
 
 	public List<String> getRoles() {
 		return roles;
+	}
+	
+
+	public String getPerpay() {
+		return perpay;
+	}
+
+	public void setPerpay(String perpay) {
+		this.perpay = perpay;
 	}
 
 	public void setRoles(List<String> roles) {
@@ -177,5 +189,6 @@ public class LoginDto implements UserDetails {
 	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
 		this.authorities = authorities;
 	}
+	
 
 }

@@ -27,13 +27,10 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AuthenticationManager;
-=======
->>>>>>> c12209c8cd90939756b780aa2bd8d4bc536dd887
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -416,22 +413,18 @@ public class HomeController {
 		}
 	}
 	
-	@RequestMapping(value="check.do")
-	@Scheduled(cron="0/1 * * * * ?")
+	@Scheduled(cron="0 0/10 * * * ?")
 	public void check() {
 		List<LoginDto> list = biz.allMember();
+		
 		for (int i = 0; i<list.size();i++) {
+			String perpay = null;
 			String id = list.get(i).getId();
 			System.out.println("id=========="+id);
 			LoginDto dto = biz.memberInfo(id);
-			SimpleDateFormat joindate = new SimpleDateFormat("yyyy-MM-dd");
-			String joinDate = joindate.format(dto.getJoindate());
-			System.out.println("00000000000000000000000"+joinDate);
-			boolean join = biz.joinDate(joinDate);
-			if(join==true) {
-				System.out.println("true===========");
-			}else {
-				System.out.println("false================");
+			perpay = dto.getPerpay();
+			if(perpay=="Y") {
+				
 			}
 		}
 		

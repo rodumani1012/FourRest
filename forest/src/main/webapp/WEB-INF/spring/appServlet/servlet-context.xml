@@ -30,17 +30,12 @@
 	
 	
 	<context:component-scan base-package="com.my.four.*,com.my.four,com.my.four.*.*" />
-<<<<<<< HEAD
+
 	<context:annotation-config/>
 	<!-- 해당 태그들은 크론탭을 설정에 필요한 태그들 -->
 <!-- 	<task:scheduler id="jobScheduler" pool-size="10" />  -->
 <!-- 	<task:annotation-driven scheduler="jobScheduler" /> -->
 
 	
-	
-=======
-
-
->>>>>>> c12209c8cd90939756b780aa2bd8d4bc536dd887
 	
 </beans:beans>

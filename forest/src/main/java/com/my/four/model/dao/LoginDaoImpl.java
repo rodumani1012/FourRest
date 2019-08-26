@@ -1,16 +1,11 @@
 package com.my.four.model.dao;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.my.four.model.dto.LoginDto;
@@ -81,8 +76,10 @@ public class LoginDaoImpl implements LoginDao{
 	public LoginDto memberInfo(String id) {
 		LoginDto dto = new LoginDto();
 		Map<String, String> map = new HashMap<String, String>();
+		System.out.println("111111111id"+id);
 		map.put("id", id);
 		dto=sqlSesssion.selectOne(namespace+"memberInfo", id);
+		System.out.println("11111111111111"+dto.getEnabledDb());
 		return dto;
 	}
 
@@ -133,6 +130,12 @@ public class LoginDaoImpl implements LoginDao{
 	@Override
 	public List<LoginDto> allMember() {
 		return sqlSesssion.selectList(namespace+"allMember");
+	}
+
+	@Override
+	public int perpay(String id) {
+		
+		return sqlSesssion.update(namespace+"perPay", id);
 	}
 
 

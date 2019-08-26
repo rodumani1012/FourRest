@@ -88,6 +88,11 @@ public class LoginBizImpl implements LoginBiz{
 		return dao.allMember();
 	}
 
+	@Override
+	public int perPay(String id) {
+		return dao.perpay(id);
+	}
+
 	
 	
 }
