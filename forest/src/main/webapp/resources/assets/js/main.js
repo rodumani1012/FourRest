@@ -22,7 +22,7 @@ jQuery(document).ready(function ($) {
             if (target.length) {
                 $('html,body').animate({
                     scrollTop: (target.offset().top - 80)
-                }, 1000);
+                }, 1000);  
                 if ($('.navbar-toggle').css('display') != 'none') {
                     $(this).parents('.container').find(".navbar-toggle").trigger("click");
                 }
