@@ -1,11 +1,12 @@
 package com.my.four;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.JsonParser;
 import com.my.four.model.biz.PollutionDataBiz;
 import com.my.four.model.dto.AreaDto;
 import com.my.four.pollution.PollutionData;
@@ -73,37 +73,74 @@ public class PollutionController {
 			System.out.println("셋다성공");
 		else
 			System.out.println("안댐");
-		return "pollution/polumap";
+	
+		return "admin/admin";
 	}
 	
 	
-	@RequestMapping("godomap.do")
+	@RequestMapping("gotomap.do")
 	public String map() {
 		
-		return "pollution/test";
+		return "pollution/pollumap";
 	}
 	
-	@RequestMapping("maptest.do")
+	@RequestMapping("polu_showme.do")
 	@ResponseBody
-	public String jsonmap(@RequestParam("obj")String obj) {
-		JsonParser parser = new JsonParser();
-//		JsonElement element = parser.parse(obj);
-//		if(element!=null)
-//			return"들어왔따";
-//		return "안왔는디?";
-//	
+	public Map<String,Object> mapyear(@RequestParam("bigOption")String bigOption,String miniOption) {
+		System.out.println("들어았니?");
 		
-		return "안왔는디 ";
-	}
-	
-	@RequestMapping("mapmapjson.do")
-	public void mapjson(Model model, HttpServletRequest request) {
-		PollutionData polu = new PollutionData();
-		//polu.returnTrashdata(request.getSession().getServletContext().getRealPath("resources/assets/csv/csvgarbage.csv"));
+		System.out.println(bigOption+"//"+miniOption);
+		List<AreaDto> biglist = null;
+		biglist = biz.selectBigList(Integer.parseInt(bigOption),Integer.parseInt(miniOption));
+		Map<String,Object> bigmap = new HashMap<String,Object>();
+		bigmap.put("biglist", biglist);
+		if(Integer.parseInt(bigOption)==0) {
+			System.out.println("???????머야");
+			bigmap.put("bigtitle","지정폐기물 발생량");
+			bigmap.put("bigyaxis", "(단위 : 톤/일)");
+		}else if(Integer.parseInt(bigOption)==1) {
+			bigmap.put("bigtitle","폐수발생량");
+			bigmap.put("bigyaxis", "(단위 : m³/일)");
+		}else if(Integer.parseInt(bigOption)==2) {
+			bigmap.put("bigtitle","미세먼지(PM10) 배출량");
+			bigmap.put("bigyaxis", "(단위 : kg )");
 
-		
+		}
+		if(biglist.size()>=2) {
+			bigmap.put("code", "OK");
+			System.out.println(biglist.size());
+			return bigmap;
+		}
+		else {
+			bigmap.put("code", "NO");
+			System.out.println("값안들어옴");
+			return bigmap;
+		}
 	}
 	
+	@RequestMapping("polu_showarea.do")
+	@ResponseBody
+	public Map<String,Object> areayears(@RequestParam("bigOption")String bigOption,String areaname){
+		List<AreaDto> minilist = null;
+		
+		minilist = biz.selectMiniList(Integer.parseInt(bigOption), areaname);
+		Map<String,Object> minimap = new HashMap<String,Object>();
+		minimap.put("minilist", minilist);
+		if(minilist.size()!=0) {
+			minimap.put("code", "OK");
+		}else {
+			minimap.put("code", "NO");
+		}
+		
+		return minimap;
+	}
+	
+	@RequestMapping("sortinggame.do")
+	public String sortinggame() {
+		return "pollution/sortinggame";
+	}
+	
+
 	
 	
 

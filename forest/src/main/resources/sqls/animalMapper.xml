@@ -137,8 +137,109 @@
 		</if>
 	</select>
 
-	<!-- 멸종 1 & 포유류 -->
+	<!-- 멸종 1,2 & 포유류 -->
 	<select id="aniGetOne" parameterType="map" resultType="Integer">
-		SELECT COUNT(*) FROM ANIMAL_ENDANGERED_JOIN WHERE GROUPS = #{groups} AND GRADE = #{grade}
+		SELECT COUNT(*) FROM ANIMAL_ENDANGERED_JOIN WHERE GROUPS like '%' || #{groups} || '%' AND GRADE = #{grade} 
 	</select>
+	
+	<!-- 생태교란 총 갯수 db 검사용 -->
+	<select id="aniGetTotalCountDHDb" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		<if test='board.equals("animal_alien_disturb")'>
+		FROM ANIMAL_ALIEN_DISTURB
+		</if>
+		<if test='board.equals("animal_alien_harm")'>
+		FROM ANIMAL_ALIEN_HARM
+		</if>
+	</select>
+	
+	<!-- 생태교란 총 갯수 -->
+	<select id="aniGetTotalCountDisturbHarm" parameterType="map" resultType="Integer">
+		SELECT COUNT(*)
+		<if test='board.equals("animal_alien_disturb")'>
+		FROM ANIMAL_ALIEN_DISTURB
+		</if>
+		<if test='board.equals("animal_alien_harm")'>
+		FROM ANIMAL_ALIEN_HARM
+		</if>
+		<if test="groups != null">
+			<if test='txt_search == null'>
+			WHERE GROUPS = #{groups}
+			</if>
+		</if>
+		<if test="txt_search != null">
+			WHERE upper(KOR_NAME) like '%' || upper(#{txt_search}) || '%' or
+			upper(ENG_NAME) like '%' || upper(#{txt_search}) || '%'
+		</if>
+	</select>
+	
+	<!-- 생태교란 or 위해생물 db저장 -->
+	<insert id="aniInsertDisturbHarm" parameterType="map">
+		<if test='board.equals("animal_alien_disturb")'>
+			INSERT ALL
+			<foreach collection="list" item="ani">
+				INTO ANIMAL_ALIEN_DISTURB(KOR_NAME, ENG_NAME, GROUPS, MANAGEMENT, COUNTRY, IMG)
+				VALUES(#{ani.kor_name},#{ani.eng_name},#{ani.groups},#{ani.management},#{ani.country},#{ani.img})
+			</foreach>
+			SELECT * FROM DUAL
+		</if>
+		<if test='board.equals("animal_alien_harm")'>
+			INSERT ALL
+			<foreach collection="list" item="ani">
+				INTO ANIMAL_ALIEN_HARM(KOR_NAME, ENG_NAME, GROUPS, MANAGEMENT, IMG)
+				VALUES(#{ani.kor_name},#{ani.eng_name},#{ani.groups},#{ani.management},#{ani.img})
+			</foreach>
+			SELECT * FROM DUAL
+		</if>
+	</insert>	
+	
+	<!-- db에서 생태교란 목록 가져오는 쿼리 -->
+	<select id="aniSelectListDisturb" resultType="animalDisturbDto">
+		SELECT *
+		FROM (SELECT ROWNUM AS RNUM, P.*
+			 FROM ( SELECT * 
+			 		FROM ANIMAL_ALIEN_DISTURB
+			 		<where>
+			 			<if test="groups != null">
+			 				AND GROUPS = #{groups}
+			 			</if>
+			 			<if test='txt_search != null'>
+							AND upper(KOR_NAME) like '%' || trim(upper(#{txt_search})) || '%' or
+							upper(ENG_NAME) like '%' || trim(upper(#{txt_search})) || '%'
+			 			</if>
+			 		</where>
+						ORDER BY KOR_NAME
+						) P
+			 )
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
+	</select>
+
+	<!-- db에서 위해종 목록 가져오는 쿼리 -->
+	<select id="aniSelectListHarm" parameterType="map" resultType="animalHarmDto">
+		SELECT *
+		FROM (SELECT ROWNUM AS RNUM, P.*
+			 FROM ( SELECT * 
+			 		FROM ANIMAL_ALIEN_HARM
+			 		<where>
+			 			<if test="groups != null">
+			 				AND GROUPS = #{groups}
+			 			</if>
+			 			<if test='txt_search != null'>
+							AND upper(KOR_NAME) like '%' || trim(upper(#{txt_search})) || '%' or
+							upper(ENG_NAME) like '%' || trim(upper(#{txt_search})) || '%'
+			 			</if>
+			 		</where>
+						ORDER BY KOR_NAME
+						) P
+			 )
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
+	</select>
+	
+	
 </mapper>
+
+
+
+
+
+

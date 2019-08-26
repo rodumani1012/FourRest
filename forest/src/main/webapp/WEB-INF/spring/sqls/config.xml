@@ -10,6 +10,8 @@
 		<typeAlias type="com.my.four.model.dto.AnimalEndangeredCSVDto" alias="animalCSVDto"/>
 		<typeAlias type="com.my.four.model.dto.AnimalEndangeredImgDto" alias="animalImgDto"/>
 		<typeAlias type="com.my.four.model.dto.AnimalEndangeredJoinDto" alias="animalJoinDto"/>
+		<typeAlias type="com.my.four.model.dto.AnimalDisturbDto" alias="animalDisturbDto"/>
+		<typeAlias type="com.my.four.model.dto.AnimalHarmDto" alias="animalHarmDto"/>
 		<typeAlias type="com.my.four.model.dto.FundingDto" alias="FundingDto"/>
 		<typeAlias type="com.my.four.model.dto.FundingLoadDto" alias="FundingLoadDto"/>
 		<typeAlias type="com.my.four.model.dto.ContestBoardDto" alias="ContestBoardDto"/>
@@ -18,6 +20,8 @@
 		<typeAlias type="com.my.four.model.dto.VolmemberDto" alias="VolmemberDto"/>
 		<typeAlias type="com.my.four.model.dto.AreaDto" alias="AreaDto"/>
 		<typeAlias type="com.my.four.model.dto.TrashDto" alias="TrashDto"/>
+		<typeAlias type="com.my.four.model.dto.StarRecordDto" alias="StarRecordDto"/>
+		
 	</typeAliases>
 	<!-- resource : java Resources -->
 	<!-- resource : src/main/resources -->

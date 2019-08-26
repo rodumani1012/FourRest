@@ -16,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.my.four.model.biz.AnimalListBiz;
+import com.my.four.model.dto.AnimalDisturbDto;
 import com.my.four.model.dto.AnimalEndangeredCSVDto;
 import com.my.four.model.dto.AnimalEndangeredImgDto;
+import com.my.four.model.dto.AnimalHarmDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 
 @Component
@@ -121,7 +123,7 @@ public class AnimalList {
 		*/
 	}
 	
-	// 이미지 src와 alt를 list로 돌려주는 메소드
+	// 멸종위기 이미지 src와 alt를 list로 돌려주는 메소드
 	public List<AnimalEndangeredImgDto> returnEndangeredImg() throws IOException {
 
 		String str = "";
@@ -177,6 +179,7 @@ public class AnimalList {
 		return list;
 	}
 	
+	// 멸종위기 CSV 파일 리스트 돌려주는 메소드
 	public List<AnimalEndangeredCSVDto> returnEndangeredCSV(String path) throws IOException {
 		
 		BufferedReader br = Files.newBufferedReader(Paths.get(path));
@@ -217,10 +220,10 @@ public class AnimalList {
 				dto = new AnimalEndangeredCSVDto();
 			}
 		}
-		
 		return list;
 	}
 	
+	// 멸종위기 페이지의 테이블 값을 돌려주는 메소드
 	public String[] returnTable() {
 		
 		List<String> grade = new ArrayList<String>();
@@ -236,7 +239,7 @@ public class AnimalList {
 		groups.add("곤충류");
 		groups.add("무척추동물");
 		groups.add("육상식물");
-		groups.add("해조류");
+		groups.add("해초류");
 		groups.add("고등균류");
 		
 		List<List<String>> list = new ArrayList<List<String>>();
@@ -257,6 +260,7 @@ public class AnimalList {
 		return array;
 	}
 	
+	// 멸종위기 페이지의 테이블 총계값을 돌려주는 메소드
 	public int[] returnTotal() {
 		
 		String array[] = returnTable();
@@ -271,4 +275,129 @@ public class AnimalList {
 		
 		return res;
 	}
+
+	// 생태계 교란종 list를 돌려주는 메소드
+	public List<AnimalDisturbDto> returnDisturb() throws IOException {
+
+		// 객체 생성하여 dto에 set해준 후 dto를 list에 담기
+		AnimalDisturbDto dto = new AnimalDisturbDto();
+		List<AnimalDisturbDto> list = new ArrayList<AnimalDisturbDto>();
+		
+		for (int i = 1; i <= 3; i++) {
+			
+			String url = "http://kias.nie.re.kr/home/for/for02001l.do?1=1&1=1&searchClsGbn=eco&searchYn=Y&pageIndex="+i+"#sres";
+			String selector = ".thumwrap > ul > li, em > li";
+			Document doc = null;
+
+			try {
+				doc = Jsoup.connect(url).post(); // post방식으로 url을 연결하여 값을 가져와 doc에 담음.
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+
+			Elements contents = doc.select(selector); // doc(HTML문서)에서 (selector)내용을 가져옴.
+
+			for (Element element : contents) {
+				dto.setImg("http://kias.nie.re.kr" + element.getElementsByTag("img").attr("src"));
+				dto.setKor_name(element.text().substring(0, element.text().indexOf("영명")).trim());
+				dto.setEng_name(element.text().substring(element.text().indexOf("영명")+5, element.text().indexOf("분류군")).trim());
+				dto.setGroups(element.text().substring(element.text().indexOf("분류군")+5, element.text().indexOf("관리현황")).trim());
+				if(element.text().contains("원산지")) {
+					dto.setManagement(element.text().substring(element.text().indexOf("관리현황")+6, element.text().indexOf("원산지")).trim());
+					dto.setCountry(element.text().substring(element.text().indexOf("원산지")+5).trim());
+				} else {
+					dto.setManagement(element.text().substring(element.text().indexOf("관리현황")+6).trim());
+					dto.setCountry("NA");
+				}
+				list.add(dto);
+				dto = new AnimalDisturbDto();
+			}
+		}
+		return list;
+	}
+	
+	// 위해 우려종 list를 돌려주는 메소드
+	public List<AnimalHarmDto> returnHarm() throws IOException {
+		
+		List<AnimalHarmDto> list = new ArrayList<AnimalHarmDto>();
+		
+		String category[] = {"MM", "AV", "RP", "AM", "-P", "IN", "IV", "VP"};
+		
+		for(int i = 0; i < category.length; i++) {
+			switch (category[i]) {
+			case "MM":
+				list.addAll(categoryList(category[i], "포유류", 1));
+				break;
+			case "AV":
+				list.addAll(categoryList(category[i], "조류", 1));
+				break;
+			case "RP":
+				list.addAll(categoryList(category[i], "파충류", 1));
+				break;
+			case "AM":
+				list.addAll(categoryList(category[i], "양서류", 1));
+				break;
+			case "-P":
+				list.addAll(categoryList(category[i], "어류", 5));
+				break;
+			case "IN":
+				list.addAll(categoryList(category[i], "곤충", 1));
+				break;
+			case "IV":
+				list.addAll(categoryList(category[i], "무척추동물", 1));
+				break;
+			case "VP":
+				list.addAll(categoryList(category[i], "식물", 5));
+				break;
+			}
+		}
+		return list;
+	}
+	
+	// 카테고리별 목록 리턴
+	public static List<AnimalHarmDto> categoryList(String category, String kor_category, int count) {
+
+		// 객체 생성하여 dto에 set해준 후 dto를 list에 담기
+		AnimalHarmDto dto = new AnimalHarmDto();
+		List<AnimalHarmDto> list = new ArrayList<AnimalHarmDto>();
+		
+		for(int i = 1; i <= count; i++) {
+
+			String url = "http://kias.nie.re.kr/home/ham/ham02001l.do?1=1&commGroupList="+category+",&enltime=&origin=&r500Knm=&searchClsGbn=harm&searchKey=cls_nm&searchKeyword=&searchKeywordList=&searchYn=Y&pageIndex="+i+"#sres";
+			String selector = ".thumwrap > ul > li, em > li";
+			Document doc = null;
+
+			try {
+				doc = Jsoup.connect(url).post(); // post방식으로 url을 연결하여 값을 가져와 doc에 담음.
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+
+			Elements contents = doc.select(selector); // doc(HTML문서)에서 (selector)내용을 가져옴.
+
+			for (Element element : contents) {
+				if (element.getElementsByTag("img").attr("src").length() < 1) {
+					dto.setImg("http://kias.nie.re.kr/home/images/common/noimg169_127.gif");
+				} else {
+					dto.setImg("http://kias.nie.re.kr" + element.getElementsByTag("img").attr("src"));
+				}
+				dto.setKor_name(element.text().substring(0, element.text().indexOf("영명")).trim());
+				if(element.text().substring(element.text().indexOf("영명")+5, element.text().indexOf("분류군")).trim().length() < 1) {
+					dto.setEng_name("NA");
+				} else {
+					dto.setEng_name(element.text().substring(element.text().indexOf("영명")+5, element.text().indexOf("분류군")).trim());
+				}
+				dto.setGroups(kor_category);
+				if(element.text().substring(element.text().indexOf("관리현황")+6).trim().contains("사진 더보기")) {
+					dto.setManagement(element.text().substring(element.text().indexOf("관리현황")+6, element.text().indexOf("사진")).trim());
+				} else {
+					dto.setManagement(element.text().substring(element.text().indexOf("관리현황")+6).trim());
+				}
+				list.add(dto);
+				dto = new AnimalHarmDto();
+			}
+		}
+		return list;
+	}
+	
 }

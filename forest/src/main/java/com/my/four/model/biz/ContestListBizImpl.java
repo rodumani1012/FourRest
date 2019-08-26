@@ -31,8 +31,12 @@ public class ContestListBizImpl implements ContestListBiz {
 
 	@Override
 	public ContestListDto selectOne(int conlistno) {
-		// TODO Auto-generated method stub
 		return dao.selectOne(conlistno);
+	}
+
+	@Override
+	public int updatepart(int conlistno) {
+		return dao.updatepart(conlistno);
 	}
 
 }

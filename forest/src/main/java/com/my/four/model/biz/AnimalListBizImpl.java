@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.my.four.model.dao.AnimalListDao;
+import com.my.four.model.dto.AnimalDisturbDto;
 import com.my.four.model.dto.AnimalEndangeredCSVDto;
 import com.my.four.model.dto.AnimalEndangeredImgDto;
 import com.my.four.model.dto.AnimalEndangeredJoinDto;
+import com.my.four.model.dto.AnimalHarmDto;
 import com.my.four.model.dto.AnimalShelterListDto;
 
 @Service
@@ -74,4 +76,66 @@ public class AnimalListBizImpl implements AnimalListBiz {
 		return dao.aniGetOne(grade, groups);
 	}
 
+	@Override
+	public int aniGetTotalCountDisturbHarm(String board) {
+		return dao.aniGetTotalCountDisturbHarm(board);
+	}
+	
+	@Override
+	public int aniGetTotalCountDisturbHarm(String groups, String board, String txt_search) {
+		return dao.aniGetTotalCountDisturbHarm(returnGroups(groups), board, txt_search);
+	}
+
+	@Override
+	public int aniInsertDisturbHarm(String board, Object dtos) {
+		return dao.aniInsertDisturbHarm(board, dtos);
+	}
+
+	@Override
+	public List<AnimalDisturbDto> aniSelectListDisturb(String groups, int firstIndex, int recordCountPerPage, String txt_search) {
+		return dao.aniSelectListDisturb(returnGroups(groups), firstIndex, recordCountPerPage, txt_search);
+	}
+
+	@Override
+	public List<AnimalHarmDto> aniSelectListHarm(String groups, int firstIndex, int recordCountPerPage, String txt_search) {
+		return dao.aniSelectListHarm(returnGroups(groups), firstIndex, recordCountPerPage, txt_search);
+	}
+
+	private String returnGroups(String groups) {
+		if(groups == null) { 
+			groups = "all"; 
+		}
+		
+		switch (groups) {
+		case "mammal":
+			groups = "포유류";
+			break;
+		case "birds":
+			groups = "조류";
+			break;
+		case "reptile":
+			groups = "파충류";
+			break;
+		case "amphibian":
+			groups = "양서류";
+			break;
+		case "fish":
+			groups = "어류";
+			break;
+		case "insect":
+			groups = "곤충";
+			break;
+		case "invertebrate":
+			groups = "무척추동물";
+			break;
+		case "plants":
+			groups = "식물";
+			break;
+		default :
+			groups = "all";
+			break;
+		}
+		
+		return groups;
+	}
 }

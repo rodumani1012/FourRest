@@ -72,4 +72,33 @@ public class PollutionDataDaoImpl implements PollutionDataDao {
 		return false;
 	}
 
+	@Override
+	public List<AreaDto> selectBigList(int bigOption, int miniOption) {
+		List<AreaDto> biglist = null;
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		String year = "201"+miniOption;
+		int repyear = Integer.parseInt(year);
+		System.out.println("여기가 ! "+bigOption+"/"+repyear);
+		map.put("bigOption",bigOption);
+		map.put("repyear", repyear);
+		biglist = sqlSession.selectList(namespace+"bigchart",map);
+		
+		return biglist;
+	}
+
+	@Override
+	public List<AreaDto> selectMiniList(int bigOption, String areaname) {
+		List<AreaDto> minilist = null;
+		Map<String,Object> map = new HashMap<String,Object>();
+		if(areaname.length()!=4) {
+			areaname=areaname.substring(0, 2);
+		}else {
+			areaname = areaname.substring(0,1)+areaname.substring(2,3);
+		}
+		map.put("bigOption", bigOption);
+		map.put("areaname", areaname);
+		minilist = sqlSession.selectList(namespace+"minichart", map);
+		return minilist;
+	}
+
 }

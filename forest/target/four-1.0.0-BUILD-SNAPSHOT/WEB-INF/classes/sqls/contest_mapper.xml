@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="contest">
+
+	<insert id="boardInsert" parameterType="ContestBoardDto">
+		INSERT INTO CONTESTBOARD
+		VALUES
+		(#{conlistno},CON_BOARDNOSQ.NEXTVAL,CON_GROUPNOSQ.NEXTVAL,1,0,0,0,#{writer},#{title},#{reppic},#{content},SYSDATE)
+	</insert>
+	<select id="getCount" resultType="int" parameterType="ContestBoardDto">
+		SELECT COUNT(*) FROM (SELECT * FROM CONTESTBOARD WHERE GROUPSQ=1
+		<if test="conlistno!=0">
+			AND CONLISTNO = #{conlistno}
+		</if>
+		)
+	</select>
+	<select id="selectThree" parameterType="ContestBoardDto" resultType="ContestBoardDto">
+		SELECT * FROM (SELECT * FROM CONTESTBOARD
+		<if test="conlistno!=0">
+			WHERE CONLISTNO = #{conlistno}
+		</if>
+		ORDER BY LIKERATE DESC ) WHERE ROWNUM &lt;=3
+	</select>
+	<select id="listOption" parameterType="Hashmap"
+		resultType="ContestBoardDto">
+		SELECT * FROM ( SELECT ROWNUM RN,a.* FROM CONTESTBOARD a WHERE
+		GROUPSQ=1
+		<if test="conlistno!=0">
+			AND CONLISTNO = #{conlistno}
+		</if>
+		ORDER BY GROUPNO DESC) WHERE RN &gt;=#{begin} AND RN &lt;=#{end}
+	</select>
+	<update id="updateStar" parameterType="ContestBoardDto">
+		UPDATE
+		CONTESTBOARD SET LIKECNT = LIKECNT+1 , LIKERATE = #{likerate} WHERE
+		BOARDNO = #{boardno}
+	</update>
+	<!-- 여기까지완성 -->
+	<select id="selectList" resultType="ContestBoardDto"
+		parameterType="HashMap">
+		SELECT * FROM ( SELECT ROWNUM RN,a.* FROM CONTESTBOARD a
+		ORDER BY GROUPNO DESC) WHERE RN &gt;=#{begin} AND RN &lt;=#{end}
+	</select>
+
+	<select id="selectOne" resultType="ContestBoardDto">
+		SELECT * FROM CONTESTBOARD
+		WHERE BOARDNO = #{boardno}
+	</select>
+	<update id="boardUpdate" parameterType="ContestBoardDto">
+		UPDATE CONTESTBOARD SET
+		TITLE=#{title}, CONTENT=#{content},REPPIC=#{reppic} WHERE
+		BOARDNO=#{boardno}
+	</update>
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM CONTESTBOARD
+		WHERE GROUPNO=#{groupno}
+	</delete>
+	<update id="boardDel" parameterType="int">
+		UPDATE CONTESTBOARD SET
+		SECFLAG='Y' WHERE BOARDNO=#{boardno}
+	</update>
+	<delete id="boardDeleteReply" parameterType="int">
+		DELETE FROM
+		CONTESTBOARD WHERE BOARDNO=#{boardno}
+	</delete>
+	<update id="updateAns" parameterType="int">
+		UPDATE CONTESTBOARD SET
+		GROUPSQ = GROUPSQ+1
+		WHERE GROUPNO = (SELECT GROUPNO FROM CONTESTBOARD
+		WHERE
+		BOARDNO=#{parentno})
+		AND GROUPSQ &gt; (SELECT GROUPSQ FROM
+		CONTESTBOARD WHERE
+		BOARDNO=#{parentno})
+	</update>
+
+	<insert id="insertAns" parameterType="ContestBoardDto">
+		INSERT INTO CONTESTBOARD
+		VALUES(CON_BOARDNOSQ.NEXTVAL,
+		(SELECT GROUPNO FROM CONTESTBOARD WHERE
+		BOARDNO=#{boardno}),
+		(SELECT GROUPSQ FROM CONTESTBOARD WHERE
+		BOARDNO=#{boardno})+1,
+		(SELECT REPLYNO FROM CONTESTBOARD WHERE
+		BOARDNO=#{boardno})+1,
+		'N',#{writer},#{title},#{content},SYSDATE)
+	</insert>
+
+	<select id="selectListOption" parameterType="Hashmap"
+		resultType="ContestBoardDto">
+		SELECT * FROM ( SELECT ROWNUM RN,a.* FROM CONTESTBOARD a WHERE
+		GROUPSQ=1
+		<if test="title!=null and content==null">
+			and title like '%'|| #{title} ||'%'
+		</if>
+		<if test="writer!=null">
+			and writer like '%'|| #{writer} ||'%'
+		</if>
+		<if test="content!=null and title==null">
+			and content like '%'|| #{content} ||'%'
+		</if>
+		<if test="title!=null and content!=null">
+			and title like '%'|| #{title} ||'%' or content like '%'||
+			#{content}
+			||'%'
+		</if>
+		ORDER BY GROUPNO DESC) WHERE RN &gt;=#{begin} AND RN &lt;=#{end}
+	</select>
+
+	<select id="getTotalCount" parameterType="HashMap"
+		resultType="int">
+		SELECT COUNT(*) AS CNT FROM
+		(SELECT * FROM CONTESTBOARD WHERE GROUPSQ=1
+		<if test="title!=null and content==null">
+			and title like '%'|| #{title} ||'%'
+		</if>
+		<if test="writer!=null">
+			and writer like '%'|| #{writer} ||'%'
+		</if>
+		<if test="content!=null and title==null">
+			and content like '%'|| #{content} ||'%'
+		</if>
+		<if test="title!=null and content!=null">
+			and title like '%'|| #{title} ||'%' or content like '%'||
+			#{content}
+			||'%'
+		</if>
+		)
+	</select>
+	<select id="selectTotalCount" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM CONTESTBOARD WHERE GROUPSQ=1
+	</select>
+
+	<select id="selectListReply" resultType="ContestBoardDto">
+		SELECT * FROM
+		CONTESTBOARD WHERE GROUPNO=#{groupno} AND GROUPSQ &gt; 1
+		ORDER BY
+		GROUPSQ DESC
+	</select>
+
+	<update id="replyCntup" parameterType="int">
+		UPDATE CONTESTBOARD SET
+		REPLYNO = REPLYNO+1 WHERE BOARDNO=#{boardno}
+	</update>
+
+	<update id="likeCntup" parameterType="int">
+		UPDATE CONTESTBOARD SET
+		LIKECNT = LIKECNT+1 WHERE BOARDNO=#{boardno}
+	</update>
+	
+</mapper>
