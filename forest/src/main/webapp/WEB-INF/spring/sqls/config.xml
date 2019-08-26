@@ -23,6 +23,9 @@
 		<typeAlias type="com.my.four.model.dto.SortGameDto" alias="SortGameDto"/>
 		<typeAlias type="com.my.four.model.dto.SortRankDto" alias="SortRankDto"/>
 		<typeAlias type="com.my.four.model.dto.TrashDto" alias="TrashDto"/>
+		<typeAlias type="com.my.four.model.dto.TrashDto" alias="TrashDto"/>
+		<typeAlias type="com.my.four.model.dto.StarRecordDto" alias="StarRecordDto"/>
+		
 	</typeAliases>
 	<!-- resource : java Resources -->
 	<!-- resource : src/main/resources -->

@@ -14,7 +14,7 @@ public interface AnimalListDao {
 	String namespace = "animal.";
 	
 	public int aniInsert(List<AnimalShelterListDto> dtos);
-	public List<AnimalShelterListDto> aniSelectList(int firstIndex, int recordCountPerPage,String txt_search);
+	public List<AnimalShelterListDto> aniSelectList(int firstIndex, String txt_search);
 	public int aniGetTotalCount(String txt_search);
 	
 	public int aniInsertEndangeredCSV(List<AnimalEndangeredCSVDto> dtos);
