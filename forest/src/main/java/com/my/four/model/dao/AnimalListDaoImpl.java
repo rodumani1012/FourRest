@@ -112,7 +112,7 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		map.put("txt_search", txt_search);
 		
 		res = sqlSession.selectOne(namespace + "aniGetTotalCountEndangeredCSV", map);
-		
+		System.out.println("res : " + res);
 		return res;
 	}
 

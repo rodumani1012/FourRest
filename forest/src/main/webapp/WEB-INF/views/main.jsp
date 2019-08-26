@@ -180,7 +180,7 @@
 		<i class='fas fa-comment-dots'></i></button>
 		<div id="chat_box">
 			<ul id="#messages"></ul>
- 			<iframe class="iframe-chat" src="http://192.168.110.46:8880/"></iframe> 
+ 			<!-- <iframe class="iframe-chat" src="http://192.168.110.46:8880/"></iframe>  -->
 		</div>
 
 	<!-- footer -->
