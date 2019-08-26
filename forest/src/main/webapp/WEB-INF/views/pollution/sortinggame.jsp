@@ -415,7 +415,7 @@ border-radius: 0.3rem;
 					<!-- 					<P>5개 리스트가져와서 1,2,3,4,5등 뿌려주기IF문 자기자신점수면 노란색</P> -->
 					<div
 						style="cursor: pointer; background-color: #DDDDDD; text-align: center; padding-bottom: 10px; padding-top: 10px;"
-						onClick="close_rankpop();">
+						onClick="close_rankpop();" id="rankclosebtn">
 						<span class="pop_bt" style="font-size: 13pt;">닫기</span>
 					</div>
 				</div>
@@ -479,9 +479,8 @@ border-radius: 0.3rem;
 		$('#rankModal').show();
 	};
 	function close_rankpop(flag) {
-		$('#rankModal').hide();
+		$('#rankModal').hide();		
 	};
-
 	
 </script>
 <script type="text/javascript">
@@ -511,7 +510,16 @@ border-radius: 0.3rem;
 			sec = '00';
 			min++;
 		}
-
+		
+		if (('' + ms).length < 3) {
+			ms = '0' + ms;
+			if ((ms).length < 3) {
+				ms = '0' + ms;
+				if ((ms).length < 3) {
+					ms = '0' + ms;
+				}
+			}
+		}
 		if (('' + sec).length < 2) {
 			sec = '0' + sec;
 		}
@@ -565,17 +573,17 @@ border-radius: 0.3rem;
 			"order" : "9",
 			"pic" : "<img class='queimg' src='resources/image/sorting/pic09(2).png'/>"
 		}, {
-			"text" : "소주병",
-			"order" : "9",
-			"pic" : "<img class='queimg' src='resources/image/sorting/pic09(2).png'/>"
+			"text" : "종이컵",
+			"order" : "10",
+			"pic" : "<img class='queimg' src='resources/image/sorting/pic22.png'/>"
 		}, {
-			"text" : "소주병",
-			"order" : "9",
-			"pic" : "<img class='queimg' src='resources/image/sorting/pic09(2).png'/>"
+			"text" : "신문",
+			"order" : "11",
+			"pic" : "<img class='queimg' src='resources/image/sorting/pic20.png'/>"
 		}, {
-			"text" : "소주병",
-			"order" : "9",
-			"pic" : "<img class='queimg' src='resources/image/sorting/pic09(2).png'/>"
+			"text" : "일회용수저",
+			"order" : "12",
+			"pic" : "<img class='queimg' style='padding-bottom:5px;' src='resources/image/sorting/pi.png'/>"
 		}
 
 		];
@@ -597,8 +605,8 @@ border-radius: 0.3rem;
 			"pic" : "<img src='resources/image/sorting/re_paper.png'/>",
 			"url" : 'resources/image/sorting/re_paper.png'
 		}, {
-			"text" : "paper pack",
-			"id" : "paper pack",
+			"text" : "paperpack",
+			"id" : "paperpack",
 			"pic" : "<img src='resources/image/sorting/re_pack.png'/>",
 			"url" : 'resources/image/sorting/re_pack.png'
 		}, {
@@ -623,13 +631,14 @@ border-radius: 0.3rem;
 			"url" : 'resources/image/sorting/일반.png'
 		} ];
 
-		var plastic_correct = new Array('answer8');
+		var plastic_correct = new Array('answer12');
 		var vinyl_correct = new Array('answer1');
 		var metal_correct = new Array('answer2', 'answer3');
 		var glass_correct = new Array('answer9');
-		var paper_correct = new Array('answer4');
+		var paper_correct = new Array('answer11');
 		var landfill_correct = new Array('answer7', 'answer6', 'answer5');
-
+		var paperpack_correct = new Array('answer4','answer10');
+		var pet_correct = new Array('answer8');
 		reset_game(); // 
 
 		$('#reset_button').click(function() {
@@ -668,7 +677,7 @@ border-radius: 0.3rem;
 			//시간초기화
 			$('#timer').find('#sw_m').text('00');
 			$('#timer').find('#sw_s').text('00');
-			$('#timer').find('#sw_ms').text('00');
+			$('#timer').find('#sw_ms').text('000');
 
 			//드래거블리셋
 			$('#game_container .col-xs-4 #draggable_container').html('')
@@ -772,10 +781,12 @@ border-radius: 0.3rem;
 								$(this).css('cursor', 'default');
 								if ( // 
 								($.inArray($thisid, plastic_correct) > -1 && $parentid == 'plastic')
+										|| ($.inArray($thisid, pet_correct) > -1 && $parentid == 'pet')
 										|| ($.inArray($thisid, vinyl_correct) > -1 && $parentid == 'vinyl')
 										|| ($.inArray($thisid, metal_correct) > -1 && $parentid == 'metal')
 										|| ($.inArray($thisid, glass_correct) > -1 && $parentid == 'glass')
 										|| ($.inArray($thisid, paper_correct) > -1 && $parentid == 'paper')
+										|| ($.inArray($thisid, paperpack_correct) > -1 && $parentid == 'paperpack')
 										|| ($.inArray($thisid,landfill_correct) > -1 && $parentid == 'landfill')
 
 								) {
@@ -796,6 +807,10 @@ border-radius: 0.3rem;
 
 			//rank ajax 가져오기
 			var imuser = $('#imuser').val();
+			if(imuser==null){
+				alert("랭크를 확인하기위해 로그인을해주세요");
+				return;
+			}
 			$.ajax({
 				url : "getrank.do",
 				type : 'post',

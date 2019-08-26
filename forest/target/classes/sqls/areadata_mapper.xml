@@ -80,7 +80,7 @@
 	</insert>
 	
 	<select id="ranklist" resultType="SortRankDto">
-		SELECT ROWNUM AS RN ,a.* FROM SORTGAME a ORDER BY SCORE DESC
+		SELECT ROWNUM AS RN ,a.* FROM (SELECT * from SORTGAME ORDER BY SCORE DESC) a
 	</select>
 	
 </mapper>
