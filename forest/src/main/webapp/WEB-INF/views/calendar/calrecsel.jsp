@@ -93,8 +93,10 @@ body {
 </head>
 <body>
 
+<%@ include file="../header.jsp"%>
+<br><br><br><br><br><br>
 	<div id='calendar'></div>
-	<input type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">
+	<button class="btn btn-outline-dark" type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">봉사활동 등록</button>
 
 </body>
 </html>

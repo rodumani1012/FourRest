@@ -78,8 +78,8 @@ function checkRqDate1() {
 			<input type="hidden" name="calid" value=${user_id }/>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="봉사등록"> 
-					<input type="button" value="취소" onclick="location.href='calendar.do'">
+					<button class="btn btn-outline-dark" type="submit">봉사등록</button>
+					<button class="btn btn-outline-dark" type="button"onclick="location.href='calendar.do'">취소</button>
 				</td>
 			</tr>
 		</table>

@@ -30,12 +30,6 @@ public class CalendarController {
 	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
 	String today = formatter.format(new java.util.Date());
 	
-	@RequestMapping(value="calendar.do")
-	public String calendar() {
-		
-		return "calselect";
-	}
-	
 	@RequestMapping(value="caldetail.do")
 	public String caldetail(ModelMap model, String caltitle, int seq, Principal principal, HttpServletRequest requset) {
 		
