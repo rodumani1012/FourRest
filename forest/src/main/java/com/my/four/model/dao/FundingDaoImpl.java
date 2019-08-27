@@ -152,4 +152,16 @@ public class FundingDaoImpl implements FundingDao {
 		return res;
 	}
 
+	@Override
+	public int totalfund() {
+		int totalmoney =0;
+		try {
+			totalmoney = sqlSession.selectOne(namespace+"totalfund");
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
+		return totalmoney;
+	}
+
 }

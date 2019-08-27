@@ -2,7 +2,6 @@
 /* Table Name: 회원 */
 /**********************************/
 DROP TABLE MEMBER CASCADE CONSTRAINTS;
-DROP TABLE MEMBER;
 DROP SEQUENCE USERSEQ;
 CREATE SEQUENCE USERSEQ;
 CREATE TABLE MEMBER( 
@@ -23,9 +22,9 @@ CONSTRAINT CON_ENABLED CHECK (ENABLED IN ('Y','N'))
 INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'관리자','admin','admin123','010-7723-7077',
 'brooke1994@naver.com','서초구 역삼동','120-10','Y','ADMIN');
 INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user1','user1','123','010-7777-7077',
-'alice1994@naver.com','강남구 개포동','25-18',1,'USER');
+'alice1994@naver.com','강남구 개포동','25-18','Y','USER');
 INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user3','user2','123','010-7777-7077',
-'alice1994@naver.com','강남구 개포동','25-18',1,'USER');
+'alice1994@naver.com','강남구 개포동','25-18','Y','USER');
 INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,'user4','user4','1234','010-4477-7077',
 'jeni_jung','문정동','1218','N','USER');
 

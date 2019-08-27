@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.four.model.biz.ContestListBiz;
+import com.my.four.model.biz.FundingBiz;
 import com.my.four.model.biz.LoginBiz;
 import com.my.four.model.biz.MailService;
 import com.my.four.model.dto.LoginDto;
@@ -63,6 +64,8 @@ public class HomeController {
 	@Autowired
 	private ContestListBiz contestlistbiz;
 	
+	@Autowired
+	private FundingBiz funbiz;
 	
 	@RequestMapping(value="main.do")
 	public String main() {
@@ -180,7 +183,7 @@ public class HomeController {
 		logger.info("관리자");
 		model.addAttribute("memcount",biz.memcount());
 		model.addAttribute("concount",contestlistbiz.concount());
-
+		model.addAttribute("fundcount",funbiz.totalfund());
 		return "admin/admin";
 	}
 

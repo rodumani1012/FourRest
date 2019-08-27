@@ -55,6 +55,9 @@
 		<div class="container">
 			<div class="main_footer p-top-40 p-bottom-30 pull-right">
 				<a href="service.do">서비스전체보기</a>
+				<audio controls="controls" autoplay="autoplay" loop="loop">
+						<source src="resources/audio/mix.mp3" type="audio/mp3" />
+					</audio>
 			</div>
 			<div class="row">
 				<div class="main_footer text-center p-top-40 p-bottom-30">

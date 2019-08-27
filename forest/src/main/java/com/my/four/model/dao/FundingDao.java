@@ -17,4 +17,6 @@ public interface FundingDao {
 	public int muldel(FundingDto dto, String id);
 	public int funupdate(String funtitle, int funmoney);
 	public int funupdate1(String funtitle, int count);
+	
+	public int totalfund();
 }
