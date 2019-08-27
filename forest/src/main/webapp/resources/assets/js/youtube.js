@@ -14,7 +14,7 @@ $(document).ready(function(){
                     'videoId : https://youtube.be/' +items.snippet.resourceId.videoId + '\n' +
                     'Thumbnail : ' + items.snippet.thumbnails.high.url);
                 
-                    $('#getVideo').append(`<div class="div-iframe-player">
+                    $('#getVideo').append(`<div class="div-iframe-player col-sm-3 col-md-3">
                         <iframe id="player" type="text/html" width="400" height="300"
                    src="http://www.youtube.com/embed/${items.snippet.resourceId.videoId}?enablejsapi=1&origin=http://example.com"
                    frameborder="0" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" 

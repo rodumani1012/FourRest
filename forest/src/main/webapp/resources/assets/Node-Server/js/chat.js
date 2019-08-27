@@ -19,6 +19,7 @@ $(function() {
 			message = `<p class="chat_name">me</p><p>${msg}</p>`
 			$('#messages').append($('<li class="me">').html(message));
 			$('#m').val('');
+			$(".chatroom").scrollTop($(".chatroom")[0].scrollHeight);
 			return false;
 		});
 
