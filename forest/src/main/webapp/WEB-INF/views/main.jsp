@@ -76,17 +76,22 @@
 					</div>
 					<div class="carousel-item">
 						<img class="img-responsive"
-							src="resources/assets/images/background/3.jpg" alt="animal"
-							style="max-width: 100%; height: auto; display: block;">
-					</div>
-					<div class="carousel-item">
-						<img class="img-responsive"
 							src="resources/assets/images/background/4.jpg" alt="animal"
 							style="max-width: 100%; height: auto; display: block;">
 					</div>
 					<div class="carousel-item">
 						<img class="img-responsive"
+							src="resources/assets/images/background/3.jpg" alt="animal"
+							style="max-width: 100%; height: auto; display: block;">
+					</div>
+					<div class="carousel-item">
+						<img class="img-responsive"
 							src="resources/assets/images/background/6.jpg" alt="animal"
+							style="max-width: 100%; height: auto; display: block;">
+					</div>
+					<div class="carousel-item">
+						<img class="img-responsive"
+							src="resources/assets/images/background/5.jpg" alt="animal"
 							style="max-width: 100%; height: auto; display: block;">
 					</div>
 				</div>

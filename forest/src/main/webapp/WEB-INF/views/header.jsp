@@ -132,7 +132,7 @@
 					<li><sec:authorize access="isAuthenticated()">
 							<sec:authentication property="principal.username" var="user_id" />
 							<input type="submit" class="btn btn-link text-dark"
-								onclick="location.href='mypage.do'" value="${user_id }" />
+								onclick="location.href='mypage.do'" value="${user_id }님" />
 						</sec:authorize> <sec:authorize access="isAnonymous()">
 							<button type="button" class="btn btn-link text-dark"
 								onclick="location.href='loginform.do'">LOGIN</button>

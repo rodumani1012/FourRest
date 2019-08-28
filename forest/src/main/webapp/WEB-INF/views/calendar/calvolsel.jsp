@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../header.jsp"%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href='resources/assets/css/calcss/fullcalendar.css' rel='stylesheet' />
@@ -86,6 +87,8 @@ body {
 </head>
 <body>
 
+	<br><br><br><br><br><br><br><br><br>
+	
 	<div id='calendar'></div>
 	<input type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">
 
