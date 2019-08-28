@@ -1,11 +1,5 @@
 package com.my.four.model.security;
 
-
-
-
-import java.io.PrintWriter;
-import java.nio.file.attribute.UserPrincipalNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,12 +34,7 @@ public class AuthenticationService implements UserDetailsService {
 					System.out.println("hi!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 					throw new DisabledException("이미 탈퇴된 회원입니다.");
 				}else {
-					if(dto1.getRoles().equals("ADMIN")) {
-						return dto;
-					}else {
-						return dto;
-					}
-					
+					return dto;	
 				}
 					
 			}

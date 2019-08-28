@@ -16,6 +16,7 @@
 <script src='resources/assets/js/caljs/moment.min.js'></script>
 <script src='resources/assets/js/caljs/jquery.min.js'></script>
 <script src='resources/assets/js/caljs/fullcalendar.min.js'></script>
+<script src="resources/assets/js/caljs/lang/ko.js"></script>
 <script>
 
 	$(document).ready(function() {
@@ -49,7 +50,8 @@
 				center : 'title',
 				right : 'month'
 			},
-			defaultDate : '2019-08',
+			locale: 'ko',
+			defaultDate : new Date(),
 			editable : false,
 			eventLimit : true, // allow "more" link when too many events
 			
@@ -92,9 +94,14 @@ body {
 </style>
 </head>
 <body>
-
+	
+	<div>
+		<input type="button" value="봉사 모집 기간" onclick="location.href='calrecsel.do'" disabled="disabled">
+		<input type="button" value="봉사 활동 기간" onclick="location.href='calvolsel.do'">
+		<input type="button" value="봉사 활동 등록" onclick="location.href='calinsert.do'">
+	</div>
+	
 	<div id='calendar'></div>
-	<input type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">
 
 </body>
 </html>

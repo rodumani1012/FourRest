@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="loginDto">
-		INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,#{name},#{id},#{pw},#{phone},#{email},#{addr},#{zonecode},1,'USER',SYSDATE,'N')
+		INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,#{name},#{id},#{pw},#{phone},#{email},#{addr},#{zonecode},'Y','USER',SYSDATE,'N')
 	</insert>
 	
 	<insert id="insert_auth" parameterType="loginDto">

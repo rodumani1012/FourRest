@@ -180,7 +180,7 @@ public class CalendarDaoImpl implements CalendarDao {
 	}
 
 	@Override
-	public int noticeupdate1(List list) {
+	public int noticeupdate1(List<String> list) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		

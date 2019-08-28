@@ -75,20 +75,20 @@
 			<div class="collapse navbar-collapse" id="navbar-menu">
 				<ul class="navbar-nav navbar-right">
 					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='gotomap.do'">Map</button></li>
+							onclick="location.href='gotomap.do'">지도</button></li>
 					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='calendar.do'">Calendar</button></li>
+							onclick="location.href='calrecsel.do'">봉사일정</button></li>
 					<li><button type="button" class="btn btn-link text-dark"
 							onclick="location.href='chat.do'">문의하기</button></li>
 					<li><button type="button" class="btn btn-link text-dark"
 							onclick="location.href='admin.do'">관리자</button></li>
 					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='site.do'">sitelist</button></li>
+							onclick="location.href='site.do'">관련 사이트</button></li>
 					<li>
 						<div class="dropdown">
 							<button type="button"
 								class="text-dark btn btn-link dropdown-toggle"
-								data-toggle="dropdown">save</button>
+								data-toggle="dropdown">환경센터</button>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="funlist.do">후원하기</a> <a
 									class="dropdown-item" href="ani_shelterList.do">보호소</a> <a
@@ -103,7 +103,7 @@
 						<div class="dropdown">
 							<button type="button"
 								class="text-dark btn btn-link dropdown-toggle"
-								data-toggle="dropdown">board</button>
+								data-toggle="dropdown">게시판</button>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="contest_main.do">공모게시판</a> <a
 									class="dropdown-item" href="#portfolio">리뷰만들어야함</a>
@@ -114,10 +114,10 @@
 						<div class="dropdown">
 							<button type="button"
 								class="text-dark btn btn-link dropdown-toggle"
-								data-toggle="dropdown">content</button>
+								data-toggle="dropdown">컨텐츠</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="content.do">GAME</a> <a
-									class="dropdown-item" href="youtube.do">YOUTUBE</a>
+								<a class="dropdown-item" href="content.do">게임</a> <a
+									class="dropdown-item" href="youtube.do">관련 영상</a>
 							</div>
 						</div>
 					</li>
