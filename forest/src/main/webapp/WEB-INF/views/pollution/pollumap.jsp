@@ -264,9 +264,6 @@
 			let path = [];
 
 			$.each(coordinatesArr[i], function(index, coordinate) {
-// 				var point = new Object();
-// 				point.x = coordinate[1];
-// 				point.y = coordinate[0];
 				path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
 			});
 			paths.push(path);
@@ -438,15 +435,7 @@
 			title : {
 				text : '검색으로 지역별 통계를 조회하세요'
 			},
-		// 		xAxis : {
-		// 			categories : ['서울']
-		// 		},
-		// 		yAxis : {
-		// 			title : {
-		// 				text : ''
-		// 			}
-		// 		},
-		// 		series :[' ']
+
 		});
 	});
 </script>
@@ -461,21 +450,7 @@
 			title : {
 				text : '지역을 클릭해 통계자료를 조회하세요'
 			},
-// 			xAxis : {
-// 				categories : [ 'apple', 'pineapple', 'banana' ]
-// 			},
-// 			yAxis : {
-// 				title : {
-// 					text : 'fruit eaten'
-// 				}
-// 			},
-// 			series : [ {
-// 				name : 'brooke',
-// 				data : [ 1, 4, 2 ]
-// 			}, {
-// 				name : 'roomy',
-// 				data : [ 0, 1, 2 ]
-// 			} ]
+
 
 		});
 	});

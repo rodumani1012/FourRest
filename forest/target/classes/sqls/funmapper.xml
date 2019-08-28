@@ -31,8 +31,8 @@
 		SELECT SUM(FUNPAY) FROM FUNDINGPAY
 	</select>
 	
-	<delete id="admindelete">
-		DELETE FROM FUNDINGPAY WHERE FUNDID=#{id} 
+	<delete id="admindelete" parameterType="map">
+		DELETE FROM FUNDING WHERE FUNTITLE = #{title}
 	</delete>
 
 </mapper>

@@ -58,8 +58,8 @@
 		]]>
 	</select>
 	
-	<select id="memlist" resultType="loginDto" >
-		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLED,ROLE FROM MEMBER
+	<select id="memlist" resultType="LoginDto" >
+		SELECT * FROM MEMBER
 	</select>
 	
 	<update id="memupdate" parameterType="loginDto">
@@ -68,6 +68,10 @@
 	
 	<select id="memcount" resultType="int">
 		SELECT COUNT(*) FROM MEMBER 
+	</select>
+	
+	<select id="adminsearch" resultType="logindto" parameterType="map">
+		SELECT * FROM MEMBER WHERE UPPER(ID) like '%' || UPPER(#{idsearch}) || '%'
 	</select>
 	
 </mapper>

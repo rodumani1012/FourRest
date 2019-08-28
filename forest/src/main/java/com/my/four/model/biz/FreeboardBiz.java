@@ -17,5 +17,4 @@ public interface FreeboardBiz {
 	public List<FreecommentDto> freecommentList(int free_seq);
 	public int commentinsert(int free_seq, String user_id, String content);
 	public int commdelete(int comm_seq);
-
 }

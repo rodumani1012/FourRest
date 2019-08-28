@@ -108,6 +108,12 @@ public class LoginBizImpl implements LoginBiz{
 		// TODO Auto-generated method stub
 		return dao.memcount();
 	}
+
+	@Override
+	public List<LoginDto> adminsearch(String idsearch) {
+		// TODO Auto-generated method stub
+		return dao.adminsearch(idsearch);
+	}
 	
 	
 }
