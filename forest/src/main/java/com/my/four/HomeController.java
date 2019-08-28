@@ -182,11 +182,12 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "admin.do")
-	public String admin(Model model) {
+	public String admin(Model model,Principal prin) {
 		logger.info("관리자");
 		model.addAttribute("memcount",biz.memcount());
 		model.addAttribute("concount",contestlistbiz.concount());
-
+		LoginDto dto = biz.memberInfo(prin.getName());
+		System.out.println("!!!!!!!!!!!!!!!!"+dto.getRole());
 		return "admin/admin";
 	}
 
@@ -543,6 +544,10 @@ public class HomeController {
 		}
 		map.put("code", "no");
 		return map;
+	}
+	@RequestMapping("adminchat.do")
+	public String adminchat() {
+		return "admin/chatlist";
 	}
 	
 	

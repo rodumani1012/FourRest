@@ -80,8 +80,10 @@
 							onclick="location.href='calendar.do'">Calendar</button></li>
 					<li><button type="button" class="btn btn-link text-dark"
 							onclick="location.href='chat.do'">문의하기</button></li>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<li><button type="button" class="btn btn-link text-dark"
 							onclick="location.href='admin.do'">관리자</button></li>
+					</sec:authorize>
 					<li><button type="button" class="btn btn-link text-dark"
 							onclick="location.href='site.do'">sitelist</button></li>
 					<li>

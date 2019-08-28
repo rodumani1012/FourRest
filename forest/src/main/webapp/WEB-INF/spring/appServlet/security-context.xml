@@ -19,7 +19,7 @@
         <intercept-url pattern="/main.do" access="permitAll" />
         <intercept-url pattern="/loginform.do" access="permitAll" />
         <intercept-url pattern="/joinform.do" access="permitAll" />
-        <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/**" access="permitAll" />
         
         <csrf disabled="true"/>

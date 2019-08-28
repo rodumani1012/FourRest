@@ -313,6 +313,13 @@
 			<artifactId>mongo-java-driver</artifactId>
 			<version>3.11.0</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>cglib</groupId>
+		    <artifactId>cglib</artifactId>
+		    <version>3.2.12</version>
+		</dependency>
+				
 
 		<dependency>
 			<groupId>org.springframework.data</groupId>

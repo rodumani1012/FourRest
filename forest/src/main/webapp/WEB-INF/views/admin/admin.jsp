@@ -16,7 +16,12 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
+<script type="text/javascript">
+function toggle(){
+	$("#adminchat").toggle()
+	
+}
+</script>
 <style type="text/css">
 </style>
 </head>
@@ -188,20 +193,19 @@
 				</div>
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-						<a href="#">
+<!-- 						<a href="resources/assets/Node-Server/admin/chatlist.jsp"> -->
+					<div id="adminchat" style="display: none;" >
+					<iframe class="iframe-chat" src="http://192.168.110.62:8880/admin"></iframe></div>
 							<div class="circle-tile-heading purple">
 								<i class="fa fa-comments fa-fw fa-3x"></i>
 							</div>
-						</a>
-						<div class="circle-tile-content purple">
+<!-- 						</a> -->
+						<div class="circle-tile-content purple" onclick="toggle()">
 							<div class="circle-tile-description text-faded">문의채팅방</div>
 							<div class="circle-tile-number text-faded">
 								1:1 <span id="sparklineD"></span>
 							</div>
-							<a href="#" class="circle-tile-footer">More Info <i
-								class="fa fa-chevron-circle-right"></i></a>
-						</div>
-					</div>
+							<a href="resources/assets/Node-Server/admin/chatlist"></a>
 				</div>
 			</div>
 		</div>

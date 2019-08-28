@@ -5,9 +5,13 @@ package com.my.four.model.security;
 
 import java.io.PrintWriter;
 import java.nio.file.attribute.UserPrincipalNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,6 +25,7 @@ public class AuthenticationService implements UserDetailsService {
     
 
 	public AuthenticationService() {
+		
 	}
 
 	
@@ -31,6 +36,8 @@ public class AuthenticationService implements UserDetailsService {
 		
 			LoginDto dto = biz.login(id);
 			
+			
+			
 			System.out.println("11111111111111"+dto);
 			if (dto == null) {
 				throw new UsernameNotFoundException(id);
@@ -40,12 +47,10 @@ public class AuthenticationService implements UserDetailsService {
 					System.out.println("hi!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 					throw new DisabledException("이미 탈퇴된 회원입니다.");
 				}else {
-					if(dto1.getRoles().equals("ADMIN")) {
+					List<GrantedAuthority> authority = new ArrayList<GrantedAuthority>();
+					authority.add(new SimpleGrantedAuthority(dto.getRole()));
+					dto.setAuthorities(authority);
 						return dto;
-					}else {
-						return dto;
-					}
-					
 				}
 					
 			}

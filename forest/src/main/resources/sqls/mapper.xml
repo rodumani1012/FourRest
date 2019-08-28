@@ -56,6 +56,7 @@
 		<![CDATA[
 		SELECT ID FROM MEMBER WHERE JOINDATE=#{joindate} < SYSDATE
 		]]>
+	</select>
 	<select id="memlist" resultType="loginDto" >
 		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLED,ROLE FROM MEMBER
 	</select>
