@@ -164,4 +164,16 @@ public class FundingDaoImpl implements FundingDao {
 		return totalmoney;
 	}
 
+	@Override
+	public int admindelete(String id, String title) {
+		int res =0;
+		try {
+			res = sqlSession.delete(namespace+"admindelete");
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }

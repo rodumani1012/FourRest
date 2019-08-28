@@ -51,5 +51,9 @@
 			UPDATE VOLCALENDAR SET NOTICE = 'N' WHERE CALTITLE = #{not.caltitle }
 		</foreach>
 	</update>
+	
+	<select id="calcount" resultType="int">
+		SELECT COUNT(*) FROM VOLCALENDAR
+	</select>
 
 </mapper>

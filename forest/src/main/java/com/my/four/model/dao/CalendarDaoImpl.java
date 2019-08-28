@@ -196,4 +196,16 @@ public class CalendarDaoImpl implements CalendarDao {
 		return res;
 	}
 
+	@Override
+	public int calcount() {
+		int res =0;
+		try {
+			res = sqlSession.selectOne(namespace+"calcount");
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }

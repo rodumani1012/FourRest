@@ -67,8 +67,6 @@
 					</div>
 				</form>
 			</li>
-
-
 		</ul>
 	</div>
 
@@ -78,18 +76,19 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="page-title">
-						<audio controls="controls" autoplay="autoplay" loop="loop">
-							<source src="resources/audio/mix.mp3" type="audio/mp3" />
-						</audio>
-						<a href="polu.do">수질,대기,쓰레기 table data insert! (pollution.sql)</a>
-							<br>
+						
 						<h2>
-							ADMIN BOARD<small>관리자페이지</small>
+							&nbsp;ADMIN BOARD<small> 관리자페이지</small>
 						</h2>
 						<ol class="breadcrumb">
-							<li class="active">
+							<li style="margin-top: 10px; font-size: 25px; color: #34495e;">
 									<i class="fa fa-calendar"></i>
 										<%=today.substring(0, 8)%>
+							</li>
+							<li class="pull-right">
+								<audio controls="controls" autoplay="autoplay" loop="loop">
+									<source src="resources/audio/mix.mp3" type="audio/mp3" />
+								</audio>
 							</li>
 						</ol>
 					</div>
@@ -105,9 +104,9 @@
 						<div class="circle-tile-content dark-blue">
 							<div class="circle-tile-description text-faded">회원목록</div>
 							<div class="circle-tile-number text-faded">
-								${memcount} <span id="sparklineA"></span>
+								${memcount} 명 <span id="sparklineA"></span>
 							</div>
-							<a href="memlist.do" class="circle-tile-footer">More Info <i
+							<a href="admin_memlist.do" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>
 						</div>
 					</div>
@@ -120,7 +119,7 @@
 						<div class="circle-tile-content green">
 							<div class="circle-tile-description text-faded">후원내역</div>
 							<div class="circle-tile-number text-faded">${fundcount}￦</div>
-							<a href="#" class="circle-tile-footer">More Info <i
+							<a href="admin_fundlist.do" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>
 						</div>
 					</div>
@@ -147,7 +146,7 @@
 						<div class="circle-tile-content blue">
 							<div class="circle-tile-description text-faded">자유게시판</div>
 							<div class="circle-tile-number text-faded">
-								3 <span id="sparklineB"></span>
+								5<span id="sparklineB"></span>
 							</div>
 							<a href="#" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>
@@ -162,7 +161,7 @@
 						<div class="circle-tile-content red">
 							<div class="circle-tile-description text-faded">봉사일정관리</div>
 							<div class="circle-tile-number text-faded">
-								- <span id="sparklineC"></span>
+								${calcount } 건 <span id="sparklineC"></span>
 							</div>
 							<a href="calrecsel.do" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>

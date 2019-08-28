@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.four.model.biz.FundingBiz;
 import com.my.four.model.biz.FundingLoadBiz;
@@ -123,7 +124,25 @@ public class FundingController {
 			return "redirect:funlist.do"; 
 		}
 		 
-
 	}
+	@RequestMapping("admin_fundlist")
+	public String admin_fundlist(Model model) {
+		model.addAttribute("fundlist",biz.selectList());
+		model.addAttribute("paylist",Loadbiz.paylist());
+		
+		return "admin/admin_fundlist";
+	}
+	
+	@RequestMapping("admin_fundelete.do")
+	@ResponseBody
+	public String admindelete(String id,String title) {
+		int res =0;
+		res = biz.admindelete(id, title);
+		if(res>0) {
+			return "ok";
+		}
+		return "no";
+	}
+	
 
 }

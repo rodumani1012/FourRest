@@ -81,5 +81,17 @@ public class FundingLoadDaoImpl implements FundingLoadDao {
 		return returnMap;
 	}
 
+	@Override
+	public List<FundingLoadDto> paylist() {
+		List<FundingLoadDto> paylist = null;
+		try {
+			paylist = sqlSession.selectList(namespace+"paylist");
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
+		return paylist;
+	}
+
 
 }

@@ -104,7 +104,7 @@ function update_member(idno){
 	var addr = $('#rownumid'+idno+' .afterup').find('.addr').val();
 	console.log(usernum+'/'+phone+'/'+email+'/'+addr);
 	$.ajax({
-		url : "memupdate.do",
+		url : "admin_memupdate.do",
 		type : 'post',
 		data : {
 			"usernum" :usernum,

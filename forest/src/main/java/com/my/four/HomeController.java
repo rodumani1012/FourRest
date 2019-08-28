@@ -36,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.my.four.model.biz.CalendarBiz;
 import com.my.four.model.biz.ContestListBiz;
 import com.my.four.model.biz.FundingBiz;
 import com.my.four.model.biz.LoginBiz;
@@ -63,9 +64,10 @@ public class HomeController {
 	
 	@Autowired
 	private ContestListBiz contestlistbiz;
-	
 	@Autowired
 	private FundingBiz funbiz;
+	@Autowired
+	private CalendarBiz calbiz;
 	
 	@RequestMapping(value="main.do")
 	public String main() {
@@ -184,6 +186,7 @@ public class HomeController {
 		model.addAttribute("memcount",biz.memcount());
 		model.addAttribute("concount",contestlistbiz.concount());
 		model.addAttribute("fundcount",funbiz.totalfund());
+		model.addAttribute("calcount",calbiz.calcount());
 		return "admin/admin";
 	}
 
@@ -414,7 +417,7 @@ public class HomeController {
 	   return "site";
 	}
 	
-	@RequestMapping("memlist.do")
+	@RequestMapping("admin_memlist.do")
 	public String memlist(Model model) {
 		List<LoginDto> memlist = null;
 		memlist = biz.memlist();
@@ -424,7 +427,7 @@ public class HomeController {
 		}
 		return "admin/admin_memlist";
 	}
-	@RequestMapping("memupdate.do")
+	@RequestMapping("admin_memupdate.do")
 	@ResponseBody
 	public Map<String,Object> memupdate(Model model,String usernum,String phone,String email,String addr) {
 		Map<String,Object> map = new HashMap<String,Object>();

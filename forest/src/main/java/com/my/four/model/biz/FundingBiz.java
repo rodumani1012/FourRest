@@ -17,5 +17,6 @@ public interface FundingBiz {
 	public int funupdate1(String funtitle, int count);
 	
 	public int totalfund();
+	public int admindelete(String id,String title);
 	
 }

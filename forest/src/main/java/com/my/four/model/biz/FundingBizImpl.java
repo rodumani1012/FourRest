@@ -60,6 +60,12 @@ public class FundingBizImpl implements FundingBiz {
 		// TODO Auto-generated method stub
 		return dao.totalfund();
 	}
+
+	@Override
+	public int admindelete(String id, String title) {
+		// TODO Auto-generated method stub
+		return dao.admindelete(id,title);
+	}
 	
 	
 

@@ -18,5 +18,5 @@ public interface CalendarBiz {
 	public VolmemberDto volselectOne (String caltitle, String id);
 	public int noticeupdate (String today);
 	public int noticeupdate1 (List list);
-	
+	public int calcount();
 }
