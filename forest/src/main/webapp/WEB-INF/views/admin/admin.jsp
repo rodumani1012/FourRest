@@ -67,8 +67,6 @@
 					</div>
 				</form>
 			</li>
-
-
 		</ul>
 	</div>
 
@@ -78,26 +76,20 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="page-title">
-						<audio controls="controls" autoplay="autoplay" loop="loop">
-							<source src="resources/audio/mix.mp3" type="audio/mp3" />
-						</audio>
-						<a href="polu.do">수질,대기,쓰레기 table data insert! (pollution.sql)</a>
-							<br>
+						
 						<h2>
-							ADMIN BOARD<small>관리자페이지</small>
+							&nbsp;ADMIN BOARD<small> 관리자페이지</small>
 						</h2>
 						<ol class="breadcrumb">
-							<li class="active">
-								<div id="reportrange"
-									class="btn btn-green btn-square date-picker">
-									<i class="fa fa-calendar"></i><span class="date-range">
-										<%=today.substring(0, 8)%></span><i class="fa fa-caret-down"></i>
-								</div>
+							<li style="margin-top: 10px; font-size: 25px; color: #34495e;">
+									<i class="fa fa-calendar"></i>
+										<%=today.substring(0, 8)%>
 							</li>
-							<li class="pull-right"><a href="admincal.do">봉사일정관리<i
-									class="fa fa-chevron-circle-right"></i></a></li>
-
-
+							<li class="pull-right">
+								<audio controls="controls" autoplay="autoplay" loop="loop">
+									<source src="resources/audio/mix.mp3" type="audio/mp3" />
+								</audio>
+							</li>
 						</ol>
 					</div>
 				</div>
@@ -106,43 +98,37 @@
 			<div class="row">
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-						<a href="#">
 							<div class="circle-tile-heading dark-blue">
 								<i class="fa fa-users fa-fw fa-3x"></i>
 							</div>
-						</a>
 						<div class="circle-tile-content dark-blue">
 							<div class="circle-tile-description text-faded">회원목록</div>
 							<div class="circle-tile-number text-faded">
-								${memcount} <span id="sparklineA"></span>
+								${memcount} 명 <span id="sparklineA"></span>
 							</div>
-							<a href="memlist.do" class="circle-tile-footer">More Info <i
+							<a href="admin_memlist.do" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-						<a href="#">
 							<div class="circle-tile-heading green">
 								<i class="fa fa-money fa-fw fa-3x"></i>
 							</div>
-						</a>
 						<div class="circle-tile-content green">
 							<div class="circle-tile-description text-faded">후원내역</div>
-							<div class="circle-tile-number text-faded">$32,384</div>
-							<a href="#" class="circle-tile-footer">More Info <i
+							<div class="circle-tile-number text-faded">${fundcount}￦</div>
+							<a href="admin_fundlist.do" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-						<a href="#">
 							<div class="circle-tile-heading orange">
 								<i class="fa fa-bell fa-fw fa-3x"></i>
 							</div>
-						</a>
 						<div class="circle-tile-content orange">
 							<div class="circle-tile-description text-faded">공모게시판</div>
 							<div class="circle-tile-number text-faded">${concount} New</div>
@@ -154,15 +140,13 @@
 				</div>
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-						<a href="#">
 							<div class="circle-tile-heading blue">
 								<i class="fa fa-tasks fa-fw fa-3x"></i>
 							</div>
-						</a>
 						<div class="circle-tile-content blue">
 							<div class="circle-tile-description text-faded">자유게시판</div>
 							<div class="circle-tile-number text-faded">
-								3 <span id="sparklineB"></span>
+								5<span id="sparklineB"></span>
 							</div>
 							<a href="#" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>
@@ -171,28 +155,24 @@
 				</div>
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-						<a href="#">
 							<div class="circle-tile-heading red">
-								<i class="fa fa-tasks fa-fw fa-3x"></i>
+								<i class="fa fa-calendar fa-fw fa-3x"></i>
 							</div>
-						</a>
 						<div class="circle-tile-content red">
-							<div class="circle-tile-description text-faded">멸종게시판</div>
+							<div class="circle-tile-description text-faded">봉사일정관리</div>
 							<div class="circle-tile-number text-faded">
-								262 <span id="sparklineC"></span>
+								${calcount } 건 <span id="sparklineC"></span>
 							</div>
-							<a href="#" class="circle-tile-footer">More Info <i
+							<a href="calrecsel.do" class="circle-tile-footer">More Info <i
 								class="fa fa-chevron-circle-right"></i></a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-						<a href="#">
 							<div class="circle-tile-heading purple">
 								<i class="fa fa-comments fa-fw fa-3x"></i>
 							</div>
-						</a>
 						<div class="circle-tile-content purple">
 							<div class="circle-tile-description text-faded">문의채팅방</div>
 							<div class="circle-tile-number text-faded">
@@ -207,7 +187,6 @@
 		</div>
 		<!-- page-wrapper END-->
 	</div>
-	<!-- container-1 END-->
 
 
 	<script src="resources/assets/js/vendor/jquery-1.11.2.min.js"></script>

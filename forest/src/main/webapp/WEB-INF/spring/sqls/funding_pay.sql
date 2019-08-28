@@ -5,6 +5,8 @@ CREATE TABLE FUNDINGPAY(
 	FUNTITLE VARCHAR2(2000),
 	FUNPAY NUMBER
 );
+--SELECT sum(funpay) FROM fundingpay;
+--INSERT INTO fundingpay values('admin','test funding',600);
 
 SELECT * FROM FUNDINGPAY;
 

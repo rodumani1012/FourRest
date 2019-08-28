@@ -26,5 +26,13 @@
 	<update id="muldel" parameterType="map">
 		UPDATE FUNDING SET NOTICE='N' WHERE FUNTITLE = #{dto.funtitle} AND FUN_ID = #{id}
 	</update>
+	
+	<select id="totalfund" resultType="int">
+		SELECT SUM(FUNPAY) FROM FUNDINGPAY
+	</select>
+	
+	<delete id="admindelete">
+		DELETE FROM FUNDINGPAY WHERE FUNDID=#{id} 
+	</delete>
 
 </mapper>
