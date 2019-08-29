@@ -74,4 +74,7 @@
 		SELECT * FROM MEMBER WHERE UPPER(ID) like '%' || UPPER(#{idsearch}) || '%'
 	</select>
 	
+	<delete id="adminmemdelete" parameterType="int">
+		DELETE FROM MEMBER WHERE USERNUM=#{usernum}
+	</delete>
 </mapper>

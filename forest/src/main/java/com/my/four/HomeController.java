@@ -556,5 +556,15 @@ public class HomeController {
 		
 		
 	}
+	@RequestMapping("admin_memdelete.do")
+	public String admin_memdelete(int usernum) {
+		int res = biz.userdel(usernum);
+		if (res>0) {
+			System.out.println("ok");
+			return "redirect:admin_memlist.do";
+		}
+		System.out.println("no");
+		return "redirect:admin_memlist.do";
+	}
 	
 }

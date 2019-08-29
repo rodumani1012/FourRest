@@ -86,7 +86,7 @@
 				<td>후원자</td>
 				<td>펀딩제목</td>
 				<td>후원금액</td>
-				<td>환불하기</td>
+<!-- 				<td>환불하기</td> -->
 			</tr>
 			<c:choose>
 				<c:when test="${empty paylist }">

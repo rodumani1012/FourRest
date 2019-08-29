@@ -187,6 +187,13 @@ public class LoginDaoImpl implements LoginDao{
 		return list;
 	}
 
+	@Override
+	public int userdel(int usernum) {
+		int res =0;
+		res = sqlSesssion.delete(namespace+"adminmemdelete",usernum);
+		return res;
+	}
+
 	
 	
 	

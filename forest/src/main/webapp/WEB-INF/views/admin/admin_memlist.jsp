@@ -53,16 +53,16 @@ color: #d43f3a;
 					<input id="searchbox" type="text" placeholder="회원아이디" class="form-control" style="width: 350px; display: inline;"><input type="button" value="검색" class="btn btn btn-secondary" onclick="gotosearch();">		
 				</td>
 			</tr>
-			<tbody></tbody>
+<!-- 			<tbody></tbody> -->
 			<tr>
-				<td>번호</td>
-				<td>이름</td>
-				<td>아이디</td>
-				<td>연락처</td>
-				<td>이메일</td>
-				<td>주소</td>
-				<td>회원여부</td>
-				<td>회원정보수정</td>
+				<th>번호</th>
+				<th>이름</th>
+				<th>아이디</th>
+				<th>연락처</th>
+				<th>이메일</th>
+				<th>주소</th>
+				<th>회원여부</th>
+				<th>회원정보수정</th>
 			</tr>
 			<c:choose>
 			<c:when test="${empty memlist}" >
@@ -73,7 +73,7 @@ color: #d43f3a;
 			<c:otherwise>
 				<c:forEach items="${memlist }" var="dto" varStatus="status">
 					<tr id="rownumid${status.count}">
-						<td><div class="prevup">${dto.usernum}</div><div class="afterup">${dto.usernum }</div></td>
+						<td><div class="prevup">${dto.usernum}</div><div class="afterup"><div class="userno">${dto.usernum }</div></div></td>
 						<td><div class="prevup">${dto.name}</div><div class="afterup">${dto.name }</div></td>
 						<td><div class="prevup">${dto.id}</div><div class="afterup">${dto.id }</div></td>
 						<td><div class="prevup"><div class="prevphone">${dto.phone}</div></div><div class="afterup"><input type="text" value="${dto.phone}" class="phone"></div></td>
@@ -85,7 +85,7 @@ color: #d43f3a;
 									<i class="far fa-circle" ></i>
 								</c:when>
 								<c:otherwise>
-									<i class="fas fa-times"></i>&nbsp;&nbsp;<input class="btn btn-danger btn-sm" type="button" onclick="#" value="정보영구삭제">
+									<i class="fas fa-times"></i>&nbsp;&nbsp;<input class="btn btn-danger btn-sm" type="button" onclick="location.href='admin_memdelete.do?usernum=${dto.usernum}'" value="정보영구삭제">
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -118,7 +118,7 @@ function close_afterdiv(idno) {
 };
 
 function update_member(idno){
-	var usernum = $('#rownumid'+idno+' .afterup').find('.userno').val();
+	var usernum = $('#rownumid'+idno+' .afterup').find('.userno').html();
 	var phone = $('#rownumid'+idno+' .afterup').find('.phone').val();
 	var email = $('#rownumid'+idno+' .afterup').find('.email').val();
 	var addr = $('#rownumid'+idno+' .afterup').find('.addr').val();
@@ -134,7 +134,7 @@ function update_member(idno){
 		},
 		dateType : "json",
 		success : function(map) {
-			alert("수정"+map.code);
+			alert('수정되었습니다.');
 			$('#rownumid'+idno+' .prevphone').html(phone);
 			$('#rownumid'+idno+' .prevemail').html(email);
 			$('#rownumid'+idno+' .prevaddr').html(addr);
@@ -147,32 +147,32 @@ function update_member(idno){
 }
 
 
-function gotosearch(){
-	
-	$searchtxt = $("#searchbox").val();
-	console.log($searchtxt);
-	console.log('------와앙아ㅏ');
-	$.ajax({
-	url : "admin_memsearch.do",
-	type : 'post',
-	data : {
-		"search": $searchtxt 
-	},
-	dateType : "json",
-	success : function(map) {
-		var ranklist = [];
-		ranklist = map.ranklist;
-		
-		alert(''+ranklist.length+"건 조회되었습니다.");
-	},
-	fail : function() {
-		alert('에러');
-		self.close();
-	}
-});
+function gotosearch() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchbox");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("searchtbl");
+  tr = table.getElementsByTagName("tr");
 
-
+  
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
 }
 
+
+
 </script>
+
+
+
+
 </html>
