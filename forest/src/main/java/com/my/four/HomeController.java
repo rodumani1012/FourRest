@@ -77,13 +77,14 @@ public class HomeController {
 	
 	@RequestMapping(value="main.do")
 	public String main(Principal principal,HttpSession session) {
-		if(principal.getName()==null||principal.getName()=="") {
+		if(principal==null) {
 			return "main";
-		}else {
+		} else {
 			LoginDto dto = biz.memberInfo(principal.getName());
 			session.setAttribute("dto", dto);
 			return "main";
 		}
+		
 	}
 
 	@RequestMapping(value = "sponsor.do")
