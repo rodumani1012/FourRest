@@ -186,7 +186,7 @@ body {
 						<th align="right"><fmt:formatDate
 								value="${dtoReply.regdate }" pattern="yyyy-MM-dd" />
 								<c:if test="${dtoReply.writer==user_id }">
-								<input type="button" value="삭제" onclick="location.href='deleteReply.do?groupno=${dto.groupno }&boardno=${dtoReply.boardno}&pboardno=${dto.boardno}'">								
+								<input type="button" value="삭제" onclick="location.href='contest_ansdelete.do?groupno=${dto.groupno }&boardno=${dtoReply.boardno}&pboardno=${dto.boardno}'">								
 								</c:if>
 						</th>
 					</tr>
