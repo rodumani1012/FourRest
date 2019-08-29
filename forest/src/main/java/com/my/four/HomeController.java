@@ -76,10 +76,14 @@ public class HomeController {
 	private CalendarBiz calbiz;
 	
 	@RequestMapping(value="main.do")
-	public String main() {
-		logger.info("메인!!");
-
-		return "main";
+	public String main(Principal principal,HttpSession session) {
+		if(principal.getName()==null||principal.getName()=="") {
+			return "main";
+		}else {
+			LoginDto dto = biz.memberInfo(principal.getName());
+			session.setAttribute("dto", dto);
+			return "main";
+		}
 	}
 
 	@RequestMapping(value = "sponsor.do")
@@ -187,12 +191,14 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "admin.do")
-	public String admin(Model model) {
+	public String admin(Model model,Principal prin) {
 		logger.info("관리자");
 		model.addAttribute("memcount",biz.memcount());
 		model.addAttribute("concount",contestlistbiz.concount());
 		model.addAttribute("fundcount",funbiz.totalfund());
 		model.addAttribute("calcount",calbiz.calcount());
+		LoginDto dto = biz.memberInfo(prin.getName());
+		System.out.println("!!!!!!!!!!!!!!!!"+dto.getRole());
 		return "admin/admin";
 	}
 	
@@ -214,8 +220,8 @@ public class HomeController {
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			securityContext.setAuthentication(auth);
 			HttpSession session = request.getSession(true);
+			LoginDto dto1 = biz.memberInfo(id);
 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-			
 			return "redirect:main.do";
 		}
 		
@@ -542,6 +548,10 @@ public class HomeController {
 		}
 		map.put("code", "no");
 		return map;
+	}
+	@RequestMapping("adminchat.do")
+	public String adminchat() {
+		return "admin/chatlist";
 	}
 	
 	@RequestMapping("admin_memsearch.do")

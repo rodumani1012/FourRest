@@ -1,10 +1,12 @@
 package com.my.four.model.dto;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @SuppressWarnings("serial")
@@ -24,6 +26,7 @@ public class LoginDto implements UserDetails {
 	private String enabledDb;
 	private Date joindate;
 	private String perpay;
+	private String role;
 	private List<String> roles;
 	private Collection<? extends GrantedAuthority> authorities;
 
@@ -33,8 +36,10 @@ public class LoginDto implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-
-		return authorities;
+		ArrayList<SimpleGrantedAuthority> grants = new ArrayList<SimpleGrantedAuthority>();
+		grants.add(new SimpleGrantedAuthority(role));
+         
+		return grants;
 	}
 
 	@Override
@@ -81,7 +86,7 @@ public class LoginDto implements UserDetails {
 	}
 
 	public LoginDto(int usernum, String name, String id, String pw, String phone, String email, String addr,
-			String zonecode, String enabledDb, Date joindate,String perpay, List<String> roles) {
+			String zonecode, String enabledDb, Date joindate,String perpay,String role, List<String> roles) {
 		super();
 		this.usernum = usernum;
 		this.name = name;
@@ -197,6 +202,14 @@ public class LoginDto implements UserDetails {
 
 	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
 		this.authorities = authorities;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 

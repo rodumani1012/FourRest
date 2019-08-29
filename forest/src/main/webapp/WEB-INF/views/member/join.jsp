@@ -89,7 +89,7 @@
 							}
 
 						},
-						error: function () {
+						error: function () { 
 							alert('통신실패')
 						}
 					})

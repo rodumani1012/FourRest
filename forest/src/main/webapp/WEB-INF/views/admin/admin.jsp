@@ -20,7 +20,12 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
+<script type="text/javascript">
+function toggle(){
+	$("#adminchat").toggle()
+	
+}
+</script>
 <style type="text/css">
 </style>
 </head>
@@ -174,12 +179,16 @@
 				</div>
 
 				<div class="col-lg-2 col-sm-6">
-						<div class="circle-tile">
-						<div class="circle-tile-heading gray">
-							<i class="fa fa-tree fa-fw fa-3x"></i>
-						</div>
-						<div class="circle-tile-content gray" style="">
-							<div class="circle-tile-description text-faded">Forest</div>
+					<div class="circle-tile">
+<!-- 						<a href="resources/assets/Node-Server/admin/chatlist.jsp"> -->
+					<div id="adminchat" style="display: none;" >
+					<iframe class="iframe-chat" src="http://192.168.110.62:8880/admin"></iframe></div>
+							<div class="circle-tile-heading purple">
+								<i class="fa fa-comments fa-fw fa-3x"></i>
+							</div>
+<!-- 						</a> -->
+						<div class="circle-tile-content purple" onclick="toggle()">
+							<div class="circle-tile-description text-faded">문의채팅방</div>
 							<div class="circle-tile-number text-faded">
 								Main<span id="sparklineB"></span>
 							</div>
@@ -187,6 +196,7 @@
 								class="fa fa-chevron-circle-right"></i></a>
 						</div>
 					</div>
+							<a href="resources/assets/Node-Server/admin/chatlist">더보기</a>
 				</div>
 
 			</div>

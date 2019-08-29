@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="loginDto">
-		INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,#{name},#{id},#{pw},#{phone},#{email},#{addr},#{zonecode},'Y','USER',SYSDATE,'N')
+		INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,#{name},#{id},#{pw},#{phone},#{email},#{addr},#{zonecode},'Y','ROLE_USER',SYSDATE,'N')
 	</insert>
 	
 	<insert id="insert_auth" parameterType="loginDto">
@@ -57,9 +57,8 @@
 		SELECT ID FROM MEMBER WHERE JOINDATE=#{joindate} < SYSDATE
 		]]>
 	</select>
-	
-	<select id="memlist" resultType="LoginDto" >
-		SELECT * FROM MEMBER
+	<select id="memlist" resultType="loginDto" >
+		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLED,ROLE FROM MEMBER
 	</select>
 	
 	<update id="memupdate" parameterType="loginDto">

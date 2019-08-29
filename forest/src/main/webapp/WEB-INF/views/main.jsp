@@ -25,7 +25,6 @@
 	type="image/x-icon">
 <link rel="shortcut icon" href="resources/assets/images/favicon.ico?v=2"
 	type="image/x-icon">
-
 <script type="text/javascript" src="resources/assets/js/main-style.js"></script>
 </head>
 <!-- ${requestScope['javax.servlet.forward.context_path']} -->
@@ -175,13 +174,16 @@
 		</div>
 		<!-- End off scroll up -->
 	</div>
-
+	<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal.username" var="user_id" />
 	<button class="botton" onclick="toggleChat()">
 		<i class='fas fa-comment-dots'></i></button>
 		<div id="chat_box">
 			<ul id="#messages"></ul>
- 			<!-- <iframe class="iframe-chat" src="http://192.168.110.46:8880/"></iframe>  -->
+ 		<!--	<iframe class="iframe-chat" src="http://192.168.110.62:8880?id=${user_id }"></iframe> -->
 		</div>
+	</sec:authorize>
+
 
 	<!-- footer -->
 	<%@ include file="./footer.jsp"%>

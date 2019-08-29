@@ -6,6 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,10 +100,12 @@ body {
 	<div>
 		<input type="button" value="봉사 모집 기간" onclick="location.href='calrecsel.do'" disabled="disabled">
 		<input type="button" value="봉사 활동 기간" onclick="location.href='calvolsel.do'">
+		
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<input type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">
+		</sec:authorize>
 	</div>
 	
 	<div id='calendar'></div>
-
 </body>
 </html>	
