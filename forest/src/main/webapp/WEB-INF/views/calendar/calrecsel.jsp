@@ -45,7 +45,7 @@
 		    </c:forEach>
 				
 		]
-		console.log(mylist)
+		console.log(mylist);
 		$('#calendar').fullCalendar({
 			header : {
 				left : 'prev,next today',
@@ -100,14 +100,15 @@ body {
 	<br><br><br><br><br>
 	
 	<div>
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<input type="button" value="봉사 모집 기간" onclick="location.href='calrecsel.do'" disabled="disabled">
 		<input type="button" value="봉사 활동 기간" onclick="location.href='calvolsel.do'">
 		
-		<sec:authorize access="hasRole('ROLE_ADMIN')">
+		
 			<button class="btn btn-outline-dark" type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">봉사활동 등록</button>
 		</sec:authorize>
 	</div>
-	
+	<h3>봉사 모집 기간</h3>
 	<div id='calendar'></div>
 </body>
 </html>	

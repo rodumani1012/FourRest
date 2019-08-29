@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import com.my.four.model.dto.FreeboardDto;
 import com.my.four.model.dto.FreecommentDto;
-import com.my.four.model.dto.FundingDto;
 
 @Repository
 public class FreeboardDaoImpl implements FreeboardDao {
@@ -20,18 +19,34 @@ public class FreeboardDaoImpl implements FreeboardDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<FreeboardDto> freeboardList() {
+	public List<FreeboardDto> freeboardList(int firstIndex,int recordCountPerPage, String category, String txt_search) {
 		
-		List<FreeboardDto> list = new ArrayList<FreeboardDto>();
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("firstIndex", String.valueOf(firstIndex));
+		map.put("recordCountPerPage", String.valueOf(recordCountPerPage));
+		category = (category.equals("") || category == null) ? "all" : category;
+		map.put("category", category);
+		map.put("txt_search", txt_search);
 		
-		try {
-			list = sqlSession.selectList(namespace + "freeboardList");
-		} catch (Exception e) {
-			System.out.println("listerror");
-			e.printStackTrace();
-		}
+		List<FreeboardDto> list = sqlSession.selectList(namespace + "freeboardList", map);
 		
 		return list;
+	}
+
+	@Override
+	public int freeboardGetTotalCount(String category, String txt_search) {
+		int res = 0;
+		
+		category = (category.equals("") || category == null) ? "all" : category;
+		txt_search = (txt_search.equals("") || txt_search == null) ? null : txt_search;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("category", category);
+		map.put("txt_search", txt_search);
+		
+		res = sqlSession.selectOne(namespace + "freeboardGetTotalCount", map);
+		
+		return res;
 	}
 
 	@Override
@@ -158,5 +173,5 @@ public class FreeboardDaoImpl implements FreeboardDao {
 		
 		return res;
 	}
-
+	
 }

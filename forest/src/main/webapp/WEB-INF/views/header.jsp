@@ -78,7 +78,7 @@
 						<div class="dropdown">
 							<button type="button"
 								class="text-dark btn btn-link dropdown-toggle"
-								data-toggle="dropdown">Calendar</button>
+								data-toggle="dropdown">봉사 일정</button>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="calrecsel.do">봉사 모집 일정</a>
 								<a class="dropdown-item" href="calvolsel.do">봉사 활동 일정</a>

@@ -9,7 +9,8 @@ import com.my.four.model.dto.FreecommentDto;
 
 public interface FreeboardBiz {
 	
-	public List<FreeboardDto> freeboardList();
+	public List<FreeboardDto> freeboardList(int firstIndex,int recordCountPerPage, String category, String txt_search);
+	public int freeboardGetTotalCount(String category, String txt_search);
 	public FreeboardDto freedetail(int free_seq);
 	public int freeupdate(int free_seq, String title, String content);
 	public int freedelete(int free_seq);

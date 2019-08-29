@@ -16,10 +16,15 @@ public class FreeboardBizImpl implements FreeboardBiz {
 	private FreeboardDao dao;
 
 	@Override
-	public List<FreeboardDto> freeboardList() {
-		return dao.freeboardList();
+	public List<FreeboardDto> freeboardList(int firstIndex,int recordCountPerPage, String category, String txt_search) {
+		return dao.freeboardList(firstIndex,recordCountPerPage, category, txt_search);
 	}
 
+	@Override
+	public int freeboardGetTotalCount(String category, String txt_search) {
+		return dao.freeboardGetTotalCount(category, txt_search);
+	}
+	
 	@Override
 	public FreeboardDto freedetail(int free_seq) {
 		return dao.freedetail(free_seq);
@@ -54,5 +59,6 @@ public class FreeboardBizImpl implements FreeboardBiz {
 	public int commdelete(int comm_seq) {
 		return dao.commdelete(comm_seq);
 	}
+
 
 }
