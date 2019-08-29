@@ -71,10 +71,14 @@ public class HomeController {
 	
 	
 	@RequestMapping(value="main.do")
-	public String main() {
-		logger.info("메인!!");
-
-		return "main";
+	public String main(Principal principal,HttpSession session) {
+		if(principal.getName()==null||principal.getName()=="") {
+			return "main";
+		}else {
+			LoginDto dto = biz.memberInfo(principal.getName());
+			session.setAttribute("dto", dto);
+			return "main";
+		}
 	}
 
 	@RequestMapping(value = "sponsor.do")
@@ -216,8 +220,8 @@ public class HomeController {
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			securityContext.setAuthentication(auth);
 			HttpSession session = request.getSession(true);
+			LoginDto dto1 = biz.memberInfo(id);
 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-			
 			return "redirect:main.do";
 		}
 		

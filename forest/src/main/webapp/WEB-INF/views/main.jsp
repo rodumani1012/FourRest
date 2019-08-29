@@ -174,15 +174,15 @@
 		</div>
 		<!-- End off scroll up -->
 	</div>
-	
+	<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal.username" var="user_id" />
 	<button class="botton" onclick="toggleChat()">
 		<i class='fas fa-comment-dots'></i></button>
 		<div id="chat_box">
 			<ul id="#messages"></ul>
  			<iframe class="iframe-chat" src="http://192.168.110.62:8880?id=${user_id }"></iframe> 
 		</div>
-
-
+	</sec:authorize>
 
 
 	<!-- footer -->

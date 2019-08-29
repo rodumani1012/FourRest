@@ -5,20 +5,24 @@ const io = require('socket.io')(http);
 let fs = require('fs');
 var router = express.Router();
 var roomnames=[];
+var idchk = null;
 app.use('/js', express.static('./js'))
-
+app.set('views','/views')
+app.set('view engine','html')
 app.get('/', function (req, res) {
   var id = req.query.id
   console.log(id);
-  var obj = {"id":id};
+  idchk= id;
+  
+  //res.send("./chat",obj)
   fs.readFile('./chat.html', function (err, data) {
     if (err) {
       res.send(err)
     } else {
       res.writeHead(200, { 'Content-Type': 'text/html' })
       res.write(data)
-      res.send("./chat.html",obj)
-      res.end()
+      
+      res.end(id,'utf-8')
     }
   })
 })
@@ -50,8 +54,8 @@ io.sockets.on('connection',function(socket){
         socket.join(room)
         var roomInfo = {
           name : name,
-          romm:_room
-          
+          romm:_room,
+          id:idchk
         }
         userrooms.push(roomInfo)
         console.log('방 추가');
@@ -59,7 +63,8 @@ io.sockets.on('connection',function(socket){
         
         io.sockets.to(room).emit('joinedRoom',{
             room: room,
-            name: socket.name
+            name: socket.name,
+            id:idchk
         })
     })
       

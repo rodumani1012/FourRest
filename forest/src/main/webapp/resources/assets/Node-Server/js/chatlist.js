@@ -15,13 +15,16 @@ $(function(){
     function addRoomList(list){
         list.forEach(element => {
             console.log(element);
+            console.log('1111111111');
+            
             appendRoom(element)
             
         });
     }
     function appendRoom(element){
-        var unit =`<li>${element.room}</li>`
+        var unit =`<li><a href='http://192.168.110.62:8880?id=${element.id}'>${element.id}</a></li>`
         console.log(unit);
+        console.log('222222222222222222');
         
         $('#chatlist').append(unit)
     }
