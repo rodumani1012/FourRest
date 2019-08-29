@@ -82,7 +82,7 @@
 		<table border="1">
 		<c:choose>
 			<c:when test="${empty list }">
-				<h3>펀딩 정보가 없습니다.</h3>
+				<h3>게시물이 없습니다.</h3>
 			</c:when>
 		<c:otherwise>
 

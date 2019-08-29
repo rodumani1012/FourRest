@@ -58,7 +58,7 @@
 		]]>
 	</select>
 	<select id="memlist" resultType="loginDto" >
-		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLED,ROLE FROM MEMBER
+		SELECT * FROM MEMBER
 	</select>
 	
 	<update id="memupdate" parameterType="loginDto">

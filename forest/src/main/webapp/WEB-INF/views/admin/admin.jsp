@@ -162,7 +162,7 @@ function toggle(){
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-2 col-sm-6">
+				<!-- <div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
 						<div class="circle-tile-heading purple">
 							<i class="fa fa-comments fa-fw fa-3x"></i>
@@ -176,7 +176,7 @@ function toggle(){
 								class="fa fa-chevron-circle-right"></i></a>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
@@ -190,13 +190,12 @@ function toggle(){
 						<div class="circle-tile-content purple" onclick="toggle()">
 							<div class="circle-tile-description text-faded">문의채팅방</div>
 							<div class="circle-tile-number text-faded">
-								Main<span id="sparklineB"></span>
+								1:1 <span id="sparklineB"></span>
 							</div>
-							<a href="main.do" class="circle-tile-footer" style="text-align: center;">관리자 나가기 <i
+							<a href="main.do" class="circle-tile-footer" style="text-align: center;">More Info<i
 								class="fa fa-chevron-circle-right"></i></a>
 						</div>
 					</div>
-							<a href="resources/assets/Node-Server/admin/chatlist">더보기</a>
 				</div>
 
 			</div>

@@ -114,8 +114,8 @@
 								class="text-dark btn btn-link dropdown-toggle"
 								data-toggle="dropdown">게시판</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="contest_main.do">공모게시판</a> <a
-									class="dropdown-item" href="#portfolio">리뷰만들어야함</a>
+								<a class="dropdown-item" href="contest_main.do">공모게시판</a> 
+								<a class="dropdown-item" href="freeboardlist.do">자유게시판</a>
 							</div>
 						</div>
 					</li>
@@ -134,7 +134,7 @@
 					<li><sec:authorize access="isAuthenticated()">
 							<sec:authentication property="principal.username" var="user_id" />
 							<input type="submit" class="btn btn-link text-dark"
-								onclick="location.href='mypage.do'" value="${dto.getName() }" />
+								onclick="location.href='mypage.do'" value="${dto1.getName() }" />
 						</sec:authorize> <sec:authorize access="isAnonymous()">
 							<button type="button" class="btn btn-link text-dark"
 								onclick="location.href='loginform.do'">로그인</button>

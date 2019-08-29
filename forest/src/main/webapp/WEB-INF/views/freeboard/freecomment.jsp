@@ -22,7 +22,7 @@
 			Comment
 			<input type="hidden" name="free_seq" value="${dto.free_seq }"/>
 			<input type="hidden" name="user_id" value="${user_id }"/>
-			<td><textarea rows="10" cols="30" name="content" style="width: 650px; height: 100px;">내용을 입력하세요.</textarea></td>
+			<td><textarea rows="10" cols="30" name="content" style="width: 650px; height: 100px;" placeholder="내용을 입력하세요."></textarea></td>
 			<td colspan="2">
 				<input type="submit" value="작성" />
 			</td>
