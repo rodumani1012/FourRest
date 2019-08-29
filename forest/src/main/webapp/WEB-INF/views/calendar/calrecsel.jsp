@@ -45,7 +45,7 @@
 		    </c:forEach>
 				
 		]
-
+		console.log(mylist)
 		$('#calendar').fullCalendar({
 			header : {
 				left : 'prev,next today',
