@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
@@ -24,8 +25,8 @@
 				<td>${dto.free_seq }</td>
 			</tr>
 			<tr>
-				<th>작성 시간</th>
-				<td>${dto.free_date}</td>
+				<th>작성일</th>
+				<td><fmt:formatDate value="${dto.free_date }" pattern="yyyy-MM-dd HH:MM"/></td>
 			</tr>
 			<tr>
 				<th>ID</th>

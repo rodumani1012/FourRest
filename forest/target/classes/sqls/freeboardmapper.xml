@@ -24,6 +24,11 @@
 						upper(CONTENT) LIKE '%' || #{txt_search} || '%'
 						</if>			
 					</if>
+					<if test="category == 'writer'">
+						<if test="txt_search != null">
+						upper(ID) LIKE '%' || #{txt_search} || '%'
+						</if>			
+					</if>
 				</where>
 				ORDER BY TITLE
 				) P
@@ -48,6 +53,11 @@
 			<if test="category == 'content'">
 				<if test="txt_search != null">
 				upper(CONTENT) LIKE '%' || #{txt_search} || '%'
+				</if>			
+			</if>
+			<if test="category == 'writer'">
+				<if test="txt_search != null">
+				upper(ID) LIKE '%' || #{txt_search} || '%'
 				</if>			
 			</if>
 		</where>

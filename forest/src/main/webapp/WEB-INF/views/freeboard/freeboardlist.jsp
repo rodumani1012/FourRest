@@ -10,7 +10,21 @@
 <meta charset="UTF-8">
 <title>The Forest</title>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var pageNum = $("#pageNum").val();
+		 $("#txt_search").keydown(function(key) {
+             if (key.keyCode == 13) {
+            	 PageMove(pageNum);
+             }
+         });
+	});
+	function PageMove(page) {
+		location.href = "freeboardlist.do?category=" + $('#category').val() + "&page=" + page + "&txt_search=" + $('input#txt_search').val();
+	}
+</script>
+
 </head>
 <body>
 	
@@ -23,11 +37,24 @@
 	<section class="container">
 	<div class="row">
 
-	<form action="freeboard.do" method="post" id="muldelform">
-		
 		<c:choose>
 			<c:when test="${empty list }">
-				<h3>게시물이 없습니다.</h3>
+				<table border="1">
+					<col width="40px"/>
+					<col width="200px"/>
+					<col width="100px"/>
+					<col width="100px"/>
+		
+					<tr>	
+						<th>글번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+					</tr>
+					<tr>
+						<td colspan="4">게시물이 없습니다.</td>
+					</tr>
+				</table>
 			</c:when>
 			<c:otherwise>
 				<table border="1">
@@ -46,7 +73,7 @@
 					<c:forEach items="${list }" var="dto" varStatus="status">
 						<tr>
 							<td>
-								${status.index }
+								${status.index + 1 }
 							</td>
 							<td>
 								<a href="freedetail.do?free_seq=${dto.free_seq }">${dto.title }</a>
@@ -55,7 +82,7 @@
 								${dto.id }
 							</td>
 							<td>
-								<fmt:formatDate value="${dto.free_date }" pattern="yyyy-MM-dd"/>
+								<fmt:formatDate value="${dto.free_date }" pattern="yyyy-MM-dd HH:MM"/>
 							</td>
 						</tr>
 					</c:forEach>
@@ -68,7 +95,47 @@
 	<c:if test="${user_id != null}">
 		<button class="btn btn btn-light" type="button" onclick="location.href='freeinsert.do'">글 작성하기</button> 
 	</c:if>
-	</form>
+	
+	<!-- Pagination -->
+	<div class="pagination pagination-md justify-content-center">
+		<a class="page-link" href="javascript:PageMove(${paging.firstPageNo})">&laquo;</a> 
+		<a class="page-link" href="javascript:PageMove(${paging.prevPageNo})">&lt;</a>
+			<c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
+				<c:choose>
+					<c:when test="${i eq paging.pageNo}">
+						<a class="page-link" href="javascript:PageMove(${i})">${i}</a>
+					</c:when>
+					<c:otherwise>
+						<a class="page-link" href="javascript:PageMove(${i})">${i}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		<a class="page-link" href="javascript:PageMove(${paging.nextPageNo})">&gt;</a> 
+		<a class="page-link" href="javascript:PageMove(${paging.finalPageNo})">&raquo;</a>
+	</div>
+	
+	<!-- 검색 -->
+	<div class="cotainer">
+		<table class="pull-right">
+			<tr>
+				<td colspan="4">
+					<div class="form-group form-inline">
+						<select id="category">
+							<option value="all">전체</option>
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+							<option value="writer">글쓴이</option>
+						</select>
+						<input type="text" class="form-control" id="txt_search" value="${txt_search }">
+						<input type="hidden" id="pageNum" value="${paging.pageNo }"> 
+						<button type="button" class="small btn btn-secondary"
+							onclick="javascript:PageMove(${paging.pageNo})">검색하기</button>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<span>총 ${totalCount } 건</span>
+	</div>	
 	
 	</div>
 	</section>
