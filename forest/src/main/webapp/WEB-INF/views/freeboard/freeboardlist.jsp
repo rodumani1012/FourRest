@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
@@ -24,36 +24,45 @@
 	<div class="row">
 
 	<form action="freeboard.do" method="post" id="muldelform">
-		<table border="1">
+		
 		<c:choose>
 			<c:when test="${empty list }">
 				<h3>게시물이 없습니다.</h3>
 			</c:when>
-		<c:otherwise>
-
-			<col width="40px"/>
-			<col width="200px"/>
-			<col width="100px"/>
-			<col width="100px"/>
-
-			<tr>	
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-			</tr>
-			
-			<c:forEach items="${list }" var="dto">
-				<tr>
-					<td>${dto.free_seq}</td>
-					<td><a href="freedetail.do?free_seq=${dto.free_seq }">${dto.title }</a></td>
-					<td>${dto.id }</td>
-					<td>${dto.free_date }</td>
-				</tr>
-			</c:forEach>
+			<c:otherwise>
+				<table border="1">
+					<col width="40px"/>
+					<col width="200px"/>
+					<col width="100px"/>
+					<col width="100px"/>
+		
+					<tr>	
+						<th>글번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+					</tr>
+					
+					<c:forEach items="${list }" var="dto" varStatus="status">
+						<tr>
+							<td>
+								${status.index }
+							</td>
+							<td>
+								<a href="freedetail.do?free_seq=${dto.free_seq }">${dto.title }</a>
+							</td>
+							<td>
+								${dto.id }
+							</td>
+							<td>
+								<fmt:formatDate value="${dto.free_date }" pattern="yyyy-MM-dd"/>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
 			</c:otherwise>
 		</c:choose>
-		</table>
+		
 		
 		
 	<c:if test="${user_id != null}">

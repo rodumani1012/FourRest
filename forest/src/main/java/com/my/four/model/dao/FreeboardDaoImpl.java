@@ -36,10 +36,7 @@ public class FreeboardDaoImpl implements FreeboardDao {
 	@Override
 	public int freeboardGetTotalCount(String category, String txt_search) {
 		int res = 0;
-		
-		category = (category.equals("") || category == null) ? "all" : category;
-		txt_search = (txt_search.equals("") || txt_search == null) ? null : txt_search;
-		
+				
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("category", category);
 		map.put("txt_search", txt_search);

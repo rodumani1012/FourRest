@@ -17,6 +17,11 @@ public class FreeboardBizImpl implements FreeboardBiz {
 
 	@Override
 	public List<FreeboardDto> freeboardList(int firstIndex,int recordCountPerPage, String category, String txt_search) {
+		
+		returnCategoryNTxt(category, txt_search);
+		
+		System.out.println(category + ":" + txt_search);
+
 		return dao.freeboardList(firstIndex,recordCountPerPage, category, txt_search);
 	}
 
@@ -60,5 +65,22 @@ public class FreeboardBizImpl implements FreeboardBiz {
 		return dao.commdelete(comm_seq);
 	}
 
+	private String[] returnCategoryNTxt(String category, String txt_search) {
+		
+		if (category == null) {
+			category = "all";
+		}
+		if (txt_search == null) {
+			txt_search = "";
+		}
+		System.out.println(category + "/" + txt_search);
 
+		txt_search = (txt_search.equals("")) ? null : txt_search;
+		
+		String[] str = new String[2];
+		str[0] = category;
+		str[1] = txt_search;
+		
+		return str; 
+	}
 }
