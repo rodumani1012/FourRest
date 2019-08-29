@@ -217,7 +217,11 @@ color: #d9534f;
 .btn{
 border-radius: 0.3rem;
 }
-
+div::-webkit-scrollbar{
+     width: 10px; 
+     background: transparent;
+     overflow-x: hidden; 
+} 
 </style>
 </head>
 <body>
@@ -325,7 +329,7 @@ border-radius: 0.3rem;
 		<div class="col-xs-4" id="timer"
 			style="text-align: center; padding-top: 10px; margin-left: 2%; margin-top: 5%">
 			<audio controls="controls" autoplay="autoplay" loop="loop">
-				<source src="resources/audio/sonic.mp3" type="audio/mp3" />
+				<source src="resources/audio/pokemonmix.mp3" type="audio/mp3" />
 			</audio>
 			<h4>
 				<span class="badge badge-pill progress-bar-danger">time</span>
@@ -696,6 +700,7 @@ border-radius: 0.3rem;
 			for (var j = 0; j < 8; j++) {
 				$('<div><strong>' + subcontainers[j].text + '</strong></div>')
 						.css('background-image','url(' + subcontainers[j].url + ')')
+						.css('overflow-y','scroll')
 						.attr('class', 'subcontainer')
 						.attr('id', subcontainers[j].id)
 						.appendTo('#game_container #droppable_container')

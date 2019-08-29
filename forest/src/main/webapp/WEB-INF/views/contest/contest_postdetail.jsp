@@ -81,7 +81,11 @@ body {
         $("#clicksubmit").on("click",function(){
         	 var starCount = $('#count').text();
         	 var boardNum = $('#boardnum').val();
-        	 var imuser = $('#imuser').val();         
+        	 var imuser = $('#imuser').val();   
+        	 if(imuser==null||imuser==''){
+        		 alert("로그인을해주세요");
+        		 return;
+        	 }
         	$.ajax({
             url:"starupdate.do",
             type:'post',
