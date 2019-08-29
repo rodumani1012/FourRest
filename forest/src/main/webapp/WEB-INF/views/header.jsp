@@ -55,7 +55,7 @@
 </head>
 <body>
 	<nav
-		class="navbar navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
+		class="navbar navbar-expand-lg navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
 		<div class="container">
 			<!-- Start Header Navigation -->
 			<div class="navbar-header">
@@ -128,6 +128,7 @@
 							</div>
 						</div>
 					</li>
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 					<li><sec:authorize access="isAuthenticated()">
 							<sec:authentication property="principal.username" var="user_id" />

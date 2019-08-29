@@ -190,7 +190,7 @@
 			<ul id="#messages"></ul>
 		</div>
 		<div class="test">
-			<iframe class="iframe-chat" src="http://192.168.110.46:8880/" style="overflow-x: hidden"></iframe>
+			<iframe class="iframe-chat" src="http://192.168.110.46:8880" style="overflow-x: hidden"></iframe>
 		</div>
 	</div>
 

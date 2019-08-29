@@ -72,7 +72,7 @@ div>img {
 <div class="container">
 	<div class="row">
 		<!-- content -->
-		<table class="form-group gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-5 filter hdpe">
+		<table class="form-group gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-5">
 			<tr>
 				<td colspan="5">
 					<input type="text" id="txt_search" value="${txt_search }" placeholder="국명 또는 영명 검색"> 
@@ -120,7 +120,7 @@ div>img {
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${list }" var="dto">
-							<div class="form-group gallery_product col-lg-2 col-md-2 col-sm-2 col-xs-3 filter hdpe">
+							<div class="form-group gallery_product col-lg-2 col-md-2 col-sm-2 col-xs-3">
 								<img src="${dto.img }" alt="${dto.korName}">
 								<p>
 									- ${dto.korName }(${dto.groups })
