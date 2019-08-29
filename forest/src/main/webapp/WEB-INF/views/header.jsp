@@ -61,9 +61,7 @@
 			<div class="navbar-header">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbar-menu">
-					<span></span> 
-					<span></span> 
-					<span></span>
+					<span></span> <span></span> <span></span>
 				</button>
 				<a class="navbar-brand" href="main.do"> <img
 					src="resources/assets/images/logo2.jpg" class="logo logo-scrolled"
@@ -76,8 +74,17 @@
 				<ul class="navbar-nav navbar-right">
 					<li><button type="button" class="btn btn-link text-dark"
 							onclick="location.href='gotomap.do'">지도</button></li>
-					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='calrecsel.do'">봉사일정</button></li>
+					<li>
+						<div class="dropdown">
+							<button type="button"
+								class="text-dark btn btn-link dropdown-toggle"
+								data-toggle="dropdown">Calendar</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="calrecsel.do">봉사 모집 일정</a>
+								<a class="dropdown-item" href="calvolsel.do">봉사 활동 일정</a>
+							</div>
+						</div>
+					</li>
 					<li><button type="button" class="btn btn-link text-dark"
 							onclick="location.href='chat.do'">문의하기</button></li>
 					<sec:authorize access="hasRole('ROLE_ADMIN')">

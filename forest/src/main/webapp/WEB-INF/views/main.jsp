@@ -75,17 +75,22 @@
 					</div>
 					<div class="carousel-item">
 						<img class="img-responsive"
-							src="resources/assets/images/background/3.jpg" alt="animal"
-							style="max-width: 100%; height: auto; display: block;">
-					</div>
-					<div class="carousel-item">
-						<img class="img-responsive"
 							src="resources/assets/images/background/4.jpg" alt="animal"
 							style="max-width: 100%; height: auto; display: block;">
 					</div>
 					<div class="carousel-item">
 						<img class="img-responsive"
+							src="resources/assets/images/background/3.jpg" alt="animal"
+							style="max-width: 100%; height: auto; display: block;">
+					</div>
+					<div class="carousel-item">
+						<img class="img-responsive"
 							src="resources/assets/images/background/6.jpg" alt="animal"
+							style="max-width: 100%; height: auto; display: block;">
+					</div>
+					<div class="carousel-item">
+						<img class="img-responsive"
+							src="resources/assets/images/background/5.jpg" alt="animal"
 							style="max-width: 100%; height: auto; display: block;">
 					</div>
 				</div>
@@ -177,10 +182,13 @@
 	<sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id" />
 	<button class="botton" onclick="toggleChat()">
-		<i class='fas fa-comment-dots'></i></button>
+		<i class='fas fa-comment-dots'></i>
+	</button>
+	<div id="chat"
+		style="display: none; position: fixed; bottom: 50PX; right: 86PX; z-index: 9999">
 		<div id="chat_box">
 			<ul id="#messages"></ul>
- 		<!--	<iframe class="iframe-chat" src="http://192.168.110.62:8880?id=${user_id }"></iframe> -->
+ 		<!--	<iframe class="iframe-chat" src="http://192.168.110.62:8880?id=${user_id }" style="overflow-x: hidden"></iframe> -->
 		</div>
 	</sec:authorize>
 

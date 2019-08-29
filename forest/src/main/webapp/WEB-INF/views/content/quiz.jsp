@@ -48,7 +48,11 @@
 			<!-- where the quiz result copy goes -->
 		</div>
 	</div>
-
+	
+	<div class="button startQuiz">
+		<button class="btn btn btn-light" type="button" onclick="location.href='main.do'">처음으로</button> 
+	</div>
+	
 	<script src="resources/assets/js/jquery-1.7.min.js"></script>
 	<script src="resources/assets/js/slickQuiz-config.js"></script>
 	<script src="resources/assets/js/slickQuiz.js"></script>

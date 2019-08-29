@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../header.jsp"%>
 <meta charset="UTF-8">
 <title>The Forest</title>
 <link href='resources/assets/css/calcss/fullcalendar.css' rel='stylesheet' />
@@ -87,6 +88,8 @@ body {
 </style>
 </head>
 <body>
+
+	<br><br><br><br><br>
 
 	<div>
 		<input type="button" value="봉사 모집 기간" onclick="location.href='calrecsel.do'">
