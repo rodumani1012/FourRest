@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>THE FOREST</title>
 <!--Google Font link-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet">
@@ -128,7 +128,7 @@
 								onclick="location.href='mypage.do'" value="${user_id }" />
 						</sec:authorize> <sec:authorize access="isAnonymous()">
 							<button type="button" class="btn btn-link text-dark"
-								onclick="location.href='loginform.do'">LOGIN</button>
+								onclick="location.href='loginform.do'">로그인</button>
 						</sec:authorize></li>
 					<li><sec:authorize access="isAuthenticated()">
 							<form:form action="${pageContext.request.contextPath}/logout"
@@ -139,7 +139,7 @@
 						</sec:authorize></li>
 					<li><sec:authorize access="isAnonymous()">
 							<button type="button" class="btn btn-link text-dark"
-								onclick="location.href='joinform.do'">JOIN</button>
+								onclick="location.href='joinform.do'">회원가입</button>
 						</sec:authorize></li>
 				</ul>
 			</div>

@@ -63,6 +63,7 @@
 				location.href='caldetail.do?caltitle=' + title + '&seq=' + seq;
             }
 		});
+		console.log(mylist);
 	});
 	
 	
@@ -98,10 +99,10 @@ body {
 	<div>
 		<input type="button" value="봉사 모집 기간" onclick="location.href='calrecsel.do'" disabled="disabled">
 		<input type="button" value="봉사 활동 기간" onclick="location.href='calvolsel.do'">
-		<input type="button" value="봉사 활동 등록" onclick="location.href='calinsert.do'">
+		<input type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">
 	</div>
 	
 	<div id='calendar'></div>
 
 </body>
-</html>
+</html>	

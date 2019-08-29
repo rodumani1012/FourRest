@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>The Forest</title>
 <link href='resources/assets/css/calcss/fullcalendar.css' rel='stylesheet' />
 <link href='resources/assets/css/calcss/fullcalendar.print.css' rel='stylesheet' media='print' />
 <script src='resources/assets/js/caljs/moment.min.js'></script>
@@ -87,6 +87,7 @@ body {
 </style>
 </head>
 <body>
+
 	<div>
 		<input type="button" value="봉사 모집 기간" onclick="location.href='calrecsel.do'">
 		<input type="button" value="봉사 활동 기간" onclick="location.href='calvolsel.do'" disabled="disabled">
