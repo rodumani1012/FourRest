@@ -11,10 +11,14 @@
 
 <link rel="stylesheet" href="resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="resources/assets/css/bootstrap.css">
-<link href="resources/assets/css/admin.css" rel="stylesheet" type="text/css">
+<link href="resources/assets/css/admin.css" rel="stylesheet"
+	type="text/css">
 <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <style type="text/css">
@@ -76,20 +80,18 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="page-title">
-						
+
 						<h2>
 							&nbsp;ADMIN BOARD<small> 관리자페이지</small>
 						</h2>
 						<ol class="breadcrumb">
 							<li style="margin-top: 10px; font-size: 25px; color: #34495e;">
-									<i class="fa fa-calendar"></i>
-										<%=today.substring(0, 8)%>
+								<i class="fa fa-calendar"></i> <%=today.substring(0, 8)%>
 							</li>
-							<li class="pull-right">
-								<audio controls="controls" autoplay="autoplay" loop="loop">
+							<li class="pull-right"><audio controls="controls"
+									autoplay="autoplay" loop="loop">
 									<source src="resources/audio/mix.mp3" type="audio/mp3" />
-								</audio>
-							</li>
+								</audio></li>
 						</ol>
 					</div>
 				</div>
@@ -98,40 +100,42 @@
 			<div class="row">
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-							<div class="circle-tile-heading dark-blue">
-								<i class="fa fa-users fa-fw fa-3x"></i>
-							</div>
+						<div class="circle-tile-heading dark-blue">
+							<i class="fa fa-users fa-fw fa-3x"></i>
+						</div>
 						<div class="circle-tile-content dark-blue">
 							<div class="circle-tile-description text-faded">회원목록</div>
 							<div class="circle-tile-number text-faded">
 								${memcount} 명 <span id="sparklineA"></span>
 							</div>
-							<a href="admin_memlist.do" class="circle-tile-footer">More Info <i
-								class="fa fa-chevron-circle-right"></i></a>
+							<a href="admin_memlist.do" class="circle-tile-footer">More
+								Info <i class="fa fa-chevron-circle-right"></i>
+							</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-							<div class="circle-tile-heading green">
-								<i class="fa fa-money fa-fw fa-3x"></i>
-							</div>
+						<div class="circle-tile-heading green">
+							<i class="fa fa-money fa-fw fa-3x"></i>
+						</div>
 						<div class="circle-tile-content green">
 							<div class="circle-tile-description text-faded">후원내역</div>
 							<div class="circle-tile-number text-faded">${fundcount}￦</div>
-							<a href="admin_fundlist.do" class="circle-tile-footer">More Info <i
-								class="fa fa-chevron-circle-right"></i></a>
+							<a href="admin_fundlist.do" class="circle-tile-footer">More
+								Info <i class="fa fa-chevron-circle-right"></i>
+							</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-							<div class="circle-tile-heading orange">
-								<i class="fa fa-bell fa-fw fa-3x"></i>
-							</div>
+						<div class="circle-tile-heading orange">
+							<i class="fa fa-bell fa-fw fa-3x"></i>
+						</div>
 						<div class="circle-tile-content orange">
 							<div class="circle-tile-description text-faded">공모게시판</div>
-							<div class="circle-tile-number text-faded">${concount} New</div>
+							<div class="circle-tile-number text-faded">${concount}New</div>
 							<a href="admin_conlist.do" class="circle-tile-footer">More
 								Info <i class="fa fa-chevron-circle-right"></i>
 							</a>
@@ -140,24 +144,9 @@
 				</div>
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-							<div class="circle-tile-heading blue">
-								<i class="fa fa-tasks fa-fw fa-3x"></i>
-							</div>
-						<div class="circle-tile-content blue">
-							<div class="circle-tile-description text-faded">자유게시판</div>
-							<div class="circle-tile-number text-faded">
-								5<span id="sparklineB"></span>
-							</div>
-							<a href="#" class="circle-tile-footer">More Info <i
-								class="fa fa-chevron-circle-right"></i></a>
+						<div class="circle-tile-heading red">
+							<i class="fa fa-calendar fa-fw fa-3x"></i>
 						</div>
-					</div>
-				</div>
-				<div class="col-lg-2 col-sm-6">
-					<div class="circle-tile">
-							<div class="circle-tile-heading red">
-								<i class="fa fa-calendar fa-fw fa-3x"></i>
-							</div>
 						<div class="circle-tile-content red">
 							<div class="circle-tile-description text-faded">봉사일정관리</div>
 							<div class="circle-tile-number text-faded">
@@ -170,9 +159,9 @@
 				</div>
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
-							<div class="circle-tile-heading purple">
-								<i class="fa fa-comments fa-fw fa-3x"></i>
-							</div>
+						<div class="circle-tile-heading purple">
+							<i class="fa fa-comments fa-fw fa-3x"></i>
+						</div>
 						<div class="circle-tile-content purple">
 							<div class="circle-tile-description text-faded">문의채팅방</div>
 							<div class="circle-tile-number text-faded">
@@ -183,11 +172,27 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="col-lg-2 col-sm-6">
+						<div class="circle-tile">
+						<div class="circle-tile-heading gray">
+							<i class="fa fa-tree fa-fw fa-3x"></i>
+						</div>
+						<div class="circle-tile-content gray" style="">
+							<div class="circle-tile-description text-faded">Forest</div>
+							<div class="circle-tile-number text-faded">
+								Main<span id="sparklineB"></span>
+							</div>
+							<a href="main.do" class="circle-tile-footer" style="text-align: center;">관리자 나가기 <i
+								class="fa fa-chevron-circle-right"></i></a>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 		<!-- page-wrapper END-->
-	</div>
-
+</div>
 
 	<script src="resources/assets/js/vendor/jquery-1.11.2.min.js"></script>
 	<script src="resources/assets/js/vendor/bootstrap.min.js"></script>

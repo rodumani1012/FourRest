@@ -22,4 +22,6 @@ public interface LoginBiz {
 	public List<LoginDto> memlist();
 	public int memupdate(LoginDto dto);
 	public int memcount();
+	public List<LoginDto> adminsearch(String idsearch);
+	public int userdel(int usernum);
 }

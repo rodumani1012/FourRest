@@ -195,13 +195,6 @@ public class HomeController {
 		model.addAttribute("calcount",calbiz.calcount());
 		return "admin/admin";
 	}
-
-	@RequestMapping(value = "admincal.do")
-	public String admincal() {
-		logger.info("관리자일정");
-
-		return "admin/admincal";
-	}
 	
 	//kakao 로그인
 	@RequestMapping(value="login.do")
@@ -551,5 +544,27 @@ public class HomeController {
 		return map;
 	}
 	
+	@RequestMapping("admin_memsearch.do")
+	public String admin_memsearch(String idsearch,Model model) {
+		List<LoginDto> list = null;
+		list = biz.adminsearch(idsearch);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("searchlist", list);
+		model.addAttribute("memlist", list);
+		
+		return "admin/admin_memlist";
+		
+		
+	}
+	@RequestMapping("admin_memdelete.do")
+	public String admin_memdelete(int usernum) {
+		int res = biz.userdel(usernum);
+		if (res>0) {
+			System.out.println("ok");
+			return "redirect:admin_memlist.do";
+		}
+		System.out.println("no");
+		return "redirect:admin_memlist.do";
+	}
 	
 }

@@ -173,6 +173,27 @@ public class LoginDaoImpl implements LoginDao{
 		return cnt;
 	}
 
+	@Override
+	public List<LoginDto> adminsearch(String idsearch) {
+		List<LoginDto> list = null;
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("idsearch", idsearch);
+		try {
+			list = sqlSesssion.selectList(namespace+"adminsearch",map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public int userdel(int usernum) {
+		int res =0;
+		res = sqlSesssion.delete(namespace+"adminmemdelete",usernum);
+		return res;
+	}
+
 	
 	
 	

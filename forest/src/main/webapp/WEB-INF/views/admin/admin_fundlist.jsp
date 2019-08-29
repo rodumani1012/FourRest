@@ -51,7 +51,6 @@
 				<td>날짜</td>
 				<td>참여인원</td>
 				<td>펀딩내용</td>
-				<td>notice</td>
 				<td>후원삭제</td>
 			</tr>
 			<c:choose>
@@ -69,7 +68,6 @@
 						<td>${fdto.fundate }</td>
 						<td>${fdto.participants }</td>
 						<td>${fdto.fun_content }</td>
-						<td>${fdto.notice }</td>
 						<td><button class="btn btn btn-danger" type="button" onclick="location.href='admin_fundelete.do?id=${fdto.fun_id}&title=${fdto.funtitle }'">일정 삭제</button></td>
 						</tr>
 					</c:forEach>
@@ -88,7 +86,7 @@
 				<td>후원자</td>
 				<td>펀딩제목</td>
 				<td>후원금액</td>
-				<td>환불하기</td>
+<!-- 				<td>환불하기</td> -->
 			</tr>
 			<c:choose>
 				<c:when test="${empty paylist }">
@@ -100,7 +98,7 @@
 						<td>${pdto.id }</td>
 						<td>${pdto.funtitle }</td>
 						<td>${pdto.funmoney}</td>
-						<td><input class="btn btn-warning" type="button" onclick="#" value="환불"></td>
+<!-- 						<td><input class="btn btn-warning" type="button" onclick="location.href='admin_refund.do'" value="환불"></td> -->
 						</tr>
 					</c:forEach>
 				</c:otherwise>
@@ -109,5 +107,6 @@
 		</div>
 	
 	</div>
+
 </body>
 </html>
