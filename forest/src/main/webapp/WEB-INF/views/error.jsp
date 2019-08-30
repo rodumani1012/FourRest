@@ -33,35 +33,37 @@
 		<img class="errorimg" alt="에러이미지" src="resources/assets/images/error.png">
 	</div>
 	
-	<c:choose>
-		<c:when test="${kind eq Throwable }">
-			<h1>Throwable 에러</h1>
-		</c:when>
-		<c:when test="${kind eq Exception }">
-			<h1>Exception 에러</h1>
-		</c:when>
-		<c:when test="${kind eq 400 }">
-			<h1>400</h1>
-		</c:when>
-		<c:when test="${kind eq 403 }">
-			<h1>403</h1>
-		</c:when>
-		<c:when test="${kind eq 404 }">
-			<h1>404</h1>
-		</c:when>
-		<c:when test="${kind eq 405 }">
-			<h1>405</h1>
-		</c:when>
-		<c:when test="${kind eq 500 }">
-			<h1>500</h1>
-		</c:when>
-		<c:when test="${kind eq 503 }">
-			<h1>503</h1>
-		</c:when>
-		<c:otherwise>
-			<h1>무슨 에러지?</h1>
-		</c:otherwise>
-	</c:choose>
+	<div>
+		<c:choose>
+			<c:when test="${kind eq 'Throwable' }">
+				<h1>Throwable 에러</h1>
+			</c:when>
+			<c:when test="${kind eq 'Exception' }">
+				<h1>Exception 에러</h1>
+			</c:when>
+			<c:when test="${kind eq 400 }">
+				<h1>400</h1>
+			</c:when>
+			<c:when test="${kind eq 403 }">
+				<h1>403</h1>
+			</c:when>
+			<c:when test="${kind eq 404 }">
+				<h1>404</h1>
+			</c:when>
+			<c:when test="${kind eq 405 }">
+				<h1>405</h1>
+			</c:when>
+			<c:when test="${kind eq 500 }">
+				<h1>500</h1>
+			</c:when>
+			<c:when test="${kind eq 503 }">
+				<h1>503</h1>
+			</c:when>
+			<c:otherwise>
+				<h1>무슨 에러지?</h1>
+			</c:otherwise>
+		</c:choose>
+	</div>
 	
 	<div>
 		<h2>요청하신 페이지를 찾을 수 없습니다.</h2>

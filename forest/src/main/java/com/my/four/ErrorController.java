@@ -17,6 +17,7 @@ public class ErrorController extends HttpServlet {
 	@RequestMapping(value = "error.do")
 	public String error(String kind, Model model) {
 		logger.info("에러 발생. 에러페이지로 이동!");
+		logger.info("종류 : " + kind);
 		
 		model.addAttribute("kind", kind);
 		return "error";
