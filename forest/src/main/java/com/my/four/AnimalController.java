@@ -64,8 +64,8 @@ public class AnimalController {
 		String txt_s = txt_search;
 		
 		if (biz.aniGetTotalCountEndangeredCSV(txt_s) == 0) {
-
 			// db에 저장하기
+			
 			biz.aniInsertEndangeredImg(ani.returnEndangeredImg());
 			biz.aniInsertEndangeredCSV(ani.returnEndangeredCSV(request.getSession().getServletContext().getRealPath("resources/assets/csv/endangeredList.csv")));
 			biz.aniInsertEndangeredJoin(biz.aniSelectListEndangeredJoin());

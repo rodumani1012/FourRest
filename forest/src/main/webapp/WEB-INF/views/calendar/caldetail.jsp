@@ -10,15 +10,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>The Forest</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<sec:authorize access="isAuthenticated()">
-		<sec:authentication property="principal.username" var="user_id" />
+	<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
 	
 	<%@ include file="../header.jsp"%>
-	<br><br><br><br><br>
 	<form>
 		<table class="table">	
 			<tr>

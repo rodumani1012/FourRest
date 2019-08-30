@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
@@ -12,17 +13,13 @@
 <link rel="stylesheet" href="resources/assets/css/bootstrap.css">
 <link href="resources/assets/css/admin.css" rel="stylesheet"
 	type="text/css">
-<link	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"	rel="stylesheet" id="bootstrap-css">
-<script type="text/javascript"	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
-<style type="text/css">
-.fa-circle{
-color: #5cb85c;
-}
-.fa-times{
-color: #d43f3a;
-};
-</style>
+<script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 </head>
 <body>
 	<!--top nav start=======-->
@@ -45,24 +42,17 @@ color: #d43f3a;
 			</ul>
 		</div>
 	</nav>
-	
-	<div class="row" style="overflow-y: scroll; margin: 5%; ">
-		<table id="searchtbl" class="table table-striped table-hover">
+
+	<div class="table-responsive" style="overflow-y: scroll; margin: 5% ">
+		<table class="table table-striped table-hover">
 			<tr>
-				<td colspan="8" style="text-align: right;">
-					<input id="searchbox" type="text" placeholder="회원아이디" class="form-control" style="width: 350px; display: inline;"><input type="button" value="검색" class="btn btn btn-secondary" onclick="gotosearch();">		
-				</td>
-			</tr>
-<!-- 			<tbody></tbody> -->
-			<tr>
-				<th>번호</th>
-				<th>이름</th>
-				<th>아이디</th>
-				<th>연락처</th>
-				<th>이메일</th>
-				<th>주소</th>
-				<th>회원여부</th>
-				<th>회원정보수정</th>
+				<td>번호</td>
+				<td>이름</td>
+				<td>아이디</td>
+				<td>연락처</td>
+				<td>이메일</td>
+				<td>주소</td>
+				<td>회원정보수정</td>
 			</tr>
 			<c:choose>
 			<c:when test="${empty memlist}" >
@@ -73,22 +63,12 @@ color: #d43f3a;
 			<c:otherwise>
 				<c:forEach items="${memlist }" var="dto" varStatus="status">
 					<tr id="rownumid${status.count}">
-						<td><div class="prevup">${dto.usernum}</div><div class="afterup"><div class="userno">${dto.usernum }</div></div></td>
-						<td><div class="prevup">${dto.name}</div><div class="afterup">${dto.name }</div></td>
-						<td><div class="prevup">${dto.id}</div><div class="afterup">${dto.id }</div></td>
+						<td><div class="prevup">${dto.usernum}</div><div class="afterup"><input type="text" value="${dto.usernum }" readonly="readonly" class="userno"></div></td>
+						<td><div class="prevup">${dto.name}</div><div class="afterup"><input type="text" value="${dto.name }"readonly="readonly"></div></td>
+						<td><div class="prevup">${dto.id}</div><div class="afterup"><input type="text" value="${dto.id }"readonly="readonly"></div></td>
 						<td><div class="prevup"><div class="prevphone">${dto.phone}</div></div><div class="afterup"><input type="text" value="${dto.phone}" class="phone"></div></td>
 						<td><div class="prevup"><div class="prevemail">${dto.email}</div></div><div class="afterup"><input type="text" value="${dto.email}" class="email"></div></td>
 						<td><div class="prevup"><div class="prevaddr">${dto.addr}</div></div><div class="afterup"><input type="text" value="${dto.addr}" class="addr"></div></td>
-						<td>
-							<c:choose>
-								<c:when test="${dto.enabledDb=='Y' }">
-									<i class="far fa-circle" ></i>
-								</c:when>
-								<c:otherwise>
-									<i class="fas fa-times"></i>&nbsp;&nbsp;<input class="btn btn-danger btn-sm" type="button" onclick="location.href='admin_memdelete.do?usernum=${dto.usernum}'" value="정보영구삭제">
-								</c:otherwise>
-							</c:choose>
-						</td>
 						<td>
 						<input class="prevup btn btn-danger btn-sm" type="button" value="수정"  onclick="open_afterdiv(${status.count });">
 						<input class="afterup btn btn-success btn-sm" type="button" value="수정완료" onclick="update_member(${status.count });">
@@ -118,13 +98,13 @@ function close_afterdiv(idno) {
 };
 
 function update_member(idno){
-	var usernum = $('#rownumid'+idno+' .afterup').find('.userno').html();
+	var usernum = $('#rownumid'+idno+' .afterup').find('.userno').val();
 	var phone = $('#rownumid'+idno+' .afterup').find('.phone').val();
 	var email = $('#rownumid'+idno+' .afterup').find('.email').val();
 	var addr = $('#rownumid'+idno+' .afterup').find('.addr').val();
 	console.log(usernum+'/'+phone+'/'+email+'/'+addr);
 	$.ajax({
-		url : "admin_memupdate.do",
+		url : "memupdate.do",
 		type : 'post',
 		data : {
 			"usernum" :usernum,
@@ -134,7 +114,7 @@ function update_member(idno){
 		},
 		dateType : "json",
 		success : function(map) {
-			alert('수정되었습니다.');
+			alert("수정"+map.code);
 			$('#rownumid'+idno+' .prevphone').html(phone);
 			$('#rownumid'+idno+' .prevemail').html(email);
 			$('#rownumid'+idno+' .prevaddr').html(addr);
@@ -147,32 +127,5 @@ function update_member(idno){
 }
 
 
-function gotosearch() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("searchbox");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("searchtbl");
-  tr = table.getElementsByTagName("tr");
-
-  
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[2];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    } 
-  }
-}
-
-
-
 </script>
-
-
-
-
 </html>

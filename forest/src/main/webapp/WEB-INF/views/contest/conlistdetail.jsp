@@ -32,7 +32,7 @@ body{
 	});
 
 </script>
-<title>The Forest</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<%@ include file="../header.jsp"%>

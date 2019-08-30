@@ -28,7 +28,6 @@ public interface ContestBoardBiz {
 	public int starProc(int usernum,int boardno,int newstar); //스타보드(처음이면입력/수정) & 콘보드(스타업데이트,처음인경우카운트올리기)
 	public int reupdateStar(int boardno, int newstar, int gustar);
 	public int ansProc(ContestBoardDto dto);
-	public int ansdel(int boardno);
 	
 
 }

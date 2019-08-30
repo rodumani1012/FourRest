@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>The Forest</title>
+<title>Insert title here</title>
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet">

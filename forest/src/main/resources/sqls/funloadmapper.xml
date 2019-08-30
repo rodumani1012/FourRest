@@ -18,14 +18,5 @@
 	<select id="select1" parameterType="String" resultType="Integer">
 		SELECT COUNT(DISTINCT FUNID) AS FUNCOUNT FROM FUNDINGPAY WHERE FUNTITLE LIKE #{funtitle} GROUP BY FUNTITLE
 	</select>
-	
-	<resultMap type="FundingLoadDto" id="fundload">
-		<result column="FUNID" property="id"/>
-		<result column="FUNTITLE" property="funtitle"/>
-		<result column="FUNPAY" property="funmoney"/>
-	</resultMap>
-	
-	<select id="paylist" resultMap="fundload">
-		SELECT FUNID,FUNTITLE,FUNPAY FROM FUNDINGPAY
-	</select>
+
 </mapper>

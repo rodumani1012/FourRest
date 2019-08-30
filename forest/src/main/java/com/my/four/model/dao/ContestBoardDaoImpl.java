@@ -38,7 +38,7 @@ public class ContestBoardDaoImpl implements ContestBoardDao {
 		try {
 			res = sqlSession.insert(namespace + "boardInsert", dto);
 		} catch (Exception e) {
-			System.out.println("에러");
+			System.out.println("에러다!");
 			e.printStackTrace();
 		}
 		return res;
@@ -50,7 +50,7 @@ public class ContestBoardDaoImpl implements ContestBoardDao {
 		try {
 			res = sqlSession.update(namespace + "boardUpdate", dto);
 		} catch (Exception e) {
-			System.out.println("에러");
+			System.out.println("에러다!");
 			e.printStackTrace();
 		}
 
@@ -63,7 +63,7 @@ public class ContestBoardDaoImpl implements ContestBoardDao {
 		try {
 			res = sqlSession.delete(namespace + "boardDelete", groupno);
 		} catch (Exception e) {
-			System.out.println("에러");
+			System.out.println("에러남");
 			e.printStackTrace();
 		}
 		return res;
@@ -94,7 +94,7 @@ public class ContestBoardDaoImpl implements ContestBoardDao {
 		try {
 			res = sqlSession.selectOne(namespace + "getCount", dto);
 		} catch (Exception e) {
-			System.out.println("Error");
+			System.out.println("에러다!?");
 			e.printStackTrace();
 		}
 		return res;
@@ -106,7 +106,7 @@ public class ContestBoardDaoImpl implements ContestBoardDao {
 		try {
 			cnt = sqlSession.selectOne(namespace + "selectTotalCount");
 		} catch (Exception e) {
-			System.out.println("totalcountError");
+			System.out.println("에러남 토탈카운트");
 			e.printStackTrace();
 		}
 		return cnt;
@@ -139,15 +139,7 @@ public class ContestBoardDaoImpl implements ContestBoardDao {
 
 	@Override
 	public int replyCntup(int boardno) {
-		int res =0;
-		try {
-			res = sqlSession.update(namespace+"replyCntup",boardno);
-		} catch (Exception e) {
-			System.out.println("Error");
-			e.printStackTrace();
-		}
-		
-		return res;
+		return 0;
 	}
 
 	@Override
@@ -282,19 +274,6 @@ public class ContestBoardDaoImpl implements ContestBoardDao {
 			System.out.println("insertAns에러");
 			e.printStackTrace();
 		}
-		return res;
-	}
-
-	@Override
-	public int ansdel(int boardno) {
-		int res =0;
-		try {
-			res = sqlSession.delete(namespace+"ansdel",boardno);
-		} catch (Exception e) {
-			System.out.println("Error");
-			e.printStackTrace();
-		}
-		
 		return res;
 	}
 

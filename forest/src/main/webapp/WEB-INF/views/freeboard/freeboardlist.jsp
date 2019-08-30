@@ -5,11 +5,59 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
+<%@ page import="com.my.four.model.dao.FreeboardDao"%>
+<%@ page import="com.my.four.model.dao.FreeboardDaoImpl"%>
+<%@ page import="com.my.four.model.dto.FreeboardDto"%>
+
+<%@page import="java.util.List"%>
+
+<!-- 페이징  -->
+ <%
+ 
+ 	FreeboardDao dao = new FreeboardDaoImpl();
+ 
+ 	String strPg = request.getParameter("pg"); //list.jsp?pg=?
+  
+     int rowSize = 10; //한페이지에 보여줄 글의 수
+     int pg = 1; //페이지 , list.jsp로 넘어온 경우 , 초기값 =1
+    
+     if(strPg != null){ //list.jsp?pg=2
+         pg = Integer.parseInt(strPg); //.저장
+     }
+    
+    
+     int from = (pg * rowSize) - (rowSize-1); //(1*10)-(10-1)=10-9=1 //from
+     int to=(pg * rowSize); //(1*10) = 10 //to
+  	
+     List<FreeboardDto> list = dao.freeboardList();
+     //System.out.println("list : "+list.get(3).getFree_title());
+    
+     int total = dao.freeboardList().size(); //총 게시물 수
+     System.out.println("sdfsdfasdfasdf"+dao.freeboardList().size());
+     int allPage = (int) Math.ceil(total/(double)rowSize); //페이지수
+     //int totalPage = total/rowSize + (total%rowSize==0?0:1);
+     int block = 10; //한페이지에 보여줄  범위 << [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] >>
+    
+    
+    
+     System.out.println("전체 페이지수 : "+allPage);
+     System.out.println("현재 페이지 : "+ strPg);
+     //System.out.println("ceil:"+Math.ceil(total/rowSize));
+     //out.println("list="+list);
+    
+     int fromPage = ((pg-1)/block*block)+1;  //보여줄 페이지의 시작
+     int toPage = ((pg-1)/block*block)+block; //보여줄 페이지의 끝
+     if(toPage> allPage){ // 예) 20>17
+         toPage = allPage;
+     }
+    
+     System.out.println("페이지시작 : "+fromPage+ " / 페이지 끝 :"+toPage);
+ %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>The Forest</title>
+<title>Insert title here</title>
 
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

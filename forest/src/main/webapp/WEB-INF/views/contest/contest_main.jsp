@@ -259,7 +259,7 @@ body {
 														<tr data-status="pendiente">
 															<td></td>
 															<td>${dto.boardno}</td>
-															<td><a href="conlistdetail.do?conlistno=${dto.boardno }">${dto.title }</a></td>
+															<td><a href="#">${dto.title }</a></td>
 															<td>${start }~${end }<a
 																style="color: #eea236; font-weight: bold;">(오늘마감)</a>
 															<td>${dto.partnum }</td>
@@ -269,7 +269,7 @@ body {
 														<tr data-status="cancelado">
 															<td></td>
 															<td>${dto.boardno}</td>
-															<td><a> <del>${dto.title }</del></a></td>
+															<td><a href="#">${dto.title }</a></td>
 															<td>${start }~${end }<a
 																style="color: #d43f3a; font-weight: bold;">(종료)</a>
 															<td>${dto.partnum }</td>

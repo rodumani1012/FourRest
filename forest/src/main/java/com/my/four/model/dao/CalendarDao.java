@@ -19,7 +19,6 @@ public interface CalendarDao {
 	public int volupdate(String caltitle, String id);
 	public VolmemberDto volselectOne (String caltitle, String id);
 	public int noticeupdate (String today);
-	public int noticeupdate1 (List<String> list);
-	public int calcount();
+	public int noticeupdate1 (List list);
 	
 }

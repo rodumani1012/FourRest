@@ -6,14 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>The Forest</title>
-<style type="text/css">
-	input[type="number"]::-webkit-outer-spin-button,
-	input[type="number"]::-webkit-inner-spin-button {
-	    -webkit-appearance: none;
-	    margin: 0;
-	}
-</style>
+<title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 //입력 날짜 체크
@@ -63,7 +56,7 @@ $(function(){
 		<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
 <%@ include file="../header.jsp"%>
-<br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
 <div class="container row mx-auto">
 	<form action="calinsertres.do" method="post">
 			<input type="hidden" name="calid" value="${user_id }">
@@ -94,20 +87,12 @@ $(function(){
 			</tr>
 			<tr>
 				<th>모집 인원</th>
-				<td>
-					<input type="number" name="calrecpeo" id="calrecpeo">
-					<select id="selectPeople">
-						<option value="0" selected>직접입력</option>
-						<c:forEach begin="1" end="10" varStatus="status">
-							<option value="${status.index }">${status.index }</option>
-						</c:forEach>
-					</select>
-				</td>
+				<td><input type="text" name="calrecpeo"></td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<button class="btn btn-outline-dark" type="submit">봉사등록</button>
-					<button class="btn btn-outline-dark" type="button"onclick="location.href='calendar.do'">취소</button>
+					<input type="submit" value="봉사등록"> 
+					<input type="button" value="취소" onclick="location.href='calendar.do'">
 				</td>
 			</tr>
 		</table>

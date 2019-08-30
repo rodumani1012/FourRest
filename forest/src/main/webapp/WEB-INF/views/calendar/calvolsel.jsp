@@ -9,15 +9,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../header.jsp"%>
 <meta charset="UTF-8">
-<title>The Forest</title>
+<title>Insert title here</title>
 <link href='resources/assets/css/calcss/fullcalendar.css' rel='stylesheet' />
 <link href='resources/assets/css/calcss/fullcalendar.print.css' rel='stylesheet' media='print' />
 <script src='resources/assets/js/caljs/moment.min.js'></script>
 <script src='resources/assets/js/caljs/jquery.min.js'></script>
 <script src='resources/assets/js/caljs/fullcalendar.min.js'></script>
-<script src="resources/assets/js/caljs/lang/ko.js"></script>
 <script>
 
 	$(document).ready(function() {
@@ -49,8 +47,7 @@
 				center : 'title',
 				right : 'month'
 			},
-			locale: 'ko',
-			defaultDate : new Date(),
+			defaultDate : '2019-08',
 			editable : false,
 			eventLimit : true, // allow "more" link when too many events
 			
@@ -65,6 +62,7 @@
 body {
 	margin: 40px 10px;
 	padding: 0;
+	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
 	font-size: 14px;
 }
 
@@ -91,19 +89,8 @@ body {
 </head>
 <body>
 
-	<br><br><br><br><br>
-	
-	<div>
-		<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<input type="button" value="봉사 모집 기간" onclick="location.href='calrecsel.do'">
-		<input type="button" value="봉사 활동 기간" onclick="location.href='calvolsel.do'" disabled="disabled">
-		
-		
-			<button class="btn btn-outline-dark" type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">봉사활동 등록</button>
-		</sec:authorize>
-	</div>
-	<h3>봉사 활동 기간</h3>
 	<div id='calendar'></div>
+	<input type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">
 
 </body>
 </html>

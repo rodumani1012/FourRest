@@ -1,7 +1,5 @@
 package com.my.four;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.my.four.model.biz.FreeboardBiz;
-import com.my.four.model.dto.AnimalDisturbDto;
 import com.my.four.model.dto.FreeboardDto;
 import com.my.four.model.dto.FreecommentDto;
-import com.my.four.paging.Paging;
 
 @Controller
 public class FreeboardController {
@@ -26,27 +22,10 @@ public class FreeboardController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@RequestMapping(value="freeboardlist.do")
-	public String freeboardlist(String category, String txt_search, String page, Model model) {
+	public String freeboardlist(Model model) {
 		
 		logger.info("자유게시판 리스트");
-		
-		// 페이징하기
-		int totalCount = biz.freeboardGetTotalCount(category, txt_search);
-		int pag = (page == null) ? 1 : Integer.parseInt(page);
-
-		Paging paging = new Paging();
-
-		paging.setPageNo(pag); // get방식의 parameter값으로 반은 page변수, 현재 페이지 번호
-		paging.setPageSize(10); // 한페이지에 불러낼 게시물의 개수 지정
-		paging.setTotalCount(totalCount);
-		pag = (pag - 1) * paging.getPageSize(); // select해오는 기준을 구한다.
-
-		List<FreeboardDto> list = biz.freeboardList(pag, paging.getPageSize(), category, txt_search);
-		model.addAttribute("list", list);
-		model.addAttribute("paging", paging);
-		model.addAttribute("txt_search", txt_search);
-		model.addAttribute("totalCount", totalCount);
-		
+		model.addAttribute("list", biz.freeboardList());
 		return "freeboard/freeboardlist";
 	}
 	

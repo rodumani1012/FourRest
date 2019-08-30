@@ -58,7 +58,7 @@
 		]]>
 	</select>
 	<select id="memlist" resultType="loginDto" >
-		SELECT * FROM MEMBER
+		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLED,ROLE FROM MEMBER
 	</select>
 	
 	<update id="memupdate" parameterType="loginDto">
@@ -73,11 +73,4 @@
 		SELECT COUNT(*) FROM MEMBER 
 	</select>
 	
-	<select id="adminsearch" resultType="logindto" parameterType="map">
-		SELECT * FROM MEMBER WHERE UPPER(ID) like '%' || UPPER(#{idsearch}) || '%'
-	</select>
-	
-	<delete id="adminmemdelete" parameterType="int">
-		DELETE FROM MEMBER WHERE USERNUM=#{usernum}
-	</delete>
 </mapper>

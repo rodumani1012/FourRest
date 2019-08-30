@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-Frame-Options" content="SAMEORIGIN"/>
-<title>The Forest</title>
+<title>Insert title here</title>
 
 </head>
 <body>
