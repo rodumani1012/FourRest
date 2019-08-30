@@ -191,7 +191,7 @@
  		<!--	<iframe class="iframe-chat" src="http://192.168.110.62:8880?id=${user_id }" style="overflow-x: hidden"></iframe> -->
 		</div>
 	</sec:authorize>
-
+	</div>
 
 	<!-- footer -->
 	<%@ include file="./footer.jsp"%>
