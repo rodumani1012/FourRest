@@ -171,4 +171,8 @@
 		UPDATE CONTESTBOARD SET LIKERATE = #{starrate} WHERE BOARDNO=#{boardno}
 	</update>
 	
+	<delete id="ansdel" parameterType="int">
+	 	DELETE FROM CONTESTBOARD WHERE BOARDNO=#{boardno}
+	</delete>
+	
 </mapper>

@@ -578,4 +578,9 @@ public class HomeController {
 		return "redirect:admin_memlist.do";
 	}
 	
+	@RequestMapping("admin_gotochat.do")
+	public String admin_gotochat() {
+		return "admin/admin_chatlist";
+	}
+	
 }

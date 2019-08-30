@@ -5,27 +5,14 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="sumit kumar">
-<title>admin-template</title>
+<title>::Management</title>
 
 <link rel="stylesheet" href="resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="resources/assets/css/bootstrap.css">
-<link href="resources/assets/css/admin.css" rel="stylesheet"
-	type="text/css">
+<link href="resources/assets/css/admin.css" rel="stylesheet" type="text/css">
 <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<script type="text/javascript">
-function toggle(){
-	$("#adminchat").toggle()
-	
-}
-</script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style type="text/css">
 </style>
 </head>
@@ -162,21 +149,6 @@ function toggle(){
 						</div>
 					</div>
 				</div>
-				<!-- <div class="col-lg-2 col-sm-6">
-					<div class="circle-tile">
-						<div class="circle-tile-heading purple">
-							<i class="fa fa-comments fa-fw fa-3x"></i>
-						</div>
-						<div class="circle-tile-content purple">
-							<div class="circle-tile-description text-faded">문의채팅방</div>
-							<div class="circle-tile-number text-faded">
-								1:1 <span id="sparklineD"></span>
-							</div>
-							<a href="#" class="circle-tile-footer">More Info <i
-								class="fa fa-chevron-circle-right"></i></a>
-						</div>
-					</div>
-				</div> -->
 
 				<div class="col-lg-2 col-sm-6">
 					<div class="circle-tile">
@@ -192,7 +164,22 @@ function toggle(){
 							<div class="circle-tile-number text-faded">
 								1:1 <span id="sparklineB"></span>
 							</div>
-							<a href="main.do" class="circle-tile-footer" style="text-align: center;">More Info<i
+							<a href="admin_gotochat.do" class="circle-tile-footer" style="text-align: center;">More Info<i
+								class="fa fa-chevron-circle-right"></i></a>
+						</div>
+					</div>
+				</div>
+								<div class="col-lg-2 col-sm-6">
+						<div class="circle-tile">
+						<div class="circle-tile-heading gray">
+							<i class="fa fa-tree fa-fw fa-3x"></i>
+						</div>
+						<div class="circle-tile-content gray" style="">
+							<div class="circle-tile-description text-faded">Forest</div>
+							<div class="circle-tile-number text-faded">
+								Main<span id="sparklineB"></span>
+							</div>
+							<a href="main.do" class="circle-tile-footer" style="text-align: center;">관리자 나가기 <i
 								class="fa fa-chevron-circle-right"></i></a>
 						</div>
 					</div>
@@ -202,36 +189,6 @@ function toggle(){
 		</div>
 		<!-- page-wrapper END-->
 </div>
-
-	<script src="resources/assets/js/vendor/jquery-1.11.2.min.js"></script>
-	<script src="resources/assets/js/vendor/bootstrap.min.js"></script>
-
-
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$(".sidebar-toggle").click(function() {
-				$(this).hide();
-
-				$("#user-profil").show();
-
-				$("#hide-btn").show();
-
-				$(".container-2").css("width", "85%");
-
-			});
-
-			$("#hide-btn").click(function() {
-				$(this).hide();
-
-				$("#user-profil").hide();
-
-				$(".sidebar-toggle").show();
-
-				$(".container-2").css("width", "100%");
-
-			});
-		});
-	</script>
 
 
 

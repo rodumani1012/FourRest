@@ -230,7 +230,6 @@ public class ContestBoardController {
 	@RequestMapping("contest_replyform.do")
 	public String postreply(@ModelAttribute ContestBoardDto dto, Model model) {
 		int parentno = dto.getBoardno();
-		System.out.println("컨트롤러"+dto.getBoardno()+"/"+dto.getContent()+"/"+dto.getWriter()+"/"+dto.getGroupno());
 		int cnt = biz.replyCntup(parentno);
 		int rescnt = biz.ansProc(dto);
 		if(cnt>0&&rescnt>1) {
@@ -241,6 +240,17 @@ public class ContestBoardController {
 			return "redirect:contest_detail.do?boardno=" + parentno;
 		}
 	}
+	
+	@RequestMapping("contest_ansdelete.do")
+	public String ansdelete(int boardno,int pboardno) {
+		int res =0;
+		res = biz.ansdel(boardno);
+		if(res>0) {
+			return "redirect:contest_detail.do?boardno=" + pboardno;
+		}
+		return "redirect:contest_detail.do?boardno=" + pboardno;
+	}
+
 
 //	@RequestMapping(value="contest_update.do")
 //	public String contestUpdate(Model model, ContestBoardDto dto) {

@@ -158,10 +158,13 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 	public int ansProc(ContestBoardDto dto) {
 		int parentno = dto.getBoardno();
 		int res1 = dao.updateAns(parentno);
-		System.out.println("비즌데여"+parentno);
 		int res2 = dao.insertAns(dto);
-		System.out.println("Res1:"+res1+"res2:"+res2);
 		return res1+res2;
+	}
+
+	@Override
+	public int ansdel(int boardno) {
+		return dao.ansdel(boardno);
 	}
 
 
