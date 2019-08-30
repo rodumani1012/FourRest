@@ -185,7 +185,7 @@
 		<i class='fas fa-comment-dots'></i>
 	</button>
 	<div id="chat"
-		style="display: none; position: fixed; bottom: 50PX; right: 86PX; z-index: 9999">
+		style="display: none; position: fixed; bottom: 50px; right: 86px; z-index: 9999;">
 		<div id="chat_box">
 			<ul id="#messages"></ul>
 		</div>

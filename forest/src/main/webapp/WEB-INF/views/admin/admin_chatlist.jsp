@@ -34,7 +34,8 @@
 			</ul>
 		</div>
 	</nav>
-					<div id="adminchat" >
-					<iframe class="iframe-chat" src="http://192.168.110.62:8880/admin"></iframe></div>
+					<div id="adminchat" class="container " style="width: 700px;height:700px; " >
+					<iframe class="iframe-chat" src="http://192.168.10.158:8880/admin" style="width:100%;height: 100%;"></iframe>
+					</div>
 </body>
 </html>
