@@ -25,5 +25,7 @@ public interface LoginDao {
 	public List<LoginDto> memlist();
 	public int memupdate(LoginDto dto);
 	public int memcount();
+	public List<LoginDto> adminsearch(String idsearch);
+	public int userdel(int usernum);
 	public int withdrawMember(String id);
 }
