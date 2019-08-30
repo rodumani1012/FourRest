@@ -19,6 +19,12 @@ ul {
 dd {
 	margin: 0 auto;
 }
+
+.center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -74,13 +80,17 @@ dd {
 						onclick="location.href='ani_alien.do?board=animal_alien_harm&txt_search='">위해우려종</button>
 				</div>
 				<div class="pull-right form-inline">
-					<input type="text" id="txt_search" value="${txt_search }"
-						placeholder="생물종의 이름을 입력하세요.">
-					<button type="button" class="btn btn-outline-dark"
-						onclick="javascript:PageMove(${paging.pageNo}, ${groups })">검색</button>
-					<button type="button" class="btn btn-outline-dark" onclick="del()">초기화</button>
-					<input type="hidden" id="pageNum" value="${paging.pageNo }">
-					<input type="hidden" id="groupsName" value="${groups }">
+					<div class="row">
+						<input class="form-control col-md-8" type="text" id="txt_search"
+							value="${txt_search }" placeholder="생물종의 이름을 입력하세요.">
+					</div>
+					<div>
+						<button type="button" class="btn btn-outline-dark"
+							onclick="javascript:PageMove(${paging.pageNo}, ${groups })">검색</button>
+						<button type="button" class="btn btn-outline-dark" onclick="del()">초기화</button>
+						<input type="hidden" id="pageNum" value="${paging.pageNo }">
+						<input type="hidden" id="groupsName" value="${groups }">
+					</div>
 				</div>
 			</div>
 			<div class="container">
@@ -203,37 +213,40 @@ dd {
 			</div>
 
 
+			<div class="container">
 			<div>> 검색결과 ( 총 ${totalCount }종)</div>
-
-			<div class="form-inline">
-				<c:choose>
-					<c:when test="${empty list }">
-						<h3>-----------동물목록이 존재하지 않습니다.-----------</h3>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${list }" var="dto">
-							<ul style="width: 300px;">
-								<li><img class="image" src="${dto.img }"
-									alt="${dto.kor_name}"></li>
-								<li>
-									<dl>
-										<dt>${dto.kor_name }</dt>
-										<dd>
-											<span>영명 : </span>${dto.eng_name }</dd>
-										<dd>
-											<span>분류군 : </span>${dto.groups }</dd>
-										<dd>
-											<span>관리현황 : </span>${dto.management }</dd>
-										<c:if test="${dto.country ne 'NA' }">
-											<dd>
-												<span>원산지 : </span>${dto.country }</dd>
-										</c:if>
-									</dl>
-								</li>
-							</ul>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
+				<div class="justify-content-center">
+					<div class="form-inline form-group">
+						<c:choose>
+							<c:when test="${empty list }">
+								<h3>-----------동물목록이 존재하지 않습니다.-----------</h3>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${list }" var="dto">
+									<ul style="width: 300px;">
+										<li><img class="image" src="${dto.img }"
+											alt="${dto.kor_name}"></li>
+										<li>
+											<dl>
+												<dt>${dto.kor_name }</dt>
+												<dd>
+													<span>영명 : </span>${dto.eng_name }</dd>
+												<dd>
+													<span>분류군 : </span>${dto.groups }</dd>
+												<dd>
+													<span>관리현황 : </span>${dto.management }</dd>
+												<c:if test="${dto.country ne 'NA' }">
+													<dd>
+														<span>원산지 : </span>${dto.country }</dd>
+												</c:if>
+											</dl>
+										</li>
+									</ul>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</div>
 			</div>
 			<!-- Pagination -->
 			<div class="pagination pagination-md justify-content-center">

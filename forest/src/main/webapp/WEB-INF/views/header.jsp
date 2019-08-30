@@ -55,7 +55,7 @@
 </head>
 <body>
 	<nav
-		class="navbar navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
+		class="navbar navbar-expand-lg navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
 		<div class="container">
 			<!-- Start Header Navigation -->
 			<div class="navbar-header">
@@ -78,7 +78,7 @@
 						<div class="dropdown">
 							<button type="button"
 								class="text-dark btn btn-link dropdown-toggle"
-								data-toggle="dropdown">Calendar</button>
+								data-toggle="dropdown">봉사 일정</button>
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="calrecsel.do">봉사 모집 일정</a>
 								<a class="dropdown-item" href="calvolsel.do">봉사 활동 일정</a>
@@ -130,6 +130,7 @@
 							</div>
 						</div>
 					</li>
+					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 					<li><sec:authorize access="isAuthenticated()">
 							<sec:authentication property="principal.username" var="user_id" />

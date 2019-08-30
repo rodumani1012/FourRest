@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
@@ -36,7 +37,7 @@
 			<tr>
 				<td style="width: 150px; height: 100px;">${dto.comm_id }</td>
 				<td style="width: 400px; height: 100px;">${dto.comm_content }</td>
-				<td style="width: 150px; height: 100px;">${dto.comm_date }</td>
+				<td style="width: 150px; height: 100px;"><fmt:formatDate value="${dto.comm_date }" pattern="yyyy-MM-dd HH:MM"/></td>
 				<td style="width: 60px; height: 100px;">
 				<c:if test="${user_id ==  dto.comm_id}">
 					<input class="btn btn btn-light" type="button" value="삭제" onclick="location.href='commdelete.do?comm_seq=${dto.comm_seq }&free_seq=${dto.comm_freeseq }'"/>
