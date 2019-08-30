@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup # 긁어온걸 파싱해주는 역할
 import urllib.request # 긁어오는 역할.
 from builtins import str
 import json
-from pymongo import MongoClient
+from pymongo import MongoClient # 파이썬을 몽고db에 연결해주는 역할
 
 tmplist = []
 
