@@ -47,10 +47,10 @@ $(function(){
 		$('#selectPeople option:selected').each(function () {
 			if ($(this).val() == '0') { // 직접입력인 경우
 				$('#calrecpeo').val('');
-				$('#calrecpeo').prop('disabled', false);
+				$('#calrecpeo').prop('readonly', false);
 			} else {
 				$('#calrecpeo').val($(this).text());
-				$('#calrecpeo').prop('disabled', true);
+				$('#calrecpeo').prop('readonly', true);
 			}
 		});
 	});	
