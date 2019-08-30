@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
@@ -82,7 +83,7 @@ body {
 	        </tr>
 	        <tr>
 	            <td>작성 시간</td>
-	            <td><input type="text" name="free_date" value="${dto.free_date }" readonly="readonly"/></td>
+	            <td><input type="text" name="free_date" value="<fmt:formatDate value="${dto.free_date }" pattern="yyyy-MM-dd HH:MM"/>" readonly="readonly"/></td>
 	        </tr>
 	        <tr>
 	            <td>ID</td>
