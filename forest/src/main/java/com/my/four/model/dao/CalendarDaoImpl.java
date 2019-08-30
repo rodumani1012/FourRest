@@ -192,7 +192,7 @@ public class CalendarDaoImpl implements CalendarDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(res);
+
 		return res;
 	}
 
