@@ -41,22 +41,22 @@
 			<c:when test="${kind eq 'Exception' }">
 				<h1>Exception 에러</h1>
 			</c:when>
-			<c:when test="${kind eq 400 }">
+			<c:when test="${kind eq '400' }">
 				<h1>400</h1>
 			</c:when>
-			<c:when test="${kind eq 403 }">
+			<c:when test="${kind eq '403' }">
 				<h1>403</h1>
 			</c:when>
-			<c:when test="${kind eq 404 }">
+			<c:when test="${kind eq '404' }">
 				<h1>404</h1>
 			</c:when>
-			<c:when test="${kind eq 405 }">
+			<c:when test="${kind eq '405' }">
 				<h1>405</h1>
 			</c:when>
-			<c:when test="${kind eq 500 }">
+			<c:when test="${kind eq '500' }">
 				<h1>500</h1>
 			</c:when>
-			<c:when test="${kind eq 503 }">
+			<c:when test="${kind eq '503' }">
 				<h1>503</h1>
 			</c:when>
 			<c:otherwise>
