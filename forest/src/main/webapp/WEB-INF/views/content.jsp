@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>The Forest</title>
 <!--Google Font link-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet">
@@ -65,7 +65,8 @@
 		<div class="card-body">
 			<img class="img-fluid" src="resources/assets/images/content/quiz.jpg" width="200px" height="200px" onclick="location.href='quiz.do'">
 			<img class="img-fluid" src="resources/assets/images/content/puzzle.jpg" width="200px" height="200px" onclick="location.href='puzzle.do'">
-			<img class="img-fluid" src="resources/assets/images/content/crossword.png" width="200px" height="200px" onclick="location.href='crossword.do'">	
+			<img class="img-fluid" src="resources/assets/images/content/crossword.png" width="200px" height="200px" onclick="location.href='crossword.do'">
+			<img class="img-fluid" src="resources/assets/images/content/sorting.png" width="200px" height="200px" onclick="location.href='sortinggame.do'">	
 		</div>
 	</div>
 					<pre>

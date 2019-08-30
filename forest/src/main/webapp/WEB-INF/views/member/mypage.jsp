@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>The Forest</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 	function addpop() {
@@ -87,6 +87,9 @@
             </div>
             <div class="form-group">
             	<a href="mypagepwchk.do">비밀번호 변경</a>
+            </div>
+            <div class="form-group">
+            	<a href="mypagepwchk.do">회원탈퇴</a>
             </div>
             <button type="submit" class="btn btn-success btn-lg">수정완료</button>
             <button type="button" class="btn btn-success btn-lg"

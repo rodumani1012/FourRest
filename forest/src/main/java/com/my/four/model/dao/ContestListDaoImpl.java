@@ -71,4 +71,15 @@ public class ContestListDaoImpl implements ContestListDao {
 		return cnt;
 	}
 
+	@Override
+	public int concount() {
+		int cnt =0;
+		try {
+			cnt = sqlSession.selectOne(namespace+"concount");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+
 }

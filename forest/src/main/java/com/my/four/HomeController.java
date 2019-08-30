@@ -9,7 +9,10 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -24,6 +27,10 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpRequest;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -35,6 +42,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.my.four.model.biz.CalendarBiz;
+import com.my.four.model.biz.ContestListBiz;
+import com.my.four.model.biz.FundingBiz;
 import com.my.four.model.biz.LoginBiz;
 import com.my.four.model.biz.MailService;
 import com.my.four.model.dto.LoginDto;
@@ -58,11 +68,23 @@ public class HomeController {
 //	@Autowired
 //	private VerifyRecaptcha VerifyRecaptcha;
 	
+	@Autowired
+	private ContestListBiz contestlistbiz;
+	@Autowired
+	private FundingBiz funbiz;
+	@Autowired
+	private CalendarBiz calbiz;
+	
 	@RequestMapping(value="main.do")
-	public String main() {
-		logger.info("메인!!");
-
-		return "main";
+	public String main(Principal principal,HttpSession session) {
+		if(principal==null) {
+			return "main";
+		} else {
+			LoginDto dto = biz.memberInfo(principal.getName());
+			session.setAttribute("dto1", dto);
+			return "main";
+		}
+		
 	}
 
 	@RequestMapping(value = "sponsor.do")
@@ -170,17 +192,15 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "admin.do")
-	public String admin() {
+	public String admin(Model model,Principal prin) {
 		logger.info("관리자");
-
+		model.addAttribute("memcount",biz.memcount());
+		model.addAttribute("concount",contestlistbiz.concount());
+		model.addAttribute("fundcount",funbiz.totalfund());
+		model.addAttribute("calcount",calbiz.calcount());
+		LoginDto dto = biz.memberInfo(prin.getName());
+		System.out.println("!!!!!!!!!!!!!!!!"+dto.getRole());
 		return "admin/admin";
-	}
-
-	@RequestMapping(value = "admincal.do")
-	public String admincal() {
-		logger.info("관리자일정");
-
-		return "admin/admincal";
 	}
 	
 	//kakao 로그인
@@ -201,8 +221,8 @@ public class HomeController {
 			SecurityContext securityContext = SecurityContextHolder.getContext();
 			securityContext.setAuthentication(auth);
 			HttpSession session = request.getSession(true);
+			LoginDto dto1 = biz.memberInfo(id);
 			session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
-			
 			return "redirect:main.do";
 		}
 		
@@ -245,6 +265,7 @@ public class HomeController {
 		}
 		
 	}
+	//내정보에서 비밀번호 변경
 	@RequestMapping(value="pwChangeConfirm.do")
 	public String pwChangeConfirm(String pw, Principal principal,ServletResponse response,String newPw) throws IOException {
 		String id=principal.getName();
@@ -284,6 +305,7 @@ public class HomeController {
 		dto.setEmail(email);
 		int res = biz.memberUpdate(dto);
 		if(res>0) {
+			
 			return "redirect:main.do";
 		}else {
 			return "redirect:memberUpdate.do";
@@ -295,28 +317,130 @@ public class HomeController {
 	public String findId() {
 		return "member/findid";
 	}
-	
+	//아이디 찾기 이메일 전송
 	@RequestMapping(value="findIdConfirm.do",  produces = "application/json")
-	public String findIdConfirm(String name,String emailName,String emailForm) {
-		String email = emailName+"@"+emailForm;
-		System.out.println("-------------"+emailForm);
+	public String findIdConfirm(String name,String emailName,String emailFormWrite,HttpServletResponse response) throws IOException {
+		String email = emailName+"@"+emailFormWrite;
+		System.out.println("-------------"+emailFormWrite);
 		System.out.println("-------------"+name);
 		LoginDto dto = biz.findId(name, email);
+		if(dto!=null) {
 		String id= dto.getId();
 		String subject ="회원님의 아이디 입니다.";
 		StringBuilder sb = new StringBuilder();
 		sb.append("귀하의 아이디는"+id+"입니다.");
 		Map<String, Boolean> map = new HashMap<String, Boolean>();
 		map.put("email", mailSerivce.send(subject,sb.toString(),"wjy1408@gmail.com",email,null));
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('메일을 전송 했습니다.')</script>");
+			out.flush();
+			return "main";
+		}
+		else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('이름이나 이메일을 확인 해주세요.')</script>");
+			out.flush();
+			return "member/findid";
+		}
 		
-		return "redirect:main.do";
 		
 	}
 	@RequestMapping(value = "findPw.do")
 	public String findPw() {
-		logger.info("관리자");
 
-		return "admin/admin";
+		return "member/findpw";
+	}
+	//비밀번호 찾기 이메일 보내기
+	@RequestMapping(value="mailSendPw.do",produces = "application/json",method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Boolean> mailSendPw(HttpSession session,String id, String emailName,String emailForm,HttpServletResponse response) throws IOException {
+		String email = emailName+"@"+emailForm;
+		LoginDto dto = biz.findPw(id, email);
+		if(dto!=null) {
+			int ran = new Random().nextInt(100000)+10000;//10000~99999 
+			String joinCode = String.valueOf(ran);
+			session.setAttribute("joinCode", joinCode);
+			session.setAttribute("id", id);
+			String subject ="비밀번호 인증 코드 입니다.";
+			StringBuilder sb = new StringBuilder();
+			sb.append("귀하의 인증코드는"+joinCode+"입니다.");
+			Map<String, Boolean> map = new HashMap<String, Boolean>();
+			map.put("email", mailSerivce.send(subject,sb.toString(),"wjy1408@gmail.com",email,null));
+			return map;
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('아이디나 이메일을 확인 해주세요.')</script>");
+			out.flush();
+			Map<String, Boolean> map = new HashMap<String, Boolean>();
+			map.put("email", false);
+			return map;
+			
+		}
+		
+	}
+	
+	//비밀번호 찾기
+	@RequestMapping(value="findPwConfirm.do")
+	public String findPwConfirm(String number,HttpServletResponse response,HttpSession session) throws IOException {
+			String emailKey = (String) session.getAttribute("joinCode");
+			if(number.equals(emailKey)) {
+				return "member/changepw";
+			}else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('인증번호가 다릅니다.')</script>");
+				out.flush();
+				return "member/findpw";
+			}
+			
+	}
+	// 비밀번호 찾기에서 비밀번호 바꾸기
+	@RequestMapping(value="changePw.do")
+	public String pwChange(String pw,String pwchk,HttpServletResponse response,HttpSession session) throws IOException {
+		String id = session.getAttribute("id")+"";
+		String encodePw = passEncoder.encode(pw);
+		int res = biz.pwUpdate(encodePw, id);
+		if(pw.equals(pwchk)) {
+			if(res>0) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('수정이 완료 됐습니다.')</script>");
+				out.flush();
+				return "main";
+			}else {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('비밀번호를 확인하세요')</script>");
+				out.flush();
+				return "member/changepw";
+			}
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('동일한 비밀번호를 쓰세요.')</script>");
+			out.flush();
+			return "member/changepw";
+		}
+	}
+	
+	@Scheduled(cron="0 0/10 * * * ?")
+	public void check() {
+		List<LoginDto> list = biz.allMember();
+		
+		for (int i = 0; i<list.size();i++) {
+			String perpay = null;
+			String id = list.get(i).getId();
+			System.out.println("id=========="+id);
+			LoginDto dto = biz.memberInfo(id);
+			perpay = dto.getPerpay();
+			if(perpay=="Y") {
+				
+			}
+		}
+		
 	}
 
 	
@@ -402,4 +526,56 @@ public class HomeController {
 	
 	   return "site";
 	}
+	
+	@RequestMapping("admin_memlist.do")
+	public String memlist(Model model) {
+		List<LoginDto> memlist = null;
+		memlist = biz.memlist();
+		model.addAttribute("memlist",memlist);
+		for(LoginDto dto : memlist) {
+			System.out.println(dto.getUsername()+"/"+dto.getEnabledDb());
+		}
+		return "admin/admin_memlist";
+	}
+	@RequestMapping("admin_memupdate.do")
+	@ResponseBody
+	public Map<String,Object> memupdate(Model model,String usernum,String phone,String email,String addr) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		LoginDto dto = new LoginDto(Integer.parseInt(usernum),phone,email,addr);
+		int res = biz.memupdate(dto);
+		if(res>0) {
+			map.put("code", "ok");
+			return map;
+		}
+		map.put("code", "no");
+		return map;
+	}
+	@RequestMapping("adminchat.do")
+	public String adminchat() {
+		return "admin/chatlist";
+	}
+	
+	@RequestMapping("admin_memsearch.do")
+	public String admin_memsearch(String idsearch,Model model) {
+		List<LoginDto> list = null;
+		list = biz.adminsearch(idsearch);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("searchlist", list);
+		model.addAttribute("memlist", list);
+		
+		return "admin/admin_memlist";
+		
+		
+	}
+	@RequestMapping("admin_memdelete.do")
+	public String admin_memdelete(int usernum) {
+		int res = biz.userdel(usernum);
+		if (res>0) {
+			System.out.println("ok");
+			return "redirect:admin_memlist.do";
+		}
+		System.out.println("no");
+		return "redirect:admin_memlist.do";
+	}
+	
 }

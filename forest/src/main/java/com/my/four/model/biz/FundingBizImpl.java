@@ -54,6 +54,16 @@ public class FundingBizImpl implements FundingBiz {
 	public int funupdate1(String funtitle, int count) {
 		return dao.funupdate1(funtitle, count);
 	}
+
+	@Override
+	public int totalfund() {
+		return dao.totalfund();
+	}
+
+	@Override
+	public int admindelete(String id, String title) {
+		return dao.admindelete(id,title);
+	}
 	
 	
 

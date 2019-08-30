@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.my.four.model.dao.PollutionDataDao;
 import com.my.four.model.dto.AreaDto;
+import com.my.four.model.dto.SortGameDto;
+import com.my.four.model.dto.SortRankDto;
 @Service
 public class PollutionDataBizImpl implements PollutionDataBiz {
 	
@@ -44,6 +46,32 @@ public class PollutionDataBizImpl implements PollutionDataBiz {
 	public List<AreaDto> selectMiniList(int bigOption, String areaname) {
 		// TODO Auto-generated method stub
 		return dao.selectMiniList(bigOption, areaname);
+	}
+
+	@Override
+	public int rankinsert(SortGameDto sortGameDto) {
+		// TODO Auto-generated method stub
+		return dao.rankinsert(sortGameDto);
+	}
+
+	@Override
+	public List<SortRankDto> ranklist() {
+		// TODO Auto-generated method stub
+		return dao.ranklist();
+	}
+
+	@Override
+	public List<SortRankDto> ranklistProc(SortGameDto sortGameDto) {
+		int result =0;
+		result = dao.rankinsert(sortGameDto);
+		if(result<1) {
+			System.out.println("insert no");
+			return null;
+		}
+		List<SortRankDto> list = null;
+		list = dao.ranklist();
+		
+		return list;
 	}
 	
 	

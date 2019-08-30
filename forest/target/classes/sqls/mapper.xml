@@ -2,12 +2,14 @@
 <!DOCTYPE mapper PUBLIC "mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="login">
 	
+	
+	
 	<select id="idchk" parameterType="map" resultType="loginDto">
 		SELECT ID FROM MEMBER WHERE ID = #{id}
 	</select>
 	
 	<insert id="insert" parameterType="loginDto">
-		INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,#{name},#{id},#{pw},#{phone},#{email},#{addr},#{zonecode},1,'USER')
+		INSERT INTO MEMBER VALUES(USERSEQ.NEXTVAL,#{name},#{id},#{pw},#{phone},#{email},#{addr},#{zonecode},'Y','ROLE_USER',SYSDATE,'N')
 	</insert>
 	
 	<insert id="insert_auth" parameterType="loginDto">
@@ -15,7 +17,7 @@
 	</insert>
 	
 	<select id="login" parameterType="map" resultType="loginDto">
-		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLED,ROLE FROM MEMBER WHERE ID = #{id}
+		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLEDDB,ROLE FROM MEMBER WHERE ID = #{id}
 	</select>
 	
 	<select id="pwChk" parameterType="map" resultType="loginDto">
@@ -23,11 +25,19 @@
 	</select>
 	
 	<select id="memberInfo" parameterType="map" resultType="loginDto">
-		SELECT * FROM MEMBER WHERE ID = #{id}
+		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLEDDB,ROLE FROM MEMBER WHERE ID = #{id}
+	</select>
+	
+	<select id="allMember" resultType="loginDto">
+		SELECT * FROM MEMBER 
 	</select>
 	
 	<update id="memberUpdate" parameterType="loginDto">
 		UPDATE MEMBER SET NAME=#{name}, ADDR=#{addr}, ZONECODE=#{zonecode}, PHONE=#{phone}, EMAIL=#{email} WHERE ID=#{id}
+	</update>
+	
+	<update id="perPay" parameterType="java.lang.String">
+		UPDATE MEMBER SET PERPAY='Y' WHERE ID=#{id}
 	</update>
 	
 	<update id="pwUpdate" parameterType="map">
@@ -38,4 +48,32 @@
 		SELECT ID FROM MEMBER WHERE NAME=#{name} AND EMAIL=#{email} 
 	</select>
 	
+	<select id="findPw" parameterType="map" resultType="loginDto">
+		SELECT * FROM MEMBER WHERE ID=#{id} AND EMAIL=#{email} 
+	</select>
+	
+	<select id="joinDate" parameterType="map" resultType="loginDto">
+		<![CDATA[
+		SELECT ID FROM MEMBER WHERE JOINDATE=#{joindate} < SYSDATE
+		]]>
+	</select>
+	<select id="memlist" resultType="loginDto" >
+		SELECT * FROM MEMBER
+	</select>
+	
+	<update id="memupdate" parameterType="loginDto">
+		UPDATE MEMBER SET ADDR=#{addr},PHONE=#{phone},EMAIL=#{email} WHERE USERNUM=#{usernum}
+	</update>
+	
+	<select id="memcount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER 
+	</select>
+	
+	<select id="adminsearch" resultType="logindto" parameterType="map">
+		SELECT * FROM MEMBER WHERE UPPER(ID) like '%' || UPPER(#{idsearch}) || '%'
+	</select>
+	
+	<delete id="adminmemdelete" parameterType="int">
+		DELETE FROM MEMBER WHERE USERNUM=#{usernum}
+	</delete>
 </mapper>

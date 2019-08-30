@@ -21,7 +21,10 @@
 		<typeAlias type="com.my.four.model.dto.AreaDto" alias="AreaDto"/>
 		<typeAlias type="com.my.four.model.dto.TrashDto" alias="TrashDto"/>
 		<typeAlias type="com.my.four.model.dto.StarRecordDto" alias="StarRecordDto"/>
-		
+		<typeAlias type="com.my.four.model.dto.FreeboardDto" alias="FreeboardDto"/>
+		<typeAlias type="com.my.four.model.dto.FreecommentDto" alias="FreecommentDto"/>
+		<typeAlias type="com.my.four.model.dto.SortGameDto" alias="SortGameDto"/>
+		<typeAlias type="com.my.four.model.dto.SortRankDto" alias="SortRankDto"/>
 	</typeAliases>
 	<!-- resource : java Resources -->
 	<!-- resource : src/main/resources -->
@@ -35,6 +38,7 @@
     	<mapper resource="/sqls/calendarmapper.xml"/>
     	<mapper resource="/sqls/areadata_mapper.xml"/>
     	<mapper resource="/sqls/trashmapper.xml"/>
+    	<mapper resource="/sqls/freeboardmapper.xml"/>
 	</mappers>
 	
 	

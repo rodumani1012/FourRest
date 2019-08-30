@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>The Forest</title>
 
 <script type="text/javascript" src="resources/assets/js/jquery-1.4.3.min.js"></script>
 <script type="text/javascript" src="resources/assets/js/jquery.puzzle.js"></script>

@@ -1,7 +1,9 @@
 # -*- coding:utf-8 -*-
 
-# pip install beautifulsoup4
-# pip install pymongo
+# 입력해도 안될 시에 --user 까지 입력
+# pip install beautifulsoup4 [--user]
+# pip install requests [--user]
+# pip install pymongo [--user]
 from bs4 import BeautifulSoup # 긁어온걸 파싱해주는 역할
 import urllib.request # 긁어오는 역할.
 from builtins import str
@@ -30,16 +32,17 @@ for i in range(1,31):
 # json 형태로 변환. ensure_ascii=False는 유니코드를 한글로 변환함
 json_val = json.dumps(tmplist, ensure_ascii=False)
 print(json_val)
-
+print('저장 시작')
 # # 클래스 객체 할당
-connection = MongoClient('localhost', 27017)
+# connection = MongoClient('mongodb://192.168.110.104', 27017)
+connection = MongoClient('192.168.110.104', 27017)
  
 db = connection.animal
 collection = db.shelter
  
 collection.insert_many(tmplist)
 
-
+print('저장 완료')
 
 
 

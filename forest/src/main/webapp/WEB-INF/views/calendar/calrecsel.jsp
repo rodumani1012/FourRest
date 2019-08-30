@@ -6,6 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,7 @@
 <script src='resources/assets/js/caljs/moment.min.js'></script>
 <script src='resources/assets/js/caljs/jquery.min.js'></script>
 <script src='resources/assets/js/caljs/fullcalendar.min.js'></script>
+<script src="resources/assets/js/caljs/lang/ko.js"></script>
 <script>
 
 	$(document).ready(function() {
@@ -43,14 +45,15 @@
 		    </c:forEach>
 				
 		]
-
+		console.log(mylist);
 		$('#calendar').fullCalendar({
 			header : {
 				left : 'prev,next today',
 				center : 'title',
 				right : 'month'
 			},
-			defaultDate : '2019-08',
+			locale: 'ko',
+			defaultDate : new Date(),
 			editable : false,
 			eventLimit : true, // allow "more" link when too many events
 			
@@ -62,6 +65,7 @@
 				location.href='caldetail.do?caltitle=' + title + '&seq=' + seq;
             }
 		});
+		console.log(mylist);
 	});
 	
 	
@@ -92,10 +96,18 @@ body {
 </style>
 </head>
 <body>
-
-	<br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br>
+	
+	<div>
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<input type="button" value="봉사 모집 기간" onclick="location.href='calrecsel.do'" disabled="disabled">
+		<input type="button" value="봉사 활동 기간" onclick="location.href='calvolsel.do'">
+		
+		
+			<button class="btn btn-outline-dark" type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">봉사활동 등록</button>
+		</sec:authorize>
+	</div>
+	<h3>봉사 모집 기간</h3>
 	<div id='calendar'></div>
-	<button class="btn btn-outline-dark" type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">봉사활동 등록</button>
-
 </body>
-</html>
+</html>	

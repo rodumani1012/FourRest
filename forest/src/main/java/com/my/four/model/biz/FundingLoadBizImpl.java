@@ -35,5 +35,11 @@ public class FundingLoadBizImpl implements FundingLoadBiz {
 		return dao.select1(funtitle);
 	}
 
+	@Override
+	public List<FundingLoadDto> paylist() {
+		// TODO Auto-generated method stub
+		return dao.paylist();
+	}
+
 
 }

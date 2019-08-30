@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>The Forest</title>
 	<script src="192.168.110.62:8880/socket.io/socket.io.js"></script>
 	 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script id="userInfo" src="resources/assets/js/chat.js" ></script>	

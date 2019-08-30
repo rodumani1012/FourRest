@@ -1,16 +1,20 @@
 $(function() {
 
 		//script의 attr 가져오기
-		//var name = $('#userInfo').attr("name")
+		//var name = $('#id').attr("name");
 		//var room = $('#userInfo').attr("room")
-		var socket = io();
-
-		socket.emit('newUser', "test", "test")
-
+	var socket = io.connect();
+	
+	//alert(name);
+	socket.emit('newUser', 'test', "문의하기")
+	
+	socket.on('create',function(data){
+		
+	})
 		console.log("??");	
 		
 		$('form').submit(function(e) {
-			e.preventDefault();
+			e.preventDefault(); 
 			var msg = $('#m').val().trim();
 			if (msg != "" && msg != null) {
 				
@@ -34,7 +38,10 @@ $(function() {
 		socket.on('joinedRoom', function(data) {
 			$('#messages').append(
 					$('<li class="server">').text(
-							`${data.name}님이 ${data.room}에 입장하셨습니다.`));
+							`${data.id}님이 ${data.room}에 입장하셨습니다.`));
+							
+							//socket.emit('onGetRoom',roominfo);
+							
 		})
-
+	
 	})

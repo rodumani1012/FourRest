@@ -32,7 +32,7 @@ body{
 	});
 
 </script>
-<title>Insert title here</title>
+<title>The Forest</title>
 </head>
 <body>
 	<%@ include file="../header.jsp"%>
@@ -70,7 +70,9 @@ body{
 			</tr>
 			<tr>
 				<td colspan="2">
-					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_deletelist.do?boardno=${conDto.boardno}'"></button>
+				<c:if test="${user_id==admin }">
+					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_deletelist.do?boardno=${conDto.boardno}'">삭제</button>				
+				</c:if>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_main.do'">목록으로</button>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postform.do'">참여하기</button>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postlist.do?pagenum=1&contentnum=9&conlistno=${conDto.boardno}'" >참여작보기</button>

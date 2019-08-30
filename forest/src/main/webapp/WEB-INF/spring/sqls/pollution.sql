@@ -37,7 +37,25 @@ SELECT DISTINCT AREA FROM AREA_AIR ORDER BY AREA;
 
 
 
+--------------------------------------------------------------------------sorting game db 
+DROP TABLE SORTGAME;
+CREATE TABLE SORTGAME(
+USERID VARCHAR2(100),
+TAKETIME NUMBER,
+CORRECTCNT NUMBER,
+SCORE NUMBER
+);
+INSERT INTO sortgame VALUES('ss',5,5,100);
+INSERT INTO sortgame VALUES('aa',5,5,90);
+INSERT INTO sortgame VALUES('ww',5,5,80);
+INSERT INTO sortgame VALUES('ee',5,5,70);
+INSERT INTO sortgame VALUES('yy',5,5,60);
+INSERT INTO sortgame VALUES('vv',5,5,50);
+INSERT INTO sortgame VALUES('gg',5,5,40);
+INSERT INTO sortgame VALUES('jj',5,5,30);
+INSERT INTO sortgame VALUES('kk',5,5,20);
+SELECT * FROM SORTGAME;
 
 
-
+SELECT ROWNUM AS RN ,a.* FROM (SELECT * from SORTGAME ORDER BY SCORE DESC) a;
 

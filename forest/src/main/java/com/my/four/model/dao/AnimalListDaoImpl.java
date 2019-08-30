@@ -60,8 +60,8 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		 //정렬(아이디를 오름차순으로 정렬)
 		 SortOperation sort = Aggregation.sort(Sort.Direction.ASC, "_id");
 		 
-		 //다음 페이지 당 건너뛸 갯수
-		 SkipOperation skip = Aggregation.skip((firstIndex - 1) * 10);
+		 //다음 페이지 당 건너뛸 갯수(long타입이어야 deprecated 되지않음.)
+		 SkipOperation skip = Aggregation.skip((firstIndex - 1) * 10L);
 		 
 		 //지정한 수 만큼 게시물 가져오기
 		 LimitOperation limit = Aggregation.limit(10);
@@ -112,7 +112,7 @@ public class AnimalListDaoImpl implements AnimalListDao {
 		map.put("txt_search", txt_search);
 		
 		res = sqlSession.selectOne(namespace + "aniGetTotalCountEndangeredCSV", map);
-		
+
 		return res;
 	}
 

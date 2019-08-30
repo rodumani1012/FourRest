@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>The Forest</title>
 <link href="resources/assets/css/youtube.css" rel="stylesheet"></link>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="resources/assets/js/youtube.js"></script>

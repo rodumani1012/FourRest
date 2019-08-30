@@ -13,5 +13,5 @@ public interface FundingLoadDao {
 	public int insert(FundingLoadDto dto);
 	public Map<String, Object> select(String funtitle);
 	public Map<String, Object> select1(String funtitle);
-
+	public List<FundingLoadDto> paylist();
 }

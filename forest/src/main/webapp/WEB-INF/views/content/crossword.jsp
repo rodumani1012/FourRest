@@ -98,7 +98,7 @@ input.done {
 </style>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>The Forest</title>
 </head>
 <body>
 
