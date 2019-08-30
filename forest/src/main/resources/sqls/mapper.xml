@@ -66,7 +66,7 @@
 	</update>
 	
 	<update id="withdraw" parameterType="java.lang.String">
-		UPDATE MEMBER SET ENABLEDDB = 'N'
+		UPDATE MEMBER SET ENABLEDDB = 'N' WHERE ID=#{id}
 	</update>
 	
 	<select id="memcount" resultType="int">
