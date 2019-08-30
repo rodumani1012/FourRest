@@ -13,6 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
@@ -99,6 +100,9 @@ body{
 
 <script type="text/javascript" src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type='text/javascript'>
+	var nowlink = document.location.href;
+	consloe.log(nowlink);
+
   //<![CDATA[
     // // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('d71449af21090ce3a8d8c57f9cca8757');
@@ -111,28 +115,27 @@ body{
         description: '#환경 #공모전 #자연보호 #멸종위기  #동물보호',
         imageUrl: 'https://image.freepik.com/free-vector/mountain-forest-illustration_16787-15.jpg',
         link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com'
+          mobileWebUrl: nowlink,
+          webUrl: nowlink
         }
       },
       social: {
-        likeCount: 286,
-        commentCount: 45,
-        sharedCount: 845
+       	공모참여수: -,
+       	마감일: -
       },
       buttons: [
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
+            mobileWebUrl: nowlink,
+            webUrl: nowlink
           }
         },
         {
           title: '앱으로 보기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
+            mobileWebUrl: nowlink,
+            webUrl: nowlink
           }
         }
       ]
