@@ -100,7 +100,7 @@
   </servlet-mapping>
   
   <!-- 에러 발생 처리 -->
-<!--    <error-page>
+  <error-page>
     <exception-type>java.lang.Throwable</exception-type>
     <location>/error.do?kind=Throwable</location>
   </error-page>
@@ -131,7 +131,7 @@
   <error-page>
     <error-code>503</error-code>
     <location>/error.do?kind=503</location>
-  </error-page>-->
+  </error-page>
   <servlet>
     <description></description>
     <display-name>ErrorController</display-name>
