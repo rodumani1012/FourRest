@@ -195,8 +195,6 @@
 	</div>
 	</sec:authorize>
 
-	</sec:authorize>
-	</div>
 
 	<!-- footer -->
 	<%@ include file="./footer.jsp"%>
