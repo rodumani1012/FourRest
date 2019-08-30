@@ -50,6 +50,11 @@
 body {
 	width: "100%";
 }
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid gray; /* Green */
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -66,7 +71,7 @@ body {
 	<sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
-	
+<br><br><br>	
 <div class="container form-horizontal table-responsive">
 
 <form:form action="freeupdateres.do" id="update1" method="post" >
@@ -86,7 +91,7 @@ body {
 	        <tr>
 	            <td>제목</td>
 	            <td>
-	                <textarea id="title" name="title">${dto.title }</textarea>
+	                <input id="title" type="text" name="title" value="${dto.title }"/>
 	            </td>
 	        </tr>
 	        <tr>
@@ -98,8 +103,8 @@ body {
 	        </tr>
 	        <tr>
 	            <td colspan="2">
-	                <input type="submit" value="저장"/>
-	                <input type="button" value="취소" class="small" onclick="location.href='freeboardlist.do'"/>
+	                <button class="button1" type="submit" >저장</button>
+	                <button class="button1" type="button" onclick="location.href='freeboardlist.do'">취소</button>
 	            </td>
 	        </tr>
 	</table>
