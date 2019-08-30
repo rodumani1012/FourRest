@@ -25,7 +25,7 @@
 			<input type="hidden" name="user_id" value="${user_id }"/>
 			<td><textarea rows="10" cols="30" name="content" style="width: 650px; height: 100px;" placeholder="내용을 입력하세요."></textarea></td>
 			<td colspan="2">
-				<input type="submit" value="작성" />
+				<button class="btn btn btn-light" type="submit" value="작성" >작성</button>
 			</td>
 		</tr>
 	</table>
