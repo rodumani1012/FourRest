@@ -54,7 +54,7 @@
 <script type="text/javascript" src="resources/assets/js/main-style.js"></script>
 <style type="text/css">
 li>a {
-	color: #c8c8c8;
+	color: #ccc;
 }
 
 .sub_network ul {
@@ -71,13 +71,13 @@ li>a {
 </style>
 </head>
 <body>
-
+<br><br>
 	<footer id="footer" class="footer footer-bg-black">
-		<div class="container">
-			<div class="row">
+		<div class="container-fluid">
+			<div class="row justify-content-center">
 				<div class="sub_network">
-					<ul class="newlist pl10">
-					<li class="circle_st">관련부처</li>
+					<ul class="newlist pl10" style="width: 120px">
+						<li class="circle_st">관련부처</li>
 						<li><a href="http://www.president.go.kr" target="_blank"
 							style="cursor: pointer;">청와대</a></li>
 						<li><a href="http://www.pmo.go.kr/pmo/index.jsp"
@@ -89,7 +89,7 @@ li>a {
 					</ul>
 
 					<ul class="newlist pl10">
-					<li class="circle_st">환경부 소속 및 유관기관</li>
+						<li class="circle_st">환경부 소속 및 유관기관</li>
 						<li><a href="http://www.kma.go.kr/" target="_blank"
 							style="cursor: pointer;">기상청</a></li>
 						<li><a href="http://edc.me.go.kr/" target="_blank"
@@ -108,6 +108,9 @@ li>a {
 							target="_blank" style="cursor: pointer;">금강유역환경청</a></li>
 						<li><a href="http://www.me.go.kr/ysg/index.jsp"
 							target="_blank" style="cursor: pointer;">영산강유역환경청</a></li>
+					</ul>
+					<ul class="newlist pl10">
+						<li class="circle_st">환경부 소속 및 유관기관</li>
 						<li><a href="http://www.me.go.kr/mamo/index.jsp"
 							target="_blank" style="cursor: pointer;">수도권대기환경청</a></li>
 						<li><a href="http://www.me.go.kr/wonju/index.jsp"
@@ -124,6 +127,71 @@ li>a {
 							style="cursor: pointer;">한국환경산업기술원</a></li>
 						<li><a href="http://www.keco.or.kr/" target="_blank"
 							style="cursor: pointer;">한국환경공단</a></li>
+					</ul>
+					<ul class="newlist pl10">
+						<li class="circle_st">연구기관</li>
+						<li><a href="http://www.nrcs.re.kr/" target="_blank"
+							style="cursor: pointer;">경제·인문사회연구회</a></li>
+						<li><a href="http://www.stepi.re.kr/" target="_blank"
+							style="cursor: pointer;">과학기술정책연구원</a></li>
+						<li><a href="http://www.krihs.re.kr/" target="_blank"
+							style="cursor: pointer;">국토연구원</a></li>
+						<li><a href="http://www.kiep.go.kr/" target="_blank"
+							style="cursor: pointer;">대외경제정책연구원</a></li>
+						<li><a href="http://www.kiet.re.kr/" target="_blank"
+							style="cursor: pointer;">산업연구원</a></li>
+						<li><a href="http://www.keei.re.kr/main.nsf/index.html"
+							target="_blank" style="cursor: pointer;">에너지경제연구원</a></li>
+						<li><a href="http://www.kisdi.re.kr/" target="_blank"
+							style="cursor: pointer;">정보통신정책연구원</a></li>
+						<li><a href="http://www.kinu.or.kr/" target="_blank"
+							style="cursor: pointer;">통일연구원</a></li>
+					</ul>
+					<ul class="newlist pl10">
+						<li class="circle_st">지방연구기관</li>
+						<li><a href="http://www.sdi.re.kr/" target="_blank"
+							style="cursor: pointer;">서울시정개발연구원</a></li>
+						<li><a href="http://www.gri.re.kr/korea/jsp/main/main.jsp"
+							target="_blank" style="cursor: pointer;">경기개발연구원</a></li>
+						<li><a href="http://www.idi.re.kr/" target="_blank"
+							style="cursor: pointer;">인천발전연구원</a></li>
+						<li><a href="http://www.logodi.go.kr//" target="_blank"
+							style="cursor: pointer;">지방행정연수원</a></li>
+						<li><a href="http://www.kdri.re.kr/hb/main/" target="_blank"
+							style="cursor: pointer;">강원발전연구원</a></li>
+						<li><a href="http://www.cdi.re.kr/index.asp" target="_blank"
+							style="cursor: pointer;">충남발전연구원</a></li>
+						<li><a href="http://www.djdi.re.kr/" target="_blank"
+							style="cursor: pointer;">대전발전연구원</a></li>
+						<li><a href="http://cri.re.kr/" target="_blank"
+							style="cursor: pointer;">충북발전연구원</a></li>
+						<li><a href="http://www.jeri.re.kr/" target="_blank"
+							style="cursor: pointer;">전남발전연구원</a></li>
+						<li><a href="http://www.gji.re.kr/xe/index.php/"
+							target="_blank" style="cursor: pointer;">광주발전연구원</a></li>
+					</ul>
+					<ul class="newlist pl10">
+						<li class="circle_st">NGO</li>
+						<li><a href="http://www.eco.or.kr/" target="_blank"
+							style="cursor: pointer;">환경정의</a></li>
+						<li><a href="http://www.greenkorea.org/" target="_blank"
+							style="cursor: pointer;">녹색연합</a></li>
+						<li><a href="http://www.greentransport.org/" target="_blank"
+							style="cursor: pointer;">녹색교통</a></li>
+						<li><a href="http://www.kfem.or.kr/" target="_blank"
+							style="cursor: pointer;">환경운동연합</a></li>
+						<li><a href="http://www.ecofem.or.kr/" target="_blank"
+							style="cursor: pointer;">여성환경연대</a></li>
+						<li><a href="http://www.gcn.or.kr/" target="_blank"
+							style="cursor: pointer;">녹색소비자연대</a></li>
+						<li><a href="http://www.forest.or.kr/index.php"
+							target="_blank" style="cursor: pointer;">생명의 숲 가꾸기 운동본부</a></li>
+						<li><a href="http://www.ymcakorea.org/" target="_blank"
+							style="cursor: pointer;">한국YMCA전국연맹</a></li>
+						<li><a href="http://www.carngo.org/new_carngo/main.html"
+							target="_blank" style="cursor: pointer;">교통문화운동본부</a></li>
+						<li><a href="http://www.ccej.or.kr/" target="_blank"
+							style="cursor: pointer;">경제정의실천시민연합</a></li>
 					</ul>
 				</div>
 			</div>
