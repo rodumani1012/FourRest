@@ -66,7 +66,6 @@ $(function(){
 <br><br><br><br><br>
 <div class="container row mx-auto">
 	<form action="calinsertres.do" method="post">
-		<input type="hidden" name="calid" value="${user_id }">
 		<table class="table table-bordered col-lg-12 col-lg-12">
 			<tr>
 				<th>봉사 제목</th>
@@ -104,6 +103,7 @@ $(function(){
 					</select>
 				</td>
 			</tr>
+			<input type="hidden" name="calid" value=${user_id }/>
 			<tr>
 				<td colspan="2">
 					<button class="btn btn-outline-dark" type="submit">봉사등록</button>

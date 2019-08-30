@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.four.model.biz.CalendarBiz;
 import com.my.four.model.dto.CalendarDto;
@@ -113,15 +112,15 @@ public class CalendarController {
 	public String calinsertres(CalendarDto dto, Model model) {
 		
 		int res = 0;
-		System.out.println("인원수 : " + dto.getCalrecpeo());
+
 		res = biz.calinsert(dto);
 		
 		if(res > 0) {
 			logger.info("봉사 만들기");
-			return "redirect:calrecsel.do";
+			return "redirect:calendar.do";
 		} else {
 			logger.info("봉사 만들기 실패");
-			return "redirect:calrecsel.do";
+			return "redirect:calendar.do";
 		}
 	}
 	
@@ -134,28 +133,21 @@ public class CalendarController {
 		
 		if(res > 0) {
 			logger.info("봉사 삭제");
-			return "redirect:calrecsel.do";
+			return "redirect:calendar.do";
 		} else {
 			logger.info("봉사 삭제 실패");
-			return "redirect:calrecsel.do";
+			return "redirect:calendar.do";
 		}
 	}
 	
 	@RequestMapping(value = "calrecsel.do")
 	public String calrecsel(Model model) {
-		
-		return "calendar/calrecsel";
-	}
-	
-	@RequestMapping(value = "calrecAjax.do")
-	@ResponseBody
-	public List<CalendarDto> calrecAjax(Model model) {
-		
-		logger.info("봉사 모집 일정");
 
+		logger.info("봉사 모집 일정");
+		
 		// 오늘 날짜보다 이전인 일정의 컬럼을 N으로 업데이트.
 		biz.noticeupdate(today);
-
+		
 		// 모집인원 마감시 컬럼을 N으로 업데이트.
 		List<String> list1 = new ArrayList<String>();
 		
@@ -167,10 +159,11 @@ public class CalendarController {
 		if(list1.size() != 0) {
 			biz.noticeupdate1(list1);
 		}
-
+	
 		logger.info("달력 리스트");
+		model.addAttribute("list", biz.selectList());
 
-		return biz.selectList();
+		return "calendar/calrecsel";
 	}
 	
 	@RequestMapping(value = "calvolsel.do")
