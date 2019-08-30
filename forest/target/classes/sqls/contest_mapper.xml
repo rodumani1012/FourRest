@@ -147,7 +147,10 @@
 		UPDATE CONTESTBOARD SET
 		REPLYNO = REPLYNO+1 WHERE BOARDNO=#{boardno}
 	</update>
-	
+	<update id="replycntdown" parameterType="int">
+		UPDATE CONTESTBOARD SET
+		REPLYNO = REPLYNO-1 WHERE BOARDNO=#{boardno}
+	</update>
 	
 	<select id="amialready" parameterType="map" resultType="StarRecordDto">
 		SELECT * FROM STAR_RECORD WHERE USERNUM=#{usernum} AND BOARDNO=#{boardno}	

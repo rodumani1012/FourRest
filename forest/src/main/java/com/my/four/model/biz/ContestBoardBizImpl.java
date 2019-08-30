@@ -167,6 +167,11 @@ public class ContestBoardBizImpl implements ContestBoardBiz {
 		return dao.ansdel(boardno);
 	}
 
+	@Override
+	public int replyCntDown(int pboardno) {
+		return dao.replyCntDown(pboardno);
+	}
+
 
 
 }

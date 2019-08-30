@@ -72,18 +72,18 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="page-title">
-
-						<h2>
-							&nbsp;ADMIN BOARD<small> 관리자페이지</small>
-						</h2>
 						<ol class="breadcrumb">
-							<li style="margin-top: 10px; font-size: 25px; color: #34495e;">
+							<li>
+								<h2>&nbsp;ADMIN BOARD<small> 관리자페이지</small></h2>
+							</li>
+							<li style="margin-top: 10px; font-size: 20px; color: #34495e;">
 								<i class="fa fa-calendar"></i> <%=today.substring(0, 8)%>
 							</li>
 							<li class="pull-right"><audio controls="controls"
 									autoplay="autoplay" loop="loop">
 									<source src="resources/audio/mix.mp3" type="audio/mp3" />
-								</audio></li>
+								</audio>
+							</li>
 						</ol>
 					</div>
 				</div>

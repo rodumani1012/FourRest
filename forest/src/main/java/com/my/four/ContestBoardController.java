@@ -236,7 +236,10 @@ public class ContestBoardController {
 			System.out.println("댓글등록");
 			return "redirect:contest_detail.do?boardno=" + parentno;
 		}else {
-			System.out.println("댓글실패");
+			if(cnt==0&&rescnt>1)
+			System.out.println("첫댓글이거나");
+			else
+				System.out.println("그냥실패");
 			return "redirect:contest_detail.do?boardno=" + parentno;
 		}
 	}
@@ -244,6 +247,7 @@ public class ContestBoardController {
 	@RequestMapping("contest_ansdelete.do")
 	public String ansdelete(int boardno,int pboardno) {
 		int res =0;
+		int cnt = biz.replyCntDown(pboardno);
 		res = biz.ansdel(boardno);
 		if(res>0) {
 			return "redirect:contest_detail.do?boardno=" + pboardno;

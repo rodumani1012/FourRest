@@ -1,10 +1,8 @@
-
 ------------------------------------------------------공모전 LIST 테이블 
 DROP TABLE CONTESTLIST CASCADE CONSTRAINT;
 DROP SEQUENCE CONLISTSQ;
 
-CREATE SEQUENCE CONLISTSQ;
-		
+CREATE SEQUENCE CONLISTSQ;		
 CREATE TABLE CONTESTLIST (
 BOARDNO NUMBER PRIMARY KEY,
 TITLE VARCHAR2 (100),
@@ -18,7 +16,6 @@ PARTNUM NUMBER,
 SORT VARCHAR2 (100),
 REGDATE DATE 
 );
-		
 SELECT * FROM CONTESTLIST;
 ------------------------------------------------------공모 게시글 테이블 
 DROP SEQUENCE CON_BOARDNOSQ;
@@ -58,7 +55,6 @@ CONSTRAINT STARBONO_REF FOREIGN KEY(BOARDNO) REFERENCES CONTESTBOARD(BOARDNO)
 );
 SELECT * FROM STAR_RECORD;
 ---------------------------------------------------------------------------- data 넣기용 
-
 --공모전게시글
 INSERT INTO CONTESTLIST VALUES(CONLISTSQ.NEXTVAL,'2100년 기후를 체험하자','<img src="resources/defaultdata/go01.jpg" alt="공모전">'
 ,'<img src="http://ideananumso.com/upload/contest/poster/idlabs_poster_20180514091508.png" alt="공모전"><br>2100년 지구와 우리의 모습을 다양한 방법으로 표현해주세요'

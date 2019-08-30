@@ -298,5 +298,17 @@ public class ContestBoardDaoImpl implements ContestBoardDao {
 		return res;
 	}
 
+	@Override
+	public int replyCntDown(int pboardno) {
+		int res =0;
+		try {
+			res = sqlSession.update(namespace+"replycntdown",pboardno);
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 
 }

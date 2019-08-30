@@ -45,8 +45,27 @@ color: #d43f3a;
 			</ul>
 		</div>
 	</nav>
+	<div class="row">
+				<div class="col-md-12">
+					<div class="page-title" style="padding: 8px 15px;">
+						<ol class="breadcrumb">
+							<li>
+								<h2>&nbsp;Membership Management<small> 회원관리</small></h2>
+							</li>
+							<li style="margin-top: 10px; font-size: 20px; color: #34495e;">
+								<i class="fa fa-calendar"></i>
+							</li>
+							<li class="pull-right"><audio controls="controls"
+									autoplay="autoplay" loop="loop">
+									<source src="resources/audio/mix.mp3" type="audio/mp3" />
+								</audio>
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+	<div class="row" style="overflow-y: scroll; margin-left: 7%; margin-right: 7%; margin-bottom: 7%; ">
 	
-	<div class="row" style="overflow-y: scroll; margin: 5%; ">
 		<table id="searchtbl" class="table table-striped table-hover">
 			<tr>
 				<td colspan="8" style="text-align: right;">

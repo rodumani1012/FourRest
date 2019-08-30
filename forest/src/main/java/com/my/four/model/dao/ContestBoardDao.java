@@ -34,6 +34,7 @@ public interface ContestBoardDao {
 	public int insertAns(ContestBoardDto dto);
 	public int updateAns(int parentno);
 	public int ansdel(int boardno);
+	public int replyCntDown(int pboardno);
 
 	
 }

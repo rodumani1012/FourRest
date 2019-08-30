@@ -9,14 +9,10 @@
 <title>::Contest Management</title>
 <link rel="stylesheet" href="resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="resources/assets/css/bootstrap.css">
-<link href="resources/assets/css/admin.css" rel="stylesheet"
-	type="text/css">
+<link href="resources/assets/css/admin.css" rel="stylesheet" type="text/css">
 <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"	rel="stylesheet" id="bootstrap-css">
+<script type="text/javascript"	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <style type="text/css">
 body {
@@ -204,9 +200,28 @@ body {
 			</ul>
 		</div>
 	</nav>
-	<div class="container" style="margin-top: 3%; margin-left: 25%">
+		<div class="row">
+				<div class="col-md-12">
+					<div class="page-title" style="padding: 8px 15px;">
+						<ol class="breadcrumb">
+							<li>
+								<h2>&nbsp;Contest Management<small> 공모게시관리</small></h2>
+							</li>
+							<li style="margin-top: 10px; font-size: 20px; color: #34495e;">
+								<i class="fa fa-calendar"></i>
+							</li>
+							<li class="pull-right"><audio controls="controls"
+									autoplay="autoplay" loop="loop">
+									<source src="resources/audio/mix.mp3" type="audio/mp3" />
+								</audio>
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+	<div class="container" style="margin-left: 19%">
 			<section class="content">
-				<div class="col-md-8">
+				<div class="col-md-10">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="pull-right">
@@ -251,7 +266,7 @@ body {
 													<td>
 													</td>
 													<td>${dto.boardno}</td>
-													<td><a href="#">${dto.title }</a></td>
+													<td><a href="conlistdetail.do?conlistno=${dto.boardno }">${dto.title }</a></td>
 													<td>
 													${start }~${end } <a style="color:#4cae4c; font-weight: bold; ">(진행중)</a>
 													</td>
@@ -263,7 +278,7 @@ body {
 													<td>
 													</td>
 													<td>${dto.boardno}</td>
-													<td><a href="#">${dto.title }</a></td>
+													<td><a href="conlistdetail.do?conlistno=${dto.boardno }">${dto.title }</a></td>
 													<td>
 													${start }~${end }<a style="color:#eea236; font-weight: bold;">(오늘마감)</a>
 													<td>${dto.partnum }
@@ -275,7 +290,7 @@ body {
 													<td>
 													</td>
 													<td>${dto.boardno}</td>
-													<td><a href="#">${dto.title }</a></td>
+													<td><a href="conlistdetail.do?conlistno=${dto.boardno }">${dto.title }</a></td>
 													<td>
 													${start }~${end }<a style="color:#d43f3a; font-weight: bold;">(종료)</a>
 													<td>${dto.partnum }</td>

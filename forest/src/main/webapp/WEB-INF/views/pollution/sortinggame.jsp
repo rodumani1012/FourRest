@@ -8,16 +8,10 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>::Separate Collection Game</title>
 <script src="https://use.fontawesome.com/b375198985.js"></script>
-
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script	src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"	rel="stylesheet" id="bootstrap-css">
+<script	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	
 <!-- 헤더위한 링크 -->
 <link rel="stylesheet" href="resources/assets/css/slick.css">
@@ -49,7 +43,8 @@
 }
 
 #draggable_container {
-	height: 700px;
+	overflow-y: scroll;
+	height: 620px;
 }
 
 #droppable_container {
@@ -106,7 +101,7 @@
 #game_container #droppable_container div.subcontainer {
 	text-align: center;
 	width: 200px;
-	height: 350px;
+	height: 300px;
 	border: 2.5px dashed #f0f0f0;
 	color: #333;
 	/* 	background-color: #FFC; */
@@ -588,7 +583,22 @@ div::-webkit-scrollbar{
 			"text" : "일회용수저",
 			"order" : "12",
 			"pic" : "<img class='queimg' style='padding-bottom:5px;' src='resources/image/sorting/pi.png'/>"
+		}, {
+			"text" : "계란",
+			"order" : "13",
+			"pic" : "<img class='queimg' style='padding-bottom:5px;' src='resources/image/sorting/egg.png'/>"
+		}, {
+			"text" : "종이쇼핑백",
+			"order" : "14",
+			"pic" : "<img class='queimg' style='padding-bottom:5px;' src='resources/image/sorting/bag.png'/>"
+		}, {
+			"text" : "반찬통",
+			"order" : "15",
+			"pic" : "<img class='queimg' style='padding-bottom:5px;' src='resources/image/sorting/chan.png'/>"
 		}
+
+
+
 
 		];
 
@@ -635,12 +645,12 @@ div::-webkit-scrollbar{
 			"url" : 'resources/image/sorting/일반.png'
 		} ];
 
-		var plastic_correct = new Array('answer12');
+		var plastic_correct = new Array('answer12','answer15');
 		var vinyl_correct = new Array('answer1');
 		var metal_correct = new Array('answer2', 'answer3');
 		var glass_correct = new Array('answer9');
-		var paper_correct = new Array('answer11');
-		var landfill_correct = new Array('answer7', 'answer6', 'answer5');
+		var paper_correct = new Array('answer11','answer14');
+		var landfill_correct = new Array('answer7', 'answer6', 'answer5','answer13');
 		var paperpack_correct = new Array('answer4','answer10');
 		var pet_correct = new Array('answer8');
 		reset_game(); // 

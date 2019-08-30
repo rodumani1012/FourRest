@@ -29,6 +29,6 @@ public interface ContestBoardBiz {
 	public int reupdateStar(int boardno, int newstar, int gustar);
 	public int ansProc(ContestBoardDto dto);
 	public int ansdel(int boardno);
-	
+	public int replyCntDown(int pboardno);
 
 }

@@ -40,7 +40,26 @@
 		</div>
 	</nav>
 	<div class="row">
-		<div class="col-md-6 table-responsive" style="overflow-y: scroll; margin: 5% ">
+				<div class="col-md-12">
+					<div class="page-title" style="padding: 8px 15px;">
+						<ol class="breadcrumb">
+							<li>
+								<h2>&nbsp;Funding Management<small> 후원관리</small></h2>
+							</li>
+							<li style="margin-top: 10px; font-size: 20px; color: #34495e;">
+								<i class="fa fa-calendar"></i>
+							</li>
+							<li class="pull-right"><audio controls="controls"
+									autoplay="autoplay" loop="loop">
+									<source src="resources/audio/mix.mp3" type="audio/mp3" />
+								</audio>
+							</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+	<div class="row">
+		<div class="col-md-6 table-responsive" style="overflow-y: scroll; margin-left: 6%;margin-right: 6% ">
 		<table class="table table-striped table-hover">
 			<tr>
 				<td>번호</td>
@@ -68,19 +87,19 @@
 						<td>${fdto.fundate }</td>
 						<td>${fdto.participants }</td>
 						<td>${fdto.fun_content }</td>
-						<td><button class="btn btn btn-danger" type="button" onclick="location.href='admin_fundelete.do?id=${fdto.fun_id}&title=${fdto.funtitle }'">일정 삭제</button></td>
+						<td><button class="btn btn btn-danger" type="button" onclick="location.href='admin_fundelete.do?id=${fdto.fun_id}&title=${fdto.funtitle }'">펀딩 삭제</button></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 			<tr>
 				<td colspan="9">
-					<button class="btn btn btn-success" type="button" onclick="location.href='insert.do'">일정 등록하기</button>
+					<button class="btn btn btn-success" type="button" onclick="location.href='insert.do'">펀딩 등록하기</button>
 				</td>
 			</tr>
 		</table>
 		</div>
-		<div class="col-md-4 table-responsive" style="overflow-y: scroll; margin-top: 5% ">
+		<div class="col-md-4 table-responsive" style="overflow-y: scroll; ">
 		<table class="table table-striped table-hover">
 			<tr>
 				<td>후원자</td>
