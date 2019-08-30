@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>The Forest</title>
 </head>
 <!--Google Font link-->
 <link rel="shortcut icon" href="">

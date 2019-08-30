@@ -180,7 +180,7 @@ public class CalendarDaoImpl implements CalendarDao {
 	}
 
 	@Override
-	public int noticeupdate1(List list) {
+	public int noticeupdate1(List<String> list) {
 		
 		int res = 0;
 		
@@ -190,6 +190,18 @@ public class CalendarDaoImpl implements CalendarDao {
 				res++;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int calcount() {
+		int res =0;
+		try {
+			res = sqlSession.selectOne(namespace+"calcount");
+		} catch (Exception e) {
+			System.out.println("Error");
 			e.printStackTrace();
 		}
 		return res;

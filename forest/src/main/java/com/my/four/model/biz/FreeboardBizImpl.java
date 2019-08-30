@@ -16,10 +16,27 @@ public class FreeboardBizImpl implements FreeboardBiz {
 	private FreeboardDao dao;
 
 	@Override
-	public List<FreeboardDto> freeboardList() {
-		return dao.freeboardList();
+	public List<FreeboardDto> freeboardList(int firstIndex,int recordCountPerPage, String category, String txt_search) {
+		
+		String[] str = returnCategoryNTxt(category, txt_search);
+		category = str[0];
+		txt_search = str[1];
+		
+		return dao.freeboardList(firstIndex,recordCountPerPage, category, txt_search);
 	}
 
+	@Override
+	public int freeboardGetTotalCount(String category, String txt_search) {
+		
+		String[] str = returnCategoryNTxt(category, txt_search);
+		category = str[0];
+		txt_search = str[1];
+		
+		System.out.println(category + ":" + txt_search);
+		
+		return dao.freeboardGetTotalCount(category, txt_search);
+	}
+	
 	@Override
 	public FreeboardDto freedetail(int free_seq) {
 		return dao.freedetail(free_seq);
@@ -55,4 +72,21 @@ public class FreeboardBizImpl implements FreeboardBiz {
 		return dao.commdelete(comm_seq);
 	}
 
+	private String[] returnCategoryNTxt(String category, String txt_search) {
+		
+		if (category == null) {
+			category = "all";
+		}
+		if (txt_search == null) {
+			txt_search = "";
+		}
+
+		txt_search = (txt_search.equals("")) ? null : txt_search;
+		
+		String[] str = new String[2];
+		str[0] = category;
+		str[1] = txt_search;
+		
+		return str; 
+	}
 }

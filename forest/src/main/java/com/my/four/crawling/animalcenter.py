@@ -1,7 +1,9 @@
 # -*- coding:utf-8 -*-
 
-# pip install beautifulsoup4
-# pip install pymongo
+# 입력해도 안될 시에 --user 까지 입력
+# pip install beautifulsoup4 [--user]
+# pip install requests [--user]
+# pip install pymongo [--user]
 from bs4 import BeautifulSoup # 긁어온걸 파싱해주는 역할
 import urllib.request # 긁어오는 역할.
 from builtins import str

@@ -5,9 +5,7 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="sumit kumar">
-<title>admin-template</title>
+<title>::Management</title>
 
 <link rel="stylesheet" href="resources/assets/css/font-awesome.min.css">
 <link rel="stylesheet" href="resources/assets/css/bootstrap.css">
@@ -15,13 +13,6 @@
 <script src="https://use.fontawesome.com/07b0ce5d10.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<script type="text/javascript">
-function toggle(){
-	$("#adminchat").toggle()
-	
-}
-</script>
 <style type="text/css">
 </style>
 </head>

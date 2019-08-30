@@ -66,8 +66,14 @@ public class CalendarBizImpl implements CalendarBiz {
 	}
 
 	@Override
-	public int noticeupdate1(List list) {
+	public int noticeupdate1(List<String> list) {
 		return dao.noticeupdate1(list);
+	}
+
+	@Override
+	public int calcount() {
+		// TODO Auto-generated method stub
+		return dao.calcount();
 	}
 
 }

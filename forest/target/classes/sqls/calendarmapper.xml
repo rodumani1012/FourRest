@@ -49,5 +49,9 @@
 	<update id="noticeupdate1" parameterType="String">
 		UPDATE VOLCALENDAR SET NOTICE = 'N' WHERE CALTITLE = #{value}
 	</update>
+	
+	<select id="calcount" resultType="int">
+		SELECT COUNT(*) FROM VOLCALENDAR
+	</select>
 
 </mapper>

@@ -1,7 +1,7 @@
 package com.my.four;
 
 import java.security.Principal;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -30,14 +30,8 @@ public class CalendarController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
-	String today = formatter.format(new java.util.Date());
-	
-	@RequestMapping(value="calendar.do")
-	public String calendar() {
-		
-		return "calselect";
-	}
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	String today = formatter.format(new Date());
 	
 	@RequestMapping(value="caldetail.do")
 	public String caldetail(ModelMap model, String caltitle, int seq, Principal principal, HttpServletRequest requset) {
@@ -160,8 +154,10 @@ public class CalendarController {
 		
 		logger.info("봉사 모집 일정");
 		
+		// 오늘 날짜보다 이전인 일정의 컬럼을 N으로 업데이트.
 		biz.noticeupdate(today);
 		
+		// 모집인원 마감시 컬럼을 N으로 업데이트.
 		List<String> list1 = new ArrayList<String>();
 		
 		for(int i = 0; i < biz.selectList().size(); i++) {

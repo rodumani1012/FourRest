@@ -2,8 +2,65 @@
 <!DOCTYPE mapper PUBLIC "mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="freeboard">
 	
-	<select id="freeboardList" resultType="FreeboardDto">
-		SELECT FREE_SEQ, ID, TITLE, CONTENT, FREE_DATE FROM FREEBOARD
+	<select id="freeboardList" parameterType="map" resultType="FreeboardDto">
+		SELECT *
+		FROM (SELECT ROWNUM AS RNUM, P.*
+			FROM (	SELECT * 
+				FROM FREEBOARD
+				<where>
+					<if test="category == 'all'">
+						<if test="txt_search != null">
+						upper(TITLE) LIKE '%' || #{txt_search} || '%' or
+						upper(CONTENT) LIKE '%' || #{txt_search} || '%'
+						</if>			
+					</if>
+					<if test="category == 'title'">
+						<if test="txt_search != null">
+						upper(TITLE) LIKE '%' || #{txt_search} || '%'
+						</if>			
+					</if>
+					<if test="category == 'content'">
+						<if test="txt_search != null">
+						upper(CONTENT) LIKE '%' || #{txt_search} || '%'
+						</if>			
+					</if>
+					<if test="category == 'writer'">
+						<if test="txt_search != null">
+						upper(ID) LIKE '%' || #{txt_search} || '%'
+						</if>			
+					</if>
+				</where>
+				ORDER BY TITLE
+				) P
+			)
+		WHERE RNUM BETWEEN #{firstIndex} +1 AND #{firstIndex} +	#{recordCountPerPage}
+	</select>
+	
+	<select id="freeboardGetTotalCount" parameterType="map" resultType="Integer">
+		SELECT COUNT(*) FROM FREEBOARD
+		<where>
+			<if test="category == 'all'">
+				<if test="txt_search != null">
+				upper(TITLE) LIKE '%' || #{txt_search} || '%' or
+				upper(CONTENT) LIKE '%' || #{txt_search} || '%'
+				</if>			
+			</if>
+			<if test="category == 'title'">
+				<if test="txt_search != null">
+				upper(TITLE) LIKE '%' || #{txt_search} || '%'
+				</if>			
+			</if>
+			<if test="category == 'content'">
+				<if test="txt_search != null">
+				upper(CONTENT) LIKE '%' || #{txt_search} || '%'
+				</if>			
+			</if>
+			<if test="category == 'writer'">
+				<if test="txt_search != null">
+				upper(ID) LIKE '%' || #{txt_search} || '%'
+				</if>			
+			</if>
+		</where>
 	</select>
 
 	<select id="freedetail" parameterType="map" resultType="FreeboardDto">

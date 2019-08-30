@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>The Forest</title>
 <style type="text/css">
 body {
    width: 100%;
