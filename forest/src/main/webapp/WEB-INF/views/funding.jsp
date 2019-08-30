@@ -46,12 +46,12 @@
 <body>
 
 <%@ include file="./header.jsp"%>
-
+<br><br><br><br>
 	<sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
 <div class="container table-responsive">
-	<h1>전체 목록</h1>
+	<h2>전체 목록</h2>
 	<form action="muldel.do" method="post" id="muldelform">
 	<c:choose>
 		<c:when test="${empty list }">

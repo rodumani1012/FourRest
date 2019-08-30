@@ -79,23 +79,10 @@ body{
 					<a id="kakao-link-btn" href="javascript:;">
 					<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style="width: 30px;height: 30px;"/>
 					</a>
-					<span>
-						<script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
-						<script type="text/javascript">
-						new ShareNaver.makeButton({"type": "d"});
-					</script>
-</span>
 				</td>
 			</tr>
 		</table>
-  <script>
-    function share() {
-      var url = encodeURI(encodeURIComponent(myform.url.value));
-      var title = encodeURI(myform.title.value);
-      var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
-      document.location = shareURL;
-    }
-  </script>
+ 
 
 <script type="text/javascript" src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type='text/javascript'>
