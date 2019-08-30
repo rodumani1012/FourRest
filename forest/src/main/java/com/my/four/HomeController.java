@@ -175,19 +175,22 @@ public class HomeController {
 		dto.setPhone(phone);
 		dto.setEmail(email);
 		dto.setPw(enpw);
-		int res = biz.memberInsert(dto);
-		PrintWriter out = response.getWriter();
+		
 		
 		if(emailKey.equals(emailNum)) {
+			int res = biz.memberInsert(dto);
 			if(res>0) {
 				return "redirect:main.do";
 			}else {
 				return "redirect:joinform.do";
 			}
 		}else {
-				logger.info("인증번호 틀림!");
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('인증번호가 다릅니다.')</script>");
+			out.flush();
 				
-				return "redirect:joinform.do";
+				return "member/joinform";
 		}
 	}
 
@@ -382,6 +385,44 @@ public class HomeController {
 		
 	}
 	
+	//회원 탈퇴
+	@RequestMapping(value="withdrawPwChk.do")
+	public String withdrawPwChk() {
+		return "member/withdrawpwchk";
+	}
+	
+	@RequestMapping(value="withdraw.do")
+	public String withdraw(Principal principal) {
+		int res =biz.withdrawMember(principal.getName());
+		if(res>0) {
+			return "redirect:main.do";
+		}else {
+			return "redirect:joinform.do";
+		}
+		
+	}
+	
+	@RequestMapping(value="withdrawMember.do")
+	public String withdrawMember(String pwchk,Principal principal,Model model,ServletResponse response) throws IOException {
+		LoginDto dto = biz.pwChk(principal.getName());
+		boolean chk = passEncoder.matches(pwchk, dto.getPw());
+		if(chk==true) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script type='text/javascript'>"
+					+ "if(confirm('회원 탈퇴를 하시겠습니까?') == true){location.href='withdraw.do'}"
+					+ "else{history.back()}"
+					+ "</script>");
+			out.flush();
+			
+			
+			return "main";
+		}else {
+			return "member/withdrawpwchk";
+		}
+		
+	}
+	
 	//비밀번호 찾기
 	@RequestMapping(value="findPwConfirm.do")
 	public String findPwConfirm(String number,HttpServletResponse response,HttpSession session) throws IOException {
@@ -425,23 +466,23 @@ public class HomeController {
 			return "member/changepw";
 		}
 	}
-	
-	@Scheduled(cron="0 0/10 * * * ?")
-	public void check() {
-		List<LoginDto> list = biz.allMember();
-		
-		for (int i = 0; i<list.size();i++) {
-			String perpay = null;
-			String id = list.get(i).getId();
-			System.out.println("id=========="+id);
-			LoginDto dto = biz.memberInfo(id);
-			perpay = dto.getPerpay();
-			if(perpay=="Y") {
-				
-			}
-		}
-		
-	}
+//	
+//	@Scheduled(cron="0 0/10 * * * ?")
+//	public void check() {
+//		List<LoginDto> list = biz.allMember();
+//		
+//		for (int i = 0; i<list.size();i++) {
+//			String perpay = null;
+//			String id = list.get(i).getId();
+//			System.out.println("id=========="+id);
+//			LoginDto dto = biz.memberInfo(id);
+//			perpay = dto.getPerpay();
+//			if(perpay=="Y") {
+//				
+//			}
+//		}
+//		
+//	}
 
 	
 	
@@ -576,6 +617,11 @@ public class HomeController {
 		}
 		System.out.println("no");
 		return "redirect:admin_memlist.do";
+	}
+	
+	@RequestMapping("admin_gotochat.do")
+	public String admin_gotochat() {
+		return "admin/admin_chatlist";
 	}
 	
 }

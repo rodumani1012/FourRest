@@ -65,6 +65,10 @@
 		UPDATE MEMBER SET ADDR=#{addr},PHONE=#{phone},EMAIL=#{email} WHERE USERNUM=#{usernum}
 	</update>
 	
+	<update id="withdraw" parameterType="java.lang.String">
+		UPDATE MEMBER SET ENABLEDDB = 'N'
+	</update>
+	
 	<select id="memcount" resultType="int">
 		SELECT COUNT(*) FROM MEMBER 
 	</select>
