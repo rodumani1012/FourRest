@@ -108,6 +108,12 @@ public class LoginBizImpl implements LoginBiz{
 		// TODO Auto-generated method stub
 		return dao.memcount();
 	}
+
+	@Override
+	public int withdrawMember(String id) {
+		// TODO Auto-generated method stub
+		return dao.withdrawMember(id);
+	}
 	
 	
 }

@@ -22,4 +22,5 @@ public interface LoginBiz {
 	public List<LoginDto> memlist();
 	public int memupdate(LoginDto dto);
 	public int memcount();
+	public int withdrawMember(String id);
 }

@@ -173,6 +173,12 @@ public class LoginDaoImpl implements LoginDao{
 		return cnt;
 	}
 
+	@Override
+	public int withdrawMember(String id) {
+		// TODO Auto-generated method stub
+		return sqlSesssion.update(namespace+"withdraw", id);
+	}
+
 	
 	
 	

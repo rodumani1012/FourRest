@@ -124,24 +124,30 @@
 						</div>
 					</li>
 					<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+					<li>
+					<sec:authorize access="isAnonymous()">
+							<button type="button" class="btn btn-link text-dark"
+								onclick="location.href='loginform.do'">LOGIN</button>
+								</sec:authorize>
+						</li>
+						
+						<li>
+						<sec:authorize access="isAnonymous()">
+							<button type="button" class="btn btn-link text-dark"
+								onclick="location.href='joinform.do'">JOIN</button>
+						</sec:authorize>
+						</li>
 					<li><sec:authorize access="isAuthenticated()">
 							<sec:authentication property="principal.username" var="user_id" />
 							<input type="submit" class="btn btn-link text-dark"
 								onclick="location.href='mypage.do'" value="${dto.getName() }" />
-						</sec:authorize> <sec:authorize access="isAnonymous()">
-							<button type="button" class="btn btn-link text-dark"
-								onclick="location.href='loginform.do'">LOGIN</button>
-						</sec:authorize></li>
+						</sec:authorize> </li>
 					<li><sec:authorize access="isAuthenticated()">
 							<form:form action="${pageContext.request.contextPath}/logout"
 								method="POST">
 								<input type="submit" class="btn btn-link text-dark"
 									value="LOGOUT" />
 							</form:form>
-						</sec:authorize></li>
-					<li><sec:authorize access="isAnonymous()">
-							<button type="button" class="btn btn-link text-dark"
-								onclick="location.href='joinform.do'">JOIN</button>
 						</sec:authorize></li>
 				</ul>
 			</div>
