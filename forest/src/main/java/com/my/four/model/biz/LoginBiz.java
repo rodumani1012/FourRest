@@ -24,4 +24,5 @@ public interface LoginBiz {
 	public int memcount();
 	public List<LoginDto> adminsearch(String idsearch);
 	public int userdel(int usernum);
+	public int withdrawMember(String id);
 }

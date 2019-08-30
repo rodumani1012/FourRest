@@ -85,7 +85,6 @@ public class LoginDaoImpl implements LoginDao{
 
 	@Override
 	public int memberUpdate(LoginDto dto) {
-		// TODO Auto-generated method stub
 		return sqlSesssion.update(namespace+"memberUpdate", dto);
 	}
 
@@ -167,7 +166,6 @@ public class LoginDaoImpl implements LoginDao{
 		try {
 			cnt = sqlSesssion.selectOne(namespace+"memcount");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return cnt;
@@ -181,7 +179,6 @@ public class LoginDaoImpl implements LoginDao{
 		try {
 			list = sqlSesssion.selectList(namespace+"adminsearch",map);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;
@@ -192,6 +189,11 @@ public class LoginDaoImpl implements LoginDao{
 		int res =0;
 		res = sqlSesssion.delete(namespace+"adminmemdelete",usernum);
 		return res;
+	}
+
+	@Override
+	public int withdrawMember(String id) {
+		return sqlSesssion.update(namespace+"withdraw", id);
 	}
 
 	
