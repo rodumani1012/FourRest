@@ -12,8 +12,17 @@
 		width: 200px;
 		height: 200px;
 	}
+	.homeimg{
+		margin-top: 20px;
+		width: 50px;
+		height: 50px;
+	}
 	.error{
 		text-align: center;
+	}
+	a{
+		text-decoration: none;
+		color: black;
 	}
 </style>
 </head>
@@ -61,6 +70,12 @@
 		<p>일시적인 오류로 인해 해당 기능을 사용할 수 없습니다.</p>
 		<p>잠시 후 다시 시도해 주십시오.</p>
 	</div>
+	
+	<a href="main.do">
+		<img class="homeimg" alt="홈버튼" src="resources/assets/images/homepage.png">
+		<br>
+		메인으로 이동
+	</a>
 </div>
 	
 </body>
