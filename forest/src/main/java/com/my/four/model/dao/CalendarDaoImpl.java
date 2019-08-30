@@ -182,13 +182,13 @@ public class CalendarDaoImpl implements CalendarDao {
 	@Override
 	public int noticeupdate1(List<String> list) {
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
 		int res = 0;
-		map.put("list", list);
 		
 		try {
-			res = sqlSession.update(namespace + "noticeupdate1", map);
+			for (int i = 0; i < list.size(); i++) {
+				sqlSession.update(namespace + "noticeupdate1", list.get(i));
+				res++;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
