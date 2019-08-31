@@ -71,9 +71,10 @@ body{
 			</tr>
 			<tr>
 				<td colspan="2">
-				<c:if test="${user_id==admin }">
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_deletelist.do?boardno=${conDto.boardno}'">삭제</button>				
-				</c:if>
+					<button type="button" class="btn btn-outline-dark" onclick="location.href='admin_conlist.do'">관리자전용 게시 목록으로</button>
+				</sec:authorize>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_main.do'">목록으로</button>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postform.do'">참여하기</button>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postlist.do?pagenum=1&contentnum=9&conlistno=${conDto.boardno}'" >참여작보기</button>

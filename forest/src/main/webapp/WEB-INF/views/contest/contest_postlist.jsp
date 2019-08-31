@@ -149,7 +149,7 @@ div[class="form-group"]>img {
   
    <div class="form-group d-flex justify-content-center">
       <button type="button" class="btn btn-outline-dark"
-         onclick="location.href='contest_Writteform.do'">글작성</button>
+         onclick="location.href='contest_postform.do'">글작성</button>
    </div>
    <div class="paging pagination pagination-md justify-content-center">
       <c:if test="${pm.prev }">

@@ -24,7 +24,12 @@ public class ContestBoardDaoImpl implements ContestBoardDao {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("usernum", usernum);
 		map.put("boardno", boardno);
-		starDto = sqlSession.selectOne(namespace + "amialready", map);
+		try {
+			starDto = sqlSession.selectOne(namespace + "amialready", map);
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
 		if (starDto != null)
 			return starDto;
 		else {

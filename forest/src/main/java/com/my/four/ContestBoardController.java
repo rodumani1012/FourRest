@@ -91,7 +91,7 @@ public class ContestBoardController {
 	@RequestMapping("contest_postform.do")
 	public String contest_postform(Model model) {
 		List<ContestListDto> conlist = null;
-		conlist = listbiz.selectList();
+		conlist = listbiz.selectListpost();
 		model.addAttribute("conlist", conlist);
 		return "contest/contest_postform";
 	}
@@ -154,17 +154,14 @@ public class ContestBoardController {
 	@RequestMapping(value = "contest_detail.do")
 	public String contestDetail(Model model, int boardno) {
 		ContestBoardDto dto = biz.selectOne(boardno);
-		int groupno = dto.getBoardno();
-		System.out.println(groupno);
+		int groupno = dto.getGroupno();
 		List<ContestBoardDto> listReply = biz.selectListReply(groupno);
 		model.addAttribute("dto", dto);
 		model.addAttribute("listReply", listReply);
-		Object obj = null;
 
 		return "contest/contest_postdetail";
 	}
 
-	// 별점 ! 파라미터잘주세요
 	@RequestMapping("starupdate.do")
 	@ResponseBody
 	public Map<String,Object> starupdate(@RequestParam("starCount") String newstar, @RequestParam("boardNum") String boardno,
@@ -200,7 +197,7 @@ public class ContestBoardController {
 		}
 	}
 
-	// 관리자 공모글 삭제 매퍼확인
+	// 관리자 공모글 삭제 
 	@RequestMapping("contest_deletelist.do")
 	public String contest_deletelist(int boardno) {
 		int res = 0;
@@ -219,10 +216,10 @@ public class ContestBoardController {
 		model.addAttribute("pagenum", 1);
 		model.addAttribute("contentnum", 9);
 		if (res > 0) {
-			return "redirect:contest.do";
+			return "redirect:contest_main.do";
 		} else {
 			System.out.println("삭제안댐");
-			return "redirect:contest.do";
+			return "redirect:contest_main.do";
 		}
 	}
 
@@ -232,14 +229,15 @@ public class ContestBoardController {
 		int parentno = dto.getBoardno();
 		int cnt = biz.replyCntup(parentno);
 		int rescnt = biz.ansProc(dto);
-		if(cnt>0&&rescnt>1) {
+		System.out.println(cnt+"/"+rescnt);
+		if(cnt>0&&rescnt>=1) {
 			System.out.println("댓글등록");
 			return "redirect:contest_detail.do?boardno=" + parentno;
 		}else {
-			if(cnt==0&&rescnt>1)
+			if(cnt==0&&rescnt>=1)
 			System.out.println("첫댓글이거나");
 			else
-				System.out.println("그냥실패");
+				System.out.println("fail");
 			return "redirect:contest_detail.do?boardno=" + parentno;
 		}
 	}
@@ -254,7 +252,6 @@ public class ContestBoardController {
 		}
 		return "redirect:contest_detail.do?boardno=" + pboardno;
 	}
-
 
 //	@RequestMapping(value="contest_update.do")
 //	public String contestUpdate(Model model, ContestBoardDto dto) {

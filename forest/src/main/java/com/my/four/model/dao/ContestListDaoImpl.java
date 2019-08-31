@@ -67,7 +67,12 @@ public class ContestListDaoImpl implements ContestListDao {
 	@Override
 	public int updatepart(int conlistno) {
 		int cnt = 0;
-		cnt = sqlSession.update(namespace+"updatepart", conlistno);
+		try {
+			cnt = sqlSession.update(namespace+"updatepart", conlistno);
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
 		return cnt;
 	}
 
@@ -77,9 +82,23 @@ public class ContestListDaoImpl implements ContestListDao {
 		try {
 			cnt = sqlSession.selectOne(namespace+"concount");
 		} catch (Exception e) {
+			System.out.println("Error");
 			e.printStackTrace();
 		}
 		return cnt;
+	}
+
+	@Override
+	public List<ContestListDto> selectListpost() {
+		List<ContestListDto> list = null;
+		try {
+			list = sqlSession.selectList(namespace+"selectlistpost");
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 }

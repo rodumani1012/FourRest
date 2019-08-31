@@ -210,8 +210,8 @@ body {
 							<li style="margin-top: 10px; font-size: 20px; color: #34495e;">
 								<i class="fa fa-calendar"></i>
 							</li>
-							<li class="pull-right"><audio controls="controls"
-									autoplay="autoplay" loop="loop">
+							<li>
+							<audio controls="controls" autoplay="autoplay" loop="loop">
 									<source src="resources/audio/mix.mp3" type="audio/mp3" />
 								</audio>
 							</li>

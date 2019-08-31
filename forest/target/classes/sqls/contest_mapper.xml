@@ -15,9 +15,9 @@
 		)
 	</select>
 	<select id="selectThree" parameterType="ContestBoardDto" resultType="ContestBoardDto">
-		SELECT * FROM (SELECT * FROM CONTESTBOARD
+		SELECT * FROM (SELECT * FROM CONTESTBOARD where groupsq=1
 		<if test="conlistno!=0">
-			WHERE CONLISTNO = #{conlistno}
+			and CONLISTNO = #{conlistno}
 		</if>
 		ORDER BY LIKERATE DESC ) WHERE ROWNUM &lt;=3
 	</select>
@@ -42,7 +42,7 @@
 	<!-- 여기까지완성 -->
 	<select id="selectList" resultType="ContestBoardDto"
 		parameterType="HashMap">
-		SELECT * FROM ( SELECT ROWNUM RN,a.* FROM CONTESTBOARD a
+		SELECT * FROM ( SELECT ROWNUM RN,a.* FROM CONTESTBOARD a where groupsq=1
 		ORDER BY GROUPNO DESC) WHERE RN &gt;=#{begin} AND RN &lt;=#{end}
 	</select>
 
