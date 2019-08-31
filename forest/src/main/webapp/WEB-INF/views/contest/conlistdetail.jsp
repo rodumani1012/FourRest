@@ -85,11 +85,14 @@ body{
 			</tr>
 		</table>
 
+<script type="text/javascript">
+	var nowlink =''+ document.location.href;
+	console.log(nowlink);
+	console.log("-----------"); 
+</script>	
 <script type="text/javascript" src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type='text/javascript'>
-	var nowlink = document.location.href;
-	consloe.log(nowlink);
 
+<script type='text/javascript'>
   //<![CDATA[
     // // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('d71449af21090ce3a8d8c57f9cca8757');
@@ -107,8 +110,9 @@ body{
         }
       },
       social: {
-       	공모참여수: '-',
-       	마감일: '-'
+        likeCount: 286,
+        commentCount: 45,
+        sharedCount: 845
       },
       buttons: [
         {
@@ -129,6 +133,8 @@ body{
     });
   //]]>
 </script>
+
+
 	</div>
 
 </body>
