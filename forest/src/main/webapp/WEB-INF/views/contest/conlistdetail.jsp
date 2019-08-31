@@ -13,6 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
@@ -70,21 +71,28 @@ body{
 			</tr>
 			<tr>
 				<td colspan="2">
-				<c:if test="${user_id==admin }">
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_deletelist.do?boardno=${conDto.boardno}'">삭제</button>				
-				</c:if>
+					<button type="button" class="btn btn-outline-dark" onclick="location.href='admin_conlist.do'">관리자전용 게시 목록으로</button>
+				</sec:authorize>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_main.do'">목록으로</button>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postform.do'">참여하기</button>
 					<button type="button" class="btn btn-outline-dark" onclick="location.href='contest_postlist.do?pagenum=1&contentnum=9&conlistno=${conDto.boardno}'" >참여작보기</button>
 					<a id="kakao-link-btn" href="javascript:;">
 					<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" style="width: 30px;height: 30px;"/>
 					</a>
+					
 				</td>
 			</tr>
 		</table>
- 
 
+<script type="text/javascript">
+	var nowlink =''+ document.location.href;
+	console.log(nowlink);
+	console.log("-----------"); 
+</script>	
 <script type="text/javascript" src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <script type='text/javascript'>
   //<![CDATA[
     // // 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -98,8 +106,8 @@ body{
         description: '#환경 #공모전 #자연보호 #멸종위기  #동물보호',
         imageUrl: 'https://image.freepik.com/free-vector/mountain-forest-illustration_16787-15.jpg',
         link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com'
+          mobileWebUrl: nowlink,
+          webUrl: nowlink
         }
       },
       social: {
@@ -111,21 +119,23 @@ body{
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
+            mobileWebUrl: nowlink,
+            webUrl: nowlink
           }
         },
         {
           title: '앱으로 보기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
+            mobileWebUrl: nowlink,
+            webUrl: nowlink
           }
         }
       ]
     });
   //]]>
 </script>
+
+
 	</div>
 
 </body>

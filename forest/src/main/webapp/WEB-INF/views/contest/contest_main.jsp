@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>::ContestMain</title>
+<title>THE FOREST</title>
 <script	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -183,6 +183,12 @@ body {
 	display: none;
 }
 </style>
+<style type="text/css">
+.dropdown:hover>.dropdown-menu {
+	display: block;
+	margin: 0;
+}
+</style>
 </head>
 <body>
 	<%@ include file="../header.jsp"%>
@@ -202,10 +208,10 @@ body {
 		<div class="" id="listdiv" style="margin-left: 10%;">
 
 			<section class="content">
-				<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-10 col-md-offset-2">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="pull-right">
+							<div class="pull-right" style="padding-right: 5%">
 								<div class="btn-group">
 									<button type="button" class="btn btn-filter"
 										data-target="pagado">진행중</button>
@@ -388,7 +394,7 @@ body {
 								<c:otherwise>
 									<c:forEach items="${threelist }" var="threedto"
 										varStatus="status">
-										<div class="col-sm-3">
+										<div class="col-sm-4">
 											<img class="d-block img-fluid" ${threedto.reppic}>
 											<div class="text-center">
 												<h6 class="card-title">

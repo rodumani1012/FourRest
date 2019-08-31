@@ -2,23 +2,30 @@
 <!DOCTYPE mapper PUBLIC "mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="contestlist">
 
-   <select id="selectlist" resultType="ContestListDto">
-      SELECT * FROM CONTESTLIST
-   </select>
+	<select id="selectlist" resultType="ContestListDto">
+		SELECT * FROM CONTESTLIST ORDER BY BOARDNO
+	</select>
+	<select id="selectlistpost" resultType="ContestListDto">
+		SELECT * FROM CONTESTLIST WHERE ENDDATE &gt;= SYSDATE
+	</select>
 
-   <select id="selectOne" resultType="ContestListDto" parameterType="int">
-      SELECT * FROM CONTESTLIST WHERE BOARDNO = #{conlistno}
-   </select>
-   
-   <insert id="insertlist" parameterType="ContestListDto">
-      INSERT INTO CONTESTLIST VALUES(CONLISTSQ.NEXTVAL,#{title},#{reppic},#{content},#{forwho},#{prize},#{startdate},#{enddate},0,#{sort},SYSDATE)
-   </insert>
-   <update id="updatepart" parameterType="int">
-      UPDATE CONTESTLIST SET PARTNUM = PARTNUM+1 WHERE BOARDNO=#{conlistno}
-   </update>
-   
-   <select id="concount" resultType="int">
-      SELECT COUNT(*) FROM CONTESTLIST
-   </select>
-   
+	<select id="selectOne" resultType="ContestListDto" parameterType="int">
+		SELECT * FROM CONTESTLIST WHERE BOARDNO = #{conlistno}
+	</select>
+	
+	<insert id="insertlist" parameterType="ContestListDto">
+		INSERT INTO CONTESTLIST VALUES(CONLISTSQ.NEXTVAL,#{title},#{reppic},#{content},#{forwho},#{prize},#{startdate},#{enddate},0,#{sort},SYSDATE)
+	</insert>
+	<update id="updatepart" parameterType="int">
+		UPDATE CONTESTLIST SET PARTNUM = PARTNUM+1 WHERE BOARDNO=#{conlistno}
+	</update>
+	
+	<select id="concount" resultType="int">
+		SELECT COUNT(*) FROM CONTESTLIST
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM CONTESTLIST WHERE BOARDNO=#{conlistno}
+	</delete>
+	
 </mapper>

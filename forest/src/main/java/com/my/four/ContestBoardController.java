@@ -87,14 +87,14 @@ public class ContestBoardController {
       return "contest/contest_main";
    }
 
-   // 유저가 출품작 작성하는폼으로가기
-   @RequestMapping("contest_postform.do")
-   public String contest_postform(Model model) {
-      List<ContestListDto> conlist = null;
-      conlist = listbiz.selectList();
-      model.addAttribute("conlist", conlist);
-      return "contest/contest_postform";
-   }
+	// 유저가 출품작 작성하는폼으로가기
+	@RequestMapping("contest_postform.do")
+	public String contest_postform(Model model) {
+		List<ContestListDto> conlist = null;
+		conlist = listbiz.selectListpost();
+		model.addAttribute("conlist", conlist);
+		return "contest/contest_postform";
+	}
 
    // 작성해서 insert까지하고 메인으로돌아가기
    @RequestMapping("contest_post.do")
@@ -150,120 +150,118 @@ public class ContestBoardController {
       return "contest/conlistdetail";
    }
 
-   // 공모지원한사람꺼 detail보러가기
-   @RequestMapping(value = "contest_detail.do")
-   public String contestDetail(Model model, int boardno) {
-      ContestBoardDto dto = biz.selectOne(boardno);
-      int groupno = dto.getBoardno();
-      System.out.println(groupno);
-      List<ContestBoardDto> listReply = biz.selectListReply(groupno);
-      model.addAttribute("dto", dto);
-      model.addAttribute("listReply", listReply);
-      Object obj = null;
+	// 공모지원한사람꺼 detail보러가기
+	@RequestMapping(value = "contest_detail.do")
+	public String contestDetail(Model model, int boardno) {
+		ContestBoardDto dto = biz.selectOne(boardno);
+		int groupno = dto.getGroupno();
+		List<ContestBoardDto> listReply = biz.selectListReply(groupno);
+		model.addAttribute("dto", dto);
+		model.addAttribute("listReply", listReply);
 
       return "contest/contest_postdetail";
    }
 
-   // 별점 ! 파라미터잘주세요
+	// 별점 ! 파라미터잘주세요
    @RequestMapping("starupdate.do")
-   @ResponseBody
-   public Map<String,Object> starupdate(@RequestParam("starCount") String newstar, @RequestParam("boardNum") String boardno,
-         @RequestParam("userName") String userName) {
-      StarRecordDto starDto = null;
-      LoginDto logDto = null;
-      logDto = logBiz.login(userName);
-      int userno = logDto.getUsernum();
-      int boardnum = Integer.parseInt(boardno);
-      int newstarno = Integer.parseInt(newstar);
-      //메시지담기위한곳
-      String msg = "";
-      starDto = biz.amialready(userno, boardnum);
-      if(starDto!=null)
-         msg="별점을 수정하였습니다!";
-      else
-         msg="별점을 주었습니다!";
-      int resultcnt = biz.starProc(userno, boardnum, newstarno);
-      if(resultcnt>1) {
-         System.out.println("updateok");
-         ContestBoardDto dto = biz.selectOne(boardnum);
-         Map<String,Object> map = new HashMap<String,Object>();
-         map.put("updatedStar", dto.getLikerate()+"");
-         map.put("CODE", "OK");
-         map.put("msg", msg);
-         return map;
-      }else {
-         System.out.println("retry");
-         Map<String,Object> map = new HashMap<String,Object>();
-         map.put("updatedStar", 5.0+"");
-         map.put("CODE", "NO");
-         return map;
-      }
-   }
+	@ResponseBody
+	public Map<String,Object> starupdate(@RequestParam("starCount") String newstar, @RequestParam("boardNum") String boardno,
+			@RequestParam("userName") String userName) {
+		StarRecordDto starDto = null;
+		LoginDto logDto = null;
+		logDto = logBiz.login(userName);
+		int userno = logDto.getUsernum();
+		int boardnum = Integer.parseInt(boardno);
+		int newstarno = Integer.parseInt(newstar);
+		//메시지담기위한곳
+		String msg = "";
+		starDto = biz.amialready(userno, boardnum);
+		if(starDto!=null)
+			msg="별점을 수정하였습니다!";
+		else
+			msg="별점을 주었습니다!";
+		int resultcnt = biz.starProc(userno, boardnum, newstarno);
+		if(resultcnt>1) {
+			System.out.println("updateok");
+			ContestBoardDto dto = biz.selectOne(boardnum);
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("updatedStar", dto.getLikerate()+"");
+			map.put("CODE", "OK");
+			map.put("msg", msg);
+			return map;
+		}else {
+			System.out.println("retry");
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("updatedStar", 5.0+"");
+			map.put("CODE", "NO");
+			return map;
+		}
+	}
 
-   // 관리자 공모글 삭제 매퍼확인
-   @RequestMapping("contest_deletelist.do")
-   public String contest_deletelist(int boardno) {
-      int res = 0;
-      res = listbiz.delete(boardno);
-      if (res > 0)
-         return "redirect:admin_conlist.do";
-      return "redirect:admin_conlist.do";
-   }
+	// 관리자 공모글 삭제 
+	@RequestMapping("contest_deletelist.do")
+	public String contest_deletelist(int boardno) {
+		int res = 0;
+		res = listbiz.delete(boardno);
+		if (res > 0)
+			return "redirect:admin_conlist.do";
+		return "redirect:admin_conlist.do";
+	}
 
-   // 참여글 삭제
-   @RequestMapping(value = "contest_delete.do")
-   public String delete(@RequestParam int groupno, Model model) {
-      int res = 0;
-      res = biz.boardDelete(groupno);
-      System.out.println(groupno);
-      model.addAttribute("pagenum", 1);
-      model.addAttribute("contentnum", 9);
-      if (res > 0) {
-         return "redirect:contest.do";
-      } else {
-         System.out.println("삭제안댐");
-         return "redirect:contest.do";
-      }
-   }
+	// 참여글 삭제
+	@RequestMapping(value = "contest_delete.do")
+	public String delete(@RequestParam int groupno, Model model) {
+		int res = 0;
+		res = biz.boardDelete(groupno);
+		System.out.println(groupno);
+		model.addAttribute("pagenum", 1);
+		model.addAttribute("contentnum", 9);
+		if (res > 0) {
+			return "redirect:contest_main.do";
+		} else {
+			System.out.println("삭제안댐");
+			return "redirect:contest_main.do";
+		}
+	}
 
-   // 댓글등록
-   @RequestMapping("contest_replyform.do")
-   public String postreply(@ModelAttribute ContestBoardDto dto, Model model) {
-      int parentno = dto.getBoardno();
-      int cnt = biz.replyCntup(parentno);
-      int rescnt = biz.ansProc(dto);
-      if(cnt>0&&rescnt>1) {
-         System.out.println("댓글등록");
-         return "redirect:contest_detail.do?boardno=" + parentno;
-      }else {
-         if(cnt==0&&rescnt>1)
-         System.out.println("첫댓글이거나");
-         else
-            System.out.println("그냥실패");
-         return "redirect:contest_detail.do?boardno=" + parentno;
-      }
-   }
-   
-   @RequestMapping("contest_ansdelete.do")
-   public String ansdelete(int boardno,int pboardno) {
-      int res =0;
-      int cnt = biz.replyCntDown(pboardno);
-      res = biz.ansdel(boardno);
-      if(res>0&&cnt>0) {
-         return "redirect:contest_detail.do?boardno=" + pboardno;
-      }
-      return "redirect:contest_detail.do?boardno=" + pboardno;
-   }
+	// 댓글등록
+	@RequestMapping("contest_replyform.do")
+	public String postreply(@ModelAttribute ContestBoardDto dto, Model model) {
+		int parentno = dto.getBoardno();
+		int cnt = biz.replyCntup(parentno);
+		int rescnt = biz.ansProc(dto);
+		System.out.println(cnt+"/"+rescnt);
+		if(cnt>0&&rescnt>=1) {
+			System.out.println("댓글등록");
+			return "redirect:contest_detail.do?boardno=" + parentno;
+		}else {
+			if(cnt==0&&rescnt>=1)
+			System.out.println("첫댓글이거나");
+			else
+				System.out.println("fail");
+			return "redirect:contest_detail.do?boardno=" + parentno;
+		}
+	}
+	
+	@RequestMapping("contest_ansdelete.do")
+	public String ansdelete(int boardno,int pboardno) {
+		int res =0;
+		int cnt = biz.replyCntDown(pboardno);
+		res = biz.ansdel(boardno);
+		if(res>0) {
+			return "redirect:contest_detail.do?boardno=" + pboardno;
+		}
+		return "redirect:contest_detail.do?boardno=" + pboardno;
+	}
 
-
-//   @RequestMapping(value="contest_update.do")
-//   public String contestUpdate(Model model, ContestBoardDto dto) {
-//      int res=0;
-//      System.out.println(dto.getWriter()+dto.getTitle()+dto.getContent());
-//      Object type=dto.getWriter().getClass();
-//      String[] str = dto.getContent().split("<img");
-//      String[] str2 = str[1].split(">");
-//      StringBuffer sb = new StringBuffer();
+//	@RequestMapping(value="contest_update.do")
+//	public String contestUpdate(Model model, ContestBoardDto dto) {
+//		int res=0;
+//		System.out.println(dto.getWriter()+dto.getTitle()+dto.getContent());
+//		Object type=dto.getWriter().getClass();
+//		String[] str = dto.getContent().split("<img");
+//		String[] str2 = str[1].split(">");
+//		StringBuffer sb = new StringBuffer();
 //
 //      String picture = "<img "+str2[0]+">";
 //      System.out.println(picture);

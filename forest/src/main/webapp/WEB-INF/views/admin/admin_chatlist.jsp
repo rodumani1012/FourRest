@@ -34,8 +34,28 @@
 			</ul>
 		</div>
 	</nav>
-					<div id="adminchat" class="container " style="width: 700px;height:700px; " >
-					<iframe class="iframe-chat" src="http://192.168.10.158:8880/admin" style="width:100%;height: 100%;"></iframe>
+		<div class="row">
+				<div class="col-md-12">
+					<div class="page-title" style="padding: 8px 15px;">
+						<ol class="breadcrumb">
+							<li>
+								<h2>&nbsp;Chatting Management<small> 채팅관리</small></h2>
+							</li>
+							<li style="margin-top: 10px; font-size: 20px; color: #34495e;">
+								<i class="fa fa-calendar"></i>
+							</li>
+							<li class="pull-right"><audio controls="controls"
+									autoplay="autoplay" loop="loop">
+									<source src="resources/audio/mix.mp3" type="audio/mp3" />
+								</audio>
+							</li>
+						</ol>
 					</div>
+				</div>
+			</div>
+
+				<div id="adminchat" class="container " style="width: 700px;height:700px; " >
+					<iframe class="iframe-chat" src="http://192.168.10.158:8880/admin" style="width:100%;height: 100%;"></iframe>
+				</div>
 </body>
 </html>

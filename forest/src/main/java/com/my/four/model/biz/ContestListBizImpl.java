@@ -44,6 +44,12 @@ public class ContestListBizImpl implements ContestListBiz {
 		// TODO Auto-generated method stub
 		return dao.concount();
 	}
+
+	@Override
+	public List<ContestListDto> selectListpost() {
+		// TODO Auto-generated method stub
+		return dao.selectListpost();
+	}
 	
 	
 

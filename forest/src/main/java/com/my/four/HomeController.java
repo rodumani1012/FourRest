@@ -201,8 +201,8 @@ public class HomeController {
 		model.addAttribute("concount",contestlistbiz.concount());
 		model.addAttribute("fundcount",funbiz.totalfund());
 		model.addAttribute("calcount",calbiz.calcount());
-		LoginDto dto = biz.memberInfo(prin.getName());
-		System.out.println("!!!!!!!!!!!!!!!!"+dto.getRole());
+//		LoginDto dto = biz.memberInfo(prin.getName());
+//		System.out.println("!!!!!!!!!!!!!!!!"+dto.getRole());
 		return "admin/admin";
 	}
 	
