@@ -80,8 +80,11 @@ body {
 	line-height: 1.3;
 	border-radius: 3px;
 	border: 1px solid #3a87ad; /* default BORDER color */
-	background-color: #3a87ad; /* default BACKGROUND color */
+	background-color: rgba(0,255,0,0.4); /* default BACKGROUND color */
 	font-weight: normal; /* undo jqui's ui-widget-header bold */
+}
+.fc-content {
+	color: black;
 }
 
 </style>

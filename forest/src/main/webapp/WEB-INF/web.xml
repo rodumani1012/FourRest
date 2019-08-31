@@ -98,4 +98,48 @@
     <servlet-name>FreeboardController</servlet-name>
     <url-pattern>/FreeboardController</url-pattern>
   </servlet-mapping>
+  
+  <!-- 에러 발생 처리 -->
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/error.do?kind=Throwable</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/error.do?kind=Exception</location>
+  </error-page>
+  <error-page>
+    <error-code>400</error-code>
+    <location>/error.do?kind=400</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/error.do?kind=403</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error.do?kind=404</location>
+  </error-page>
+  <error-page>
+    <error-code>405</error-code>
+    <location>/error.do?kind=405</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error.do?kind=500</location>
+  </error-page>
+  <error-page>
+    <error-code>503</error-code>
+    <location>/error.do?kind=503</location>
+  </error-page>
+  <servlet>
+    <description></description>
+    <display-name>ErrorController</display-name>
+    <servlet-name>ErrorController</servlet-name>
+    <servlet-class>com.my.four.ErrorController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ErrorController</servlet-name>
+    <url-pattern>/ErrorController</url-pattern>
+  </servlet-mapping>
 </web-app>

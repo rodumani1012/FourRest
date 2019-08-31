@@ -185,13 +185,16 @@
 		<i class='fas fa-comment-dots'></i>
 	</button>
 	<div id="chat"
-		style="display: none; position: fixed; bottom: 50PX; right: 86PX; z-index: 9999">
+		style="display: none; position: fixed; bottom: 50px; right: 86px; z-index: 9999;">
 		<div id="chat_box">
 			<ul id="#messages"></ul>
- 		<!--	<iframe class="iframe-chat" src="http://192.168.110.62:8880?id=${user_id }" style="overflow-x: hidden"></iframe> -->
 		</div>
-	</sec:authorize>
+		<div class="test">	
+ 			<iframe class="iframe-chat" src="http://192.168.10.158:8880?id=${user_id }" style="overflow-x: hidden"></iframe>
+		</div>
 	</div>
+	</sec:authorize>
+
 
 	<!-- footer -->
 	<%@ include file="./footer.jsp"%>

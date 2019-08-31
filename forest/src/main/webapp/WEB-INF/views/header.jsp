@@ -86,25 +86,19 @@
 						</div>
 					</li>
 					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='chat.do'">문의하기</button></li>
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
+							onclick="location.href='funlist.do'">후원하기</button></li>
 					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='admin.do'">관리자</button></li>
-					</sec:authorize>
-					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='site.do'">관련 사이트</button></li>
+							onclick="location.href='ani_shelterList.do'">동물보호센터</button></li>
 					<li>
 						<div class="dropdown">
 							<button type="button"
 								class="text-dark btn btn-link dropdown-toggle"
-								data-toggle="dropdown">환경센터</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="funlist.do">후원하기</a> <a
-									class="dropdown-item" href="ani_shelterList.do">보호소</a> <a
+								data-toggle="dropdown">환경정보센터</button>
+							<div class="dropdown-menu"><a
 									class="dropdown-item" href="ani_endangeredList.do">멸종위기종</a> <a
 									class="dropdown-item"
 									href="ani_alien.do?board=animal_alien_disturb&txt_search=">외래생물</a>
-								<a class="dropdown-item" href="trash.do">쓰레기</a>
+								<a class="dropdown-item" href="trash.do">쓰레기분해기간</a>
 							</div>
 						</div>
 					</li>
@@ -140,6 +134,10 @@
 							<button type="button" class="btn btn-link text-dark"
 								onclick="location.href='loginform.do'">로그인</button>
 						</sec:authorize></li>
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<li><button type="button" class="btn btn-link text-dark"
+							onclick="location.href='admin.do'">관리자</button></li>
+					</sec:authorize>
 					<li><sec:authorize access="isAuthenticated()">
 							<form:form action="${pageContext.request.contextPath}/logout"
 								method="POST">
