@@ -1,3 +1,6 @@
+/**********************************/
+/* CREATE만 있는 allSql파일 입니다 */
+/**********************************/
 1.user.sql 에서 먼저 member table를 만들어 주고 다음 table을 만들때 순서는 무관하다
 
 CREATE SEQUENCE USERSEQ;
