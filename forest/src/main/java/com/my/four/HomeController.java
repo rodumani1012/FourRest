@@ -76,7 +76,7 @@ public class HomeController {
 			return "main";
 		}else {
 			LoginDto dto = biz.memberInfo(principal.getName());
-			session.setAttribute("dto", dto);
+			session.setAttribute("dto1", dto);
 			return "main";
 		}
 	}
