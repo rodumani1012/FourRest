@@ -26,66 +26,66 @@ import com.my.four.paging.PageMaker;
 @Controller
 public class ContestBoardController {
 
-   private static final Logger logger = LoggerFactory.getLogger(ContestBoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ContestBoardController.class);
 
-   @Autowired
-   private ContestBoardBiz biz;
+	@Autowired
+	private ContestBoardBiz biz;
 
-   @Autowired
-   private ContestListBiz listbiz;
-   
-   @Autowired
-   private LoginBiz logBiz ;
+	@Autowired
+	private ContestListBiz listbiz;
+	
+	@Autowired
+	private LoginBiz logBiz ;
 
-   // 관리자 conlist보여주는페이지로가기
-   @RequestMapping("admin_conlist.do")
-   public String admin_conlist(Model model) {
-      List<ContestListDto> conlist = null;
-      conlist = listbiz.selectList();
-      model.addAttribute("conlist", conlist);
-      return "admin/admin_conlist";
-   }
+	// 관리자 conlist보여주는페이지로가기
+	@RequestMapping("admin_conlist.do")
+	public String admin_conlist(Model model) {
+		List<ContestListDto> conlist = null;
+		conlist = listbiz.selectList();
+		model.addAttribute("conlist", conlist);
+		return "admin/admin_conlist";
+	}
 
-   // 관리자 conlist작성하는페이지로가기
-   @RequestMapping("admin_conlistwrite.do")
-   public String admincontestwrite() {
-      return "admin/admin_conlistwrite";
-   }
+	// 관리자 conlist작성하는페이지로가기
+	@RequestMapping("admin_conlistwrite.do")
+	public String admincontestwrite() {
+		return "admin/admin_conlistwrite";
+	}
 
-   // 관리자 공보작성받아서 db넣고 공모목록으로돌아가기
-   @RequestMapping("admin_conlistwriteform.do")
-   public String admin_conlistwriteform(Model model, @ModelAttribute(value = "ContestBoardDto") ContestListDto dto) {
-      logger.info("<admin_conlistwriteform.do>");
-      int res = 0;
-      String[] strarr = dto.getContent().split("<img ");
-      if (strarr.length == 1) {
-         dto.setReppic("<img src='http://placehold.it/400x400'>");
-      } else {
-         String[] arr = strarr[1].split("style|>");
-         dto.setReppic("<img " + arr[0] + ">");
-      }
-      res = listbiz.insert(dto);
-      System.out.println(dto);
-      if (res > 0) {
-         System.out.println("성공");
-         return "redirect:admin_conlist.do";
-      } else {
-         return "redirect:admin_conlist.do";
-      }
+	// 관리자 공보작성받아서 db넣고 공모목록으로돌아가기
+	@RequestMapping("admin_conlistwriteform.do")
+	public String admin_conlistwriteform(Model model, @ModelAttribute(value = "ContestBoardDto") ContestListDto dto) {
+		logger.info("<admin_conlistwriteform.do>");
+		int res = 0;
+		String[] strarr = dto.getContent().split("<img ");
+		if (strarr.length == 1) {
+			dto.setReppic("<img src='http://placehold.it/400x400'>");
+		} else {
+			String[] arr = strarr[1].split("style|>");
+			dto.setReppic("<img " + arr[0] + ">");
+		}
+		res = listbiz.insert(dto);
+		System.out.println(dto);
+		if (res > 0) {
+			System.out.println("성공");
+			return "redirect:admin_conlist.do";
+		} else {
+			return "redirect:admin_conlist.do";
+		}
 
-   }
+	}
 
-   // 유저 contestmain가기
-   @RequestMapping("contest_main.do")
-   public String contest_main(Model model) {
-      List<ContestListDto> conlist = null;
-      List<ContestBoardDto> topthree = null;
-      conlist = listbiz.selectList();
-      topthree = biz.selectThree(0);
-      model.addAttribute("conlist", conlist);
-      model.addAttribute("threelist", topthree);
-      return "contest/contest_main";
-   }
+	// 유저 contestmain가기
+	@RequestMapping("contest_main.do")
+	public String contest_main(Model model) {
+		List<ContestListDto> conlist = null;
+		List<ContestBoardDto> topthree = null;
+		conlist = listbiz.selectList();
+		topthree = biz.selectThree(0);
+		model.addAttribute("conlist", conlist);
+		model.addAttribute("threelist", topthree);
+		return "contest/contest_main";
+	}
 
 	// 유저가 출품작 작성하는폼으로가기
 	@RequestMapping("contest_postform.do")
@@ -96,59 +96,59 @@ public class ContestBoardController {
 		return "contest/contest_postform";
 	}
 
-   // 작성해서 insert까지하고 메인으로돌아가기
-   @RequestMapping("contest_post.do")
-   public String contest_post(@ModelAttribute ContestBoardDto dto) {
-      int res = 0;
-      String[] strarr = dto.getContent().split("<img ");
-      if (strarr.length == 1) {
-         dto.setReppic("<img src='http://placehold.it/400x400'>");
-      } else {
-         String[] arr = strarr[1].split("style|>");
-         dto.setReppic("<img " + arr[0] + ">");
-      }
-      res = biz.boardInsert(dto);
-      if (res > 0) {
-         System.out.println("성공");
+	// 작성해서 insert까지하고 메인으로돌아가기
+	@RequestMapping("contest_post.do")
+	public String contest_post(@ModelAttribute ContestBoardDto dto) {
+		int res = 0;
+		String[] strarr = dto.getContent().split("<img ");
+		if (strarr.length == 1) {
+			dto.setReppic("<img src='http://placehold.it/400x400'>");
+		} else {
+			String[] arr = strarr[1].split("style|>");
+			dto.setReppic("<img " + arr[0] + ">");
+		}
+		res = biz.boardInsert(dto);
+		if (res > 0) {
+			System.out.println("성공");
 
-         return "redirect:contest_main.do";
-      } else {
-         System.out.println("실패");
-         return "redirect:contest_main.do";
-      }
-   }
+			return "redirect:contest_main.do";
+		} else {
+			System.out.println("실패");
+			return "redirect:contest_main.do";
+		}
+	}
 
-   // 출품 list 보러가기 - 파라미터주세요 6개씩하고 높은 123위 3개전시
-   @RequestMapping("contest_postlist.do")
-   public String contest_postlist(Model model, @RequestParam("conlistno") int conlistno, int pagenum, int contentnum) {
-      List<ContestBoardDto> list = null;
-      List<ContestBoardDto> threelist = null;
-      List<ContestListDto> conlist = null;
-      int totalcount = biz.getCount(conlistno);
-      System.out.println("컨트롤러에서토탈넘" + totalcount);
-      PageMaker pag = new PageMaker(totalcount, pagenum, contentnum);
-      System.out.println("시작끝" + pag.getStartCon() + "/" + pag.getEndCon());
-      list = biz.selectListOption(conlistno, pag.getStartCon(), pag.getEndCon());
-      threelist = biz.selectThree(conlistno);
-      conlist = listbiz.selectList();
-      ContestListDto listDto = listbiz.selectOne(conlistno);
-      model.addAttribute("list", list);
-      model.addAttribute("threelist", threelist);
-      model.addAttribute("conlist", conlist);
-      model.addAttribute("pag", pag);
-      model.addAttribute("conlistno", conlistno);
-      model.addAttribute("listDto", listDto);
-      return "contest/contest_postlist";
-   }
+	// 출품 list 보러가기 - 파라미터주세요 6개씩하고 높은 123위 3개전시
+	@RequestMapping("contest_postlist.do")
+	public String contest_postlist(Model model, @RequestParam("conlistno") int conlistno, int pagenum, int contentnum) {
+		List<ContestBoardDto> list = null;
+		List<ContestBoardDto> threelist = null;
+		List<ContestListDto> conlist = null;
+		int totalcount = biz.getCount(conlistno);
+		System.out.println("컨트롤러에서토탈넘" + totalcount);
+		PageMaker pag = new PageMaker(totalcount, pagenum, contentnum);
+		System.out.println("시작끝" + pag.getStartCon() + "/" + pag.getEndCon());
+		list = biz.selectListOption(conlistno, pag.getStartCon(), pag.getEndCon());
+		threelist = biz.selectThree(conlistno);
+		conlist = listbiz.selectList();
+		ContestListDto listDto = listbiz.selectOne(conlistno);
+		model.addAttribute("list", list);
+		model.addAttribute("threelist", threelist);
+		model.addAttribute("conlist", conlist);
+		model.addAttribute("pag", pag);
+		model.addAttribute("conlistno", conlistno);
+		model.addAttribute("listDto", listDto);
+		return "contest/contest_postlist";
+	}
 
-   // list의 디테일보러간다
-   @RequestMapping("conlistdetail.do")
-   public String detailConlist(Model model, int conlistno) {
-      ContestListDto conDto = null;
-      conDto = listbiz.selectOne(conlistno);
-      model.addAttribute("conDto", conDto);
-      return "contest/conlistdetail";
-   }
+	// list의 디테일보러간다
+	@RequestMapping("conlistdetail.do")
+	public String detailConlist(Model model, int conlistno) {
+		ContestListDto conDto = null;
+		conDto = listbiz.selectOne(conlistno);
+		model.addAttribute("conDto", conDto);
+		return "contest/conlistdetail";
+	}
 
 	// 공모지원한사람꺼 detail보러가기
 	@RequestMapping(value = "contest_detail.do")
@@ -159,11 +159,10 @@ public class ContestBoardController {
 		model.addAttribute("dto", dto);
 		model.addAttribute("listReply", listReply);
 
-      return "contest/contest_postdetail";
-   }
+		return "contest/contest_postdetail";
+	}
 
-	// 별점 ! 파라미터잘주세요
-   @RequestMapping("starupdate.do")
+	@RequestMapping("starupdate.do")
 	@ResponseBody
 	public Map<String,Object> starupdate(@RequestParam("starCount") String newstar, @RequestParam("boardNum") String boardno,
 			@RequestParam("userName") String userName) {
@@ -263,17 +262,17 @@ public class ContestBoardController {
 //		String[] str2 = str[1].split(">");
 //		StringBuffer sb = new StringBuffer();
 //
-//      String picture = "<img "+str2[0]+">";
-//      System.out.println(picture);
-//      dto.setReppic(picture);
-//      res = biz.boardUpdate(dto);
-//      model.addAttribute("pagenum",1);
-//      model.addAttribute("contentnum",9);
-//      if(res>0) {
-//         model.addAttribute("dto",biz.selectOne(dto.getBoardno()));
-//         return "contestdetail";
-//      }
-//      return "redirect:detail.do";
-//   }
+//		String picture = "<img "+str2[0]+">";
+//		System.out.println(picture);
+//		dto.setReppic(picture);
+//		res = biz.boardUpdate(dto);
+//		model.addAttribute("pagenum",1);
+//		model.addAttribute("contentnum",9);
+//		if(res>0) {
+//			model.addAttribute("dto",biz.selectOne(dto.getBoardno()));
+//			return "contestdetail";
+//		}
+//		return "redirect:detail.do";
+//	}
 
 }

@@ -8,9 +8,9 @@ import com.my.four.model.dto.ContestBoardDto;
 import com.my.four.model.dto.StarRecordDto;
 
 public interface ContestBoardDao {
-   
-   @Autowired
-   String namespace="contest.";
+	
+	@Autowired
+	String namespace="contest.";
 
 	public StarRecordDto amialready(int usernum,int boardno);
 	public int boardInsert(ContestBoardDto dto);
@@ -36,5 +36,5 @@ public interface ContestBoardDao {
 	public int ansdel(int boardno);
 	public int replyCntDown(int pboardno);
 
-   
+	
 }
