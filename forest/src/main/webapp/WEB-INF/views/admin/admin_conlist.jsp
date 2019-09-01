@@ -259,9 +259,8 @@ body {
 												<fmt:formatDate value="${now }" pattern="yyyy-MM-dd" var="today"/>
 												<fmt:formatDate value="${dto.startdate }" pattern="yyyy-MM-dd" var="start"/>
 												<fmt:formatDate value="${dto.enddate }" pattern="yyyy-MM-dd" var="end"/>
-												
 												<c:choose>
-													<c:when test="${today<end&&today>start}">
+													<c:when test="${today<end}">
 												<tr data-status="pagado">
 													<td>
 													</td>
