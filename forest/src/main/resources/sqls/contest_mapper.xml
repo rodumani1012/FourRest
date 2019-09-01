@@ -15,9 +15,9 @@
 		)
 	</select>
 	<select id="selectThree" parameterType="ContestBoardDto" resultType="ContestBoardDto">
-		SELECT * FROM (SELECT * FROM CONTESTBOARD
+		SELECT * FROM (SELECT * FROM CONTESTBOARD where groupsq=1
 		<if test="conlistno!=0">
-			WHERE CONLISTNO = #{conlistno}
+			and CONLISTNO = #{conlistno}
 		</if>
 		ORDER BY LIKERATE DESC ) WHERE ROWNUM &lt;=3
 	</select>
@@ -42,7 +42,7 @@
 	<!-- 여기까지완성 -->
 	<select id="selectList" resultType="ContestBoardDto"
 		parameterType="HashMap">
-		SELECT * FROM ( SELECT ROWNUM RN,a.* FROM CONTESTBOARD a
+		SELECT * FROM ( SELECT ROWNUM RN,a.* FROM CONTESTBOARD a where groupsq=1
 		ORDER BY GROUPNO DESC) WHERE RN &gt;=#{begin} AND RN &lt;=#{end}
 	</select>
 
@@ -147,7 +147,10 @@
 		UPDATE CONTESTBOARD SET
 		REPLYNO = REPLYNO+1 WHERE BOARDNO=#{boardno}
 	</update>
-	
+	<update id="replycntdown" parameterType="int">
+		UPDATE CONTESTBOARD SET
+		REPLYNO = REPLYNO-1 WHERE BOARDNO=#{boardno}
+	</update>
 	
 	<select id="amialready" parameterType="map" resultType="StarRecordDto">
 		SELECT * FROM STAR_RECORD WHERE USERNUM=#{usernum} AND BOARDNO=#{boardno}	
@@ -170,5 +173,9 @@
 	<update id="updatenewstar" parameterType="map">
 		UPDATE CONTESTBOARD SET LIKERATE = #{starrate} WHERE BOARDNO=#{boardno}
 	</update>
+	
+	<delete id="ansdel" parameterType="int">
+	 	DELETE FROM CONTESTBOARD WHERE BOARDNO=#{boardno}
+	</delete>
 	
 </mapper>

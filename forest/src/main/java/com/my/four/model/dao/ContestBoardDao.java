@@ -33,6 +33,8 @@ public interface ContestBoardDao {
 	public int reupdateStar(int boardno,double newstar);
 	public int insertAns(ContestBoardDto dto);
 	public int updateAns(int parentno);
+	public int ansdel(int boardno);
+	public int replyCntDown(int pboardno);
 
 	
 }

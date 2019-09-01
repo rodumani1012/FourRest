@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>The Forest</title>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <script type="text/javascript">
@@ -46,16 +46,18 @@
 <body>
 
 <%@ include file="./header.jsp"%>
-
+<br><br><br><br>
 	<sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
 <div class="container table-responsive">
-	<h1>전체 목록</h1>
+	<h2>전체 목록</h2>
 	<form action="muldel.do" method="post" id="muldelform">
 	<c:choose>
 		<c:when test="${empty list }">
 			<h3>펀딩 정보가 없습니다.</h3>
+			<button class="btn btn btn-light" type="button" onclick="location.href='main.do'">처음으로</button> 
+			<button class="btn btn btn-light" type="button" onclick="location.href='insert.do'">등록하기</button>
 		</c:when>
 		<c:otherwise>
 		<br><br><br><br><br><br><br><br><br><br>
@@ -92,7 +94,7 @@
 				</c:forEach>
 			</table>
 				<input type="hidden" name="id" value="${user_id }" />
-				<button class="btn btn btn-light" type="button" onclick="location.href='main.jsp'">처음으로</button> 
+				<button class="btn btn btn-light" type="button" onclick="location.href='main.do'">처음으로</button> 
 				<button class="btn btn btn-light" type="button" onclick="location.href='insert.do'">등록하기</button>
 				<button class="btn btn btn-light" type="submit">선택삭제</button>
 		</c:otherwise>

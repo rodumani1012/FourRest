@@ -14,6 +14,8 @@
 <head>
 <meta charset="UTF-8">
 <!-- heart채우기 부트스트랩추가하면 중복되는거 지워주세여 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
 	rel="stylesheet">
@@ -72,6 +74,19 @@
 body {
 	width: 100%;
 }
+
+textarea {
+    border: 1px solid #ba68c8;
+}
+.form-control:focus {
+    border: 1px solid #ba68c8;
+    box-shadow: 0 0 0 0.2rem rgba(186, 104, 200, .25);
+}
+textarea[readonly]{
+background-color: transparent;
+}
+
+
 </style>
 
 <script type="text/javascript">
@@ -81,7 +96,11 @@ body {
         $("#clicksubmit").on("click",function(){
         	 var starCount = $('#count').text();
         	 var boardNum = $('#boardnum').val();
-        	 var imuser = $('#imuser').val();         
+        	 var imuser = $('#imuser').val();   
+        	 if(imuser==null||imuser==''){
+        		 alert("로그인을해주세요");
+        		 return;
+        	 }
         	$.ajax({
             url:"starupdate.do",
             type:'post',
@@ -124,13 +143,17 @@ body {
 	<div class="d-flex justify-content-center container" id="Detailform">
 		<input type="hidden" id="boardnum" value="${dto.boardno}"> <input
 			type="hidden" id="usernum" value="${dto.writer}">
-		<table class="que-tbl">
+		<table class="table que-tbl">
 			<col width="60px">
-			<col width="400px">
+			<col width="300px">
 			<tr>
 				<th>No.${dto.boardno }</th>
-				<td>${dto.title } | ${dto.writer } <small><fmt:formatDate
-							value="${dto.regdate }" pattern="yyyy-MM-dd" /></small>
+				<td>
+					<ol class="breadcrumb" style="background-color: transparent;">
+						<li>${dto.title } </li>
+						<li>${dto.writer }</li> 
+						<li><fmt:formatDate value="${dto.regdate }" pattern="yyyy-MM-dd" /></li>
+					</ol>
 				</td>
 			</tr>
 			<tr height="150px">
@@ -138,14 +161,14 @@ body {
 				<td>${dto.content }</td>
 			</tr>
 			<tr>
-				<th>현재평점</th>
+				<th>평점</th>
 				<td>
-					<div class="container">
+					<div class="container" style="padding-top: 15px;">
 						<div class="row lead">
-							<div id="hearts" class="starrr"></div>
-							<span id="count">0</span> 점
-							<button id="clicksubmit" class="btn btn-outline-dark">투표
-							</button>
+							<div id="hearts" class="starrr"></div>&nbsp;&nbsp;
+							<span id="count">0</span>&nbsp;&nbsp;점&nbsp;&nbsp;
+							<button id="clicksubmit" class="btn btn-outline-dark" style="border-radius: 0.7em;">투표
+							</button>&nbsp;&nbsp;&nbsp;&nbsp;
 							<span id="starhere" style="color: red;">${dto.likerate }</span> /
 							5 (평점투표수:${dto.likecnt })
 						</div>
@@ -153,12 +176,12 @@ body {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><c:if test="${user_id==dto.writer }">
+				<td colspan="2" style="text-align: right; padding-right: 20%"><c:if test="${user_id==dto.writer }">
 						<button type="button" class="btn btn-outline-dark"
-							onclick="location.href='contest_delete.do?groupno=${dto.groupno}'">글삭제</button>
+							onclick="location.href='contest_delete.do?groupno=${dto.groupno}'"style="border-radius: 0.7em;">글삭제</button>
 					</c:if>
 					<button type="button" class="btn btn-outline-dark"
-						onclick="location.href='contest_main.do?'">목록으로</button></td>
+						onclick="location.href='contest_main.do?'"style="border-radius: 0.7em;">목록으로</button></td>
 			</tr>
 		</table>
 		<div class="reply"></div>
@@ -171,27 +194,27 @@ body {
 		<c:choose>
 			<c:when test="${empty listReply }">
 				<tr>
-					<td colspan="4"><i class="far fa-sticky-note"></i>등록된 댓글이
+					<td colspan="4" style="text-align: center;"><i class="fa fa-sticky-note"></i> 등록된 댓글이
 						없습니다.</td>
 				</tr>
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${listReply }" var="dtoReply">
 					<tr>
-						<th>댓글제목:${dtoReply.title } <input type="text"
-							value="작성자: ${dtoReply.writer }" readonly="readonly">
+						<th>
+								<span> 제목 : ${dtoReply.title }</span>
+								<span>
+									<input type="text" value="작성자 : ${dtoReply.writer }" readonly="readonly" style="border: none; background-color: transparent;">
+								</span>
+								<span class="pull-right"><fmt:formatDate value="${dtoReply.regdate }" pattern="yyyy-MM-dd"/>
+									<c:if test="${dtoReply.writer==user_id }">
+										<input style="border-radius: 0.7em;" type="button" value="삭제" onclick="location.href='contest_ansdelete.do?groupno=${dto.groupno }&boardno=${dtoReply.boardno}&pboardno=${dto.boardno}'">								
+									</c:if>
+								</span>
 						</th>
 					</tr>
 					<tr>
-						<th align="right"><fmt:formatDate
-								value="${dtoReply.regdate }" pattern="yyyy-MM-dd" />
-								<c:if test="${dtoReply.writer==user_id }">
-								<input type="button" value="삭제" onclick="location.href='deleteReply.do?groupno=${dto.groupno }&boardno=${dtoReply.boardno}&pboardno=${dto.boardno}'">								
-								</c:if>
-						</th>
-					</tr>
-					<tr>
-						<td><textarea rows="5" cols="100">${dtoReply.content }</textarea></td>
+						<td><textarea class="form-control" rows="5" cols="100" readonly="readonly">${dtoReply.content }</textarea></td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
@@ -200,26 +223,27 @@ body {
 			<td colspan="4">
 				<c:choose>
 				<c:when test="${user_id eq null}">
+					<div style="margin: 25px;">
 					<strong>댓글을 달기위해 로그인을 해주세요!</strong>	
+					</div>
 				</c:when>
-				<c:otherwise>
-				
+				<c:otherwise>	
 				<form action="contest_replyform.do" method="post">
 					<input type="hidden" name="boardno" value="${dto.boardno }">
 					<input type="hidden" name="groupno" value="${dto.groupno}">
 					<table>
 						<tr>
-							<th colspan="2">작성자:<input type="text" style="width: 100px"
+							<th colspan="2">작성자:<input type="text" style="width: 100px; border: none; background-color: transparent;"
 								name="writer" value="${user_id }" readonly="readonly">
 							</th>
 						</tr>
 						<tr>
-							<td><textarea rows="10" cols="100" name="content"
+							<td><textarea class="form-control" rows="10" cols="100" name="content"
 									placeholder="댓글을 작성해주세요"></textarea></td>
 						</tr>
 						<tr>
 							<td><button class="btn btn-outline-dark" type="submit"
-									style="float: right;">답변등록</button></td>
+									style="float: right; border-radius: 0.7em;">답변등록</button></td>
 						</tr>
 					</table>
 				</form>

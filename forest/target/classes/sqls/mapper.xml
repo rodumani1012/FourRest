@@ -58,7 +58,7 @@
 		]]>
 	</select>
 	<select id="memlist" resultType="loginDto" >
-		SELECT USERNUM, ID,PW, NAME,PHONE,EMAIL,ADDR,ZONECODE,ENABLED,ROLE FROM MEMBER
+		SELECT * FROM MEMBER
 	</select>
 	
 	<update id="memupdate" parameterType="loginDto">
@@ -66,11 +66,18 @@
 	</update>
 	
 	<update id="withdraw" parameterType="java.lang.String">
-		UPDATE MEMBER SET ENABLEDDB = 'N'
+		UPDATE MEMBER SET ENABLEDDB = 'N' WHERE ID=#{id}
 	</update>
 	
 	<select id="memcount" resultType="int">
 		SELECT COUNT(*) FROM MEMBER 
 	</select>
 	
+	<select id="adminsearch" resultType="logindto" parameterType="map">
+		SELECT * FROM MEMBER WHERE UPPER(ID) like '%' || UPPER(#{idsearch}) || '%'
+	</select>
+	
+	<delete id="adminmemdelete" parameterType="int">
+		DELETE FROM MEMBER WHERE USERNUM=#{usernum}
+	</delete>
 </mapper>

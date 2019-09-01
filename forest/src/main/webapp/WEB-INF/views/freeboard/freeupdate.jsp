@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>The Forest</title>
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet">
@@ -50,6 +51,11 @@
 body {
 	width: "100%";
 }
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid gray; /* Green */
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -66,7 +72,7 @@ body {
 	<sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal.username" var="user_id" />
 	</sec:authorize>
-	
+<br><br><br>	
 <div class="container form-horizontal table-responsive">
 
 <form:form action="freeupdateres.do" id="update1" method="post" >
@@ -77,7 +83,7 @@ body {
 	        </tr>
 	        <tr>
 	            <td>작성 시간</td>
-	            <td><input type="text" name="free_date" value="${dto.free_date }" readonly="readonly"/></td>
+	            <td><input type="text" name="free_date" value="<fmt:formatDate value="${dto.free_date }" pattern="yyyy-MM-dd HH:MM"/>" readonly="readonly"/></td>
 	        </tr>
 	        <tr>
 	            <td>ID</td>
@@ -86,7 +92,7 @@ body {
 	        <tr>
 	            <td>제목</td>
 	            <td>
-	                <textarea id="title" name="title">${dto.title }</textarea>
+	                <input id="title" type="text" name="title" value="${dto.title }"/>
 	            </td>
 	        </tr>
 	        <tr>
@@ -98,8 +104,8 @@ body {
 	        </tr>
 	        <tr>
 	            <td colspan="2">
-	                <input type="submit" value="저장"/>
-	                <input type="button" value="취소" class="small" onclick="location.href='freeboardlist.do'"/>
+	                <button class="button1" type="submit" >저장</button>
+	                <button class="button1" type="button" onclick="location.href='freeboardlist.do'">취소</button>
 	            </td>
 	        </tr>
 	</table>

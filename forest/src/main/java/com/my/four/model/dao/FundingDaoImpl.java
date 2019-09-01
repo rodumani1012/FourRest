@@ -152,4 +152,32 @@ public class FundingDaoImpl implements FundingDao {
 		return res;
 	}
 
+	@Override
+	public int totalfund() {
+		int totalmoney =0;
+		try {
+			totalmoney = sqlSession.selectOne(namespace+"totalfund");
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
+		return totalmoney;
+	}
+
+	@Override
+	public int admindelete(String id, String title) {
+		int res =0;
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("id",id);
+		map.put("title",title);
+		try {
+			res = sqlSession.delete(namespace+"admindelete",map);
+		} catch (Exception e) {
+			System.out.println("Error");
+			e.printStackTrace();
+		}
+		System.out.println("----------------------------"+res);
+		return res;
+	}
+
 }

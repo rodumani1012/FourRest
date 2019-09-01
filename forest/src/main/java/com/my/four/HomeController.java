@@ -42,7 +42,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.my.four.model.biz.CalendarBiz;
 import com.my.four.model.biz.ContestListBiz;
+import com.my.four.model.biz.FundingBiz;
 import com.my.four.model.biz.LoginBiz;
 import com.my.four.model.biz.MailService;
 import com.my.four.model.dto.LoginDto;
@@ -68,17 +70,21 @@ public class HomeController {
 	
 	@Autowired
 	private ContestListBiz contestlistbiz;
-	
+	@Autowired
+	private FundingBiz funbiz;
+	@Autowired
+	private CalendarBiz calbiz;
 	
 	@RequestMapping(value="main.do")
 	public String main(Principal principal,HttpSession session) {
 		if(principal==null) {
 			return "main";
-		}else {
+		} else {
 			LoginDto dto = biz.memberInfo(principal.getName());
 			session.setAttribute("dto1", dto);
 			return "main";
 		}
+		
 	}
 
 	@RequestMapping(value = "sponsor.do")
@@ -193,16 +199,11 @@ public class HomeController {
 		logger.info("관리자");
 		model.addAttribute("memcount",biz.memcount());
 		model.addAttribute("concount",contestlistbiz.concount());
-		LoginDto dto = biz.memberInfo(prin.getName());
-		System.out.println("!!!!!!!!!!!!!!!!"+dto.getRole());
+		model.addAttribute("fundcount",funbiz.totalfund());
+		model.addAttribute("calcount",calbiz.calcount());
+//		LoginDto dto = biz.memberInfo(prin.getName());
+//		System.out.println("!!!!!!!!!!!!!!!!"+dto.getRole());
 		return "admin/admin";
-	}
-
-	@RequestMapping(value = "admincal.do")
-	public String admincal() {
-		logger.info("관리자일정");
-
-		return "admin/admincal";
 	}
 	
 	//kakao 로그인
@@ -567,7 +568,7 @@ public class HomeController {
 	   return "site";
 	}
 	
-	@RequestMapping("memlist.do")
+	@RequestMapping("admin_memlist.do")
 	public String memlist(Model model) {
 		List<LoginDto> memlist = null;
 		memlist = biz.memlist();
@@ -577,7 +578,7 @@ public class HomeController {
 		}
 		return "admin/admin_memlist";
 	}
-	@RequestMapping("memupdate.do")
+	@RequestMapping("admin_memupdate.do")
 	@ResponseBody
 	public Map<String,Object> memupdate(Model model,String usernum,String phone,String email,String addr) {
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -595,5 +596,32 @@ public class HomeController {
 		return "admin/chatlist";
 	}
 	
+	@RequestMapping("admin_memsearch.do")
+	public String admin_memsearch(String idsearch,Model model) {
+		List<LoginDto> list = null;
+		list = biz.adminsearch(idsearch);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("searchlist", list);
+		model.addAttribute("memlist", list);
+		
+		return "admin/admin_memlist";
+		
+		
+	}
+	@RequestMapping("admin_memdelete.do")
+	public String admin_memdelete(int usernum) {
+		int res = biz.userdel(usernum);
+		if (res>0) {
+			System.out.println("ok");
+			return "redirect:admin_memlist.do";
+		}
+		System.out.println("no");
+		return "redirect:admin_memlist.do";
+	}
+	
+	@RequestMapping("admin_gotochat.do")
+	public String admin_gotochat() {
+		return "admin/admin_chatlist";
+	}
 	
 }

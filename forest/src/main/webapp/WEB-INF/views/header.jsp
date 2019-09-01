@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>THE FOREST</title>
 <!--Google Font link-->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
 	rel="stylesheet">
@@ -55,15 +55,13 @@
 </head>
 <body>
 	<nav
-		class="navbar navbar-expand-lg  navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
+		class="navbar navbar-expand-lg navbar-fixednavbar navbar-expand-lg  navbar-fixed white bootsnav on no-full">
 		<div class="container">
 			<!-- Start Header Navigation -->
 			<div class="navbar-header">
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbar-menu">
-					<span></span> 
-					<span></span> 
-					<span></span>
+					<span></span> <span></span> <span></span>
 				</button>
 				<a class="navbar-brand" href="main.do"> <img
 					src="resources/assets/images/logo2.jpg" class="logo logo-scrolled"
@@ -75,29 +73,32 @@
 			<div class="collapse navbar-collapse" id="navbar-menu">
 				<ul class="navbar-nav navbar-right">
 					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='gotomap.do'">Map</button></li>
-					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='calendar.do'">Calendar</button></li>
-					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='chat.do'">문의하기</button></li>
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='admin.do'">관리자</button></li>
-					</sec:authorize>
-					<li><button type="button" class="btn btn-link text-dark"
-							onclick="location.href='site.do'">sitelist</button></li>
+							onclick="location.href='gotomap.do'">지도</button></li>
 					<li>
 						<div class="dropdown">
 							<button type="button"
 								class="text-dark btn btn-link dropdown-toggle"
-								data-toggle="dropdown">save</button>
+								data-toggle="dropdown">봉사 일정</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="funlist.do">후원하기</a> <a
-									class="dropdown-item" href="ani_shelterList.do">보호소</a> <a
+								<a class="dropdown-item" href="calrecsel.do">봉사 모집 일정</a>
+								<a class="dropdown-item" href="calvolsel.do">봉사 활동 일정</a>
+							</div>
+						</div>
+					</li>
+					<li><button type="button" class="btn btn-link text-dark"
+							onclick="location.href='funlist.do'">후원하기</button></li>
+					<li><button type="button" class="btn btn-link text-dark"
+							onclick="location.href='ani_shelterList.do'">동물보호센터</button></li>
+					<li>
+						<div class="dropdown">
+							<button type="button"
+								class="text-dark btn btn-link dropdown-toggle"
+								data-toggle="dropdown">환경정보센터</button>
+							<div class="dropdown-menu"><a
 									class="dropdown-item" href="ani_endangeredList.do">멸종위기종</a> <a
 									class="dropdown-item"
 									href="ani_alien.do?board=animal_alien_disturb&txt_search=">외래생물</a>
-								<a class="dropdown-item" href="trash.do">쓰레기</a>
+								<a class="dropdown-item" href="trash.do">쓰레기분해기간</a>
 							</div>
 						</div>
 					</li>
@@ -105,10 +106,10 @@
 						<div class="dropdown">
 							<button type="button"
 								class="text-dark btn btn-link dropdown-toggle"
-								data-toggle="dropdown">board</button>
+								data-toggle="dropdown">게시판</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="contest_main.do">공모게시판</a> <a
-									class="dropdown-item" href="#portfolio">리뷰만들어야함</a>
+								<a class="dropdown-item" href="contest_main.do">공모게시판</a> 
+								<a class="dropdown-item" href="freeboardlist.do">자유게시판</a>
 							</div>
 						</div>
 					</li>
@@ -116,10 +117,10 @@
 						<div class="dropdown">
 							<button type="button"
 								class="text-dark btn btn-link dropdown-toggle"
-								data-toggle="dropdown">content</button>
+								data-toggle="dropdown">컨텐츠</button>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="content.do">GAME</a> <a
-									class="dropdown-item" href="youtube.do">YOUTUBE</a>
+								<a class="dropdown-item" href="content.do">게임</a> <a
+									class="dropdown-item" href="youtube.do">관련 영상</a>
 							</div>
 						</div>
 					</li>
@@ -133,6 +134,10 @@
 							<button type="button" class="btn btn-link text-dark"
 								onclick="location.href='loginform.do'">로그인</button>
 						</sec:authorize></li>
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<li><button type="button" class="btn btn-link text-dark"
+							onclick="location.href='admin.do'">관리자</button></li>
+					</sec:authorize>
 					<li><sec:authorize access="isAuthenticated()">
 							<form:form action="${pageContext.request.contextPath}/logout"
 								method="POST">

@@ -3,7 +3,10 @@
 <mapper namespace="contestlist">
 
 	<select id="selectlist" resultType="ContestListDto">
-		SELECT * FROM CONTESTLIST
+		SELECT * FROM CONTESTLIST ORDER BY BOARDNO
+	</select>
+	<select id="selectlistpost" resultType="ContestListDto">
+		SELECT * FROM CONTESTLIST WHERE ENDDATE &gt;= SYSDATE
 	</select>
 
 	<select id="selectOne" resultType="ContestListDto" parameterType="int">
@@ -20,5 +23,9 @@
 	<select id="concount" resultType="int">
 		SELECT COUNT(*) FROM CONTESTLIST
 	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM CONTESTLIST WHERE BOARDNO=#{conlistno}
+	</delete>
 	
 </mapper>

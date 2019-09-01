@@ -1,0 +1,10 @@
+div.div-iframe-player {
+	max-width: 400px;
+	margin-right: 2rem;
+	display: inline-block;
+}
+
+div.container {
+	width: 1400px;
+	max-width: 1400px;
+}

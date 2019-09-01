@@ -30,7 +30,7 @@ public class PollutionController {
 	@Autowired
 	private PollutionDataBiz biz;
 	
-	@RequestMapping("polu.do")
+	@RequestMapping("gotomap.do")
 	public String polution(Model model, HttpServletRequest request) throws IOException {
 		logger.info("<<polu정보>>");
 
@@ -76,15 +76,15 @@ public class PollutionController {
 		else
 			System.out.println("셋완료실패");
 	
-		return "admin/admin";
-	}
-	
-	
-	@RequestMapping("gotomap.do")
-	public String map() {
-		
 		return "pollution/pollumap";
 	}
+	
+	
+//	@RequestMapping("gotomap.do")
+//	public String map() {
+//		
+//		return "pollution/pollumap";
+//	}
 	
 	@RequestMapping("polu_showme.do")
 	@ResponseBody

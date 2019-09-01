@@ -13,4 +13,5 @@ public interface ContestListBiz {
 	public int delete(int conlistno);
 	public int updatepart(int conlistno);
 	public int concount();
+	public List<ContestListDto> selectListpost();
 }
