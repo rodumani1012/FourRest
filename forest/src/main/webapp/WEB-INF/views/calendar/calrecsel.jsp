@@ -52,10 +52,14 @@
 		
 		function setCalendar(data) {
 			$.each(data,function(key, val){
+				var calrecdate = getFormatDate(new Date(val.calrecdate))
 				var calrecdateend = getFormatDate(new Date(val.calrecdateend))
 				
 				if(today > calrecdateend) {
 					var color = '#C0C0C0'
+				} 
+				if(today < calrecdate) {
+					var color = '#F8D84D'
 				}
 				events.push(
 					{ seq : val.calnum,
@@ -124,10 +128,6 @@ body {
 	
 	<div>
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<input type="button" value="봉사 모집 기간" onclick="location.href='calrecsel.do'" disabled="disabled">
-		<input type="button" value="봉사 활동 기간" onclick="location.href='calvolsel.do'">
-		
-		
 			<button class="btn btn-outline-dark" type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">봉사활동 등록</button>
 		</sec:authorize>
 	</div>

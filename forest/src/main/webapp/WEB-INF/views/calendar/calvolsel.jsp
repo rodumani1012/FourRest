@@ -95,9 +95,6 @@ body {
 	
 	<div>
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
-		<input type="button" value="봉사 모집 기간" onclick="location.href='calrecsel.do'">
-		<input type="button" value="봉사 활동 기간" onclick="location.href='calvolsel.do'" disabled="disabled">
-		
 		
 			<button class="btn btn-outline-dark" type="button" value="봉사활동 등록" onclick="location.href='calinsert.do'">봉사활동 등록</button>
 		</sec:authorize>

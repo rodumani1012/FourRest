@@ -62,25 +62,26 @@
 					<c:choose>
 	                 <c:when test="${dto.calrecpeo > dto.calnowpeo}">
 				     	<c:if test="${voldto != null}">
-							<input type="button" value="신청 취소하기" onclick="location.href='calcancel.do?seq=${dto.calnum }&caltitle=${dto.caltitle }&id=${user_id }'"/>
-							<input type="button" value="돌아가기" onclick="location.href='calrecsel.do'">
-							<input type="button" value="삭제하기" onclick="location.href='caldelete.do'">
+							<input type="button" class="btn btn-outline-dark" value="신청 취소하기" onclick="location.href='calcancel.do?seq=${dto.calnum }&caltitle=${dto.caltitle }&id=${user_id }'"/>
+							<input type="button" class="btn btn-outline-dark" value="돌아가기" onclick="location.href='calrecsel.do'">
+							<input type="button" class="btn btn-outline-dark" value="삭제하기" onclick="location.href='caldelete.do'">
 						</c:if>
 				  		<c:if test="${voldto == null}">
-				   			<input type="button" value="봉사 신청하기" onclick="location.href='calapply.do?seq=${dto.calnum }&caltitle=${dto.caltitle }&id=${user_id }'"/>
-				      		<input type="button" value="돌아가기" onclick="location.href='calrecsel.do'">
-				     		<input type="button" value="삭제하기" onclick="location.href='caldelete.do'">
+				   			<input type="button" class="btn btn-outline-dark" value="봉사 신청하기" onclick="location.href='calapply.do?seq=${dto.calnum }&caltitle=${dto.caltitle }&id=${user_id }'"/>
+				      		<input type="button" class="btn btn-outline-dark" value="돌아가기" onclick="location.href='calrecsel.do'">
+				     		<input type="button" class="btn btn-outline-dark" value="삭제하기" onclick="location.href='caldelete.do'">
 				    	</c:if>
 	                 </c:when>
 	                 <c:otherwise>
-	                     <input type="button" value="모집 마감" onclick="location.href='calendar.do'">
+	                     <input type="button" value="모집 마감" class="btn btn-outline-dark" onclick="location.href='calrecsel.do'">
 	                 </c:otherwise>
 	             </c:choose>
 	    		
 				</td>
 			</tr>
 		</table>
-		
+			
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<table border="1">
 			<tr>
 				<td>봉사 제목</td>
@@ -89,6 +90,7 @@
 				<th>참가자</th>
 			</tr>
 			
+		
 			<c:forEach items="${list }" var="dto1">
 				<c:choose>
 					<c:when test="${empty list }">
@@ -110,6 +112,7 @@
 				</c:choose>
 			</c:forEach>
 		</table>
+		</sec:authorize>
 	</form>
 
 </body>

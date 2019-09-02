@@ -59,6 +59,11 @@
 body {
 	width: "100%";
 }
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid gray; /* Green */
+}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -215,8 +220,9 @@ body {
 					</tr>
 					<tr>
 					<tr>
-						<td colspan="2"><input type="submit" value="등록" /> <input
-							type="button" value="작성 취소" onclick="location.href='contest_main.do'" /></td>
+						<td colspan="2">
+						<input class="button1" type="submit" value="등록" /> 
+						<input class="button1" type="button" value="작성 취소" onclick="location.href='contest_main.do'" /></td>
 					</tr>
 				</table>
 			</form:form>

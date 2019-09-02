@@ -135,6 +135,14 @@
 				
 				
 	</script>
+	
+	
+	<style type="text/css">
+		.g-recaptcha{
+			margin-left: 36%;
+		}
+	
+	</style>
 </head>
 
 <body data-spy="scroll" data-target=".navbar-collapse">
@@ -296,9 +304,7 @@ Forest(이하포레스트)는 여러분이 서비스를 이용하기 위해 일�
 		}
 		$(function () {
 			$("#form").submit(function () {
-				alert("왔니")
 				var id = document.getElementsByName("id")[0].title;
-				alert(id);
 				var name = document.getElementsByName("name")[0].title;
 				var pwchk = document.getElementsByName("pwchk")[0].title;
 				var addr = document.getElementsByName("zonecode")[0].title;

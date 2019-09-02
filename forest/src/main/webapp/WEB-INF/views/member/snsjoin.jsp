@@ -53,6 +53,10 @@
 </head>
 <body>
 
+
+<%@ include file="../header.jsp"%>
+<br><br><br><br><br>
+<div class="container text-center">
 	<form action="memberInsert.do" id="form">
 	
 		<input type="hidden" class="text" name="id" value="${id }" />
@@ -123,6 +127,7 @@
 		<button type="submit" class="btn btn-success btn-lg">가입하기</button>
 
 	</form>
+</div>	
 <script type="text/javascript">
 		function emailNum() {
 			var emailNum = documnet.getElementsByName('emailNum')[0].value;

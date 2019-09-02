@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,8 +94,10 @@
 			</table>
 				<input type="hidden" name="id" value="${user_id }" />
 				<button class="btn btn btn-light" type="button" onclick="location.href='main.do'">처음으로</button> 
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
 				<button class="btn btn btn-light" type="button" onclick="location.href='insert.do'">등록하기</button>
 				<button class="btn btn btn-light" type="submit">선택삭제</button>
+				</sec:authorize>
 		</c:otherwise>
 	</c:choose>
 	 </form>
